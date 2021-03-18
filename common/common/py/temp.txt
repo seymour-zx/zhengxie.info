@@ -1,0 +1,242 @@
+            <div class="container">
+                <div class="wrapper">
+                    <label for="box_001">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_001">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_002">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_002">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_003">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_003">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_004">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_004">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_005">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_005">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_006">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_006">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_007">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_007">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_008">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_008">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_009">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_009">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_010">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_010">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_011">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_011">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_012">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_012">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_013">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_013">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_014">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_014">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_015">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_015">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_016">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_016">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_017">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_017">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_018">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_018">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_019">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_019">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_020">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_020">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_021">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_021">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_022">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_022">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_023">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_023">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <label for="box_024">测试一下</label>
+                    <input type="radio" name="lv_1" id="box_024">
+                    <div class="box">
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                        <a href="  " title="  " >  </a><br />
+                    </div>
+                </div>
+            </div>
