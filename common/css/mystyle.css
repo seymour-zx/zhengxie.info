@@ -1,5 +1,5 @@
-
-
+@media only screen and (orientation : landscape) {/* 横屏 */}
+@media only screen and (orientation : portrait) {/* 竖屏 */}
 /* 初始化标签默认样式 */@media only screen and (min-width: 1px) {
     sup { vertical-align: text-top; }
     img { vertical-align: middle }
@@ -51,6 +51,15 @@
         margin: auto; padding: 1px;
         background-color: rgba(244,241,237,0.8);    
     }
+}
+@media only screen and (max-width: 750px) {
+    header { padding-top: 0.5rem; padding-bottom: 0.25rem; }
+    header table.plaque { margin-bottom: 0.5rem; }    
+}
+@media only screen and (min-width: 750px) {
+    header { display: flex; height: 6rem; }
+        header table.menu { width: 61.8%; }
+    main { width: 61.8%; min-height: calc(100vh - 96px); }
 }
 
 
@@ -163,19 +172,4 @@ main.unit h2, main.base h2 {
     list-style-position: inside;
     list-style-type: upper-roman;
 }
-
-
 main.base h1 { text-align: center; }
-
-
-@media only screen and (max-width: 750px) {
-    header table.plaque { margin-bottom: 0.5rem; }
-    header { padding-top: 0.5rem; padding-bottom: 0.25rem; }
-}
-@media only screen and (min-width: 750px) {
-    header { display: flex; height: 6rem; }
-        header table.menu { width: 61.8%; }
-    main { width: 61.8%; min-height: calc(100vh - 96px); }
-}
-@media only screen and (orientation : landscape) {/* 横屏 */}
-@media only screen and (orientation : portrait) {/* 竖屏 */}
