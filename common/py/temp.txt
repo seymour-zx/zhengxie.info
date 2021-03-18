@@ -199,44 +199,4 @@
                         <a href="  " title="  " >  </a><br />
                     </div>
                 </div>
-                <div class="wrapper">
-                    <label for="box_021">测试一下</label>
-                    <input type="radio" name="lv_1" id="box_021">
-                    <div class="box">
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <label for="box_022">测试一下</label>
-                    <input type="radio" name="lv_1" id="box_022">
-                    <div class="box">
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <label for="box_023">测试一下</label>
-                    <input type="radio" name="lv_1" id="box_023">
-                    <div class="box">
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <label for="box_024">测试一下</label>
-                    <input type="radio" name="lv_1" id="box_024">
-                    <div class="box">
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                        <a href="  " title="  " >  </a><br />
-                    </div>
-                </div>
             </div>

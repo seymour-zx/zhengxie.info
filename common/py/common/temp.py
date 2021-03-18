@@ -3,7 +3,7 @@ from ready import frinfo, fwinfo, checkpath
 if checkpath(): 
     info = '            <div class="container">'
     info = info + '\n'
-    for i in range(24):
+    for i in range(20):
         info = info + '                <div class="wrapper">'
         info = info + '\n'
         info = info + '                    <label for="box_'

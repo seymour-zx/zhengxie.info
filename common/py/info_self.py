@@ -27,7 +27,7 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
         if x==0:
             info = info + '\n        <main>\n'
         elif x==100:
-            info = info + '\n        <main class="welcome">\n'
+            info = info + '\n        <main class="portal-box">\n'
         elif x==200:
             info = info + '\n        <main class="bookmark">\n'
         elif x==300:
