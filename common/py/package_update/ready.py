@@ -1,4 +1,5 @@
-# coding: utf-8
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
 import os
 import urllib.request
 import webbrowser

@@ -1,6 +1,7 @@
-# coding: utf-8
-from ready import ready
-from tool import linkpath, fwinfo, frinfo
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+from package_update.ready import ready
+from package_update.tool import linkpath, fwinfo, frinfo
 import time
 import os
 import urllib.request

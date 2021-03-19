@@ -1,9 +1,10 @@
-# coding: utf-8
-from ready import ready
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+from package_update.ready import ready
 import time
-from tool import linkpath, fwinfo, frinfo
+from package_update.tool import linkpath, fwinfo, frinfo
 import os
-from htmls import htmls
+from package_update.htmls import htmls
 
 def unit(txtfolder):
 # 更新目录

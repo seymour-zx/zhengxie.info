@@ -1,7 +1,9 @@
-# coding: utf-8
-from ready import ready
-from info_self import div_main, info_title, info_keywords, info_description, info_link
-from tool import linkpath, fwinfo, frinfo
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+from package_update.ready import ready
+from package_update.info_self import div_main, info_title, info_keywords, info_description, info_link
+from package_update.tool import linkpath, fwinfo, frinfo
 import time
 import os
 import webbrowser

@@ -1,13 +1,15 @@
-# coding: utf-8
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+from package_update.ready import ready
 import os
 import urllib.request
 import webbrowser
 import time
-from ready import ready
-from reset import reset
-from tool import folders
-from refresh import refresh
-from htmls import htmls
+from package_update.ready import ready
+from package_update.reset import reset
+from package_update.tool import folders
+from package_update.refresh import refresh
+from package_update.htmls import htmls
 
 
 if __name__ == '__main__':

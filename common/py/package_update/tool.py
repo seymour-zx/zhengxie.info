@@ -1,5 +1,6 @@
-# coding: utf-8
-from ready import ready
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+from package_update.ready import ready
 import os
 import urllib.request
 
