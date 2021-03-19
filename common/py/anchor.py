@@ -20,3 +20,4 @@ if ready():
             # print(a)
             info = info + a
     fwinfo('./txt/site_anchor.txt', info)
+    fwinfo('../../index/site_anchor.html', info)

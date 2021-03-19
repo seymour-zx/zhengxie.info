@@ -15,7 +15,8 @@ def unit(txtfolder):
     while not n==0:
         if os.path.exists(htmlfolder):
             indexfolder = linkpath('index', htmlfolder)
-            info = info + '                <tr>\n                    <td nowrap="nowrap">'
+            # info = info + '                <tr>\n                    <td nowrap="nowrap">'
+            info = info + '                <tr>\n                    <td>'
             gmtime = time.localtime(int(frinfo('gmtime.txt', indexfolder)))
             gmtime = time.strftime('%Y-%m-%d', gmtime)
             info = info + gmtime

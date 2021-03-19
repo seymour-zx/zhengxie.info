@@ -5,10 +5,10 @@ from package_update.tool import frinfo, fwinfo
 
 
 if ready():
-    list = ['中央媒体']
+    list = ['中央媒体','购物网站','银行','证券公司']
     info = ''
     for i in range(60):
-        name = str(i)
+        name = str(i+1)
         if i < len(list):
             name = list[i]        
         info = info + '\n'
