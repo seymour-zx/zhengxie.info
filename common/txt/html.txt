@@ -1,4 +1,14 @@
 
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){      
+            $("[type='radio']").click(function(){
+                $('.keyword-lv1').css('width','358px');
+                $(this).parent().css('width','100%');
+            });
+        });
+    </script>    
     <script async type="text/javascript">
         var _hmt = _hmt || [];
         (function() {
