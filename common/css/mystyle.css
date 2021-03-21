@@ -93,7 +93,10 @@ table.contents a:hover { color: rgba(243,215,55,1); }
     padding: 0.5rem;
     line-height: 2rem;
 }
+.portal-wrapper > label > .imga { margin-left: 2rem; }
+.portal-wrapper > label > .imga > a { color: rgba(244,241,237,1); border: none; }
 .portal-wrapper > label > a { margin-left: 2rem; color: rgba(244,241,237,1); border: none; }
+.portal-wrapper > label > .imga > a:hover { color: rgba(243,215,55,1); }
 .portal-wrapper > label > a:hover { color: rgba(243,215,55,1); }
 input[type="checkbox"] { display: none; }
 input.on-off:not(:checked) + div { display: none; }
@@ -110,11 +113,29 @@ input.on-off:not(:checked) + table { display: none; }
     padding: 0.25rem;
     flex: 1;
     line-height: 2rem;
+    align-content: center;
+    align-items: center;
+    vertical-align: middle !important;
 }
-a > img {
-    width: 28px;
-    height: 28px;
+.portal-box > .imga > a {
+    text-align: center;
+    white-space: nowrap;
+    margin: 0.25rem;
+    padding: 0.25rem;
+    flex: 1;
+    line-height: 2rem;
+    align-content: center;
+    align-items: center;
+    vertical-align: middle !important;
 }
+.imga {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-items: center;
+}
+.imga img { width: 32px; height: 32px; }
+label > .imga img { width: 32px; height: 32px; }
 .portal-box > span {
     
     text-align: center;

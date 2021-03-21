@@ -6,7 +6,7 @@ from package_update.tool import frinfo, fwinfo
 
 
 if ready():
-    mydict = {'导航网站':'<a href="https://zhengxie.info/"><img src="./common/image/favicon.ico">正协信息客栈</a>'}
+    mydict = {'导航网站':'<div class="imga"><img src="https://zhengxie.info/common/image/favicon.ico"><a href="https://zhengxie.info/">正协信息客栈</a></div>'}
     path = './csv/utf-8.csv'
     info = '\n'
     info = info + '            <!-- 导航首页 -->'
@@ -19,10 +19,12 @@ if ready():
     for i in range(1,len(lines)):
         line = lines[i]
         line = line.strip()
-        site, word, keyword, other = line.split(',', 3)
+        site, word, keyword, favicon, other = line.split(',', 4)
         if keywords==keyword:
+            img = '<img src="' + favicon + '">'
             a = '                    <a href="' + site + '">' + word +'</a>'
-            info = info + a
+            imga = '                    <div class="imga">' + img + a + '</div>'
+            info = info + imga
             info = info + '\n'
         else:            
             if not i==1:
@@ -45,8 +47,10 @@ if ready():
             info = info + '\n'
             info = info + '                    <div class="portal-box">'
             info = info + '\n'
+            img = '<img src="' + favicon + '">'
             a = '                    <a href="' + site + '">' + word +'</a>'
-            info = info + a
+            imga = '                    <div class="imga">' + img + a + '</div>'
+            info = info + imga
             info = info + '\n'    
     info = info + '                    </div>'
     info = info + '\n'
