@@ -23,25 +23,25 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
         elif not htmlfolder.find('../../unit/')==-1:
             x=400
         print(x,htmlfolder)    
-    info = '\n    <div>'
+    info = '\n    <div class="body"><!-- <nav></nav> -->'
     if True:
         if x==0:
             info = info + '\n        <main>\n'
         elif x==100:
-            info = info + '\n        <main class="portal-box">\n'
+            info = info + '\n        <main>\n'
         elif x==200:
-            info = info + '\n        <main class="bookmark">\n'
+            info = info + '\n        <main>\n'
         elif x==300:
-            info = info + '\n        <main class="base">\n'
+            info = info + '\n        <main>\n'
         elif x==301:
-            info = info + '\n        <main class="base sitemap">\n'
+            info = info + '\n        <main>\n'
         elif x==400:
-            info = info + '\n        <main class="unit">\n'
+            info = info + '\n        <main>\n'
         else:
             info = info + '\n        <main>\n'
     if True:
         if x==300 or x==301 or x==400:
-            info = info + '\n            <h1>' + frinfo('title.txt', indexfolder) + '</h1>'
+            info = info + '\n            <div style="text-align: center;"><h1>' + frinfo('title.txt', indexfolder) + '</h1></div>'
             if x==400:
                 info = info + '\n            <h6>华朝颐亲王 | 正协信息客栈 | '
                 info = info + time.strftime('%Y-%m-%dT%H:%MZ', gmtime)
@@ -55,21 +55,22 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
         else:
             message = ''
             message = message + '\n<!--'
-            message = message + '\n            <h2>  </h2>'
-            message = message + '\n            <p style="text-indent: 2em;">  </p>'
-            message = message + '\n            <p>&nbsp;&nbsp;  </p>'
-            message = message + '\n            <h3>  </h3>'
-            message = message + '\n            <h4>  </h4>'
-            message = message + '\n            <pre class="code" >  </pre>'
-            message = message + '\n            <hr />'
-            message = message + '\n            <br />'
-            message = message + '\n            <h2>参考 / Reference</h2>'
-            message = message + '\n            <a href="  " title="  " >  </a><br />'
+            message = message + '\n            <article>'
+            message = message + '\n                <h2>  </h2>'
+            message = message + '\n                <p style="text-indent: 2em;">  </p>'
+            message = message + '\n                <h3>  </h3>'
+            message = message + '\n                <h4>  </h4>'
+            message = message + '\n                <pre class="code" >  </pre>'
+            message = message + '\n                <hr />'
+            message = message + '\n                <br />'
+            message = message + '\n                <h2>参考 / Reference</h2>'
+            message = message + '\n                <a href="  " title="  " >  </a><br />'
+            message = message + '\n            </article>'
             message = message + '\n-->'
             fwinfo(path, message)
             info = info + message
     info = info + '\n        </main>'
-    info = info + '\n    </div>'
+    info = info + '\n    <!-- <aside></aside> --></div><!-- // <div class="body"> -->'
     return info
 
 def info_title(file, indexfolder, txtfolder):

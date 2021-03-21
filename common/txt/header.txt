@@ -2,8 +2,10 @@
     <header>
         <table class="plaque">
             <tr>
+                <td rowspan="3" style="width: 2rem;"></td>
                 <td class="logo" rowspan="3"></td>
                 <td colspan="3">颐亲王的小栈</td>
+                <td rowspan="3" style="width: 2rem;"></td>
             </tr>
             <tr class="mid">
                 <td>正协</td>

@@ -13,7 +13,7 @@ def footer(txtfolder, gmtime):
     infolist = []
     infolist.append('\n    <footer>')
     infolist.append('\n        <!-- 上次维护 -->')
-    infolist.append('\n        <div>')
+    infolist.append('\n        <div class="footer">')
     infolist.append('\n            |&nbsp;')
     infolist.append('\n            &lt;&nbsp;')
     infolist.append('\n            上次维护：')

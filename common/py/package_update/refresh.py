@@ -11,24 +11,24 @@ def unit(txtfolder):
     n = 999
     htmlfolder = '../../unit/' + str(n) +'/'
     info = ''
-    info = info + '\n            <table>\n'
+    info = info + '\n            <table class="contents"><!-- 目录列表 -->\n'
     while not n==0:
         if os.path.exists(htmlfolder):
             indexfolder = linkpath('index', htmlfolder)
             # info = info + '                <tr>\n                    <td nowrap="nowrap">'
-            info = info + '                <tr>\n                    <td>'
+            info = info + '                <tr>\n                    <td class="date">'
             gmtime = time.localtime(int(frinfo('gmtime.txt', indexfolder)))
             gmtime = time.strftime('%Y-%m-%d', gmtime)
             info = info + gmtime
             info = info + '</td>\n'
-            info = info + '                    <td><a href="https://zhengxie.info/unit/' + str(n) +'/"'
+            info = info + '                    <td class="contents"><a href="https://zhengxie.info/unit/' + str(n) +'/"'
             # info = info + ' title="" target="_blank">'
             info = info + ' title="">'
             info = info + frinfo('title.txt', indexfolder)
             info = info + '</a></td>\n                </tr>\n'            
         n = n - 1
         htmlfolder = '../../unit/' + str(n) +'/'
-    info = info + '            </table>'
+    info = info + '            </table><!-- // 目录列表 <table class="contents"> -->'
     path = linkpath('main.html', '../../base/sitemap/index/')
     fwinfo(path, info)
     htmls(htmlfolder='../../base/sitemap/', indexfolder='../../base/sitemap/index/', txtfolder=txtfolder, gmtime=time.gmtime())
