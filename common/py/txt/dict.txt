@@ -1,0 +1,14 @@
+导航网站
+<div class="imga"><img src="https://zhengxie.info/common/image/favicon.ico"><a href="https://zhengxie.info/">正协信息客栈</a></div>
+证券公司
+<div class="imga"><img src="https://new.gf.com.cn/images/favicon.ico"><a href="http://www.gf.com.cn/">广发证券</a></div>
+中央媒体
+<div class="imga"><img src="http://www.gmw.cn/favicon.ico"><a href="http://www.gmw.cn/">光明网</a></div>
+银行
+<div class="imga"><img src="http://www.cmbchina.com/cmb.ico"><a href="http://www.icbc.com.cn/icbc/">招商银行</a></div>
+保险
+<div class="imga"><img src="https://www.pingan.com/favicon.ico"><a href="https://www.pingan.com/">中国平安</a></div>
+购物网站
+<div class="imga"><img src="https://zhengxie.info/common/image/favicon/天猫32.gif"><a href="https://www.tmall.com/">天猫</a></div>
+邮箱
+<div class="imga"><img src="https://mail.qq.com/zh_CN/htmledition/images/favicon/qqmail_favicon_32h.png"><a href="https://mail.qq.com/">QQ邮箱</a></div>

@@ -6,7 +6,15 @@ from package_update.tool import frinfo, fwinfo
 
 
 if ready():
-    mydict = {'导航网站':'<div class="imga"><img src="https://zhengxie.info/common/image/favicon.ico"><a href="https://zhengxie.info/">正协信息客栈</a></div>'}
+    path = './txt/dict.txt'
+    mydict = {}
+    with open(path, 'r', encoding='utf-8') as fr:
+        lines = fr.readlines()
+    for i in range(0, int(len(lines)/2)):
+        dictkey = lines[i*2].strip()
+        dictvalue = lines[i*2+1].strip()
+        mydict[dictkey] = dictvalue
+    # mydict = {'导航网站':'<div class="imga"><img src="https://zhengxie.info/common/image/favicon.ico"><a href="https://zhengxie.info/">正协信息客栈</a></div>'}
     path = './csv/utf-8.csv'
     info = '\n'
     info = info + '            <!-- 导航首页 -->'

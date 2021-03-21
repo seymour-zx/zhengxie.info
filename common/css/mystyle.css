@@ -93,7 +93,7 @@ table.contents a:hover { color: rgba(243,215,55,1); }
     padding: 0.5rem;
     line-height: 2rem;
 }
-.portal-wrapper > label > .imga { margin-left: 2rem; }
+.portal-wrapper > label > .imga { margin-left: 1rem; }
 .portal-wrapper > label > .imga > a { color: rgba(244,241,237,1); border: none; }
 .portal-wrapper > label > a { margin-left: 2rem; color: rgba(244,241,237,1); border: none; }
 .portal-wrapper > label > .imga > a:hover { color: rgba(243,215,55,1); }
