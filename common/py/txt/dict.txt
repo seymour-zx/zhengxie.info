@@ -1,7 +1,7 @@
 导航网站
 <div class="imga"><img src="https://zhengxie.info/common/image/favicon.ico"><a href="https://zhengxie.info/">正协信息客栈</a></div>
 证券公司
-<div class="imga"><img src="https://new.gf.com.cn/images/favicon.ico"><a href="http://www.gf.com.cn/">广发证券</a></div>
+<div class="imga"><img src="https://www.guosen.com.cn/favicon.ico"><a href="https://www.guosen.com.cn/gs/index.html">国信证券</a></div>
 中央媒体
 <div class="imga"><img src="http://www.gmw.cn/favicon.ico"><a href="http://www.gmw.cn/">光明网</a></div>
 银行
@@ -11,7 +11,7 @@
 购物网站
 <div class="imga"><img src="https://zhengxie.info/common/image/favicon/天猫32.gif"><a href="https://www.tmall.com/">天猫</a></div>
 邮箱
-<div class="imga"><img src="https://mail.qq.com/zh_CN/htmledition/images/favicon/qqmail_favicon_32h.png"><a href="https://mail.qq.com/">QQ邮箱</a></div>
+<div class="imga"><img src="https://www.foxmail.com/favicon.ico"><a href="https://www.foxmail.com/">Foxmail</a></div>
 搜索
 <div class="imga"><img src="https://www.baidu.com/favicon.ico"><a href="http://www.baidu.com/">百度搜索</a></div>
 百度

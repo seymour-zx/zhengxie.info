@@ -147,5 +147,6 @@ label > .imga img { width: 32px; height: 32px; }
     line-height: 2rem;
 }
 #portal-box { justify-content: space-evenly; }
-#portal-box > div { flex: 1; margin: 0.25rem; }
+#portal-box > div { flex: auto; /* margin: 0.25rem; */ }
+
 /* // 专用书签 */
