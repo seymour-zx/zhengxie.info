@@ -37,13 +37,22 @@ if ready():
     for i in range(1,len(lines)):
         line = lines[i]
         line = line.strip()
-        s1, s2, name, site, favicon, keyword, subword, other = line.split(',', 7)
+        s1, s2, name, site, favicon, keyword, subword, siteif, faviconif, other = line.split(',', 9)
         # print(s1, s2, name, site, favicon, keyword, subword, other)
         # print( subword=='')
         if True:
-            img = '<img src="' + favicon + '">'
-            a = '<a href="' + site + '">' + name +'</a>'
-            imga = '<div class="div_img-a">' + img + a + '</div>'
+            if not siteif=='':
+                img = ''
+                a = name
+                imga = '<div class="div_img-a">' + img + a + '</div>'
+            elif not faviconif=='':
+                img = ''
+                a = '<a href="' + site + '">' + name +'</a>'
+                imga = '<div class="div_img-a">' + img + a + '</div>'
+            else:
+                img = '<img src="' + favicon + '">'
+                a = '<a href="' + site + '">' + name +'</a>'
+                imga = '<div class="div_img-a">' + img + a + '</div>'
         if (prekeyword + presubword) == (keyword + subword):
             info = info + '                            '
             info = info + imga
