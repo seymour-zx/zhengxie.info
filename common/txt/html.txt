@@ -3,10 +3,17 @@
     <script>
         $(document).ready(function(){      
             $("input[type='checkbox']").click(function(){
-                $(":checked").not(this).click();
-                if($(this).is(":checked")){
-                $("#portal-box").children().css("flex","auto");
-            }
+                $(this).parent().prevAll().children(":checked").click();
+                $(this).parent().nextAll().children(":checked").click();
+                $(this).nextAll().find(":checked").click();
+                
+                // $(":checked").not(this).click();                
+                // $(this).prevAll().$(":checked").click();
+                // $(this).nextAll().$(":checked").click();
+                // $(this).children().$(":checked").click();
+            //     if($(this).is(":checked")){
+            //     $("#portal-box").children().css("flex","auto");
+            // }
             // else if($(this).is(":not(:checked)")){ }
 
                 // $('.keyword-lv1').css('width','358px');
