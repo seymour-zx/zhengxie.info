@@ -9,6 +9,7 @@ h1 { display: inline-block; text-align: left; }
 h2 { display: list-item; list-style-position: inside; list-style-type: upper-roman; }
 p {
     word-break: break-all;
+    line-height: 1.5rem;
 }
 a { color: rgba(3,2,4,1); text-decoration: none; border-right: 1px solid rgba(37,86,122,1); border-bottom: 1px solid rgba(130,36,30,1);}
 a:hover { color: rgba(244,241,237,1); background-color: rgba(37,86,122,1); text-decoration: underline; }
