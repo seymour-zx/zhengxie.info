@@ -30,7 +30,7 @@
 1,124,应急管理部,http://www.mem.gov.cn/,http://www.mem.gov.cn/image/favicon.ico,国务院,组成部门,999,999,,64
 1,125,中国人民银行,http://www.pbc.gov.cn/,http://www.pbc.gov.cn/rmyh/uiFramework/commonResource/image/logo.ico,国务院,组成部门,999,,,16
 1,126,审计署,http://www.audit.gov.cn/,https://www.google.com/s2/favicons?domain=http://www.audit.gov.cn/,国务院,组成部门,999,,,
-1,200,国有资产监督管理委员会,http://www.sasac.gov.cn/,http://www.sasac.gov.cn/dbsource/11869722/11869731.jpg,国务院,直属特设机构,999,,,30
+1,200,国务院国有资产监督管理委员会,http://www.sasac.gov.cn/,http://www.sasac.gov.cn/dbsource/11869722/11869731.jpg,国务院,直属特设机构,999,,,30
 1,301,海关总署,http://www.customs.gov.cn/,https://www.google.com/s2/favicons?domain=http://www.customs.gov.cn/,国务院,直属机构,999,999,,
 1,302,国家税务总局,http://www.chinatax.gov.cn/,https://www.google.com/s2/favicons?domain=http://www.chinatax.gov.cn/,国务院,直属机构,999,,,
 1,303,国家市场监督管理总局,http://www.samr.gov.cn/,http://www.samr.gov.cn/favicon.ico,国务院,直属机构,999,,,16
@@ -80,9 +80,9 @@
 1,617,国家档案局,https://www.saac.gov.cn/,https://www.google.com/s2/favicons?domain=https://www.saac.gov.cn/,国务院,国家局,999,,,
 1,618,国家保密局,http://www.gjbmj.gov.cn/,https://www.google.com/s2/favicons?domain=http://www.gjbmj.gov.cn/,国务院,国家局,999,,,
 1,619,国家密码管理局,https://www.oscca.gov.cn/,https://www.google.com/s2/favicons?domain=https://www.oscca.gov.cn/,国务院,国家局,999,,,
-1,701,驻香港特别行政区联络办公室,http://www.locpg.hk/,http://www.locpg.hk/favicon.ico,国务院,派出机构,999,,,32
-1,702,驻澳门特别行政区联络办公室,http://www.zlb.gov.cn/,,国务院,派出机构,999,,,
-1,703,驻香港特别行政区维护国家安全公署,,,国务院,派出机构,,,,
+1,701,香港中联办,http://www.locpg.hk/,http://www.locpg.hk/favicon.ico,国务院,派出机构,999,,,32
+1,702,澳门中联办,http://www.zlb.gov.cn/,,国务院,派出机构,999,,,
+1,703,中央驻港国家安全公署,,,国务院,派出机构,,,,
 2,1,中国政协网,http://www.cppcc.gov.cn/,http://www.cppcc.gov.cn/image/favicon.ico,政协,,999,,,16
 2,100,北京,http://www.bjzx.gov.cn/,http://test1.ttde.cn/bjzx/m/image/favicon.ico,政协,北京,999,,,25
 2,200,天津,http://www.tjszx.gov.cn/,https://www.google.com/s2/favicons?domain=http://www.tjszx.gov.cn/,政协,天津,999,,,
@@ -169,7 +169,7 @@
 6,,拼多多,https://m.pinduoduo.com/,https://m.pinduoduo.com/favicon.ico,购物网站,,999,999,,48
 7,1,招商银行,http://www.cmbchina.com/,http://www.cmbchina.com/cmb.ico,银行,,999,999,,48
 7,2,中国人民银行,http://www.pbc.gov.cn/,http://www.pbc.gov.cn/rmyh/uiFramework/commonResource/image/logo.ico,银行,央行,999,,,16
-7,3,中国进出口银行,http://www.eximbank.gov.cn/,http://www.eximbank.gov.cn/favicon.ico,银行,政策,999,999,,64
+7,3,中国进出口银行,http://www.eximbank.gov.cn/,http://www.eximbank.gov.cn/favicon.ico,银行,政策,999,,,64
 7,4,中国农业发展银行,http://www.adbc.com.cn/,,银行,政策,999,,,
 7,5,国家开发银行,http://www.cdb.com.cn/,,银行,政策,999,,,
 7,11,中国银行,https://www.boc.cn/,https://www.boc.cn/favicon.ico,银行,国有,999,999,,16
