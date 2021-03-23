@@ -41,11 +41,11 @@ if ready():
         # print(s1, s2, name, site, favicon, keyword, subword, other)
         # print( subword=='')
         if True:
-            if not siteif=='':
+            if siteif=='':
                 img = ''
                 a = name
                 imga = '<div class="div_img-a">' + img + a + '</div>'
-            elif not faviconif=='':
+            elif faviconif=='':
                 img = ''
                 a = '<a href="' + site + '">' + name +'</a>'
                 imga = '<div class="div_img-a">' + img + a + '</div>'
