@@ -148,6 +148,10 @@ label > .div_img-a { margin-left: 1rem; }
     align-items: center;
     justify-items: center;
     margin: 0.25rem;
+    min-height: 39px;
+}
+.portal-wrapper .portal-wrapper .div_img-a {
+    min-height: 34px;
 }
 .div_img-a a {
     padding: 0.5rem;
