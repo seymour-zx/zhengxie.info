@@ -43,8 +43,11 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
         if x==300 or x==301 or x==400:
             info = info + '\n            <div style="text-align: center;"><h1>' + frinfo('title.txt', indexfolder) + '</h1></div>'
             if x==400:
-                info = info + '\n            <h6>华朝颐亲王 | 正协信息客栈 | '
-                info = info + time.strftime('%Y-%m-%dT%H:%MZ', gmtime)
+                info = info + '\n            <h6 style="text-indent: 2em;">编著：华朝颐亲王 | 正协信息客栈 | '
+                datetime1 = time.strftime('%Y-%m-%dT%H:%MZ', gmtime)
+                datetime2 = time.strftime('%Y年%m月%d日', gmtime)
+                datetime = '<time datetime="' + datetime1 + '" pubtime >' + datetime2 + '</time>'
+                info = info + datetime
                 info = info + '</h6>'
             info = info + '\n            <hr />'
     if True:
@@ -64,7 +67,7 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
             message = message + '\n                <hr />'
             message = message + '\n                <br />'
             message = message + '\n                <h2>参考 / Reference</h2>'
-            message = message + '\n                <a href="  " title="  " >  </a><br />'
+            message = message + '\n                <p style="text-indent: 2em;">1. <a href="" ></a></p>'
             message = message + '\n            </article>'
             message = message + '\n-->'
             fwinfo(path, message)
