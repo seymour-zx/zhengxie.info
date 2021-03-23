@@ -6,19 +6,19 @@ from package_update.tool import frinfo, fwinfo
 if ready():
     message='''
             <div class="searchBox"><!-- 搜索框 -->    
-                <form action="https://www.google.com/search" method="get" target="_blank">
+                <form action="https://www.google.com/search" method="GET" target="_blank">
                     <input class='inputBox' name="q" type="search" value="正协信息客栈">
                     <input class='searchBtn' type="submit" value="谷歌一下"  />
                 </form>
-                <form action="http://baidu.com/s" method="get" target="_blank">
+                <form action="http://baidu.com/s" method="GET" target="_blank">
                     <input class='inputBox' name="wd" type="search" value="华朝颐亲王">
                     <input class='searchBtn' type="submit" value="百度一下"  />
                 </form>
-                <form action="https://www.youtube.com/results" method="get" target="_blank">
+                <form action="https://www.youtube.com/results" method="GET" target="_blank">
                     <input class='inputBox' name="search_query" type="search" value="坂井泉水">
                     <input class='searchBtn' type="submit" value="Youtube搜索"  />
                 </form>
-                <!-- <form action="https://music.taihe.com/search" method="get" target="_blank" accept-charset="UTF-8">
+                <!-- <form action="https://music.taihe.com/search" method="GET" target="_blank" accept-charset="UTF-8">
                 <input type="hidden" name="from" value="new_mp3">
                 <input class='inputBox' type="search" name="key" value='夜曲'>
                 <input class='searchBtn' type="submit" value="千千音乐"  />
