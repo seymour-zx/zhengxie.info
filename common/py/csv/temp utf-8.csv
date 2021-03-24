@@ -156,12 +156,16 @@
 4,1,百度搜索,http://www.baidu.com/,https://www.baidu.com/favicon.ico,搜索,,,999,999,,64
 4,2,Google搜索,https://www.google.com/,https://www.google.com/favicon.ico,搜索,,,999,999,,32
 4,,搜狗搜索,https://www.sogou.com/,https://www.sogou.com/images/logo/new/favicon.ico?v=4,搜索,,,999,999,,32
+4,,GIPHY,https://giphy.com/,https://giphy.com/static/img/favicon.png,搜索,图片,,999,999,,16
+4,,鸠摩搜索,https://www.jiumodiary.com/,https://www.jiumodiary.com/images/favicon.png,搜索,文档,,999,999,,20
+4,,6miu百度云搜索,http://baiduyun.6miu.com/,http://baiduyun.6miu.com/favicon.ico,搜索,其他,,999,999,,32
 5,1,正协信息客栈,https://zhengxie.info/,https://zhengxie.info/common/image/favicon.ico,导航网站,,,999,999,,256
 5,,hao123,https://www.hao123.com/,https://www.hao123.com/favicon.ico,导航网站,,,999,999,,32
 5,,谷歌265,http://www.265.com/,http://www.265.com/static/pages/img/favicon.ico,导航网站,,,999,,,16
 5,,QQ导航,https://hao.qq.com/,https://upd33.sogoucdn.com/nstatic/img/favicon.ico?v=3,导航网站,,,999,999,,16
 5,,搜狗网址导航,https://123.sogou.com/,https://upd12.sogoucdn.com/nstatic/img/favicon.ico?v=3,导航网站,,,999,999,,16
 5,,360导航,https://hao.360.com/,https://hao.360.com/favicon.ico,导航网站,,,999,999,,16
+5,,设计导航,http://hao.shejidaren.com/,,导航网站,,,999,,,
 6,1,天猫,https://www.tmall.com/,https://zhengxie.info/common/image/favicon/天猫32.gif,购物网站,,,999,999,,天猫32.gif
 6,,淘宝网,https://www.taobao.com/,https://img.alicdn.com/tfs/TB1VlKFRpXXXXcNapXXXXXXXXXX-16-16.png,购物网站,,,999,999,,16
 6,,京东,https://www.jd.com/,https://www.jd.com/favicon.ico,购物网站,,,999,999,,48
@@ -236,9 +240,17 @@
 10,,网易yeah.net,https://www.yeah.net/,,邮箱,,,999,,,
 10,,网易126邮箱,http://www.126.com/,https://www.google.com/s2/favicons?domain=http://www.126.com/,邮箱,,,999,,,
 10,,网易163邮箱,https://mail.163.com/,https://www.google.com/s2/favicons?domain=https://mail.163.com/,邮箱,,,999,,,
-11,1,故宫壁纸,https://www.dpm.org.cn/lights/royal.html,https://www.dpm.org.cn/favicon.ico,壁纸,,,999,999,,32
-11,2,wallhaven,https://wallhaven.cc/,https://wallhaven.cc/favicon.ico,壁纸,,,999,999,,16
-11,,极简壁纸,https://bz.zzzmh.cn/,https://bz.zzzmh.cn/favicon.ico,壁纸,,,999,999,,32
+11,1,必应壁纸,https://bing.ioliu.cn/,https://bing.ioliu.cn/static/images/bing.ico,图片,,,999,999,,32
+11,2,故宫壁纸,https://www.dpm.org.cn/lights/royal.html,https://www.dpm.org.cn/favicon.ico,图片,壁纸,,999,999,,32
+11,,wallhaven,https://wallhaven.cc/,https://wallhaven.cc/favicon.ico,图片,壁纸,,999,999,,16
+11,,极简壁纸,https://bz.zzzmh.cn/,https://bz.zzzmh.cn/favicon.ico,图片,壁纸,,999,999,,32
+11,,NET牛人,https://ss.netnr.com/wallpaper,https://ss.netnr.com/favicon.ico,图片,壁纸,,999,999,,64
+11,,图片瀑布,https://joer.ru/,https://joer.ru/favicon.ico,图片,壁纸,,999,999,,16
+11,,Pexels,https://www.pexels.com/zh-cn/,https://www.pexels.com/favicon.ico,图片,素材,,999,999,,64
+11,,Freepik,https://www.freepik.com/,https://freepik.cdnpk.net/img/favicons/favicon.ico?v=2018082101,图片,素材,,999,999,,256
+11,,Flaticon,https://www.flaticon.com/,https://media.flaticon.com/dist/min/img/favicon.ico,图片,图标,,999,999,,32
+11,,狗图网,https://www.gooico.com/,https://www.gooico.com/favicon.ico,图片,图标,,999,999,,32
+11,,小歪API,https://api.ixiaowai.cn/,,图片,API,,999,,,
 12,1,阿里云,https://cn.aliyun.com/,https://img.alicdn.com/tfs/TB1_ZXuNcfpK1RjSZFOXXa6nFXa-32-32.ico,云服务,,,999,999,,32
 12,,腾讯云,https://cloud.tencent.com/,https://cloud.tencent.com/favicon.ico?t=201902181234,云服务,,,999,999,,32
 12,,百度云,https://cloud.baidu.com/,https://bce.bdstatic.com/img/favicon.ico,云服务,,,999,999,,128
@@ -249,6 +261,7 @@
 13,,翻译,https://translate.google.cn/,https://ssl.gstatic.com/translate/favicon.ico,Google,,,999,999,,64
 13,,云端硬盘,https://drive.google.com/,https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png,Google,,,999,999,,32
 13,,Google AdSense,https://www.google.com/adsense/,https://ssl.gstatic.com/adsense/apps/static/bidi/adsense3_antipasti_server_20210317-12_RC00/common/resources/favicon.ico,Google,,,999,999,,32
+13,,Gmail,https://mail.google.com/,https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico,Google,,,999,999,,256
 14,1,百度统计,https://tongji.baidu.com/,https://tongji.baidu.com/favicon.ico,百度,,,999,999,,32
 14,,百度贴吧,https://tieba.baidu.com/,https://tb1.bdstatic.com/tb/favicon.ico,百度,,,999,999,,64
 14,,百度搜索,http://www.baidu.com/,https://www.baidu.com/favicon.ico,百度,,,999,999,,64
@@ -266,12 +279,14 @@
 16,,中国大学MOOC,https://www.icourse163.org/,https://edu-image.nosdn.127.net/32a8dd2a-b9aa-4ec9-abd5-66cd8751befb.png?imageView&quality=100,在线教育,,,999,999,,64
 17,1,豆瓣网,https://www.douban.com/,https://www.douban.com/favicon.ico,社区,,,999,999,,32
 17,,V2EX,https://www.v2ex.com/,https://www.v2ex.com/static/favicon.ico,社区,,,999,999,,32
+17,,知乎,https://zhihu.com/,https://static.zhihu.com/heifetz/favicon.ico,社区,,,999,999,,32
+17,,CSDN,https://www.csdn.net/,https://g.csdnimg.cn/static/logo/favicon32.ico,社区,,,999,999,,32
+17,,简书,https://www.jianshu.com/,https://cdn2.jianshu.io/assets/favicons/favicon-e743bfb1821442341c3ab15bdbe804f7ad97676bd07a770ccc9483473aa76f06.ico,社区,,,999,999,,32
 18,,SOOMAL,http://www.soomal.com/,http://www.soomal.com/favicon.ico,评测,,,999,,,16
 19,,网易云音乐,https://music.163.com/,https://s1.music.126.net/style/favicon.ico?v20180823,音乐,,,999,999,,32
 999,,思谋学术,https://ac.scmor.com/,,未分类,,,999,,,
 999,,小鸡词典,https://jikipedia.com/,,未分类,,,999,,,
 999,,少数派,https://sspai.com/,,未分类,,,999,,,
-999,,有趣网址之家,https://youquhome.com/,,未分类,,,999,,,
 999,,后续,https://houxu.app/,,未分类,,,999,,,
 999,,搜酷站,https://www.soukuzhan.com/,,未分类,,,999,,,
 999,,网页转换助手,http://www.html22.com/zh/,,未分类,,,999,,,
@@ -283,3 +298,4 @@
 999,,简约导航,https://www.jianavi.com,,未分类,,,999,,,
 999,,站搜搜,https://www.zhansousou.com/,,未分类,,,999,,,
 999,,小呆导航,https://webjike.com/link.html,,未分类,,,999,,,
+999,,世界数字图书馆,https://www.wdl.org/zh/,https://www.wdl.org/static/img/logos/wdl-152x152.3c48b49bd60d.png,未分类,,,999,999,,152
