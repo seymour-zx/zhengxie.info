@@ -58,6 +58,8 @@ div.footer {
     justify-content: center;
     text-align: center;
     color: rgba(244,241,237,1); background-color: rgba(37,86,122,1);
+    width: 100%;
+    min-height: 0.25rem;
 }
 /* // 页脚 */
 div.body {
@@ -67,7 +69,7 @@ div.body {
 }
 main {
     background-color: rgba(244,241,237,0.8);
-    min-height: calc(100vh - 8rem);
+    min-height: calc(100vh - 1rem);
     width: 100%;
     max-width: 900px;
 }
