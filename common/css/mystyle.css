@@ -58,8 +58,6 @@ div.footer {
     justify-content: center;
     text-align: center;
     color: rgba(244,241,237,1); background-color: rgba(37,86,122,1);
-    width: 100%;
-    overflow-x: auto;
 }
 /* // 页脚 */
 div.body {

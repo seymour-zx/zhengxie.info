@@ -40,7 +40,7 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
         else:
             info = info + '\n        <main>\n'
     message = '''
-            <div class="footer"><!-- 展示广告——横幅 -->
+            <!-- 展示广告——横幅 -->
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>            
                 <ins class="adsbygoogle"
                     style="display:block"
@@ -51,7 +51,7 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
-            </div>
+            <!-- // 展示广告——横幅 -->
         '''
     info = info + message
     if True:
@@ -88,7 +88,7 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
             fwinfo(path, message)
             info = info + message
     message = '''
-            <div class="footer"><!-- 展示广告——正方形 -->                
+            <!-- 展示广告——正方形 -->                
                 <ins class="adsbygoogle"
                     style="display:block"
                     data-ad-client="ca-pub-6434243103158481"
@@ -98,7 +98,7 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
-            </div><!-- // 展示广告——正方形 -->
+            <!-- // 展示广告——正方形 -->
         '''
 
     info = info + message
