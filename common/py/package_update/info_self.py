@@ -72,6 +72,20 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
             message = message + '\n-->'
             fwinfo(path, message)
             info = info + message
+    message = '''
+        <!-- 展示广告——正方形 -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-6434243103158481"
+            data-ad-slot="5952548493"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        '''
+
+    info = info + message
     info = info + '\n        </main>'
     info = info + '\n    <!-- <aside></aside> --></div><!-- // <div class="body"> -->'
     return info

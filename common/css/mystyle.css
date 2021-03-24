@@ -101,8 +101,21 @@ table.contents a:hover { color: rgba(243,215,55,1); }
 /* // 目录列表 */
 /* 专用书签 */
 input[type="checkbox"] { display: none; }
-input.on-off:not(:checked) + * { display: none; }
-label { 
+input.on-next-off:not(:checked) + * { display: none; }
+.portal-box { display: flex; flex-wrap: wrap; justify-content: space-between; }
+.portal-wrapper { flex: auto; }
+.portal-wrapper-lv2, .portal-wrapper-lv3 { margin: 0.25rem; }
+.div_img-a {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    align-items: center;
+    justify-items: center;
+    margin: 0.25rem;
+}
+.div_img-a img { width: 2rem; height: 2rem; }
+.div_img-a a { padding-left: 0.25rem; padding-right: 0.25rem; min-height: 2rem; line-height: 2rem;}
+.portal-wrapper label { 
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
@@ -112,51 +125,14 @@ label {
     background-color: rgba(3,2,4,0.6);
     border: 1px solid rgba(244,241,237,1);
     cursor: pointer;
-    font-size: 1.25rem;
-    padding: 0.5rem;
+    font-size: 1.5rem;
+    padding: 0.75rem;
 }
-label a {
-    border: none;
-    color: rgba(244,241,237,1);
-}
-label a:hover {
-    color: rgba(243,215,55,1);
-}
-label > .div_img-a { margin-left: 1rem; }
-.portal-wrapper {
-    flex: auto;
-}
-.portal-wrapper .portal-wrapper {
-    margin: 0.25rem;
-}
-.portal-wrapper .portal-wrapper label {
-    background-color: rgba(37,86,122,1);
-    font-size: 1rem;
-    padding: 0;
-    border: none;
-    padding-left: 0.5rem;
-}
-.portal-box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.div_img-a {
-    display: flex;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    align-items: center;
-    justify-items: center;
-    margin: 0.25rem;
-    min-height: 39px;
-}
-.portal-wrapper .portal-wrapper .div_img-a {
-    min-height: 34px;
-}
-.div_img-a a {
-    padding: 0.5rem;
-}
-.div_img-a img {
-    width: 2rem;
-    height: 2rem;
-}
+.portal-wrapper-lv2 label { font-size: 1.25rem; padding: 0.5rem; padding-left: 0.5rem; background-color: rgba(37,86,122,1); }
+.portal-wrapper-lv3 label { font-size: 1rem; padding: 0.25rem; padding-left: 0.5rem; background-color: rgba(130,36,30,1); }
+.portal-wrapper label .div_img-a { margin: 0;}
+.portal-wrapper label a { border: none; color: rgba(244,241,237,1); }
+.portal-box .div_img-a a { border: none; }
+.portal-wrapper label a:hover { color: rgba(243,215,55,1); }
+.portal-wrapper label > .div_img-a { margin-left: 1rem; }
+.portal-box > .div_img-a { border-right: 1px solid rgba(37,86,122,1); border-bottom: 1px solid rgba(130,36,30,1); }
