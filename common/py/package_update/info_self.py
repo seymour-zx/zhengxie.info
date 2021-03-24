@@ -50,6 +50,19 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
                 info = info + datetime
                 info = info + '</h6>'
             info = info + '\n            <hr />'
+    message = '''
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle"
+                style="display:block; text-align:center;"
+                data-ad-layout="in-article"
+                data-ad-format="fluid"
+                data-ad-client="ca-pub-6434243103158481"
+                data-ad-slot="7157818959"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>    
+    '''
+    
     if True:
         file = 'main.html'
         path = linkpath(file, indexfolder)
