@@ -19,6 +19,7 @@ sub { vertical-align: text-bottom; }
 pre.code { color: rgba(244,241,237,1); background-color: rgba(64,144,113,1); overflow: auto; max-height: 38.2vh; }
 /* // 常用标签_样式初始化 */
 body {
+    width: 100%;
     margin: 0;
     overflow-y: auto; 
     overflow-x: auto;

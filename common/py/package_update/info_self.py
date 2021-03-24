@@ -62,6 +62,7 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>    
     '''
+    info = info + message
     
     if True:
         file = 'main.html'
