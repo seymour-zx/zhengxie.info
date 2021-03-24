@@ -39,6 +39,21 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
             info = info + '\n        <main>\n'
         else:
             info = info + '\n        <main>\n'
+    message = '''
+            <div class="footer"><!-- 展示广告——横幅 -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>            
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-6434243103158481"
+                    data-ad-slot="4856101005"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        '''
+    info = info + message
     if True:
         if x==300 or x==301 or x==400:
             info = info + '\n            <div style="text-align: center;"><h1>' + frinfo('title.txt', indexfolder) + '</h1></div>'
@@ -73,16 +88,17 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
             fwinfo(path, message)
             info = info + message
     message = '''
-        <!-- 展示广告——正方形 -->
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-6434243103158481"
-            data-ad-slot="5952548493"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+            <div class="footer"><!-- 展示广告——正方形 -->                
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-6434243103158481"
+                    data-ad-slot="5952548493"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div><!-- // 展示广告——正方形 -->
         '''
 
     info = info + message

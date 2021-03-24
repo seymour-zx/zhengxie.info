@@ -25,22 +25,6 @@ def footer(txtfolder, gmtime):
     infolist.append('\n            &nbsp;|')
     infolist.append('\n        </div>')
     infolist.append('\n        <!-- /上次维护 -->')
-    message = '''
-    <div class="footer">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- 展示广告——横幅 -->
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-6434243103158481"
-        data-ad-slot="4856101005"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-    </div>    
-    '''
-    infolist.append(message)
     infolist.append('\n    </footer>')
     info = ''
     for i in range(len(infolist)):
