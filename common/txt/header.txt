@@ -1,4 +1,16 @@
-
+    <div>
+        <!-- 展示广告——横幅 -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>            
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-6434243103158481"
+                data-ad-slot="4856101005"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        <!-- // 展示广告——横幅 -->
     <header>
         <table class="plaque">
             <tr>
@@ -31,3 +43,4 @@
             </tr>
         </table><!-- /.menu 菜单 -->   
     </header>
+    </div>
