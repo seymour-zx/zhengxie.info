@@ -145,8 +145,8 @@ def info_keywords(file, indexfolder, txtfolder):
     if os.path.exists(path):
         infolist.append(frinfo(file, indexfolder))
     else:
-        fwinfo(path, '信息,目录,导航,网页,网址导航,网站大全,客栈,亲王,网站导航,网站搜索,导航网站,网站收录,信息分类,网站分类,网址收录,颐亲王，华朝颐亲王')
-        infolist.append('信息,目录,导航,网页,网址导航,网站大全,客栈,亲王,网站导航,网站搜索,导航网站,网站收录,信息分类,网站分类,网址收录,颐亲王，华朝颐亲王')
+        fwinfo(path, '信息,目录,导航,网页,网址导航,网站大全,客栈,亲王,网站导航,网站搜索,导航网站,网站收录,信息分类,网站分类,网址收录,颐亲王,华朝颐亲王')
+        infolist.append('信息,目录,导航,网页,网址导航,网站大全,客栈,亲王,网站导航,网站搜索,导航网站,网站收录,信息分类,网站分类,网址收录,颐亲王,华朝颐亲王')
     infolist.append('" />')    
     for i in range(len(infolist)):
        info = info + infolist[i]
