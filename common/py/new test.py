@@ -33,26 +33,28 @@ if ready():
     if True:
     # 列标题设置
         # 分割成多少列？            
-        column = 11
+        column = 15
         # 简称
-        name = 2
+        name = 5
         # 网址
-        site = 3
+        site = 6
+        # 描述title
+        title = 7
         # 图标网址
-        favicon = 4
+        favicon = 8
         if True:
             # 分类深度
             deep = 3
             # 根关键词
-            deep_start = 5
+            deep_start = 9
             # 关键词串联
             pre_keywords = []
         # 网址是否链接
-        siteif = 8
+        siteif = 12
         # 图标是否可用
-        faviconif = 9
+        faviconif = 13
         # 其他无关内容
-        other = 10
+        other = 14
     if True:
     # 读取与处理网址列表
         path = './csv/temp utf-8.csv'        
@@ -79,11 +81,11 @@ if ready():
                 elif line[faviconif]=='':
                 # 无图标
                     img = ''
-                    a = '<a href="' + line[site] + '">' + line[name] +'</a>'
+                    a = '<a href="' + line[site] + '" title="' + line[title] +  '" >' + line[name] + '</a>'
                     imga = '<div class="div_img-a">' + img + a + '</div>'
                 else:
                     img = '<img src="' + line[favicon] + '">'
-                    a = '<a href="' + line[site] + '">' + line[name] +'</a>'
+                    a = '<a href="' + line[site] + '" title="' + line[title] +  '" >' + line[name] + '</a>'
                     imga = '<div class="div_img-a">' + img + a + '</div>'
             if keywords==pre_keywords:
                 info = info + '        ' * (depth + 2)
