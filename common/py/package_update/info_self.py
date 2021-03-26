@@ -49,21 +49,6 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
                 datetime = '<time datetime="' + datetime1 + '" pubtime >' + datetime2 + '</time>'
                 info = info + datetime
                 info = info + '</h6>'
-                message = '''   
-            <hr />    
-            <!-- 文章内嵌广告 -->
-                <ins class="adsbygoogle"
-                    style="display:block; text-align:center;"
-                    data-ad-layout="in-article"
-                    data-ad-format="fluid"
-                    data-ad-client="ca-pub-6434243103158481"
-                    data-ad-slot="7157818959"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            <!-- // 文章内嵌广告 -->
-                '''
-                info = info + message
             info = info + '\n            <hr />'
     if True:
         file = 'main.html'
@@ -87,21 +72,37 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
             message = message + '\n-->'
             fwinfo(path, message)
             info = info + message
-    message = '''
-            <hr />
-            <!-- 展示广告——横幅 -->
-                <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-client="ca-pub-6434243103158481"
-                    data-ad-slot="4856101005"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            <!-- // 展示广告——横幅 -->
+    message = '''   
+    <br />    
+    <!-- 文章内嵌广告 -->
+        <ins class="adsbygoogle"
+            style="display:block; text-align:center;"
+            data-ad-layout="in-article"
+            data-ad-format="fluid"
+            data-ad-client="ca-pub-6434243103158481"
+            data-ad-slot="7157818959"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    <!-- // 文章内嵌广告 -->
+    <br />
         '''
     info = info + message
+    # message = '''
+    #         <hr />
+    #         <!-- 展示广告——横幅 -->
+    #             <ins class="adsbygoogle"
+    #                 style="display:block"
+    #                 data-ad-client="ca-pub-6434243103158481"
+    #                 data-ad-slot="4856101005"
+    #                 data-ad-format="auto"
+    #                 data-full-width-responsive="true"></ins>
+    #             <script>
+    #                 (adsbygoogle = window.adsbygoogle || []).push({});
+    #             </script>
+    #         <!-- // 展示广告——横幅 -->
+    #     '''
+    # info = info + message
     # message = '''
     #         <!-- 展示广告——正方形 -->                
     #             <ins class="adsbygoogle"
