@@ -129,9 +129,10 @@ input.on-next-off:not(:checked) + * { display: none; }
     cursor: pointer;
     font-size: 1.25rem;
     padding: 0.75rem;
+    min-height: 2rem;
 }
-.portal-wrapper-lv2 label { font-size: 1rem; padding: 0.5rem; padding-left: 0.5rem; background-color: rgba(37,86,122,1); }
-.portal-wrapper-lv3 label { font-size: 1rem; padding: 0.25rem; padding-left: 0.5rem; background-color: rgba(130,36,30,1); }
+.portal-wrapper-lv2 label { font-size: 1rem; padding: 0.5rem; padding-left: 0.5rem; background-color: rgba(37,86,122,1);  }
+.portal-wrapper-lv3 label { font-size: 1rem; padding: 0.25rem; padding-left: 0.5rem; background-color: rgba(130,36,30,1);  }
 .portal-wrapper label .div_img-a { margin: 0;}
 .portal-wrapper label a { border: none; color: rgba(244,241,237,1); }
 .portal-box .div_img-a a { border: none; }

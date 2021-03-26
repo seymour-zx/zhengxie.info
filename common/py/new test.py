@@ -11,7 +11,7 @@ if ready():
                     <input class='inputBox' name="q" type="search" value="正协信息客栈">
                     <input class='searchBtn' type="submit" value="谷歌一下"  />
                 </form>
-                <form action="http://baidu.com/s" method="GET" target="_blank">
+                <form action="https://baidu.com/s" method="GET" target="_blank">
                     <input class='inputBox' name="wd" type="search" value="华朝颐亲王">
                     <input class='searchBtn' type="submit" value="百度一下"  />
                 </form>
