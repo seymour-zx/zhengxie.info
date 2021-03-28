@@ -152,7 +152,7 @@ input.on-next-off:not(:checked) + * { display: none; }
 }
 .search-label {
     margin: auto;
-    width: 347px;
+    width: 298px;
     display: flex;
     align-items: center;
     justify-content: flex-start;    
@@ -169,7 +169,7 @@ input.on-next-off:not(:checked) + * { display: none; }
 }
 .search-label label:hover { color: rgba(243,215,55,1); }
 #search-input {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     border: 1px solid rgba(37,86,122,1);
     color: rgba(37,86,122,1);
 }
@@ -181,14 +181,14 @@ input[type="radio"] { display: none; }
     padding-top: 2rem;
     padding-bottom: 1rem;
     margin: auto;
-    width: 347px;
+    width: 298px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 .search-wrapper button {
-    width: 7rem;
-    height: 2.5rem;
+    width: 6.5rem;
+    height: 2.rem;
     cursor: pointer;
     margin-bottom: 0.5rem;
     font-size: 1.25rem;
