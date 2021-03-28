@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>私用书签 | 正协信息客栈 | 信息,目录,导航,网页,网址导航,网站大全</title>
-    <meta name="keywords" content="信息,目录,导航,网页,网址导航,网站大全,客栈,亲王,网站导航,网站搜索,导航网站,网站收录,信息分类,网站分类,网址收录,颐亲王,华朝颐亲王" />
+    <meta name="keywords" content="信息,目录,导航,网页,网址导航,网站大全,客栈,亲王,网站导航,网站搜索,导航网站,网站收录,信息分类,网站分类,网址收录,颐亲王,华朝颐亲王,正协信息,正协信息客栈,视频,直播" />
     <meta name="description" content="" />
     <meta name="author" content="正协信息客栈, 华朝颐亲王, Seymour, 郑協" />
 
@@ -61,25 +61,48 @@
     <div class="body"><!-- <nav></nav> -->
         <main>
 
-            <div class="searchBox"><!-- 搜索框 -->    
-                <form action="https://www.google.com/search" method="get" target="_blank">
-                    <input class='inputBox' name="q" type="search" value="正协信息客栈">
-                    <input class='searchBtn' type="submit" value="谷歌一下"  />
-                </form>
-                <form action="https://baidu.com/s" method="get" target="_blank">
-                    <input class='inputBox' name="wd" type="search" value="华朝颐亲王">
-                    <input class='searchBtn' type="submit" value="百度一下"  />
-                </form>
-                <form action="https://www.youtube.com/results" method="get" target="_blank">
-                    <input class='inputBox' name="search_query" type="search" value="坂井泉水">
-                    <input class='searchBtn' type="submit" value="Youtube搜索"  />
-                </form>
-                <!-- <form action="https://music.taihe.com/search" method="get" target="_blank" accept-charset="UTF-8">
-                <input type="hidden" name="from" value="new_mp3">
-                <input class='inputBox' type="search" name="key" value='夜曲'>
-                <input class='searchBtn' type="submit" value="千千音乐"  />
-                </form>  -->
-            </div><!-- <div class="searchBox">搜索框 -->
+            <div class="search-container"><!-- 搜索框 -->
+                <div class="search-label">
+                    <label for="search-网页">网页</label>
+                    <label for="search-视频">视频</label>
+                    <label for="search-MP3">MP3</label>
+                </div><!-- <div // class="search-label"> -->
+                <input value="欢迎光临正协信息客栈！" id="search-input" type="search" />
+
+                <input checked id="search-网页" name="search-label" class="on-next-off" type="radio">
+                    <div class="search-wrapper">
+                        <button>谷歌</button>
+                            <form action="https://www.google.com/search" method="get" target="_blank">
+                                <input value="正协信息客栈" name="q" type="search" />
+                                <input value="谷歌网页" type="submit" />
+                            </form>
+                        <button>百度</button>
+                            <form action="https://baidu.com/s" method="get" target="_blank">
+                                <input value="华朝颐亲王" name="wd" type="search" />
+                                <input value="百度网页" type="submit" />
+                            </form>
+                    </div><!-- <div // class="search-wrapper"> -->
+
+                <input id="search-视频" name="search-label" class="on-next-off" type="radio">
+                    <div class="search-wrapper">
+                        <button>Youtube</button>
+                            <form action="https://www.youtube.com/results" method="get" target="_blank">
+                                <input value="颐亲王" name="search_query" type="search" />
+                                <input value="Youtube" type="submit" />
+                            </form>         
+                    </div><!-- <div // class="search-wrapper"> -->
+
+                <input id="search-MP3" name="search-label" class="on-next-off" type="radio">
+                    <div class="search-wrapper">
+                        <button>千千音乐</button>
+                        <form action="https://music.taihe.com/search" method="get" target="_blank" accept-charset="UTF-8">
+                            <input value="new_mp3" name="from" type="hidden" />
+                            <input value="夜曲" name="key" type="search" />
+                            <input value="千千音乐" type="submit" />
+                        </form>
+                    </div><!-- <div // class="search-wrapper"> -->        
+            </div><!-- <div // 搜索框 class="search-container"> -->
+
             <div class="portal-box">
                 <a href="https://github.com/seymour-zx/zhengxie.info/">GitHub</a>
                 <a href="https://tongji.baidu.com/web/10000282781/homepage/index/">百度统计</a>  
@@ -564,7 +587,7 @@
         <div class="footer">
             |&nbsp;
             &lt;&nbsp;
-            上次维护：<time datetime="2021-03-26T18:34Z">2021-03-26T18:34Z</time>
+            上次维护：<time datetime="2021-03-28T06:40Z">2021-03-28T06:40Z</time>
             &nbsp;&gt;
             &nbsp;|
         </div>
@@ -572,26 +595,37 @@
     </footer>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){      
+        $(document).ready(function(){
             $("input[type='checkbox']").click(function(){
                 $(this).parent().prevAll().children(":checked").click();
                 $(this).parent().nextAll().children(":checked").click();
-                $(this).nextAll().find(":checked").click();
-                
-                // $(":checked").not(this).click();                
+                $(this).nextAll().find(":checked").click();            
+                // $(":checked").not(this).click();
                 // $(this).prevAll().$(":checked").click();
                 // $(this).nextAll().$(":checked").click();
                 // $(this).children().$(":checked").click();
-            //     if($(this).is(":checked")){
-            //     $("#portal-box").children().css("flex","auto");
-            // }
-            // else if($(this).is(":not(:checked)")){ }
-
+                // if($(this).is(":checked")){ $("#portal-box").children().css("flex","auto"); } else if($(this).is(":not(:checked)")){ }
                 // $('.keyword-lv1').css('width','358px');
                 // $(":checked").parent().css('width','100%');
             });
+            $("button").click(function(){
+                $(this).next().children("[type='search']").val(document.getElementById("search-input").value);
+                $(this).next().children("[type='submit']").click();
+                // var x = document.getElementsByClassName('inputBox');
+                // for(let i = 0; i < x.length; i++){
+                //     x[i].value = "123";
+                // }
+            });
+            // document.getElementById("search-00").value = "Favorite Cars";
         });
-    </script>  
+        // function myFunction() {
+        //     var x = document.$(this).nextAll().children().getElementByClassName("search");
+        //     for(let i = 0; i < x.length; i++){
+        //         x[i].value = "Hello World!";
+        //     }
+        //     $(this).next().children().$("input[type='submit']").click;
+        // }
+    </script>
     <script async type="text/javascript">
         var _hmt = _hmt || [];
         (function() {

@@ -6,25 +6,47 @@ from package_update.tool import frinfo, fwinfo
 if ready():
     if True:
         message='''
-            <div class="searchBox"><!-- 搜索框 -->    
-                <form action="https://www.google.com/search" method="GET" target="_blank">
-                    <input class='inputBox' name="q" type="search" value="正协信息客栈">
-                    <input class='searchBtn' type="submit" value="谷歌一下"  />
-                </form>
-                <form action="https://baidu.com/s" method="GET" target="_blank">
-                    <input class='inputBox' name="wd" type="search" value="华朝颐亲王">
-                    <input class='searchBtn' type="submit" value="百度一下"  />
-                </form>
-                <form action="https://www.youtube.com/results" method="GET" target="_blank">
-                    <input class='inputBox' name="search_query" type="search" value="坂井泉水">
-                    <input class='searchBtn' type="submit" value="Youtube搜索"  />
-                </form>
-                <!-- <form action="https://music.taihe.com/search" method="GET" target="_blank" accept-charset="UTF-8">
-                <input type="hidden" name="from" value="new_mp3">
-                <input class='inputBox' type="search" name="key" value='夜曲'>
-                <input class='searchBtn' type="submit" value="千千音乐"  />
-                </form>  -->
-            </div><!-- <div class="searchBox">搜索框 --> 
+            <div class="search-container"><!-- 搜索框 -->
+                <div class="search-label">
+                    <label for="search-网页">网页</label>
+                    <label for="search-视频">视频</label>
+                    <label for="search-MP3">MP3</label>
+                </div><!-- <div // class="search-label"> -->
+                <input value="欢迎光临正协信息客栈！" id="search-input" type="search" />
+
+                <input checked id="search-网页" name="search-label" class="on-next-off" type="radio">
+                    <div class="search-wrapper">
+                        <button>谷歌</button>
+                            <form action="https://www.google.com/search" method="get" target="_blank">
+                                <input value="正协信息客栈" name="q" type="search" />
+                                <input value="谷歌网页" type="submit" />
+                            </form>
+                        <button>百度</button>
+                            <form action="https://baidu.com/s" method="get" target="_blank">
+                                <input value="华朝颐亲王" name="wd" type="search" />
+                                <input value="百度网页" type="submit" />
+                            </form>
+                    </div><!-- <div // class="search-wrapper"> -->
+
+                <input id="search-视频" name="search-label" class="on-next-off" type="radio">
+                    <div class="search-wrapper">
+                        <button>Youtube</button>
+                            <form action="https://www.youtube.com/results" method="get" target="_blank">
+                                <input value="颐亲王" name="search_query" type="search" />
+                                <input value="Youtube" type="submit" />
+                            </form>         
+                    </div><!-- <div // class="search-wrapper"> -->
+
+                <input id="search-MP3" name="search-label" class="on-next-off" type="radio">
+                    <div class="search-wrapper">
+                        <button>千千音乐</button>
+                        <form action="https://music.taihe.com/search" method="get" target="_blank" accept-charset="UTF-8">
+                            <input value="new_mp3" name="from" type="hidden" />
+                            <input value="夜曲" name="key" type="search" />
+                            <input value="千千音乐" type="submit" />
+                        </form>
+                    </div><!-- <div // class="search-wrapper"> -->        
+            </div><!-- <div // 搜索框 class="search-container"> -->
                     '''
         info = ''
         info = info + message + '\n'
@@ -57,7 +79,7 @@ if ready():
         other = 14
     if True:
     # 读取与处理网址列表
-        path = './csv/temp utf-8.csv'        
+        path = './csv/网址_UTF-8.csv'        
         with open(path, 'r', encoding='utf-8') as fr:
             lines = fr.readlines()
         for i in range(1,len(lines)):

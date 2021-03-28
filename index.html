@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>正协信息 - 网址导航 | 正协信息客栈 | 信息,目录,导航,网页,网址导航,网站大全</title>
-    <meta name="keywords" content="信息,目录,导航,网页,网址导航,网站大全,客栈,亲王,网站导航,网站搜索,导航网站,网站收录,信息分类,网站分类,网址收录,颐亲王,华朝颐亲王" />
+    <meta name="keywords" content="信息,目录,导航,网页,网址导航,网站大全,客栈,亲王,网站导航,网站搜索,导航网站,网站收录,信息分类,网站分类,网址收录,颐亲王,华朝颐亲王,正协信息,正协信息客栈,视频,直播" />
     <meta name="description" content="在互联网江湖中，不认得信息公路时，快来正协信息客栈问路吧！正协信息客栈，一个根据关键词进行信息分类导航的网站。本网站致力于收录与分类每一个网址。" />
     <meta name="author" content="正协信息客栈, 华朝颐亲王, Seymour, 郑協" />
 
@@ -61,25 +61,47 @@
     <div class="body"><!-- <nav></nav> -->
         <main>
 
-            <div class="searchBox"><!-- 搜索框 -->    
-                <form action="https://www.google.com/search" method="GET" target="_blank">
-                    <input class='inputBox' name="q" type="search" value="正协信息客栈">
-                    <input class='searchBtn' type="submit" value="谷歌一下"  />
-                </form>
-                <form action="https://baidu.com/s" method="GET" target="_blank">
-                    <input class='inputBox' name="wd" type="search" value="华朝颐亲王">
-                    <input class='searchBtn' type="submit" value="百度一下"  />
-                </form>
-                <form action="https://www.youtube.com/results" method="GET" target="_blank">
-                    <input class='inputBox' name="search_query" type="search" value="坂井泉水">
-                    <input class='searchBtn' type="submit" value="Youtube搜索"  />
-                </form>
-                <!-- <form action="https://music.taihe.com/search" method="GET" target="_blank" accept-charset="UTF-8">
-                <input type="hidden" name="from" value="new_mp3">
-                <input class='inputBox' type="search" name="key" value='夜曲'>
-                <input class='searchBtn' type="submit" value="千千音乐"  />
-                </form>  -->
-            </div><!-- <div class="searchBox">搜索框 --> 
+            <div class="search-container"><!-- 搜索框 -->
+                <div class="search-label">
+                    <label for="search-网页">网页</label>
+                    <label for="search-视频">视频</label>
+                    <label for="search-MP3">MP3</label>
+                </div><!-- <div // class="search-label"> -->
+                <input value="欢迎光临正协信息客栈！" id="search-input" type="search" />
+
+                <input checked id="search-网页" name="search-label" class="on-next-off" type="radio">
+                    <div class="search-wrapper">
+                        <button>谷歌</button>
+                            <form action="https://www.google.com/search" method="get" target="_blank">
+                                <input value="正协信息客栈" name="q" type="search" />
+                                <input value="谷歌网页" type="submit" />
+                            </form>
+                        <button>百度</button>
+                            <form action="https://baidu.com/s" method="get" target="_blank">
+                                <input value="华朝颐亲王" name="wd" type="search" />
+                                <input value="百度网页" type="submit" />
+                            </form>
+                    </div><!-- <div // class="search-wrapper"> -->
+
+                <input id="search-视频" name="search-label" class="on-next-off" type="radio">
+                    <div class="search-wrapper">
+                        <button>Youtube</button>
+                            <form action="https://www.youtube.com/results" method="get" target="_blank">
+                                <input value="颐亲王" name="search_query" type="search" />
+                                <input value="Youtube" type="submit" />
+                            </form>         
+                    </div><!-- <div // class="search-wrapper"> -->
+
+                <input id="search-MP3" name="search-label" class="on-next-off" type="radio">
+                    <div class="search-wrapper">
+                        <button>千千音乐</button>
+                        <form action="https://music.taihe.com/search" method="get" target="_blank" accept-charset="UTF-8">
+                            <input value="new_mp3" name="from" type="hidden" />
+                            <input value="夜曲" name="key" type="search" />
+                            <input value="千千音乐" type="submit" />
+                        </form>
+                    </div><!-- <div // class="search-wrapper"> -->        
+            </div><!-- <div // 搜索框 class="search-container"> -->
                     
             <!-- 导航首页 -->
             <div class="portal-box">
@@ -587,6 +609,12 @@
                             <label for="搜索引擎百度云盘">百度云盘<div class="div_img-a"><img src="http://baiduyun.6miu.com/favicon.ico"><a href="http://baiduyun.6miu.com/" title=" " >6miu搜索</a></div></label>
                             <input id="搜索引擎百度云盘" class="on-next-off" type="checkbox" />
                             <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="搜索引擎图书">图书<div class="div_img-a"><img src="https://books.google.com/favicon.ico"><a href="https://books.google.com/" title="大名鼎鼎的谷歌图书，本想雄心壮志，将古今中文图书一网打尽，一统电子书江湖， 后因版权问题，搁浅。目前，除书目检索外，一些非版权电子书可全文下载，部分有版权的电子书可在线试读。" >Google 图书</a></div></label>
+                            <input id="搜索引擎图书" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
                             </div>
                         </div>
                     </div>
@@ -604,19 +632,69 @@
                             </div>
                         </div>
                 <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="网购平台">网购平台<div class="div_img-a"><img src="https://zhengxie.info/common/image/favicon/天猫32.gif"><a href="https://www.tmall.com/" title=" " >天猫</a></div></label>
-                    <input id="网购平台" class="on-next-off" type="checkbox" />
+                    <label for="门户网站">门户网站<div class="div_img-a"><img src="https://www.163.com/favicon.ico"><a href="https://www.163.com/" title="" >网易</a></div></label>
+                    <input id="门户网站" class="on-next-off" type="checkbox" />
                     <div class="portal-box">
-                        <div class="div_img-a"><img src="https://img.alicdn.com/tfs/TB1VlKFRpXXXXcNapXXXXXXXXXX-16-16.png"><a href="https://www.taobao.com/" title=" " >淘宝网</a></div>
-                        <div class="div_img-a"><img src="https://www.jd.com/favicon.ico"><a href="https://www.jd.com/" title=" " >京东</a></div>
-                        <div class="div_img-a"><img src="https://www.suning.com/favicon.ico"><a href="https://www.suning.com/" title=" " >苏宁易购</a></div>
-                        <div class="div_img-a"><img src="https://m.pinduoduo.com/favicon.ico"><a href="https://m.pinduoduo.com/" title=" " >拼多多</a></div>
-                        <div class="div_img-a"><img src="https://www.yhd.com/yhdmember/favicon.ico"><a href="https://www.yhd.com/" title="" >1号会员店</a></div>
-                        <div class="div_img-a"><img src="https://cbu01.alicdn.com/favicon.ico?_=2020"><a href="https://www.1688.com/" title="" >1688</a></div>
-                        <div class="div_img-a"><img src="https://is.alicdn.com/simg/single/icon/favicon.ico"><a href="https://www.alibaba.com/" title="" >Alibaba</a></div>
-                        <div class="div_img-a"><img src="https://www.vip.com/favicon.ico"><a href="https://www.vip.com/" title="" >维品会</a></div>
-                        <div class="div_img-a"><img src="http://www.dangdang.com/favicon.ico"><a href="http://www.dangdang.com/" title="" >当当网</a></div>
-                        <div class="div_img-a"><img src="https://www.amazon.cn/favicon.ico"><a href="https://www.amazon.cn/" title="" >亚马逊中国</a></div>
+                        <div class="div_img-a"><img src="https://www.sina.com.cn/favicon.ico"><a href="https://www.sina.com.cn/" title="" >新浪网</a></div>
+                        <div class="div_img-a"><img src="https://statics.itc.cn/web/static/images/pic/sohu-logo/favicon.ico"><a href="https://www.sohu.com/" title="" >搜狐</a></div>
+                            </div>
+                        </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="新闻">新闻<div class="div_img-a"><img src="http://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/static/fisp_static/common/img/favicon.ico"><a href="http://news.baidu.com/" title="" >百度新闻</a></div></label>
+                    <input id="新闻" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="div_img-a"><img src="https://mat1.gtimg.com/www/icon/favicon2.ico"><a href="https://news.qq.com/" title="" >腾讯新闻</a></div>
+                        <div class="div_img-a"><img src="http://www.tiexue.net/favicon.ico"><a href="http://www.tiexue.net/" title="" >铁血网</a></div>
+                            </div>
+                        </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="直播">直播<div class="div_img-a"><img src="https://www.douyu.com/favicon.ico"><a href="https://www.douyu.com/" title=" " >斗鱼</a></div></label>
+                    <input id="直播" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="div_img-a"><img src="https://www.yy.com/favicon.ico"><a href="https://www.yy.com/" title=" " >YY</a></div>
+                        <div class="div_img-a"><img src="https://vr0.xiu123.cn/imges/favicon.ico"><a href="https://www.6.cn/" title=" " >六间房</a></div>
+                        <div class="div_img-a"><img src="https://now.qq.com/favicon.ico"><a href="https://now.qq.com/" title=" " >NOW直播</a></div>
+                        <div class="div_img-a"><a href="http://show.sogou.com/" title=" " >搜狗直播</a></div>
+                        <div class="div_img-a"><a href="https://www.zhanqi.tv/" title=" " >战旗TV</a></div>
+                        <div class="div_img-a"><a href="http://longzhu.com/" title=" " >龙珠直播</a></div>
+                        <div class="div_img-a"><img src="http://www.huomao.com/favicon.ico"><a href="http://www.huomao.com/" title=" " >火猫直播</a></div>
+                        <div class="div_img-a"><img src="https://www.huya.com/favicon.ico"><a href="https://www.huya.com/" title=" " >虎牙直播</a></div>
+                        <div class="div_img-a"><img src="https://www.bilibili.com/favicon.ico"><a href="https://live.bilibili.com/" title=" " >哔哩哔哩直播</a></div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="直播网络电视">网络电视<div class="div_img-a">CCTV央视频道</div></label>
+                            <input id="直播网络电视" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="视频">视频<div class="div_img-a"><img src="https://www.mgtv.com/favicon.ico"><a href="https://www.mgtv.com/" title=" " >芒果TV</a></div></label>
+                    <input id="视频" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="div_img-a"><img src="https://img.alicdn.com/tfs/TB1WeJ9Xrj1gK0jSZFuXXcrHpXa-195-195.png"><a href="https://www.youku.com/" title=" " >优酷</a></div>
+                        <div class="div_img-a"><img src="https://v.qq.com/favicon.ico"><a href="https://v.qq.com/" title=" " >腾讯视频</a></div>
+                        <div class="div_img-a"><img src="https://www.iqiyipic.com/common/images/logo.ico"><a href="https://www.iq.com/" title=" " >iQIYI</a></div>
+                        <div class="div_img-a"><img src="https://img.alicdn.com/tfs/TB1Pd4JZ.z1gK0jSZLeXXb9kVXa-32-32.png"><a href="https://www.tudou.com/" title=" " >土豆</a></div>
+                        <div class="div_img-a"><img src="https://img9.doubanio.com/favicon.ico"><a href="https://movie.douban.com/" title=" " >豆瓣电影</a></div>
+                        <div class="div_img-a"><a href="http://www.fun.tv/" title=" " >风行网</a></div>
+                        <div class="div_img-a"><img src="http://www.360kan.com/favicon.ico"><a href="http://www.360kan.com/" title=" " >360影视</a></div>
+                        <div class="div_img-a"><img src="https://cdn.aixifan.com/ico/favicon.ico"><a href="https://www.acfun.cn/" title=" " >AcFun</a></div>
+                        <div class="div_img-a"><img src="https://www.miguvideo.com/favicon.ico"><a href="https://www.miguvideo.com/" title=" " >咪咕视频</a></div>
+                        <div class="div_img-a"><img src="http://www.le.com/favicon.ico"><a href="http://www.le.com/" title=" " >乐视视频</a></div>
+                        <div class="div_img-a"><img src="https://www.bilibili.com/favicon.ico?v=1"><a href="https://www.bilibili.com/" title=" " >哔哩哔哩</a></div>
+                        <div class="div_img-a"><a href="http://v.baidu.com/" title=" " >百度视频</a></div>
+                        <div class="div_img-a"><img src="https://tv.sohu.com/favicon.ico"><a href="https://tv.sohu.com/" title=" " >搜狐视频</a></div>
+                        <div class="div_img-a"><img src="https://sr1.pplive.cn/mcms/nav/images/favicon.ico"><a href="https://www.pptv.com/" title=" " >PPTV</a></div>
+                        <div class="div_img-a"><img src="https://dlweb.sogoucdn.com/translate/favicon.ico?v=20180424"><a href="https://v.sogou.com/" title=" " >搜狗视频</a></div>
+                            </div>
+                        </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="音乐">音乐<div class="div_img-a"><img src="https://s1.music.126.net/style/favicon.ico?v20180823"><a href="https://music.163.com/" title=" " >网易云音乐</a></div></label>
+                    <input id="音乐" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="div_img-a"><img src="https://music.taihe.com/favicon.ico"><a href="https://music.taihe.com/" title=" " >千千音乐</a></div>
+                        <div class="div_img-a"><img src="https://www.yinyuetai.com/favicon.ico"><a href="https://www.yinyuetai.com/" title="" >音乐Tai</a></div>
                             </div>
                         </div>
                 <div class="portal-wrapper-lv1 portal-wrapper">
@@ -638,6 +716,12 @@
                                     </div>
                                 </div>
                         <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="银行机构邮储">邮储<div class="div_img-a"><a href="http://www.psbc.com/cn/" title=" " >中国邮政储蓄银行</a></div></label>
+                            <input id="银行机构邮储" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
                             <label for="银行机构国有">国有<div class="div_img-a"><img src="https://www.boc.cn/favicon.ico"><a href="https://www.boc.cn/" title=" " >中国银行</a></div></label>
                             <input id="银行机构国有" class="on-next-off" type="checkbox" />
                             <div class="portal-box">
@@ -645,12 +729,6 @@
                                 <div class="div_img-a"><a href="http://www.abchina.com/cn/" title=" " >中国农业银行</a></div>
                                 <div class="div_img-a"><a href="http://www.ccb.com/" title=" " >中国建设银行</a></div>
                                 <div class="div_img-a"><img src="http://www.bankcomm.com/favicon.ico"><a href="http://www.bankcomm.com/" title=" " >交通银行</a></div>
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="银行机构邮储">邮储<div class="div_img-a"><a href="http://www.psbc.com/cn/" title=" " >中国邮政储蓄银行</a></div></label>
-                            <input id="银行机构邮储" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
                                     </div>
                                 </div>
                         <div class="portal-wrapper-lv2 portal-wrapper">
@@ -721,6 +799,242 @@
                             </div>
                         </div>
                 <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="数字图书馆">数字图书馆<div class="div_img-a"><img src="https://www.wdl.org/static/img/logos/wdl-152x152.3c48b49bd60d.png"><a href="https://www.wdl.org/zh/" title="联合国教科文组织协办的电子书网站，精选全球各大图书馆藏品。数量不太大，但多为精品。" >世界数字图书馆</a></div></label>
+                    <input id="数字图书馆" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="div_img-a"><a href="http://www.nlc.cn" title="内有古籍、民国图书、民国期刊等免费数据库 ，部分商业数据库，可注册后使用。" >中国国家图书馆</a></div>
+                        <div class="div_img-a"><a href="https://libguides.lib.hku.hk/az.php" title="" >香港大学图书馆数据库索引</a></div>
+                        <div class="div_img-a"><a href="https://databases.hollis.harvard.edu/primo-explore/search?vid=HVD_DB&lang=en_US" title="" >哈佛大学图书馆数据库索引</a></div>
+                        <div class="div_img-a"><a href="https://sc.lcsd.gov.hk/TuniS/mmis.hkpl.gov.hk/web/guest/old-hk-collection" title="" >香港公共图书馆旧香港报纸</a></div>
+                        <div class="div_img-a"><a href="http://www.ucdrs.superlib.net" title="" >全国图书馆参考咨询联盟</a></div>
+                        <div class="div_img-a"><a href="http://cadal.edu.cn/index/home" title="" >大学数字图书馆国际合作计划</a></div>
+                        <div class="div_img-a"><a href="http://www.gaya.org.tw/library/" title="" >香光尼众佛学院图书馆</a></div>
+                        <div class="div_img-a"><a href="http://www.columbia.edu/cu/lweb/digital/collections/eastasian/paper_gods/index.html" title="" >哥伦比亚大学东亚图书馆</a></div>
+                        <div class="div_img-a"><a href="http://ebooks.lib.ntu.edu.tw/Home/ListBooks" title="" >台灣大學圖書館公開取用電子書</a></div>
+                        <div class="div_img-a"><a href="http://www.jllib.cn/" title="" >金陵圖書館</a></div>
+                        <div class="div_img-a"><a href="https://shuge.org/" title="在线古籍图书馆" >书格</a></div>
+                        <div class="div_img-a"><a href="https://guides.library.harvard.edu/Chinese?utm_source=Library+Staff&utm_campaign=9fca5a7bb3-EMAIL_CAMPAIGN_2017_06_28&utm_medium=email&utm_term=0_4bb25c0228-9fca5a7bb3-26352423#s-lg-box-6321879" title="" >哈佛燕京图书馆数字馆藏</a></div>
+                        <div class="div_img-a"><a href="https://www.hathitrust.org" title="公益性电子书网站，内有大量公版书可全文浏览或部分阅读。不同国家的IP，浏览权限不一。" >HathiTrust</a></div>
+                        <div class="div_img-a"><a href="https://libgen.is" title="245万册电子书（32.22TB），8000万篇文章，均可自由下载。" >Library Genesis</a></div>
+                        <div class="div_img-a"><a href="https://zh.th1lib.org/" title="Z-Library是世界上最大的在线图书馆之一。" >Z-Library</a></div>
+                        <div class="div_img-a"><a href="https://en.booksee.org/" title="提供自由下载" >Booksee</a></div>
+                        <div class="div_img-a"><a href="https://archive.org/index.php" title="全球最大的公益性电子书网站。所收电子书，主要为外语古籍和部分中文古籍（如四库、海外图书馆的特藏等）。此外，尚有海量的期刊杂志、老照片、录音、视频、网页等。" >Internet Archive</a></div>
+                        <div class="div_img-a"><a href="http://www.calis.edu.cn" title="" >中国高等教育文献保障系统</a></div>
+                        <div class="div_img-a"><a href="https://www.worldcat.org" title="全球最大的图书与期刊联合目录，多语种，集成了全球各大图书馆的馆藏目录，目前有20亿笔资料目录。可注册，建立自己的书目库，支持书目导出、引用等。" >WorldCat</a></div>
+                        <div class="div_img-a"><a href="http://www.cashl.edu.cn/" title="中国高校人文社会科学文献中心，提供多所主流高校的联合目录检索服务（虽然不太精确），可提供图书馆馆际互借服务。本校图书馆没有的图书，可通过这个平台，或中国高等教育文献保障系统：http://www.calis.edu.cn，申请馆际互借。" >开世览文</a></div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆北碚图书馆">北碚图书馆<div class="div_img-a"><a href="http://222.178.203.72:9051/#/" title="" >历史文献数据库</a></div></label>
+                            <input id="数字图书馆北碚图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆湖北省图书馆">湖北省图书馆<div class="div_img-a"><a href="http://gjpt.library.hb.cn:8991/qt-zxsk.html" title="" >湖北方志库</a></div></label>
+                            <input id="数字图书馆湖北省图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                <div class="div_img-a"><a href="http://gjpt.library.hb.cn:8991/home/jp_index.html" title="" >湖北家谱库</a></div>
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆湖州市图书馆">湖州市图书馆<div class="div_img-a"><a href="http://www.hzetsg.com/interlibSSO/main/main.jsp" title="" >湖州数字图书馆</a></div></label>
+                            <input id="数字图书馆湖州市图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆阆中市图书馆">阆中市图书馆<div class="div_img-a"><a href="http://lzslib.lzslib.org.cn/class.asp?classid=3" title="" >数字古籍</a></div></label>
+                            <input id="数字图书馆阆中市图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆南京图书馆">南京图书馆<div class="div_img-a"><a href="http://www2.jslib.org.cn/was5/web/qrwj.htm" title="南京图书馆藏清人文集全文影像数据库" >清人文集全文影像数据库</a></div></label>
+                            <input id="数字图书馆南京图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆内江师范学院图书馆">内江师范学院图书馆<div class="div_img-a"><a href="http://ancb.njtc.edu.cn/" title="" >狮山学馆</a></div></label>
+                            <input id="数字图书馆内江师范学院图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆日本国会图书馆">日本国会图书馆<div class="div_img-a"><a href="https://dl.ndl.go.jp/" title="" >古典籍资料</a></div></label>
+                            <input id="数字图书馆日本国会图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆上海图书馆">上海图书馆<div class="div_img-a"><a href="https://library.sh.cn/#/index" title="" >上海图书馆</a></div></label>
+                            <input id="数字图书馆上海图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                <div class="div_img-a"><a href="http://wrd2016.library.sh.cn/channel/stjp/" title="" >上图家谱</a></div>
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆首都图书馆">首都图书馆<div class="div_img-a"><a href="http://query.clcn.net.cn/GJAndST/gjct1.htm" title="" >古籍插图库</a></div></label>
+                            <input id="数字图书馆首都图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                <div class="div_img-a"><a href="http://gjzsb.clcn.net.cn/" title="" >古籍珍善本图像数据库</a></div>
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆台湾大学台湾历史数位图书馆">台湾大学台湾历史数位图书馆<div class="div_img-a"><a href="http://thdl.ntu.edu.tw/tools/" title="" >研究工具集</a></div></label>
+                            <input id="数字图书馆台湾大学台湾历史数位图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆唐河图书馆">唐河图书馆<div class="div_img-a"><a href="http://39.106.82.98:8066/index.html#page1" title="" >馆藏古籍资源库</a></div></label>
+                            <input id="数字图书馆唐河图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆英国剑桥大学图书馆">英国剑桥大学图书馆<div class="div_img-a"><a href="http://cudl.lib.cam.ac.uk/collections/sanskrit/1" title="" >梵文写本</a></div></label>
+                            <input id="数字图书馆英国剑桥大学图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆云南省图书馆">云南省图书馆<div class="div_img-a"><a href="http://msq.ynlib.cn/" title="" >古籍数字图书馆</a></div></label>
+                            <input id="数字图书馆云南省图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆枣庄市图书馆">枣庄市图书馆<div class="div_img-a"><a href="http://www.zzlib.com/gjl" title="" >古籍文献</a></div></label>
+                            <input id="数字图书馆枣庄市图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆新加坡国家图书馆">新加坡国家图书馆<div class="div_img-a"><a href="https://search.nlb.gov.sg/" title="" >One Search</a></div></label>
+                            <input id="数字图书馆新加坡国家图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                <div class="div_img-a"><a href="https://eresources.nlb.gov.sg/" title="" >电子资源</a></div>
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆山东大学图书馆">山东大学图书馆<div class="div_img-a"><a href="https://dwz.cn/04OMn1iC" title="" >数据库资源导航</a></div></label>
+                            <input id="数字图书馆山东大学图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字图书馆旧报纸">旧报纸<div class="div_img-a"><a href="http://chinesetimes.lib.sfu.ca/" title="" >加拿大大汉公报</a></div></label>
+                            <input id="数字图书馆旧报纸" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                <div class="div_img-a"><a href="https://chroniclingamerica.loc.gov" title="可全文检索，免费在线阅览和下载。" >美国国会图书馆旧报刊数据库</a></div>
+                                <div class="div_img-a"><a href="https://www.britishnewspaperarchive.co.uk" title="可全文检索，收费，个人可注册缴费。" >大英图书馆旧报刊数据库</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="数字博物馆">数字博物馆<div class="div_img-a"><a href="http://www.tianyige.com.cn:8008/Default" title="只要注册即可在线浏览" >天一阁博物馆</a></div></label>
+                    <input id="数字博物馆" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="数字博物馆天一阁博物馆">天一阁博物馆<div class="div_img-a"><a href="http://www.tianyige.com.cn:8008/default" title="" >古籍数字资源库</a></div></label>
+                            <input id="数字博物馆天一阁博物馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="字典">字典<div class="div_img-a"><a href="http://www.shufazidian.com/" title="" >书法字典</a></div></label>
+                    <input id="字典" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="div_img-a"><a href="http://dict.variants.moe.edu.tw" title="" >異體字字典</a></div>
+                        <div class="div_img-a"><a href="http://www.mebag.com/index/" title="" >引得市</a></div>
+                        <div class="div_img-a"><a href="https://xiaoxue.iis.sinica.edu.tw/" title="" >小学堂</a></div>
+                        <div class="div_img-a"><a href="https://www.learnsanskrit.cc/" title="" >口语梵语字典</a></div>
+                        <div class="div_img-a"><a href="http://www.sanskritdictionary.com/" title="" >梵语字典</a></div>
+                        <div class="div_img-a"><a href="http://cpd.uni-koeln.de/search" title="（A Critical Pāli Dictionary Online）A Critical Pāli Dictionary Online is maintained by the Data Center for the Humanities at the University of Cologne in cooperation with the Pali Text Society." >巴利文在线字典</a></div>
+                            </div>
+                        </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="词典">词典<div class="div_img-a"><img src="https://shared.ydstatic.com/images/favicon.ico"><a href="http://dict.youdao.com/" title="" >有道词典</a></div></label>
+                    <input id="词典" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="div_img-a"><a href="https://jikipedia.com/" title=" " >小鸡词典</a></div>
+                        <div class="div_img-a"><a href="http://www.yalasoo.com/Chinese/yalasoo_cn_online_dictionary_COM.php" title="汉藏英三语" >呀啦嗦藏文在线词典</a></div>
+                            </div>
+                        </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="古籍">古籍<div class="div_img-a"><a href="https://www.kuizhangge.cn" title="" >中国古典文献资源导航系统</a></div></label>
+                    <input id="古籍" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="古籍搜韵网">搜韵网<div class="div_img-a"><a href="https://sou-yun.cn/eBookIndex.aspx" title="" >影印古籍资料</a></div></label>
+                            <input id="古籍搜韵网" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="古籍山东大学图书馆">山东大学图书馆<div class="div_img-a"><a href="https://dwz.cn/0bz5szYB" title="Gale Scholar-Archives Unbound珍稀原始典藏档案数据库中28个主题。Gale Scholar是Gale公司的大型数据库集成产品， 为用户呈现 1 亿 7000 万页、跨越全球 500 年历史的珍稀原始文献资源，最早的历史资料可追溯到十五世纪，资料类型包括图书、地图、照片、报纸、手稿、期刊、视频和音频等。文献全部来自于权威机构如大英图书馆、美国国家档案馆、英国国家档案馆、美国国务院档案馆、哈佛大学图书馆、耶鲁大学图书馆、哥伦比亚大学图书馆、牛津、剑桥等等。这些文献包含解密档案、政府文件、手稿、报刊、照片等，内容极为丰富，对社会科学、历史、哲学、教育、国际关系、国际政治、经济史、法律、文学、艺术等学科有独特价值。" >Gale Scholar</a></div></label>
+                            <input id="古籍山东大学图书馆" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                    </div>
+                                </div>
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="古籍整理文章">整理文章<div class="div_img-a"><a href="https://www.haijiaoshi.com/archives/156" title="提供《朝鲜王朝实录》、《承政院日记》、《备边司誊录》等数据库的导航。" >韩国历史文献相关网站大汇总</a></div></label>
+                            <input id="古籍整理文章" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="Google">Google<div class="div_img-a"><img src="https://ssl.gstatic.com/adsense/apps/static/bidi/adsense3_antipasti_server_20210317-12_RC00/common/resources/favicon.ico"><a href="https://www.google.com/adsense/" title=" " >Google AdSense</a></div></label>
+                    <input id="Google" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="div_img-a"><img src="https://ssl.gstatic.com/translate/favicon.ico"><a href="https://translate.google.cn/" title=" " >翻译</a></div>
+                        <div class="div_img-a"><img src="https://www.gstatic.com/devrel-devsite/prod/v3069b08f6c9d146fa6a9c7f184b2836998ab5f12cefec1342a7bf6dca024aa94/cloud/images/favicons/onecloud/favicon.ico"><a href="https://cloud.google.com/" title=" " >Google Cloud</a></div>
+                        <div class="div_img-a"><img src="https://www.google.com/favicon.ico"><a href="https://www.google.com/" title=" " >Google搜索</a></div>
+                        <div class="div_img-a"><img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png"><a href="https://drive.google.com/" title=" " >云端硬盘</a></div>
+                        <div class="div_img-a"><img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico"><a href="https://mail.google.com/" title=" " >Gmail</a></div>
+                            </div>
+                        </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="百度">百度<div class="div_img-a"><img src="https://tongji.baidu.com/favicon.ico"><a href="https://tongji.baidu.com/" title=" " >百度统计</a></div></label>
+                    <input id="百度" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="div_img-a"><img src="https://tb1.bdstatic.com/tb/favicon.ico"><a href="https://tieba.baidu.com/" title=" " >百度贴吧</a></div>
+                        <div class="div_img-a"><img src="https://www.baidu.com/favicon.ico"><a href="http://www.baidu.com/" title=" " >百度搜索</a></div>
+                        <div class="div_img-a"><img src="https://www.baidu.com/favicon.ico"><a href="http://index.baidu.com/" title=" " >百度指数</a></div>
+                        <div class="div_img-a"><img src="https://pan.baidu.com/m-static/base/static/images/favicon.ico"><a href="https://pan.baidu.com/" title=" " >百度网盘</a></div>
+                        <div class="div_img-a"><img src="https://tb1.bdstatic.com/tb/favicon.ico"><a href="https://tieba.baidu.com/" title=" " >百度贴吧</a></div>
+                        <div class="div_img-a"><img src="https://www.baidu.com/cache/icon/favicon.ico"><a href="https://image.baidu.com/" title="" >百度图片</a></div>
+                        <div class="div_img-a"><img src="https://map.baidu.com/favicon.ico"><a href="https://map.baidu.com/" title="" >百度地图</a></div>
+                            </div>
+                        </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="网易">网易<div class="div_img-a"><img src="https://cc.res.netease.com/act/webcc/favicon/favicon.ico"><a href="https://cc.163.com/" title="" >CC直播</a></div></label>
+                    <input id="网易" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                            </div>
+                        </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="网购平台">网购平台<div class="div_img-a"><img src="https://zhengxie.info/common/image/favicon/天猫32.gif"><a href="https://www.tmall.com/" title=" " >天猫</a></div></label>
+                    <input id="网购平台" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="div_img-a"><img src="https://img.alicdn.com/tfs/TB1VlKFRpXXXXcNapXXXXXXXXXX-16-16.png"><a href="https://www.taobao.com/" title=" " >淘宝网</a></div>
+                        <div class="div_img-a"><img src="https://www.jd.com/favicon.ico"><a href="https://www.jd.com/" title=" " >京东</a></div>
+                        <div class="div_img-a"><img src="https://www.suning.com/favicon.ico"><a href="https://www.suning.com/" title=" " >苏宁易购</a></div>
+                        <div class="div_img-a"><img src="https://m.pinduoduo.com/favicon.ico"><a href="https://m.pinduoduo.com/" title=" " >拼多多</a></div>
+                        <div class="div_img-a"><img src="https://www.yhd.com/yhdmember/favicon.ico"><a href="https://www.yhd.com/" title="" >1号会员店</a></div>
+                        <div class="div_img-a"><img src="https://cbu01.alicdn.com/favicon.ico?_=2020"><a href="https://www.1688.com/" title="" >1688</a></div>
+                        <div class="div_img-a"><img src="https://is.alicdn.com/simg/single/icon/favicon.ico"><a href="https://www.alibaba.com/" title="" >Alibaba</a></div>
+                        <div class="div_img-a"><img src="https://www.vip.com/favicon.ico"><a href="https://www.vip.com/" title="" >维品会</a></div>
+                        <div class="div_img-a"><img src="http://www.dangdang.com/favicon.ico"><a href="http://www.dangdang.com/" title="" >当当网</a></div>
+                        <div class="div_img-a"><img src="https://www.amazon.cn/favicon.ico"><a href="https://www.amazon.cn/" title="" >亚马逊中国</a></div>
+                            </div>
+                        </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
                     <label for="邮箱">邮箱<div class="div_img-a"><img src="https://mail.qq.com/zh_CN/htmledition/images/favicon/qqmail_favicon_32h.png"><a href="https://mail.qq.com/" title=" " >QQ邮箱</a></div></label>
                     <input id="邮箱" class="on-next-off" type="checkbox" />
                     <div class="portal-box">
@@ -780,51 +1094,6 @@
                             </div>
                         </div>
                 <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="Google">Google<div class="div_img-a"><img src="https://ssl.gstatic.com/adsense/apps/static/bidi/adsense3_antipasti_server_20210317-12_RC00/common/resources/favicon.ico"><a href="https://www.google.com/adsense/" title=" " >Google AdSense</a></div></label>
-                    <input id="Google" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="div_img-a"><img src="https://ssl.gstatic.com/translate/favicon.ico"><a href="https://translate.google.cn/" title=" " >翻译</a></div>
-                        <div class="div_img-a"><img src="https://www.gstatic.com/devrel-devsite/prod/v3069b08f6c9d146fa6a9c7f184b2836998ab5f12cefec1342a7bf6dca024aa94/cloud/images/favicons/onecloud/favicon.ico"><a href="https://cloud.google.com/" title=" " >Google Cloud</a></div>
-                        <div class="div_img-a"><img src="https://www.google.com/favicon.ico"><a href="https://www.google.com/" title=" " >Google搜索</a></div>
-                        <div class="div_img-a"><img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png"><a href="https://drive.google.com/" title=" " >云端硬盘</a></div>
-                        <div class="div_img-a"><img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico"><a href="https://mail.google.com/" title=" " >Gmail</a></div>
-                            </div>
-                        </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="百度">百度<div class="div_img-a"><img src="https://tongji.baidu.com/favicon.ico"><a href="https://tongji.baidu.com/" title=" " >百度统计</a></div></label>
-                    <input id="百度" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="div_img-a"><img src="https://tb1.bdstatic.com/tb/favicon.ico"><a href="https://tieba.baidu.com/" title=" " >百度贴吧</a></div>
-                        <div class="div_img-a"><img src="https://www.baidu.com/favicon.ico"><a href="http://www.baidu.com/" title=" " >百度搜索</a></div>
-                        <div class="div_img-a"><img src="https://www.baidu.com/favicon.ico"><a href="http://index.baidu.com/" title=" " >百度指数</a></div>
-                        <div class="div_img-a"><img src="https://pan.baidu.com/m-static/base/static/images/favicon.ico"><a href="https://pan.baidu.com/" title=" " >百度网盘</a></div>
-                        <div class="div_img-a"><img src="https://tb1.bdstatic.com/tb/favicon.ico"><a href="https://tieba.baidu.com/" title=" " >百度贴吧</a></div>
-                        <div class="div_img-a"><img src="https://www.baidu.com/cache/icon/favicon.ico"><a href="https://image.baidu.com/" title="" >百度图片</a></div>
-                        <div class="div_img-a"><img src="https://map.baidu.com/favicon.ico"><a href="https://map.baidu.com/" title="" >百度地图</a></div>
-                            </div>
-                        </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="直播">直播<div class="div_img-a"><img src="https://www.douyu.com/favicon.ico"><a href="https://www.douyu.com/" title=" " >斗鱼</a></div></label>
-                    <input id="直播" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="div_img-a"><img src="https://www.yy.com/favicon.ico"><a href="https://www.yy.com/" title=" " >YY</a></div>
-                        <div class="div_img-a"><img src="https://vr0.xiu123.cn/imges/favicon.ico"><a href="https://www.6.cn/" title=" " >六间房</a></div>
-                        <div class="div_img-a"><img src="https://now.qq.com/favicon.ico"><a href="https://now.qq.com/" title=" " >NOW直播</a></div>
-                        <div class="div_img-a"><a href="http://show.sogou.com/" title=" " >搜狗直播</a></div>
-                        <div class="div_img-a"><a href="https://www.zhanqi.tv/" title=" " >战旗TV</a></div>
-                        <div class="div_img-a"><a href="http://longzhu.com/" title=" " >龙珠直播</a></div>
-                        <div class="div_img-a"><img src="http://www.huomao.com/favicon.ico"><a href="http://www.huomao.com/" title=" " >火猫直播</a></div>
-                        <div class="div_img-a"><img src="https://www.huya.com/favicon.ico"><a href="https://www.huya.com/" title=" " >虎牙直播</a></div>
-                        <div class="div_img-a"><img src="https://www.bilibili.com/favicon.ico"><a href="https://live.bilibili.com/" title=" " >哔哩哔哩直播</a></div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="直播网络电视">网络电视<div class="div_img-a">CCTV央视频道</div></label>
-                            <input id="直播网络电视" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
                     <label for="在线教育">在线教育<div class="div_img-a"><img src="https://study.163.com/favicon.ico"><a href="https://study.163.com/" title=" " >网易云课堂</a></div></label>
                     <input id="在线教育" class="on-next-off" type="checkbox" />
                     <div class="portal-box">
@@ -865,189 +1134,6 @@
                             </div>
                         </div>
                 <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="音乐">音乐<div class="div_img-a"><img src="https://s1.music.126.net/style/favicon.ico?v20180823"><a href="https://music.163.com/" title=" " >网易云音乐</a></div></label>
-                    <input id="音乐" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="div_img-a"><img src="https://music.taihe.com/favicon.ico"><a href="https://music.taihe.com/" title=" " >千千音乐</a></div>
-                        <div class="div_img-a"><img src="https://www.yinyuetai.com/favicon.ico"><a href="https://www.yinyuetai.com/" title="" >音乐Tai</a></div>
-                            </div>
-                        </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="视频">视频<div class="div_img-a"><img src="https://www.mgtv.com/favicon.ico"><a href="https://www.mgtv.com/" title=" " >芒果TV</a></div></label>
-                    <input id="视频" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="div_img-a"><img src="https://img.alicdn.com/tfs/TB1WeJ9Xrj1gK0jSZFuXXcrHpXa-195-195.png"><a href="https://www.youku.com/" title=" " >优酷</a></div>
-                        <div class="div_img-a"><img src="https://v.qq.com/favicon.ico"><a href="https://v.qq.com/" title=" " >腾讯视频</a></div>
-                        <div class="div_img-a"><img src="https://www.iqiyipic.com/common/images/logo.ico"><a href="https://www.iq.com/" title=" " >iQIYI</a></div>
-                        <div class="div_img-a"><img src="https://img.alicdn.com/tfs/TB1Pd4JZ.z1gK0jSZLeXXb9kVXa-32-32.png"><a href="https://www.tudou.com/" title=" " >土豆</a></div>
-                        <div class="div_img-a"><img src="https://img9.doubanio.com/favicon.ico"><a href="https://movie.douban.com/" title=" " >豆瓣电影</a></div>
-                        <div class="div_img-a"><a href="http://www.fun.tv/" title=" " >风行网</a></div>
-                        <div class="div_img-a"><img src="http://www.360kan.com/favicon.ico"><a href="http://www.360kan.com/" title=" " >360影视</a></div>
-                        <div class="div_img-a"><img src="https://cdn.aixifan.com/ico/favicon.ico"><a href="https://www.acfun.cn/" title=" " >AcFun</a></div>
-                        <div class="div_img-a"><img src="https://www.miguvideo.com/favicon.ico"><a href="https://www.miguvideo.com/" title=" " >咪咕视频</a></div>
-                        <div class="div_img-a"><img src="http://www.le.com/favicon.ico"><a href="http://www.le.com/" title=" " >乐视视频</a></div>
-                        <div class="div_img-a"><img src="https://www.bilibili.com/favicon.ico?v=1"><a href="https://www.bilibili.com/" title=" " >哔哩哔哩</a></div>
-                        <div class="div_img-a"><a href="http://v.baidu.com/" title=" " >百度视频</a></div>
-                        <div class="div_img-a"><img src="https://tv.sohu.com/favicon.ico"><a href="https://tv.sohu.com/" title=" " >搜狐视频</a></div>
-                        <div class="div_img-a"><img src="https://sr1.pplive.cn/mcms/nav/images/favicon.ico"><a href="https://www.pptv.com/" title=" " >PPTV</a></div>
-                        <div class="div_img-a"><img src="https://dlweb.sogoucdn.com/translate/favicon.ico?v=20180424"><a href="https://v.sogou.com/" title=" " >搜狗视频</a></div>
-                            </div>
-                        </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="门户网站">门户网站<div class="div_img-a"><img src="https://www.163.com/favicon.ico"><a href="https://www.163.com/" title="" >网易</a></div></label>
-                    <input id="门户网站" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="div_img-a"><img src="https://www.sina.com.cn/favicon.ico"><a href="https://www.sina.com.cn/" title="" >新浪网</a></div>
-                        <div class="div_img-a"><img src="https://statics.itc.cn/web/static/images/pic/sohu-logo/favicon.ico"><a href="https://www.sohu.com/" title="" >搜狐</a></div>
-                            </div>
-                        </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="新闻">新闻<div class="div_img-a"><img src="http://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/static/fisp_static/common/img/favicon.ico"><a href="http://news.baidu.com/" title="" >百度新闻</a></div></label>
-                    <input id="新闻" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="div_img-a"><img src="https://mat1.gtimg.com/www/icon/favicon2.ico"><a href="https://news.qq.com/" title="" >腾讯新闻</a></div>
-                        <div class="div_img-a"><img src="http://www.tiexue.net/favicon.ico"><a href="http://www.tiexue.net/" title="" >铁血网</a></div>
-                            </div>
-                        </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="数字图书馆">数字图书馆<div class="div_img-a"><img src="https://www.wdl.org/static/img/logos/wdl-152x152.3c48b49bd60d.png"><a href="https://www.wdl.org/zh/" title="联合国教科文组织协办的电子书网站，精选全球各大图书馆藏品。数量不太大，但多为精品。" >世界数字图书馆</a></div></label>
-                    <input id="数字图书馆" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="div_img-a"><a href="http://www.nlc.cn" title="内有古籍、民国图书、民国期刊等免费数据库 ，部分商业数据库，可注册后使用。" >中国国家图书馆</a></div>
-                        <div class="div_img-a"><a href="https://libguides.lib.hku.hk/az.php" title="" >香港大学图书馆数据库索引</a></div>
-                        <div class="div_img-a"><a href="https://databases.hollis.harvard.edu/primo-explore/search?vid=HVD_DB&lang=en_US" title="" >哈佛大学图书馆数据库索引</a></div>
-                        <div class="div_img-a"><a href="https://sc.lcsd.gov.hk/TuniS/mmis.hkpl.gov.hk/web/guest/old-hk-collection" title="" >香港公共图书馆旧香港报纸</a></div>
-                        <div class="div_img-a"><a href="http://www.ucdrs.superlib.net" title="" >全国图书馆参考咨询联盟</a></div>
-                        <div class="div_img-a"><a href="http://cadal.edu.cn/index/home" title="" >大学数字图书馆国际合作计划</a></div>
-                        <div class="div_img-a"><a href="http://www.gaya.org.tw/library/" title="" >香光尼众佛学院图书馆</a></div>
-                        <div class="div_img-a"><a href="http://www.columbia.edu/cu/lweb/digital/collections/eastasian/paper_gods/index.html" title="" >哥伦比亚大学东亚图书馆</a></div>
-                        <div class="div_img-a"><a href="http://ebooks.lib.ntu.edu.tw/Home/ListBooks" title="" >台灣大學圖書館公開取用電子書</a></div>
-                        <div class="div_img-a"><a href="http://www.jllib.cn/" title="" >金陵圖書館</a></div>
-                        <div class="div_img-a"><a href="https://shuge.org/" title="在线古籍图书馆" >书格</a></div>
-                        <div class="div_img-a"><a href="https://guides.library.harvard.edu/Chinese?utm_source=Library+Staff&utm_campaign=9fca5a7bb3-EMAIL_CAMPAIGN_2017_06_28&utm_medium=email&utm_term=0_4bb25c0228-9fca5a7bb3-26352423#s-lg-box-6321879" title="" >哈佛燕京图书馆数字馆藏</a></div>
-                        <div class="div_img-a"><a href="http://swyx.tjl.tj.cn/Default.aspx" title="" >天津图书馆缩微文献映像数据库</a></div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆北碚图书馆">北碚图书馆<div class="div_img-a"><a href="http://222.178.203.72:9051/#/" title="" >历史文献数据库</a></div></label>
-                            <input id="数字图书馆北碚图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆湖北省图书馆">湖北省图书馆<div class="div_img-a"><a href="http://gjpt.library.hb.cn:8991/qt-zxsk.html" title="" >湖北方志库</a></div></label>
-                            <input id="数字图书馆湖北省图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                <div class="div_img-a"><a href="http://gjpt.library.hb.cn:8991/home/jp_index.html" title="" >湖北家谱库</a></div>
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆湖州市图书馆">湖州市图书馆<div class="div_img-a"><a href="http://www.hzetsg.com/interlibSSO/main/main.jsp" title="" >湖州数字图书馆</a></div></label>
-                            <input id="数字图书馆湖州市图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆阆中市图书馆">阆中市图书馆<div class="div_img-a"><a href="http://lzslib.lzslib.org.cn/class.asp?classid=3" title="" >数字古籍</a></div></label>
-                            <input id="数字图书馆阆中市图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆南京图书馆">南京图书馆<div class="div_img-a"><a href="http://www2.jslib.org.cn/was5/web/qrwj.htm" title="南京图书馆藏清人文集全文影像数据库" >清人文集全文影像数据库</a></div></label>
-                            <input id="数字图书馆南京图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆内江师范学院图书馆">内江师范学院图书馆<div class="div_img-a"><a href="http://ancb.njtc.edu.cn/" title="" >狮山学馆</a></div></label>
-                            <input id="数字图书馆内江师范学院图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆日本国会图书馆">日本国会图书馆<div class="div_img-a"><a href="http://t.cn/zOm2To6" title="" >古典籍资料</a></div></label>
-                            <input id="数字图书馆日本国会图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆上海图书馆">上海图书馆<div class="div_img-a"><a href="https://library.sh.cn/#/index" title="" >上海图书馆</a></div></label>
-                            <input id="数字图书馆上海图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                <div class="div_img-a"><a href="http://wrd2016.library.sh.cn/channel/stjp/" title="" >上图家谱</a></div>
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆首都图书馆">首都图书馆<div class="div_img-a"><a href="http://query.clcn.net.cn/GJAndST/gjct1.htm" title="" >古籍插图库</a></div></label>
-                            <input id="数字图书馆首都图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                <div class="div_img-a"><a href="http://gjzsb.clcn.net.cn/" title="" >古籍珍善本图像数据库</a></div>
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆台湾大学台湾历史数位图书馆">台湾大学台湾历史数位图书馆<div class="div_img-a"><a href="http://thdl.ntu.edu.tw/tools/" title="" >研究工具集</a></div></label>
-                            <input id="数字图书馆台湾大学台湾历史数位图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆唐河图书馆">唐河图书馆<div class="div_img-a"><a href="http://39.106.82.98:8066/index.html#page1" title="" >馆藏古籍资源库</a></div></label>
-                            <input id="数字图书馆唐河图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆英国剑桥大学图书馆">英国剑桥大学图书馆<div class="div_img-a"><a href="http://cudl.lib.cam.ac.uk/collections/sanskrit/1" title="" >梵文写本</a></div></label>
-                            <input id="数字图书馆英国剑桥大学图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆云南省图书馆">云南省图书馆<div class="div_img-a"><a href="http://msq.ynlib.cn/" title="" >古籍数字图书馆</a></div></label>
-                            <input id="数字图书馆云南省图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                    </div>
-                                </div>
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字图书馆枣庄市图书馆">枣庄市图书馆<div class="div_img-a"><a href="http://www.zzlib.com/gjl" title="" >古籍文献</a></div></label>
-                            <input id="数字图书馆枣庄市图书馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="数字博物馆">数字博物馆<div class="div_img-a"><a href="http://www.tianyige.com.cn:8008/Default" title="只要注册即可在线浏览" >天一阁博物馆</a></div></label>
-                    <input id="数字博物馆" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="数字博物馆天一阁博物馆">天一阁博物馆<div class="div_img-a"><a href="http://www.tianyige.com.cn:8008/default" title="" >古籍数字资源库</a></div></label>
-                            <input id="数字博物馆天一阁博物馆" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="字典">字典<div class="div_img-a"><a href="http://www.shufazidian.com/" title="" >书法字典</a></div></label>
-                    <input id="字典" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="div_img-a"><a href="http://dict.variants.moe.edu.tw" title="" >異體字字典</a></div>
-                        <div class="div_img-a"><a href="http://www.mebag.com/index/" title="" >引得市</a></div>
-                        <div class="div_img-a"><a href="https://xiaoxue.iis.sinica.edu.tw/" title="" >小学堂</a></div>
-                        <div class="div_img-a"><a href="https://www.learnsanskrit.cc/" title="" >口语梵语字典</a></div>
-                        <div class="div_img-a"><a href="http://www.sanskritdictionary.com/" title="" >梵语字典</a></div>
-                        <div class="div_img-a"><a href="http://cpd.uni-koeln.de/search" title="（A Critical Pāli Dictionary Online）A Critical Pāli Dictionary Online is maintained by the Data Center for the Humanities at the University of Cologne in cooperation with the Pali Text Society." >巴利文在线字典</a></div>
-                            </div>
-                        </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="词典">词典<div class="div_img-a"><img src="https://shared.ydstatic.com/images/favicon.ico"><a href="http://dict.youdao.com/" title="" >有道词典</a></div></label>
-                    <input id="词典" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="div_img-a"><a href="https://jikipedia.com/" title=" " >小鸡词典</a></div>
-                        <div class="div_img-a"><a href="http://www.yalasoo.com/Chinese/yalasoo_cn_online_dictionary_COM.php" title="汉藏英三语" >呀啦嗦藏文在线词典</a></div>
-                            </div>
-                        </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
                     <label for="游戏">游戏<div class="div_img-a"><img src="https://www.gamersky.com/favicon.ico"><a href="https://www.gamersky.com/" title="" >游民星空</a></div></label>
                     <input id="游戏" class="on-next-off" type="checkbox" />
                     <div class="portal-box">
@@ -1077,72 +1163,6 @@
                     </div>
                 </div>
                 <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="网易">网易<div class="div_img-a"><img src="https://cc.res.netease.com/act/webcc/favicon/favicon.ico"><a href="https://cc.163.com/" title="" >CC直播</a></div></label>
-                    <input id="网易" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                            </div>
-                        </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
-                    <label for="初录未归挡1">初录未归挡1<div class="div_img-a"> </div></label>
-                    <input id="初录未归挡1" class="on-next-off" type="checkbox" />
-                    <div class="portal-box">
-                        <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="初录未归挡1民主党派">民主党派<div class="div_img-a"> </div></label>
-                            <input id="初录未归挡1民主党派" class="on-next-off" type="checkbox" />
-                            <div class="portal-box">
-                                <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡1民主党派致公党">致公党<div class="div_img-a"><a href="http://www.zg.org.cn/" title="" >中国致公党</a></div></label>
-                                    <input id="初录未归挡1民主党派致公党" class="on-next-off" type="checkbox" />
-                                    <div class="portal-box">
-                                            </div>
-                                        </div>
-                                <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡1民主党派台盟">台盟<div class="div_img-a"><a href="https://www.taimeng.org.cn/" title="台盟" >台湾民主自治同盟</a></div></label>
-                                    <input id="初录未归挡1民主党派台盟" class="on-next-off" type="checkbox" />
-                                    <div class="portal-box">
-                                            </div>
-                                        </div>
-                                <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡1民主党派农工党">农工党<div class="div_img-a"><a href="http://www.ngd.org.cn/" title="农工党" >中国农工民主党</a></div></label>
-                                    <input id="初录未归挡1民主党派农工党" class="on-next-off" type="checkbox" />
-                                    <div class="portal-box">
-                                            </div>
-                                        </div>
-                                <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡1民主党派民盟">民盟<div class="div_img-a"><a href="https://www.mmzy.org.cn/" title="民盟" >中国民主同盟</a></div></label>
-                                    <input id="初录未归挡1民主党派民盟" class="on-next-off" type="checkbox" />
-                                    <div class="portal-box">
-                                            </div>
-                                        </div>
-                                <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡1民主党派民进">民进<div class="div_img-a"><a href="https://www.mj.org.cn/" title="民进" >中国民主促进会</a></div></label>
-                                    <input id="初录未归挡1民主党派民进" class="on-next-off" type="checkbox" />
-                                    <div class="portal-box">
-                                            </div>
-                                        </div>
-                                <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡1民主党派民建">民建<div class="div_img-a"><a href="https://www.cndca.org.cn/" title="民建" >中国民主建国会</a></div></label>
-                                    <input id="初录未归挡1民主党派民建" class="on-next-off" type="checkbox" />
-                                    <div class="portal-box">
-                                            </div>
-                                        </div>
-                                <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡1民主党派民革">民革<div class="div_img-a"><a href="http://www.minge.gov.cn/" title="民革" >中国国民党革命委员会</a></div></label>
-                                    <input id="初录未归挡1民主党派民革" class="on-next-off" type="checkbox" />
-                                    <div class="portal-box">
-                                            </div>
-                                        </div>
-                                <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡1民主党派九三学社">九三学社<div class="div_img-a"><a href="http://www.93.gov.cn/" title="" >九三学社</a></div></label>
-                                    <input id="初录未归挡1民主党派九三学社" class="on-next-off" type="checkbox" />
-                                    <div class="portal-box">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <div class="portal-wrapper-lv1 portal-wrapper">
                     <label for="初录未归挡">初录未归挡<div class="div_img-a"> </div></label>
                     <input id="初录未归挡" class="on-next-off" type="checkbox" />
                     <div class="portal-box">
@@ -1156,7 +1176,7 @@
                                     </div>
                                 </div>
                         <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="初录未归挡古籍">古籍<div class="div_img-a"><a href="https://www.kuizhangge.cn" title="" >中国古典文献资源导航系统</a></div></label>
+                            <label for="初录未归挡古籍">古籍<div class="div_img-a"></div></label>
                             <input id="初录未归挡古籍" class="on-next-off" type="checkbox" />
                             <div class="portal-box">
                                 <div class="portal-wrapper-lv3 portal-wrapper">
@@ -1226,10 +1246,9 @@
                                             </div>
                                         </div>
                                 <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡古籍未区分">未区分<div class="div_img-a"><a href="https://sou-yun.com/eBookIndex.aspx" title="搜韵的影印古籍资料（PDF格式，可全文浏览下载）" >搜韵</a></div></label>
+                                    <label for="初录未归挡古籍未区分">未区分<div class="div_img-a"><a href="http://www.ch5000.com.cn" title="" >《中国金石总录》全拓全文数字版</a></div></label>
                                     <input id="初录未归挡古籍未区分" class="on-next-off" type="checkbox" />
                                     <div class="portal-box">
-                                        <div class="div_img-a"><a href="http://www.ch5000.com.cn" title="" >《中国金石总录》全拓全文数字版</a></div>
                                         <div class="div_img-a"><a href="http://ouroots.nlc.cn" title="" >中华寻根网</a></div>
                                         <div class="div_img-a"><a href="http://hanji.sinica.edu.tw/index.html" title="" >汉籍电子文献（含中华民国史事日志等）</a></div>
                                         <div class="div_img-a"><a href="http://csid.zju.edu.cn" title="" >中国历代墓志数据库</a></div>
@@ -1281,44 +1300,12 @@
                                         <div class="div_img-a"><a href="http://t.cn/hGVTOA" title="" >臺灣大學圖書館臺灣機構典藏</a></div>
                                         <div class="div_img-a"><a href="http://t.cn/8kPTrIQ" title="" >新竹清華大學機構典藏</a></div>
                                         <div class="div_img-a"><a href="http://t.cn/8FLGerh" title="" >澳門大學澳門電子資源全文網</a></div>
-                                            </div>
-                                        </div>
-                                <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡古籍书目联合检索网站">书目联合检索网站<div class="div_img-a"><a href="https://www.worldcat.org" title="全球最大的图书与期刊联合目录，多语种，集成了全球各大图书馆的馆藏目录，目前有20亿笔资料目录。可注册，建立自己的书目库，支持书目导出、引用等。" >WorldCat</a></div></label>
-                                    <input id="初录未归挡古籍书目联合检索网站" class="on-next-off" type="checkbox" />
-                                    <div class="portal-box">
-                                        <div class="div_img-a"><a href="http://www.cashl.edu.cn/portal" title="中国高校人文社会科学文献中心，提供多所主流高校的联合目录检索服务（虽然不太精确），可提供图书馆馆际互借服务。本校图书馆没有的图书，可通过这个平台，或中国高等教育文献保障系统：http://www.calis.edu.cn，申请馆际互借。" >开世览文</a></div>
-                                        <div class="div_img-a"><a href="http://www.calis.edu.cn" title="" >中国高等教育文献保障系统</a></div>
-                                            </div>
-                                        </div>
-                                <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡古籍免费的旧报纸库">免费的旧报纸库<div class="div_img-a"><a href="https://search.nlb.gov.sg/Search?query=%E9%87%91%E5%BA%B8&cont=newspaper" title="" >新加坡国立图书馆</a></div></label>
-                                    <input id="初录未归挡古籍免费的旧报纸库" class="on-next-off" type="checkbox" />
-                                    <div class="portal-box">
-                                        <div class="div_img-a"><a href="http://chinesetimes.lib.sfu.ca/islandora/search/金庸?type=dismax" title="" >加拿大大汉公报</a></div>
-                                            </div>
-                                        </div>
-                                <div class="portal-wrapper-lv3 portal-wrapper">
-                                    <label for="初录未归挡古籍国外电子书与期刊报纸">国外电子书与期刊报纸<div class="div_img-a"><a href="https://archive.org/index.php" title="全球最大的公益性电子书网站。所收电子书，主要为外语古籍和部分中文古籍（如四库、海外图书馆的特藏等）。此外，尚有海量的期刊杂志、老照片、录音、视频、网页等。" >Internet Archive</a></div></label>
-                                    <input id="初录未归挡古籍国外电子书与期刊报纸" class="on-next-off" type="checkbox" />
-                                    <div class="portal-box">
-                                        <div class="div_img-a"><a href="https://books.google.com" title="大名鼎鼎的谷歌图书，本想雄心壮志，将古今中文图书一网打尽，一统电子书江湖， 后因版权问题，搁浅。目前，除书目检索外，一些非版权电子书可全文下载，部分有版权的电子书可在线试读。" >Google books</a></div>
-                                        <div class="div_img-a"><a href="https://www.hathitrust.org" title="公益性电子书网站，内有大量公版书可全文浏览或部分阅读。不同国家的IP，浏览权限不一。" >HathiTrust</a></div>
-                                        <div class="div_img-a"><a href="https://libgen.is" title="245万册电子书（32.22TB），8000万篇文章，均可自由下载。" >Library Genesis</a></div>
-                                        <div class="div_img-a"><a href="http://b-ok.org" title="494万册电子书，7000多万篇文章，均可自由下载。" >ZLibrary</a></div>
-                                        <div class="div_img-a"><a href="http://en.booksee.org" title="494万册电子书，7000多万篇文章，均可自由下载。" >Booksee</a></div>
-                                        <div class="div_img-a"><a href="https://dwz.cn/04OMn1iC" title="较多，不再一一列举，在图书馆电子资源导航处，按分类查询即可。" >各类常用的外文期刊数据库</a></div>
-                                        <div class="div_img-a"><a href="https://chroniclingamerica.loc.gov" title="可全文检索，免费在线阅览和下载。" >美国国会图书馆旧报刊数据库</a></div>
-                                        <div class="div_img-a"><a href="https://www.britishnewspaperarchive.co.uk" title="可全文检索，收费，个人可注册缴费。" >大英图书馆旧报刊数据库</a></div>
-                                        <div class="div_img-a"><a href="https://www.haijiaoshi.com/archives/156" title="提供《朝鲜王朝实录》、《承政院日记》、《备边司誊录》等数据库的导航。" >韩国历史文献相关网站大汇总</a></div>
-                                        <div class="div_img-a"><a href="https://dl.ndl.go.jp" title="另外还有东洋文库、早稻田大学、东京大学、京都大学、日本外务省外交史料馆等图书馆的电子书资源，可自行搜索。" >日本国会图书馆电子资源</a></div>
-                                        <div class="div_img-a"><a href="https://dwz.cn/0bz5szYB" title="最近山大图书馆斥巨资购买了Gale Scholar-Archives Unbound珍稀原始典藏档案数据库中28个主题。Gale Scholar是Gale公司的大型数据库集成产品， 为用户呈现 1 亿 7000 万页、跨越全球 500 年历史的珍稀原始文献资源，最早的历史资料可追溯到十五世纪，资料类型包括图书、地图、照片、报纸、手稿、期刊、视频和音频等。内有大量中美关系史、中国海关总税务司等档案史料，强烈推荐！" >Gale Scholar-Archives Unbound</a></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="portal-wrapper-lv2 portal-wrapper">
-                            <label for="初录未归挡个人站点">个人站点<div class="div_img-a"> </div></label>
+                            <label for="初录未归挡个人站点">个人站点<div class="div_img-a"></div></label>
                             <input id="初录未归挡个人站点" class="on-next-off" type="checkbox" />
                             <div class="portal-box">
                                 <div class="portal-wrapper-lv3 portal-wrapper">
@@ -1402,6 +1389,66 @@
                                     <label for="初录未归挡freepik公司幻灯片">幻灯片<div class="div_img-a"><a href="https://slidesgo.com/" title="免费的Google幻灯片和PowerPoint模板" >slidesgo</a></div></label>
                                     <input id="初录未归挡freepik公司幻灯片" class="on-next-off" type="checkbox" />
                                     <div class="portal-box">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="portal-wrapper-lv1 portal-wrapper">
+                    <label for="初录未归挡1">初录未归挡1<div class="div_img-a"> </div></label>
+                    <input id="初录未归挡1" class="on-next-off" type="checkbox" />
+                    <div class="portal-box">
+                        <div class="portal-wrapper-lv2 portal-wrapper">
+                            <label for="初录未归挡1民主党派">民主党派<div class="div_img-a"> </div></label>
+                            <input id="初录未归挡1民主党派" class="on-next-off" type="checkbox" />
+                            <div class="portal-box">
+                                <div class="portal-wrapper-lv3 portal-wrapper">
+                                    <label for="初录未归挡1民主党派致公党">致公党<div class="div_img-a"><a href="http://www.zg.org.cn/" title="" >中国致公党</a></div></label>
+                                    <input id="初录未归挡1民主党派致公党" class="on-next-off" type="checkbox" />
+                                    <div class="portal-box">
+                                            </div>
+                                        </div>
+                                <div class="portal-wrapper-lv3 portal-wrapper">
+                                    <label for="初录未归挡1民主党派台盟">台盟<div class="div_img-a"><a href="https://www.taimeng.org.cn/" title="台盟" >台湾民主自治同盟</a></div></label>
+                                    <input id="初录未归挡1民主党派台盟" class="on-next-off" type="checkbox" />
+                                    <div class="portal-box">
+                                            </div>
+                                        </div>
+                                <div class="portal-wrapper-lv3 portal-wrapper">
+                                    <label for="初录未归挡1民主党派农工党">农工党<div class="div_img-a"><a href="http://www.ngd.org.cn/" title="农工党" >中国农工民主党</a></div></label>
+                                    <input id="初录未归挡1民主党派农工党" class="on-next-off" type="checkbox" />
+                                    <div class="portal-box">
+                                            </div>
+                                        </div>
+                                <div class="portal-wrapper-lv3 portal-wrapper">
+                                    <label for="初录未归挡1民主党派民盟">民盟<div class="div_img-a"><a href="https://www.mmzy.org.cn/" title="民盟" >中国民主同盟</a></div></label>
+                                    <input id="初录未归挡1民主党派民盟" class="on-next-off" type="checkbox" />
+                                    <div class="portal-box">
+                                            </div>
+                                        </div>
+                                <div class="portal-wrapper-lv3 portal-wrapper">
+                                    <label for="初录未归挡1民主党派民进">民进<div class="div_img-a"><a href="https://www.mj.org.cn/" title="民进" >中国民主促进会</a></div></label>
+                                    <input id="初录未归挡1民主党派民进" class="on-next-off" type="checkbox" />
+                                    <div class="portal-box">
+                                            </div>
+                                        </div>
+                                <div class="portal-wrapper-lv3 portal-wrapper">
+                                    <label for="初录未归挡1民主党派民建">民建<div class="div_img-a"><a href="https://www.cndca.org.cn/" title="民建" >中国民主建国会</a></div></label>
+                                    <input id="初录未归挡1民主党派民建" class="on-next-off" type="checkbox" />
+                                    <div class="portal-box">
+                                            </div>
+                                        </div>
+                                <div class="portal-wrapper-lv3 portal-wrapper">
+                                    <label for="初录未归挡1民主党派民革">民革<div class="div_img-a"><a href="http://www.minge.gov.cn/" title="民革" >中国国民党革命委员会</a></div></label>
+                                    <input id="初录未归挡1民主党派民革" class="on-next-off" type="checkbox" />
+                                    <div class="portal-box">
+                                            </div>
+                                        </div>
+                                <div class="portal-wrapper-lv3 portal-wrapper">
+                                    <label for="初录未归挡1民主党派九三学社">九三学社<div class="div_img-a"><a href="http://www.93.gov.cn/" title="" >九三学社</a></div></label>
+                                    <input id="初录未归挡1民主党派九三学社" class="on-next-off" type="checkbox" />
+                                    <div class="portal-box">
                                     </div>
                                 </div>
                             </div>
@@ -1432,7 +1479,7 @@
         <div class="footer">
             |&nbsp;
             &lt;&nbsp;
-            上次维护：<time datetime="2021-03-26T18:34Z">2021-03-26T18:34Z</time>
+            上次维护：<time datetime="2021-03-28T06:40Z">2021-03-28T06:40Z</time>
             &nbsp;&gt;
             &nbsp;|
         </div>
@@ -1440,26 +1487,37 @@
     </footer>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){      
+        $(document).ready(function(){
             $("input[type='checkbox']").click(function(){
                 $(this).parent().prevAll().children(":checked").click();
                 $(this).parent().nextAll().children(":checked").click();
-                $(this).nextAll().find(":checked").click();
-                
-                // $(":checked").not(this).click();                
+                $(this).nextAll().find(":checked").click();            
+                // $(":checked").not(this).click();
                 // $(this).prevAll().$(":checked").click();
                 // $(this).nextAll().$(":checked").click();
                 // $(this).children().$(":checked").click();
-            //     if($(this).is(":checked")){
-            //     $("#portal-box").children().css("flex","auto");
-            // }
-            // else if($(this).is(":not(:checked)")){ }
-
+                // if($(this).is(":checked")){ $("#portal-box").children().css("flex","auto"); } else if($(this).is(":not(:checked)")){ }
                 // $('.keyword-lv1').css('width','358px');
                 // $(":checked").parent().css('width','100%');
             });
+            $("button").click(function(){
+                $(this).next().children("[type='search']").val(document.getElementById("search-input").value);
+                $(this).next().children("[type='submit']").click();
+                // var x = document.getElementsByClassName('inputBox');
+                // for(let i = 0; i < x.length; i++){
+                //     x[i].value = "123";
+                // }
+            });
+            // document.getElementById("search-00").value = "Favorite Cars";
         });
-    </script>  
+        // function myFunction() {
+        //     var x = document.$(this).nextAll().children().getElementByClassName("search");
+        //     for(let i = 0; i < x.length; i++){
+        //         x[i].value = "Hello World!";
+        //     }
+        //     $(this).next().children().$("input[type='submit']").click;
+        // }
+    </script>
     <script async type="text/javascript">
         var _hmt = _hmt || [];
         (function() {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>收集与整理【论文计划的要点信息】以作备忘 | 正协信息客栈 | 信息,目录,导航,网页,网址导航,网站大全</title>
-    <meta name="keywords" content="信息,目录,导航,网页,网址导航,网站大全,客栈,亲王,网站导航,网站搜索,导航网站,网站收录,信息分类,网站分类,网址收录,颐亲王,华朝颐亲王" />
+    <meta name="keywords" content="信息,目录,导航,网页,网址导航,网站大全,客栈,亲王,网站导航,网站搜索,导航网站,网站收录,信息分类,网站分类,网址收录,颐亲王,华朝颐亲王,正协信息,正协信息客栈,视频,直播" />
     <meta name="description" content="" />
     <meta name="author" content="正协信息客栈, 华朝颐亲王, Seymour, 郑協" />
 
@@ -196,7 +196,7 @@
         <div class="footer">
             |&nbsp;
             &lt;&nbsp;
-            上次维护：<time datetime="2021-03-26T18:34Z">2021-03-26T18:34Z</time>
+            上次维护：<time datetime="2021-03-28T06:40Z">2021-03-28T06:40Z</time>
             &nbsp;&gt;
             &nbsp;|
         </div>
@@ -204,26 +204,37 @@
     </footer>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){      
+        $(document).ready(function(){
             $("input[type='checkbox']").click(function(){
                 $(this).parent().prevAll().children(":checked").click();
                 $(this).parent().nextAll().children(":checked").click();
-                $(this).nextAll().find(":checked").click();
-                
-                // $(":checked").not(this).click();                
+                $(this).nextAll().find(":checked").click();            
+                // $(":checked").not(this).click();
                 // $(this).prevAll().$(":checked").click();
                 // $(this).nextAll().$(":checked").click();
                 // $(this).children().$(":checked").click();
-            //     if($(this).is(":checked")){
-            //     $("#portal-box").children().css("flex","auto");
-            // }
-            // else if($(this).is(":not(:checked)")){ }
-
+                // if($(this).is(":checked")){ $("#portal-box").children().css("flex","auto"); } else if($(this).is(":not(:checked)")){ }
                 // $('.keyword-lv1').css('width','358px');
                 // $(":checked").parent().css('width','100%');
             });
+            $("button").click(function(){
+                $(this).next().children("[type='search']").val(document.getElementById("search-input").value);
+                $(this).next().children("[type='submit']").click();
+                // var x = document.getElementsByClassName('inputBox');
+                // for(let i = 0; i < x.length; i++){
+                //     x[i].value = "123";
+                // }
+            });
+            // document.getElementById("search-00").value = "Favorite Cars";
         });
-    </script>  
+        // function myFunction() {
+        //     var x = document.$(this).nextAll().children().getElementByClassName("search");
+        //     for(let i = 0; i < x.length; i++){
+        //         x[i].value = "Hello World!";
+        //     }
+        //     $(this).next().children().$("input[type='submit']").click;
+        // }
+    </script>
     <script async type="text/javascript">
         var _hmt = _hmt || [];
         (function() {
