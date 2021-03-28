@@ -12,6 +12,12 @@ def footer(txtfolder, gmtime):
     file = 'footer.txt'
     infolist = []
     infolist.append('\n    <footer>')
+    infolist.append('\n        <div class="footer">')
+    infolist.append('\n        正协信息客栈（zhengxie.info）版权所有')
+    infolist.append('\n        </div>')
+    infolist.append('\n        <div class="footer">')
+    infolist.append('\n        Copyright © 2020-2021 All Rights Reserved.')
+    infolist.append('\n        </div>')
     infolist.append('\n        <!-- 上次维护 -->')
     infolist.append('\n        <div class="footer">')
     infolist.append('\n            |&nbsp;')
@@ -24,7 +30,9 @@ def footer(txtfolder, gmtime):
     infolist.append('\n            &nbsp;&gt;')
     infolist.append('\n            &nbsp;|')
     infolist.append('\n        </div>')
-    infolist.append('\n        <!-- /上次维护 -->')
+    infolist.append('\n        <!-- /上次维护 -->')    
+    infolist.append('\n        <div class="footer">')
+    infolist.append('\n        </div>')    
     infolist.append('\n    </footer>')
     info = ''
     for i in range(len(infolist)):
