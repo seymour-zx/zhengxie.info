@@ -560,7 +560,7 @@
         <div class="footer">
             |&nbsp;
             &lt;&nbsp;
-            上次维护：<time datetime="2021-03-28T17:41Z">2021-03-28T17:41Z</time>
+            上次维护：<time datetime="2021-03-29T07:01Z">2021-03-29T07:01Z</time>
             &nbsp;&gt;
             &nbsp;|
         </div>
@@ -569,12 +569,13 @@
         </div>
     </footer>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function(){
             $("input[type='checkbox']").click(function(){
                 $(this).parent().prevAll().children(":checked").click();
                 $(this).parent().nextAll().children(":checked").click();
-                $(this).nextAll().find(":checked").click();            
+                $(this).nextAll().find(":checked").click();     
+                $(this).scrollIntoView(true);
                 // $(":checked").not(this).click();
                 // $(this).prevAll().$(":checked").click();
                 // $(this).nextAll().$(":checked").click();
@@ -585,7 +586,7 @@
             });
             $("button").click(function(){
                 $(this).next().children("[type='search']").val(document.getElementById("search-input").value);
-                $(this).next().children("[type='submit']").click();
+                $(this).next().children("[type='submit']").click();                
                 // var x = document.getElementsByClassName('inputBox');
                 // for(let i = 0; i < x.length; i++){
                 //     x[i].value = "123";
@@ -600,6 +601,14 @@
         //     }
         //     $(this).next().children().$("input[type='submit']").click;
         // }
+        // window.onload = function(){			
+		// 		document.querySelector("button").onclick = function(){
+		// 			document.querySelector("#roll_top").scrollIntoView(false);
+		// 		}
+		// 		document.querySelector("input[type=checkbox]").onclick = function(){
+		// 			document.querySelector("#roll_top").scrollIntoView(true);
+		// 		}
+		// 	}
     </script>
     <script async type="text/javascript">
         var _hmt = _hmt || [];
