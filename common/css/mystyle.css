@@ -101,7 +101,8 @@ table.contents a { color: rgba(244,241,237,1); }
 table.contents a:hover { color: rgba(243,215,55,1); }
 /* // 目录列表 */
 /* 专用书签 */
-input[type="checkbox"] { width: 0; height: 0; }
+/* input[type="checkbox"] { display: none; } */
+input[type="checkbox"] { display: none; }
 input.on-next-off:not(:checked) + * { display: none; }
 .portal-box { display: flex; flex-wrap: wrap; justify-content: space-between; }
 .portal-wrapper { flex: auto; }
