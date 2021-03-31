@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="zh-CN" dir="ltr" translate="no">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，UTF-8国际编码-->
-    <title>颐亲王的小栈</title><!--页面的三要素 标题-->
-    <meta name="Keywords" content="颐亲王,郑協" /><!--页面的三要素 关键词-->
-    <meta name="description" content="ZHENGXIE's" /><!--页面的三要素 描述-->      
+    <meta charset="UTF-8" />
+    <title>正协信息 - 网址导航 | 正协信息客栈 | 信息,目录,导航,网页,网址导航,网站大全</title>
+    <meta name="keywords" content="信息,目录,导航,网页,网址导航,网站大全,客栈,亲王,网站导航,网站搜索,导航网站,网站收录,信息分类,网站分类,网址收录,颐亲王,华朝颐亲王,正协信息,正协信息客栈,视频,直播" />
+    <meta name="description" content="在互联网江湖中，不认得信息公路时，快来正协信息客栈问路吧！正协信息客栈，一个根据关键词进行信息分类导航的网站。本网站致力于收录与分类每一个网址。" />
+    <meta name="author" content="正协信息客栈, 华朝颐亲王, Seymour, 郑協" /> 
 
-    <link rel="stylesheet" href="./style.css">  
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="./style.css" rel="stylesheet" type="text/css" />  
+    <link href="font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="./font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="./favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <!--调用网页图标-->
 
@@ -26,45 +27,39 @@
     
 </head>
 <body>
-    <div id="center">
-        <input checked id="check-sidebar" class="hidden" type="checkbox" />        
-        <div id="sidebar">
-            <table id="plaque"><!-- 匾额 --> 
-                <tr>
-                    <!-- <td rowspan="3" style="width: 2rem;"></td> -->
-                    <td class="logo" rowspan="3"></td>
-                    <td colspan="3">颐亲王的小栈</td>
-                    <!-- <td rowspan="3" style="width: 2rem;"></td> -->
-                </tr>
-                <tr class="mid">
-                    <td>正协</td>
-                    <td class="mid">信<br />息</td>
-                    <td>客栈</td>
-                </tr>
-                <tr><td colspan="3">Z H E N G X I E . I N F O</td></tr>
-            </table><!-- // #plaque 匾额 --> 
-        </div>
-        <div id="main">
-            <div id="top">
-                <label for="check-sidebar" class="open"><i class="fa fa-navicon"></i></label>
-                <label for="check-sidebar" class="close"><i class="fa fa-window-close"></i></label>
-                <label><i class="fa fa-navicon"></i></label>
-            </div>
-
-            <!-- <iframe name="fame" id="myiframe" src="https://zhengxie.info/" scrolling="no" style="display: block;  width: 100%;" frameborder="0" security="restricted" sandbox="allow-forms allow-scripts allow-same-origin allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox "></iframe> -->
-            <!-- <iframe src="http://zhengxie.info/" id="myiframe" scrolling="no" onload="changeFrameHeight()" frameborder="0"></iframe> -->
-        
-            <!-- <iframe src="http://zhengxie.info/" id="myiframe" scrolling="no" frameborder="0"></iframe> -->
-
-
-            <!-- <iframe name="container_ifranme" id="iframeId" scrolling="auto" frameborder="no"  src="https://zhengxie.info/" onLoad="iFrameHeight()" ></iframe> -->
-
-
-            <iframe id="frame-content" scrolling="no" src="../../index.html" style="display: block;  width: 100%;"frameborder="0"></iframe>
-
-
-        </div>
+    
+<input checked id="check-sidebar" class="hidden" type="checkbox" />        
+<div id="sidebar">
+    <table id="plaque"><!-- 匾额 --> 
+        <tr>
+            <!-- <td rowspan="3" style="width: 2rem;"></td> -->
+            <td class="logo" rowspan="3"></td>
+            <td colspan="3">颐亲王的小栈</td>
+            <!-- <td rowspan="3" style="width: 2rem;"></td> -->
+        </tr>
+        <tr class="mid">
+            <td>正协</td>
+            <td class="mid">信<br />息</td>
+            <td>客栈</td>
+        </tr>
+        <tr><td colspan="3">Z H E N G X I E . I N F O</td></tr>
+    </table><!-- // #plaque 匾额 --> 
+</div>
+<div id="main">
+    <div id="top">
+        <label for="check-sidebar" class="open"><i class="fa fa-navicon"></i></label>
+        <label for="check-sidebar" class="close"><i class="fa fa-window-close"></i></label>
+        <label><i class="fa fa-navicon"></i></label>
     </div>
+    <div id="myiframe-box">
+        <iframe id="myiframe" name="myiframe" src="../../index.html" scrolling="auto" style="display: block;  width: 100%;" security="restricted" sandbox="allow-forms allow-scripts allow-same-origin allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox " frameborder="0"></iframe>
+    </div>
+
+
+
+
+</div>
+   
 
 
 
@@ -85,51 +80,24 @@
 
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript">
+        // iframe自适应会用到
+        function calcPageHeight(doc) {
+            var cHeight = Math.max(doc.body.clientHeight, doc.documentElement.clientHeight)
+            var sHeight = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight)
+            var height = Math.max(cHeight, sHeight)
+            return height
+        }
 
-// iframe自适应会用到
-function calcPageHeight(doc) {
-    var cHeight = Math.max(doc.body.clientHeight, doc.documentElement.clientHeight)
-    var sHeight = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight)
-    var height = Math.max(cHeight, sHeight)
-    return height
-  }
-
-  var ifr = document.getElementById('frame-content')
-  ifr.onload = function () {
-    var iDoc = ifr.contentDocument || ifr.document || ifr.contentWindow
-    var height = calcPageHeight(iDoc);
-    ifr.style.height = height + 'px'
-  }
-
+        var ifr = document.getElementById('myiframe')
+        ifr.onload = function () {
+            var iDoc = ifr.contentDocument || ifr.document || ifr.contentWindow
+            var height = calcPageHeight(iDoc);
+            ifr.style.height = height + 'px'
+        }
 
 
-
-
-
-
-	// //获取iframe子页面内容高度给iframe动态设置高度
-	// function iFrameHeight() {
-	// var ifm= document.getElementById("iframeId");
-	// 	var subWeb = document.frames ? document.frames["iframeId"].document : ifm.contentDocument;
-	// 	if(ifm != null && subWeb != null) {
-	// 		ifm.style.height = 'auto';//关键这一句，先取消掉之前iframe设置的高度
-	// 		ifm.style.height = subWeb.body.scrollHeight+'px';
-	// 	}
-	// };
-
-// var ifm= document.getElementById("myiframe");
-// ifm.height=document.documentElement.clientHeight;
-
-// function changeFrameHeight(){    
-//     var ifm= document.getElementById("iframepage");     
-//     ifm.height=document.documentElement.clientHeight;
-// }
-// window.onresize=function() {       
-//     changeFrameHeight();  
-// }
 
         $(document).ready(function(){
-
             $("#check-sidebar").click(function(){
                 if($(this).is(":checked")){
                     $("#main").children("[for='check-sidebar']").css("display","block");
@@ -147,9 +115,6 @@ function calcPageHeight(doc) {
                 $(this).css("display","none");
                 $(this).prev().css("display","block");
             });
-
-
-
         });
             // $("#check-sidebar").not(":checked").click(function(){
             //     $("#main").children("label").css("display","block");
