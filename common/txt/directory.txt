@@ -1,4 +1,4 @@
-../../
+../../base/link/
 ../../private/
 ../../base/about/
 ../../base/sitemap/

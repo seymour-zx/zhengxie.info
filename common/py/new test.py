@@ -188,6 +188,6 @@ if ready():
                 info = info + '\n'
             info = info + '            </div>'
         info = info + '\n            <!-- // 导航首页 -->\n'
-    fwinfo('../../index/main.html', info)
+    fwinfo('../../base/link/index/main.html', info)
 
         
