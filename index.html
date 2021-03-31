@@ -66,40 +66,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript">
-        // iframe自适应会用到
-        function calcPageHeight(doc) {
-            var cHeight = Math.max(doc.body.clientHeight, doc.documentElement.clientHeight)
-            var sHeight = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight)
-            var height = Math.max(cHeight, sHeight)
-            return height
-        }
-
-        var ifr = document.getElementById('myiframe')
-        ifr.onload = function () {
-            var iDoc = ifr.contentDocument || ifr.document || ifr.contentWindow
-            var height = calcPageHeight(iDoc);
-            ifr.style.height = height + 'px'
-        }
-
-
-
         $(document).ready(function(){
             $("#check-sidebar").click(function(){
                 if($(this).is(":checked")){
@@ -126,7 +94,6 @@
             // if($("#check-sidebar").is(":checked").click()){
             //     $("#main").children("label").css("display","none");
             // }
-
         
                 // $(":checked").not(this).click();
                 // $(this).prevAll().$(":checked").click();
@@ -149,6 +116,20 @@
                 //     x[i].value = "123";
                 // }
         //     $(this).next().children().$("input[type='submit']").click;
+        // }
+
+        // // iframe自适应会用到
+        // function calcPageHeight(doc) {
+        //     var cHeight = Math.max(doc.body.clientHeight, doc.documentElement.clientHeight)
+        //     var sHeight = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight)
+        //     var height = Math.max(cHeight, sHeight)
+        //     return height
+        // }
+        // var ifr = document.getElementById('myiframe')
+        // ifr.onload = function () {
+        //     var iDoc = ifr.contentDocument || ifr.document || ifr.contentWindow
+        //     var height = calcPageHeight(iDoc);
+        //     ifr.style.height = height + 'px'
         // }
     </script>
 </body>
