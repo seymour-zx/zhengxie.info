@@ -50,9 +50,19 @@
                 <label for="check-sidebar" class="close"><i class="fa fa-window-close"></i></label>
                 <label><i class="fa fa-navicon"></i></label>
             </div>
-            <section>
-            <iframe name="fame" id="fame" src="https://zhengxie.info/" style="display: block; height: 100%; width: 100%;" frameborder="0" security="restricted" sandbox="allow-forms allow-scripts allow-same-origin allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox "></iframe>
-        </section>
+
+            <!-- <iframe name="fame" id="myiframe" src="https://zhengxie.info/" scrolling="no" style="display: block;  width: 100%;" frameborder="0" security="restricted" sandbox="allow-forms allow-scripts allow-same-origin allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox "></iframe> -->
+            <!-- <iframe src="http://zhengxie.info/" id="myiframe" scrolling="no" onload="changeFrameHeight()" frameborder="0"></iframe> -->
+        
+            <!-- <iframe src="http://zhengxie.info/" id="myiframe" scrolling="no" frameborder="0"></iframe> -->
+
+
+            <!-- <iframe name="container_ifranme" id="iframeId" scrolling="auto" frameborder="no"  src="https://zhengxie.info/" onLoad="iFrameHeight()" ></iframe> -->
+
+
+            <iframe id="frame-content" scrolling="auto"  src="../../index.html" frameborder="0"></iframe>
+
+
         </div>
     </div>
 
@@ -71,9 +81,55 @@
 
 
 
+
+
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript">
+
+// iframe自适应会用到
+function calcPageHeight(doc) {
+    var cHeight = Math.max(doc.body.clientHeight, doc.documentElement.clientHeight)
+    var sHeight = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight)
+    var height = Math.max(cHeight, sHeight)
+    return height
+  }
+
+  var ifr = document.getElementById('frame-content')
+  ifr.onload = function () {
+    var iDoc = ifr.contentDocument || ifr.document || ifr.contentWindow
+    var height = calcPageHeight(iDoc);
+    ifr.style.height = height + 'px'
+  }
+
+
+
+
+
+
+
+	// //获取iframe子页面内容高度给iframe动态设置高度
+	// function iFrameHeight() {
+	// var ifm= document.getElementById("iframeId");
+	// 	var subWeb = document.frames ? document.frames["iframeId"].document : ifm.contentDocument;
+	// 	if(ifm != null && subWeb != null) {
+	// 		ifm.style.height = 'auto';//关键这一句，先取消掉之前iframe设置的高度
+	// 		ifm.style.height = subWeb.body.scrollHeight+'px';
+	// 	}
+	// };
+
+// var ifm= document.getElementById("myiframe");
+// ifm.height=document.documentElement.clientHeight;
+
+// function changeFrameHeight(){    
+//     var ifm= document.getElementById("iframepage");     
+//     ifm.height=document.documentElement.clientHeight;
+// }
+// window.onresize=function() {       
+//     changeFrameHeight();  
+// }
+
         $(document).ready(function(){
+
             $("#check-sidebar").click(function(){
                 if($(this).is(":checked")){
                     $("#main").children("[for='check-sidebar']").css("display","block");
