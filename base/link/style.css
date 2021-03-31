@@ -75,6 +75,7 @@ body {
             width: 100%;
             overflow-x: auto;
             min-height: calc(100% - 38px);
+            height: 2000px;
         }
 
 
