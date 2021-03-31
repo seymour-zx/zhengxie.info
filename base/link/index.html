@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!--声明当前页面的编码集：charset=gbk,gb2312(中文编码)，UTF-8国际编码-->
+    <title>颐亲王的小栈</title><!--页面的三要素 标题-->
+    <meta name="Keywords" content="颐亲王,郑協" /><!--页面的三要素 关键词-->
+    <meta name="description" content="ZHENGXIE's" /><!--页面的三要素 描述-->      
+
+    <link rel="stylesheet" href="./style.css">  
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <base target="_self" />
+</head>
+<body>
+    <div id="center">
+        <input checked id="check-sidebar" class="hidden" type="checkbox" />        
+        <div id="sidebar">
+            <table id="plaque"><!-- 匾额 --> 
+                <tr>
+                    <!-- <td rowspan="3" style="width: 2rem;"></td> -->
+                    <td class="logo" rowspan="3"></td>
+                    <td colspan="3">颐亲王的小栈</td>
+                    <!-- <td rowspan="3" style="width: 2rem;"></td> -->
+                </tr>
+                <tr class="mid">
+                    <td>正协</td>
+                    <td class="mid">信<br />息</td>
+                    <td>客栈</td>
+                </tr>
+                <tr><td colspan="3">Z H E N G X I E . I N F O</td></tr>
+            </table><!-- // #plaque 匾额 --> 
+        </div>
+        <div id="main">
+            <div id="top">
+                <label for="check-sidebar" class="open"><i class="fa fa-navicon"></i></label>
+                <label for="check-sidebar" class="close"><i class="fa fa-window-close"></i></label>
+                <label><i class="fa fa-navicon"></i></label>
+            </div>
+            <section>
+            <iframe name="fame" id="fame" src="https://zhengxie.info/" style="display: block; height: 100%; width: 100%;" frameborder="0" security="restricted" sandbox="allow-forms allow-scripts allow-same-origin allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox "></iframe>
+        </section>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#check-sidebar").click(function(){
+                if($(this).is(":checked")){
+                    $("#main").children("[for='check-sidebar']").css("display","block");
+                    // $("#top").css("height","0");
+                } else {
+                    $("#main").children("[for='check-sidebar']").css("display","none");
+                    // $("#top").css("height","auto");
+                }
+            });
+            $("label.open").click(function(){
+                $(this).css("display","none");
+                $(this).next().css("display","block");
+            });
+            $("label.close").click(function(){
+                $(this).css("display","none");
+                $(this).prev().css("display","block");
+            });
+
+
+
+        });
+            // $("#check-sidebar").not(":checked").click(function(){
+            //     $("#main").children("label").css("display","block");
+            // });
+
+            // if($("#check-sidebar").is(":checked").click()){
+            //     $("#main").children("label").css("display","none");
+            // }
+
+        
+                // $(":checked").not(this).click();
+                // $(this).prevAll().$(":checked").click();
+                // $(this).nextAll().$(":checked").click();
+                // $(this).children().$(":checked").click();
+                // if($(this).is(":checked")){ $("#portal-box").children().css("flex","auto"); } else if($(this).is(":not(:checked)")){ }
+                // $('.keyword-lv1').css('width','358px');
+                // $(":checked").parent().css('width','100%');
+            
+            // $("button").click(function(){
+            //     $(this).next().children("[type='search']").val(document.getElementById("search-input").value);
+            //     $(this).next().children("[type='submit']").click();                
+
+            
+            // document.getElementById("search-00").value = "Favorite Cars";
+        // });
+        // function myFunction() {
+                // var x = document.getElementsByClassName('inputBox');
+                // for(let i = 0; i < x.length; i++){
+                //     x[i].value = "123";
+                // }
+        //     $(this).next().children().$("input[type='submit']").click;
+        // }
+    </script>
+</body>
+</html>

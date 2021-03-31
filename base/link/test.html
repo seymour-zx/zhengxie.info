@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>test</title>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("input[type='checkbox']").click(function(){
+            $(this).parent().prevAll().children(":checked").click();
+            $(this).parent().nextAll().children(":checked").click();
+            $(this).nextAll().find(":checked").click();     
+            // $(":checked").not(this).click();
+            // $(this).prevAll().$(":checked").click();
+            // $(this).nextAll().$(":checked").click();
+            // $(this).children().$(":checked").click();
+            // if($(this).is(":checked")){ $("#portal-box").children().css("flex","auto"); } else if($(this).is(":not(:checked)")){ }
+            // $('.keyword-lv1').css('width','358px');
+            // $(":checked").parent().css('width','100%');
+        });
+        $("button").click(function(){
+            $(this).next().children("[type='search']").val(document.getElementById("search-input").value);
+            $(this).next().children("[type='submit']").click();                
+
+        });
+        $("div").click(function(){
+        document.createElement('id').innerHTML = '<iframe security="restricted" sandbox="allow-forms allow-scripts allow-same-origin allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox " name="fame" id="fame" src="../../index.html" style="display: block; height: 100%; width: 100%;" frameborder="0" class="fame-bg"></iframe>';
+    });
+        // document.getElementById("search-00").value = "Favorite Cars";
+    });
+    // function myFunction() {
+            // var x = document.getElementsByClassName('inputBox');
+            // for(let i = 0; i < x.length; i++){
+            //     x[i].value = "123";
+            // }
+    //     $(this).next().children().$("input[type='submit']").click;
+    // }
+</script>
+
+    
+
+
+</head>
+<body>
+ <div id="swtcenter" style="width:800px;height:600px;position:fixed;z-index:999;top:50%;left:50%;margin-left:-400px;margin-top:-300px;"></div>
+ 
+ <div id="zixunbaobao" style="position:fixed;z-index:999;top:0px;left:0px;width:60px;height:30px;" οnclick="openme()">打开我</div>
+  <div id="zixunbaobao" style="position:fixed;z-index:999;left:80px;top:0px;width:60px;height:30px;" οnclick="leaveme()">关闭我</div>
+</body>
+</html>
