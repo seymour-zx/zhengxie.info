@@ -74,6 +74,8 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
             info = info + message
     message = '''
 
+            <hr />
+            <br />
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Google广告——横向展示 -->
             <ins class="adsbygoogle"
@@ -85,6 +87,8 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
+            <br />
+            <hr />
 
 '''
     info = info + message
