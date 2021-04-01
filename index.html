@@ -25,40 +25,65 @@
     <script data-ad-client="ca-pub-6434243103158481" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!--Google AdSense-->
 </head>
 <body>
+
+    <!-- 广告行 -->
+    <div class="ggad">
+        <!-- 展示广告——横幅 -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-6434243103158481"
+                data-ad-slot="4856101005"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        <!-- // 展示广告——横幅 -->
+    </div>
+
+
+    <!-- 页首 -->
     <header>
-        <table class="plaque">
-            <tr>
-                <td rowspan="3" style="width: 2rem;"></td>
-                <td class="logo" rowspan="3"></td>
-                <td colspan="3">颐亲王的小栈</td>
-                <td rowspan="3" style="width: 2rem;"></td>
-            </tr>
-            <tr class="mid">
-                <td>正协</td>
-                <td class="mid">信<br />息</td>
-                <td>客栈</td>
-            </tr>
-            <tr><td colspan="3">Z H E N G X I E . I N F O</td></tr>
-        </table><!-- /.plaque 匾额 --> 
+
+        <!-- .plaque 匾额 -->
+        <div class="plaque-box">
+            <table class="plaque">
+                <tr>
+                    <td class="logo" rowspan="3"></td>
+                    <td colspan="3">颐亲王的小栈</td>
+                </tr>
+                <tr class="mid">
+                    <td>正协</td>
+                    <td class="mid">信<br />息</td>
+                    <td>客栈</td>
+                </tr>
+                <tr><td colspan="3">Z H E N G X I E . I N F O</td></tr>
+            </table> 
+        </div><!-- // .plaque 匾额 -->
+
+        <!-- .menu 菜单 -->
         <table class="menu">
             <tr>
                 <td>
-                    <a href="https://zhengxie.info/" title="" target="_parent">首页</a>
+                    <a href="https://zhengxie.info/" target="_self">首页</a>
                 </td>
                 <td>
-                    <a href="https://zhengxie.info/base/about/" title="" target="_self">关于</a>
+                    <a href="https://zhengxie.info/base/about/" target="_self">关于</a>
                 </td>
                 <td>
-                    <a href="https://zhengxie.info/base/sitemap/" title="" target="_self">目录</a>
+                    <a href="https://zhengxie.info/base/sitemap/" target="_self">目录</a>
                 </td>
                 <td>
-                    <a href="https://zhengxie.info/private/" title="" target="_self">私签</a>
+                    <a href="https://zhengxie.info/private/" target="_self">私签</a>
                 </td>
             </tr>
-        </table><!-- /.menu 菜单 -->   
+        </table><!-- // .menu 菜单 --> 
+
     </header>
 
-    <div class="body"><!-- <nav></nav> -->
+
+    <!-- 页面核心 -->
+    <div class="core">
         <main>
 
             <div class="search-container"><!-- 搜索框 -->
@@ -1461,49 +1486,59 @@
                 </div>
             </div>
             <!-- // 导航首页 -->
-   
-    <br />    
-    <!-- 文章内嵌广告 -->
-        <ins class="adsbygoogle"
-            style="display:block; text-align:center;"
-            data-ad-layout="in-article"
-            data-ad-format="fluid"
-            data-ad-client="ca-pub-6434243103158481"
-            data-ad-slot="7157818959"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    <!-- // 文章内嵌广告 -->
-    <br />
-        
+
         </main>
-    <!-- <aside></aside> --></div><!-- // <div class="body"> -->
+    </div>
+
+
+    <!-- 页底 -->
     <footer>
-        <div class="footer">
-        正协信息客栈（zhengxie.info）版权所有
+
+        <!-- 正协信息客栈（zhengxie.info）版权所有 -->
+        <div class="in-footer-box">
+            正协信息客栈（zhengxie.info）版权所有
         </div>
-        <div class="footer">
-        Copyright © 2020-2021 All Rights Reserved.
+
+        <!-- Copyright © 2020-2021 All Rights Reserved. -->
+        <div class="in-footer-box">
+            Copyright © 2020-2021 All Rights Reserved
         </div>
+
         <!-- 上次维护 -->
-        <div class="footer">
-            |&nbsp;
-            &lt;&nbsp;
-            上次维护：<time datetime="2021-03-31T18:02Z">2021-03-31T18:02Z</time>
-            &nbsp;&gt;
-            &nbsp;|
+        <div class="in-footer-box">
+            |&nbsp;&lt;&nbsp;
+            上次维护：<time datetime="2021-04-01T10:21Z">2021-04-01T10:21Z</time>
+            &nbsp;&gt;&nbsp;|
         </div>
-        <!-- /上次维护 -->
-        <div class="footer">
-        </div>
+
     </footer>
+
+
+    <!-- 广告行 -->
+    <div class="ggad">
+        <!-- 展示广告——横幅 -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-6434243103158481"
+                data-ad-slot="4856101005"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        <!-- // 展示广告——横幅 -->
+    </div>
+
+
+    <!--脚本-->
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $("input[type='checkbox']").click(function(){
                 $(this).parent().prevAll().children(":checked").click();
                 $(this).parent().nextAll().children(":checked").click();
-                $(this).nextAll().find(":checked").click();     
+                $(this).nextAll().find(":checked").click();
+                $(this).parent()[0].scrollIntoView(true);
                 // $(":checked").not(this).click();
                 // $(this).prevAll().$(":checked").click();
                 // $(this).nextAll().$(":checked").click();
@@ -1514,8 +1549,7 @@
             });
             $("button").click(function(){
                 $(this).next().children("[type='search']").val(document.getElementById("search-input").value);
-                $(this).next().children("[type='submit']").click();                
-
+                $(this).next().children("[type='submit']").click();
             });
             // document.getElementById("search-00").value = "Favorite Cars";
         });
@@ -1527,6 +1561,7 @@
         //     $(this).next().children().$("input[type='submit']").click;
         // }
     </script>
+    <!--百度统计-->
     <script async type="text/javascript">
         var _hmt = _hmt || [];
         (function() {
@@ -1535,6 +1570,7 @@
         var s = document.getElementsByTagName("script")[0]; 
         s.parentNode.insertBefore(hm, s);
         })();
-    </script><!--百度统计-->
+    </script>
+
 </body>
 </html>

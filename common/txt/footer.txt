@@ -1,20 +1,22 @@
 
+    <!-- 页底 -->
     <footer>
-        <div class="footer">
-        正协信息客栈（zhengxie.info）版权所有
+
+        <!-- 正协信息客栈（zhengxie.info）版权所有 -->
+        <div class="in-footer-box">
+            正协信息客栈（zhengxie.info）版权所有
         </div>
-        <div class="footer">
-        Copyright © 2020-2021 All Rights Reserved.
+
+        <!-- Copyright © 2020-2021 All Rights Reserved. -->
+        <div class="in-footer-box">
+            Copyright © 2020-2021 All Rights Reserved
         </div>
+
         <!-- 上次维护 -->
-        <div class="footer">
-            |&nbsp;
-            &lt;&nbsp;
-            上次维护：<time datetime="2021-03-31T18:02Z">2021-03-31T18:02Z</time>
-            &nbsp;&gt;
-            &nbsp;|
+        <div class="in-footer-box">
+            |&nbsp;&lt;&nbsp;
+            上次维护：<time datetime="2021-04-01T10:21Z">2021-04-01T10:21Z</time>
+            &nbsp;&gt;&nbsp;|
         </div>
-        <!-- /上次维护 -->
-        <div class="footer">
-        </div>
+
     </footer>

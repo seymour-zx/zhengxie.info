@@ -23,7 +23,7 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
         elif not htmlfolder.find('../../unit/')==-1:
             x=400
         print(x,htmlfolder)    
-    info = '\n    <div class="body"><!-- <nav></nav> -->'
+    info = '\n\n    <!-- 页面核心 -->\n    <div class="core">'
     if True:
         if x==0:
             info = info + '\n        <main>\n'
@@ -72,22 +72,22 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
             message = message + '\n-->'
             fwinfo(path, message)
             info = info + message
-    message = '''   
-    <br />    
-    <!-- 文章内嵌广告 -->
-        <ins class="adsbygoogle"
-            style="display:block; text-align:center;"
-            data-ad-layout="in-article"
-            data-ad-format="fluid"
-            data-ad-client="ca-pub-6434243103158481"
-            data-ad-slot="7157818959"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    <!-- // 文章内嵌广告 -->
-    <br />
-        '''
-    info = info + message
+    # message = '''   
+    # <br />    
+    # <!-- 文章内嵌广告 -->
+    #     <ins class="adsbygoogle"
+    #         style="display:block; text-align:center;"
+    #         data-ad-layout="in-article"
+    #         data-ad-format="fluid"
+    #         data-ad-client="ca-pub-6434243103158481"
+    #         data-ad-slot="7157818959"></ins>
+    #     <script>
+    #         (adsbygoogle = window.adsbygoogle || []).push({});
+    #     </script>
+    # <!-- // 文章内嵌广告 -->
+    # <br />
+    #     '''
+    # info = info + message
     # message = '''
     #         <hr />
     #         <!-- 展示广告——横幅 -->
@@ -118,7 +118,7 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
     #     '''
     # info = info + message
     info = info + '\n        </main>'
-    info = info + '\n    <!-- <aside></aside> --></div><!-- // <div class="body"> -->'
+    info = info + '\n    </div>\n\n'
     return info
 
 def info_title(file, indexfolder, txtfolder):
