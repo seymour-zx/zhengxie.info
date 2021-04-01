@@ -72,51 +72,22 @@ def div_main(htmlfolder, indexfolder, txtfolder, gmtime):
             message = message + '\n-->'
             fwinfo(path, message)
             info = info + message
-    # message = '''   
-    # <br />    
-    # <!-- 文章内嵌广告 -->
-    #     <ins class="adsbygoogle"
-    #         style="display:block; text-align:center;"
-    #         data-ad-layout="in-article"
-    #         data-ad-format="fluid"
-    #         data-ad-client="ca-pub-6434243103158481"
-    #         data-ad-slot="7157818959"></ins>
-    #     <script>
-    #         (adsbygoogle = window.adsbygoogle || []).push({});
-    #     </script>
-    # <!-- // 文章内嵌广告 -->
-    # <br />
-    #     '''
-    # info = info + message
-    # message = '''
-    #         <hr />
-    #         <!-- 展示广告——横幅 -->
-    #             <ins class="adsbygoogle"
-    #                 style="display:block"
-    #                 data-ad-client="ca-pub-6434243103158481"
-    #                 data-ad-slot="4856101005"
-    #                 data-ad-format="auto"
-    #                 data-full-width-responsive="true"></ins>
-    #             <script>
-    #                 (adsbygoogle = window.adsbygoogle || []).push({});
-    #             </script>
-    #         <!-- // 展示广告——横幅 -->
-    #     '''
-    # info = info + message
-    # message = '''
-    #         <!-- 展示广告——正方形 -->                
-    #             <ins class="adsbygoogle"
-    #                 style="display:block"
-    #                 data-ad-client="ca-pub-6434243103158481"
-    #                 data-ad-slot="5952548493"
-    #                 data-ad-format="auto"
-    #                 data-full-width-responsive="true"></ins>
-    #             <script>
-    #                 (adsbygoogle = window.adsbygoogle || []).push({});
-    #             </script>
-    #         <!-- // 展示广告——正方形 -->
-    #     '''
-    # info = info + message
+    message = '''
+
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Google广告——横向展示 -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-6434243103158481"
+                data-ad-slot="4856101005"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+'''
+    info = info + message
     info = info + '\n        </main>'
     info = info + '\n    </div>\n\n'
     return info
