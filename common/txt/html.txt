@@ -22,22 +22,21 @@
                         $(this).parent().nextAll(".portal-box").css("display","block"); 
                     }
                 }
+            });                        
             $("button").click(function(){
                 $(this).next().children("[type='search']").val(document.getElementById("search-input").value);
                 $(this).next().children("[type='submit']").click();
             });
-                // else if($(this).is(":not(:checked)")){ }
-
-                // $(this).parent()[0].scrollIntoView(true);
-                // $(":checked").not(this).click();
-                // $(this).prevAll().$(":checked").click();
-                // $(this).nextAll().$(":checked").click();
-                // $(this).children().$(":checked").click();
-                // if($(this).is(":checked")){ $("#portal-box").children().css("flex","auto"); } else if($(this).is(":not(:checked)")){ }
-                // $('.keyword-lv1').css('width','358px');
-                // $(":checked").parent().css('width','100%');
-            });
         });
+        // else if($(this).is(":not(:checked)")){ }
+        // $(this).parent()[0].scrollIntoView(true);
+        // $(":checked").not(this).click();
+        // $(this).prevAll().$(":checked").click();
+        // $(this).nextAll().$(":checked").click();
+        // $(this).children().$(":checked").click();
+        // if($(this).is(":checked")){ $("#portal-box").children().css("flex","auto"); } else if($(this).is(":not(:checked)")){ }
+        // $('.keyword-lv1').css('width','358px');
+        // $(":checked").parent().css('width','100%');
     </script>
 
 

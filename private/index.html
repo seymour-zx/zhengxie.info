@@ -577,10 +577,16 @@
             Copyright © 2020-2021 All Rights Reserved
         </div>
 
+        <!-- 举报中心 -->
+        <div class="in-footer-box">
+            <a href="https://www.12377.cn/" target="_blank">违法信息举报中心</a>
+            <a href="https://www.12321.cn/" target="_blank">垃圾信息举报中心</a>
+        </div>
+
         <!-- 上次维护 -->
         <div class="in-footer-box">
             |&nbsp;&lt;&nbsp;
-            上次维护：<time datetime="2021-04-03T12:14Z">2021-04-03T12:14Z</time>
+            上次维护：<time datetime="2021-04-03T18:32Z">2021-04-03T18:32Z</time>
             &nbsp;&gt;&nbsp;|
         </div>
 
@@ -608,22 +614,21 @@
                         $(this).parent().nextAll(".portal-box").css("display","block"); 
                     }
                 }
+            });                        
             $("button").click(function(){
                 $(this).next().children("[type='search']").val(document.getElementById("search-input").value);
                 $(this).next().children("[type='submit']").click();
             });
-                // else if($(this).is(":not(:checked)")){ }
-
-                // $(this).parent()[0].scrollIntoView(true);
-                // $(":checked").not(this).click();
-                // $(this).prevAll().$(":checked").click();
-                // $(this).nextAll().$(":checked").click();
-                // $(this).children().$(":checked").click();
-                // if($(this).is(":checked")){ $("#portal-box").children().css("flex","auto"); } else if($(this).is(":not(:checked)")){ }
-                // $('.keyword-lv1').css('width','358px');
-                // $(":checked").parent().css('width','100%');
-            });
         });
+        // else if($(this).is(":not(:checked)")){ }
+        // $(this).parent()[0].scrollIntoView(true);
+        // $(":checked").not(this).click();
+        // $(this).prevAll().$(":checked").click();
+        // $(this).nextAll().$(":checked").click();
+        // $(this).children().$(":checked").click();
+        // if($(this).is(":checked")){ $("#portal-box").children().css("flex","auto"); } else if($(this).is(":not(:checked)")){ }
+        // $('.keyword-lv1').css('width','358px');
+        // $(":checked").parent().css('width','100%');
     </script>
 
 
