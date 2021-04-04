@@ -23,7 +23,7 @@ def footer(txtfolder, gmtime):
     infolist.append('\n')
     infolist.append('\n        <!-- 举报中心 -->')
     infolist.append('\n        <div class="in-footer-box">')
-    infolist.append('\n            <a href="https://www.12377.cn/" target="_blank">违法信息举报中心</a>')
+    infolist.append('\n            <a href="https://www.12377.cn/" target="_blank">违法信息举报中心</a>&nbsp;&nbsp;')
     infolist.append('\n            <a href="https://www.12321.cn/" target="_blank">垃圾信息举报中心</a>')
     infolist.append('\n        </div>')
     infolist.append('\n')
