@@ -1,4 +1,46 @@
 ﻿序号,1级,2级,3级,级内,简称,网址,描述title,图标地址,版层分类,首要关键词,次要关键词,重点关键词,判断网址,判断图片,其他标签,图标像素,备案/未备案,经营性/非经营性
+1001-10-10-100,1001,10,10,100,百度搜索,http://www.baidu.com/, ,https://www.baidu.com/favicon.ico,上网首访,搜索引擎,,,可访,图标,,64,已备案,经营性
+1001-12-10-100,1001,12,10,100,Google搜索,https://www.google.com/, ,https://www.google.com/favicon.ico,上网首访,搜索引擎,综合,,可访,图标,,32,境外,
+1001-12-10-101,1001,12,10,101,搜狗搜索,https://www.sogou.com/, ,https://www.sogou.com/images/logo/new/favicon.ico?v=4,上网首访,搜索引擎,综合,,可访,图标,,32,已备案,经营性
+1001-14-10-100,1001,14,10,100,GIPHY,https://giphy.com/,斗图界的Google,https://giphy.com/static/img/favicon.png,上网首访,搜索引擎,图片,,可访,图标,,16,境外,
+1001-15-10-100,1001,15,10,100,鸠摩搜索,https://www.jiumodiary.com/, ,https://www.jiumodiary.com/images/favicon.png,上网首访,搜索引擎,文档,,可访,图标,,20,,
+1001-16-10-100,1001,16,10,100,6miu搜索,http://baiduyun.6miu.com/, ,http://baiduyun.6miu.com/favicon.ico,上网首访,搜索引擎,百度云盘,,可访,图标,,32,,
+1001-17-10-100,1001,17,10,100,Google 图书,https://books.google.com/,大名鼎鼎的谷歌图书，本想雄心壮志，将古今中文图书一网打尽，一统电子书江湖， 后因版权问题，搁浅。目前，除书目检索外，一些非版权电子书可全文下载，部分有版权的电子书可在线试读。,https://books.google.com/favicon.ico,上网首访,搜索引擎,图书,,可访,图标,,,境外,
+1001-18-10-100,1001,18,10,100,懒人全网音乐下载,https://www.eggvod.cn/music/, ,https://www.eggvod.cn/music/favicon.ico,上网首访,搜索引擎,音乐,,可访,图标,,,已备案,
+1002-10-10-100,1002,10,10,100,正协信息客栈,https://zhengxie.info/, ,https://zhengxie.info/common/image/favicon.ico,上网首访,网址导航,,,可访,图标,,256,,
+1002-12-10-100,1002,12,10,100,QQ导航,https://hao.qq.com/, ,https://upd33.sogoucdn.com/nstatic/img/favicon.ico?v=3,上网首访,网址导航,名企,,可访,图标,,16,已备案,经营性
+1002-12-10-101,1002,12,10,101,hao123,https://www.hao123.com/, ,https://www.hao123.com/favicon.ico,上网首访,网址导航,名企,,可访,图标,,32,已备案,经营性
+1002-12-10-102,1002,12,10,102,谷歌265,http://www.265.com/, ,http://www.265.com/static/pages/img/favicon.ico,上网首访,网址导航,名企,,可访,,,16,已备案,经营性
+1002-12-10-103,1002,12,10,103,搜狗网址导航,https://123.sogou.com/, ,https://upd12.sogoucdn.com/nstatic/img/favicon.ico?v=3,上网首访,网址导航,名企,,可访,图标,,16,已备案,经营性
+1002-12-10-104,1002,12,10,104,360导航,https://hao.360.com/, ,https://hao.360.com/favicon.ico,上网首访,网址导航,名企,,可访,图标,,16,已备案,经营性
+1002-14-10-100,1002,14,10,100,设计导航,http://hao.shejidaren.com/, ,,上网首访,网址导航,行业,,可访,,,,已备案,
+1002-14-10-101,1002,14,10,101,后期狗(GO)导航,http://houqigo.com/, ,http://res.houqigo.com/wp-content/uploads/2020/04/favicon.png,上网首访,网址导航,行业,,可访,图标,,,,
+1002-15-10-100,1002,15,10,100,搜图导航,https://www.91sotu.com/, ,https://www.91sotu.com/file/img/favicon.ico,上网首访,网址导航,专业,,可访,图标,,,,
+1002-15-10-101,1002,15,10,101,在线图书馆导航,https://www.zxlib.com/, ,https://www.zxlib.com/wp-content/themes/webstack/images/favicon.png,上网首访,网址导航,专业,,可访,图标,,64,,
+1002-15-10-102,1002,15,10,102,演示导航,https://www.aboutppt.com/, ,https://www.aboutppt.com/wp-content/uploads/2020/09/ico.ico,上网首访,网址导航,专业,,可访,图标,,128,,
+1002-16-10-100,1002,16,10,100,亿万导航,https://www.yiw1.com/, ,https://www.yiw1.com/wp-content/uploads/2020/06/cropped-QQ%E5%9B%BE%E7%89%8720200620110002-32x32.jpg,上网首访,网址导航,其他,,可访,图标,,,,
+1002-16-10-101,1002,16,10,101,GitNavi,http://www.gitnavi.com/, ,http://www.gitnavi.com/favicon.ico,上网首访,网址导航,其他,,可访,图标,,32,,
+1002-16-10-102,1002,16,10,102,站搜搜,https://www.zhansousou.com/, ,,上网首访,网址导航,其他,,可访,,,,,
+1002-16-10-103,1002,16,10,103,404导航,https://www.404dh.icu/, ,https://www.404dh.icu/wp-content/uploads/2020/01/no404_favicon.ico,上网首访,网址导航,其他,,可访,图标,,,,
+1002-16-10-104,1002,16,10,104,洽初导航,http://qiachu.com/, ,http://www.qiachu.com/zb_users/theme/suiranx_nav/image/favicon.ico,上网首访,网址导航,其他,,可访,图标,,,,
+1002-16-10-105,1002,16,10,105,搜奇导航,https://www.souqidaohang.com/, ,,上网首访,网址导航,其他,,可访,,,,,
+1002-16-10-106,1002,16,10,106,小呆导航,https://webjike.com/dutynav.html, ,,上网首访,网址导航,其他,,可访,,,,,
+1002-16-10-107,1002,16,10,107,龙喵网,https://ailongmiao.com/, ,https://media.ailongmiao.com/favicon.ico,上网首访,网址导航,其他,,可访,图标,,32,,
+1002-16-10-108,1002,16,10,108,24k导航,https://www.24kdh.com/, ,https://www.24kdh.com/wp-content/uploads/2020/07/201910021570016173270585-3.ico,上网首访,网址导航,其他,,可访,图标,,,,
+1002-16-10-109,1002,16,10,109,学渣网,https://www.xuezha.cn/, ,https://www.xuezha.cn/wp-content/uploads/2021/02/favicon.ico,上网首访,网址导航,其他,,可访,图标,,,,
+1002-16-10-110,1002,16,10,110,98导航,http://98dh.cc/, ,http://98dh.cc/images/favicon.ico,上网首访,网址导航,其他,,可访,图标,,,,
+1002-16-10-111,1002,16,10,111,咪起了导航,https://www.miqile.cn/, ,https://www.miqile.cn/wp-content/uploads/2020/09/cropped-20200922145127750476-4-32x32.png,上网首访,网址导航,其他,,可访,图标,,,,
+1002-16-10-112,1002,16,10,112,快导航网,https://www.hifast.cn/, ,https://www.hifast.cn/wp-content/uploads/2021/02/hifast.png,上网首访,网址导航,其他,,可访,图标,,80,,
+1002-16-10-113,1002,16,10,113,搜酷站,https://www.soukuzhan.com/, ,,上网首访,网址导航,其他,,可访,,,,,
+1002-16-10-114,1002,16,10,114,沃客导航,http://www.waysto.work/, ,http://www.waysto.work/favicon.ico,上网首访,网址导航,其他,,可访,图标,,,,
+1002-16-10-115,1002,16,10,115,思古搜,https://siguso.com/, ,https://siguso.com/favicon.ico,上网首访,网址导航,其他,,可访,图标,,,,
+1002-16-10-116,1002,16,10,116,果汁导航,http://www.guozhivip.com/, ,http://www.guozhivip.com/images/ic.ico,上网首访,网址导航,其他,,可访,图标,,,,
+1002-16-10-117,1002,16,10,117,别闹,https://bienao.com/, ,https://static.bienao.com/favicon.ico,上网首访,网址导航,其他,,可访,图标,,48,,
+1002-16-10-118,1002,16,10,118,笔点,https://www.bidianer.com/, ,https://www.bidianer.com/favicon.ico,上网首访,网址导航,其他,,可访,图标,,,,
+1002-17-10-100,1002,17,10,100,制造者收录网,https://www.cakego.cn/, ,https://www.cakego.cn/favicon.ico,上网首访,网址导航,特殊,,可访,图标,,32,,
+1003-10-10-100,1003,10,10,100,网易,https://www.163.com/, ,https://www.163.com/favicon.ico,上网首访,门户网站,,,可访,图标,,16,,
+1003-10-10-101,1003,10,10,101,新浪网,https://www.sina.com.cn/, ,https://www.sina.com.cn/favicon.ico,上网首访,门户网站,,,可访,图标,,32,,
+1003-10-10-102,1003,10,10,102,搜狐,https://www.sohu.com/, ,https://statics.itc.cn/web/static/images/pic/sohu-logo/favicon.ico,上网首访,门户网站,,,可访,图标,,48,,
 5001-10-10-100,5001,10,10,100,招商银行,http://www.cmbchina.com/, ,http://www.cmbchina.com/cmb.ico,大金融,银行,,,可访,图标,,,,
 5001-11-10-100,5001,11,10,100,中国人民银行,http://www.pbc.gov.cn/, ,http://www.pbc.gov.cn/rmyh/uiFramework/commonResource/image/logo.ico,大金融,银行,央行,,可访,,,16,已备案,
 5001-12-10-100,5001,12,10,100,中国进出口银行,http://www.eximbank.gov.cn/, ,http://www.eximbank.gov.cn/favicon.ico,大金融,银行,政策,,可访,,,64,已备案,
@@ -226,11 +268,11 @@
 8005-13-10-100,8005,13,10,100,中国民主建国会,https://www.cndca.org.cn/,民建,,机关官网,民主党派,民建,,可访,,,,,
 8005-14-10-100,8005,14,10,100,中国民主促进会,https://www.mj.org.cn/,民进,,机关官网,民主党派,民进,,可访,,,,,
 8005-15-10-100,8005,15,10,100,中国农工民主党,http://www.ngd.org.cn/,农工党,,机关官网,民主党派,农工党,,可访,,,,,
-8005-16-10-100,8005,16,10,100,中国致公党,http://www.zg.org.cn/,,,机关官网,民主党派,致公党,,可访,,,,,
-8005-17-10-100,8005,17,10,100,九三学社,http://www.93.gov.cn/,,,机关官网,民主党派,九三学社,,可访,,,,,
+8005-16-10-100,8005,16,10,100,中国致公党,http://www.zg.org.cn/, ,,机关官网,民主党派,致公党,,可访,,,,,
+8005-17-10-100,8005,17,10,100,九三学社,http://www.93.gov.cn/, ,,机关官网,民主党派,九三学社,,可访,,,,,
 8005-18-10-100,8005,18,10,100,台湾民主自治同盟,https://www.taimeng.org.cn/,台盟,,机关官网,民主党派,台盟,,可访,,,,,
-8006-11-10-100,8006,11,10,100,光明网,http://www.gmw.cn/, ,http://www.gmw.cn/favicon.ico,机关官网,媒体,,,可访,图标,,64,,
-8006-11-10-101,8006,11,10,101,中国日报网,http://www.chinadaily.com.cn/, ,http://www.chinadaily.com.cn/favicon.ico,机关官网,媒体,机关媒体,,可访,图标,,32,,
+8006-10-10-100,8006,10,10,100,光明网,http://www.gmw.cn/, ,http://www.gmw.cn/favicon.ico,机关官网,媒体,,,可访,图标,,64,,
+8006-11-10-100,8006,11,10,100,中国日报网,http://www.chinadaily.com.cn/, ,http://www.chinadaily.com.cn/favicon.ico,机关官网,媒体,机关媒体,,可访,图标,,32,,
 8006-11-11-101,8006,11,11,101,人民网,http://www.people.com.cn/, ,http://www.people.com.cn/favicon.ico,机关官网,媒体,机关媒体,中央媒体,可访,,,16,已备案,经营性
 8006-11-11-102,8006,11,11,102,新华网,http://www.xinhuanet.com/, ,http://www.xinhuanet.com/favicon.ico,机关官网,媒体,机关媒体,中央媒体,可访,,,16,已备案,经营性
 8006-11-11-103,8006,11,11,103,求是网,http://www.qstheory.cn/, ,http://www.qstheory.cn/favicon.ico,机关官网,媒体,机关媒体,中央媒体,可访,,,16,已备案,经营性
@@ -242,7 +284,7 @@
 8006-11-11-109,8006,11,11,109,央视网,https://www.cctv.com/, ,https://www.cctv.com/favicon.ico,机关官网,媒体,机关媒体,中央媒体,可访,图标,,16,已备案,经营性
 8006-11-11-110,8006,11,11,110,国际在线,http://www.cri.cn/, ,http://www.cri.cn/favicon.ico,机关官网,媒体,机关媒体,中央媒体,可访,,,16,已备案,经营性
 8006-11-11-111,8006,11,11,111,中国科技网,http://www.stdaily.com/,科技日报,,机关官网,媒体,机关媒体,中央媒体,可访,,,,,
-8006-11-11-112,8006,11,11,112,中国纪检监察报,http://www.jjjcb.cn/,,,机关官网,媒体,机关媒体,中央媒体,可访,,,,,
+8006-11-11-112,8006,11,11,112,中国纪检监察报,http://www.jjjcb.cn/, ,,机关官网,媒体,机关媒体,中央媒体,可访,,,,,
 8006-11-11-113,8006,11,11,113,中工网,http://www.workercn.cn/,工人日报,http://www.workercn.cn/favicon.ico,机关官网,媒体,机关媒体,中央媒体,可访,,,32,已备案,经营性
 8006-11-11-114,8006,11,11,114,中青在线,http://www.cyol.com/,中国青年报,http://www.cyol.com/themes/cyol/assets/images/cyol/cyol_logo.png,机关官网,媒体,机关媒体,中央媒体,可访,,,72,已备案,经营性
 8006-11-11-115,8006,11,11,115,中国妇女网,http://www.cnwomen.com.cn/,中国妇女报,,机关官网,媒体,机关媒体,中央媒体,可访,,,,,
