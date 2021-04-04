@@ -85,11 +85,11 @@ def container(lines):
                 info = info + '<div class="box-lv1 portal-box">'
                 info = info + '\n'
                 info = info + '    ' * (3 + 2 * depth)
-                label = '<label for="' + keyword + '">' + keywords[depth-1] + '</label>'
+                label = '<label for="' + line[stage] + keyword + '">' + keywords[depth-1] + '</label>'
                 info = info + '<div class="portal-label">' + label + imga + '</div>'
                 info = info + '\n'
                 info = info + '    ' * (3 + 2 * depth)
-                info = info + '<input id="' + keyword + '" class="" type="checkbox" />'
+                info = info + '<input id="' + line[stage] + keyword + '" class="" type="checkbox" />'
                 info = info + '\n'
                 info = info + '    ' * (3 + 2 * depth)
                 info = info + '<div class="content-lv1 portal-content">'
@@ -108,11 +108,11 @@ def container(lines):
                     info = info + '<div class="box-lv' + str(depth) + ' portal-box">'
                     info = info + '\n'
                     info = info + '    ' * (3 + 2 * depth)
-                    label = '<label for="' + keyword + '">' + keywords[depth-1] + '</label>'
+                    label = '<label for="' + line[stage] + keyword + '">' + keywords[depth-1] + '</label>'
                     info = info + '<div class="portal-label">' + label + imga + '</div>'
                     info = info + '\n'
                     info = info + '    ' * (3 + 2 * depth)
-                    info = info + '<input id="' + keyword + '" class="" type="checkbox" />'
+                    info = info + '<input id="' + line[stage] + keyword + '" class="" type="checkbox" />'
                     info = info + '\n'
                     info = info + '    ' * (3 + 2 * depth)
                     info = info + '<div class="content-lv' + str(depth) + ' portal-content">'
@@ -135,11 +135,11 @@ def container(lines):
                         info = info + '<div class="box-lv' + str(depth) + ' portal-box">'
                         info = info + '\n'
                         info = info + '    ' * (3 + 2 * depth)
-                        label = '<label for="' + keyword + '">' + keywords[depth-1] + '</label>'
+                        label = '<label for="' + line[stage] + keyword + '">' + keywords[depth-1] + '</label>'
                         info = info + '<div class="portal-label">' + label + imga + '</div>'
                         info = info + '\n'
                         info = info + '    ' * (3 + 2 * depth)
-                        info = info + '<input id="' + keyword + '" class="" type="checkbox" />'
+                        info = info + '<input id="' + line[stage] + keyword + '" class="" type="checkbox" />'
                         info = info + '\n'
                         info = info + '    ' * (3 + 2 * depth)
                         info = info + '<div class="content-lv' + str(depth) + ' portal-content">'
