@@ -39,7 +39,7 @@ def container(lines):
         # 图标是否可用
         faviconif = siteif + 1
         # 其他无关内容
-        # other = faviconif + 1
+        other = faviconif + 1
     if True:
     # 读取与处理网址列表
         for i in range(len(lines)):
@@ -67,7 +67,7 @@ def container(lines):
                     imga = '<div class="div_img-a">' + img + a + '</div>'
                 else:
                     img = '<img src="' + line[favicon] + '">'
-                    a = '<a href="' + line[site] + '" title="' + line[title] +  '" >' + line[name] + '</a>'
+                    a = '<a href="' + line[site] + '" title="' + line[title] +  '" target="_blank" >' + line[name] + '</a>'
                     imga = '<div class="div_img-a">' + img + a + '</div>'
             if keywords==pre_keywords:
                 info = info + '        ' * (depth + 2)
