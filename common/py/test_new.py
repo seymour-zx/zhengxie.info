@@ -63,7 +63,7 @@ def container(lines):
                 elif line[faviconif]=='':
                 # 无图标
                     img = ''
-                    a = '<a href="' + line[site] + '" title="' + line[title] +  '" >' + line[name] + '</a>'
+                    a = '<a href="' + line[site] + '" title="' + line[title] +  '" " target="_blank" >' + line[name] + '</a>'
                     imga = '<div class="div_img-a">' + img + a + '</div>'
                 else:
                     img = '<img src="' + line[favicon] + '">'
