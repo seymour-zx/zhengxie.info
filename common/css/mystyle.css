@@ -48,7 +48,7 @@ header {
     height: 8rem;
     display: flex; flex-wrap: wrap; align-items: center; justify-content:space-around;
     background-color: rgba(130,36,30,1);
-   
+    user-select: none;
 }
 /* 匾额 */
 div.plaque-box {
@@ -102,6 +102,7 @@ table.menu a:hover { color: rgba(243,215,55,1); text-decoration: underline; }
 footer {
     width: 100%;
     color: rgba(244,241,237,1); background-color: rgba(37,86,122,1);
+    user-select: none;
 }
 div.in-footer-box {
     padding-top: 0.25rem;
@@ -133,6 +134,7 @@ main {
 .portal-container {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+    user-select: none;
 }
 /* 集装箱隔层 */
 .portal-wrapper {
@@ -266,6 +268,7 @@ table.contents a:hover { color: rgba(243,215,55,1); }
 input[type="radio"] { display: none; }
 input.on-next-off:not(:checked) + * { display: none; }
 .search-container {
+    user-select: none;
     text-align: center;
     padding-top: 2rem;
     padding-bottom: 1rem;
