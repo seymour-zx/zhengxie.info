@@ -177,3 +177,13 @@ div.in-p-box {
     flex-wrap: wrap;
 }
 /* \\ 文章 */
+
+
+/* 目录列表 */
+table.contents { color: rgba(244,241,237,1);}
+td.date { white-space: nowrap; text-align: center; }
+td.contents { width: 100%; }
+table.contents td { background-color: rgba(37,86,122,1); line-height: 1.25rem; padding: 0.25rem; }  
+table.contents a { color: rgba(244,241,237,1); }
+table.contents a:hover { color: rgba(243,215,55,1); }
+/* // 目录列表 */
