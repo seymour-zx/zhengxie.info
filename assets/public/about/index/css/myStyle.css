@@ -119,22 +119,12 @@ div.ad {
     padding: 0;
     border: none;
     width: 100%;
-    height: 8rem;
+    height: 100%;
     display: flex; flex-wrap: wrap; align-items: center; justify-content:space-around;
     background-color: rgba(130,36,30,1);
     user-select: none;
 }
-/* 广告位置 */
-div.ad1 {
-    margin: 0;
-    padding: 0;
-    border: none;
-    width: 100%;
-    /* height: 8rem; */
-    display: flex; flex-wrap: wrap; align-items: center; justify-content:space-around;
-    background-color: rgba(130,36,30,1);
-    user-select: none;
-}
+
 
 /* 页面核心 */
 div.core {
