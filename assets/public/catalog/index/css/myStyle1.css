@@ -76,7 +76,7 @@ header {
         vertical-align: middle !important;
     }
     table.plaque { border-collapse: collapse; border-spacing: 0; color: rgba(243,215,55,1); }
-    table.plaque td.logo { width: 4.75rem; height: 4.75rem; background-position: center; background-size: contain; background-repeat: no-repeat; background-image: url(../image/favicon.ico); }
+    table.plaque td.logo { width: 4.75rem; height: 4.75rem; background-position: center; background-size: contain; background-repeat: no-repeat; background-image: url(https://zhengxie.info/assets/image/favicon.ico); }
     table.plaque td.logo + td { text-align-last: justify; }
     table.plaque tr.mid { font-size: 2rem; font-weight: bolder; border-top: 1px solid rgba(244,241,237,1); border-bottom: 1px solid rgba(244,241,237,1); }
     table.plaque td.mid { font-size: 1rem;  font-weight: lighter;  color: rgba(244,241,237,1); }
