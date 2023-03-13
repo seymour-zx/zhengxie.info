@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>纯DIV+CSS实现精美的柱状图报表-CSS特效-网页特效-站长新动力-msxindl.com</title>
+<style type="text/css">
+<!--
+body{padding:0;margin:40px;font-size:9pt;font-family:Helvetica,Geneva,sans-serif;}
+h3{font-weight:normal;display:block;width:600px;text-align:center;}
+ul#q-graph{
+  border:2px solid #0063be;
+  background:#adfe12 repeat-x scroll 0 0;
+  height:300px !important;
+  height:304px;
+  width:600px;
+  position:relative;
+  list-style:none;
+  margin:1.1em 1em 3.5em;
+  padding:0;
+}
+#q-graph li{position:absolute;text-align:center;bottom:0;padding:0;margin:0;}
+li.qtr{width:150px;height:300px;border-right:1px dotted #41a3e2;z-index:2;}
+li#q1{left:0;}
+li#q2{left:150px;}
+li#q3{left:300px;}
+li#q4{left:450px;border-right:none;}
+#q-graph ul{list-style:none;}
+li.bar{width:34px;color:#fff;}
+li.north{left:36px;background:#ddd url(http://www.msxindl.com/texiao/images/tubiao.gif) no-repeat 0 0;}
+li.south{left:80px;background:#ddd url(http://www.msxindl.com/texiao/images/tubiao.gif) no-repeat -34px 0;}
+li#ticks{left:0;height:300px;width:100%;z-index:1;}
+div.ticks{position:relative;height:60px;border-top:1px dotted #41a3e2;}
+div.ticks:first-child{border-top:none;} /*only4 Firefx IE 7+*/
+div.ticks p{position:absolute;left:101%;top:-10pt;}
+-->
+</style>
+</head>
+<body>
+<ul id="q-graph">
+ <li id="q1" class="qtr">一月份
+ <ul>
+  <li class="north bar" style="height:111px;">支出18万</li>
+  <li class="south bar" style="height:99px;">收入16万</li>
+ </ul></li>
+ <li id="q2" class="qtr">二月份
+ <ul>
+  <li class="north bar" style="height:198px;">支出32万</li>
+  <li class="south bar" style="height:210px;">收入34万</li>
+ </ul></li>
+ <li id="q3" class="qtr">三月份
+ <ul>
+  <li class="north bar" style="height:260px;">支出43万</li>
+  <li class="south bar" style="height:198px;">收入32万</li>
+ </ul></li>
+ <li id="q4" class="qtr">四月份
+ <ul>
+  <li class="north bar" style="height:111px;">支出18万</li>
+  <li class="south bar" style="height:198px;">收入32万</li>
+ </ul></li>
+ <li id="ticks">
+  <div class="ticks"><p>50万元</p></div>
+  <div class="ticks"><p>40万元</p></div>
+  <div class="ticks"><p>30万元</p></div>
+  <div class="ticks"><p>20万元</p></div>
+  <div class="ticks"><p>10万元</p></div>
+ </li>
+</ul>
+<strong>纯DIV+CSS实现精美的柱状图报表</strong>
+</body>
+</html>
