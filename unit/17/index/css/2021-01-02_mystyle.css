@@ -352,3 +352,18 @@ color: rgba(3,2,4,1);
     background-color: rgba(37,86,122,1);
     line-height: 2rem;
 }
+
+
+
+/* 广告位置 */
+div.ad {
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow-x: auto;
+    /* width: 100%; */
+    /* height: 8rem; */
+    /* display: flex; flex-wrap: wrap; align-items: center; justify-content:space-around; */
+    /* background-color: rgba(130,36,30,1); */
+    /* user-select: none; */
+}

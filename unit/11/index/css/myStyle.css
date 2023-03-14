@@ -1,4 +1,4 @@
-/* vertical-align: middle !important; align-items: center; justify-content: center; */
+/* vertical-align: middle !important; align-items: center; justify-content: center; */au
 /* 横屏 *//* @media only screen and (orientation : landscape) {} */
 /* 竖屏 *//* @media only screen and (orientation : portrait) {} */
 /* @media only screen and (min-width: 750px) {} */
@@ -129,7 +129,7 @@ div.ad1 {
     margin: 0;
     padding: 0;
     border: none;
-    width: 100%;
+    overflow-x: auto;
     /* height: 8rem; */
     display: flex; flex-wrap: wrap; align-items: center; justify-content:space-around;
     background-color: rgba(130,36,30,1);
