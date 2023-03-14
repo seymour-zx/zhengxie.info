@@ -360,8 +360,8 @@ div.ad {
     margin: 0;
     padding: 0;
     border: none;
-    overflow-x: auto;
-    /* width: 100%; */
+    overflow-x: scroll;
+    width: 100%;
     /* height: 8rem; */
     /* display: flex; flex-wrap: wrap; align-items: center; justify-content:space-around; */
     /* background-color: rgba(130,36,30,1); */
