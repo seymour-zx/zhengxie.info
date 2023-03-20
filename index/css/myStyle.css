@@ -28,6 +28,16 @@ body {
 }
 
 
+@media only screen and (min-width: 808px) {
+
+    body {
+        display: flex;
+        justify-content: space-around;
+    }
+
+}
+
+
 /* 页首 */
 header {
     margin: 0;
@@ -91,14 +101,4 @@ main {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-}
-
-
-@media only screen and (min-width: 808px) {
-
-    body {
-        display: flex;
-        justify-content: space-around;
-    }
-
 }
