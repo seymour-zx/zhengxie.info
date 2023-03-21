@@ -13,6 +13,12 @@ html {
     height: 100%;
     overflow-x: auto;
     overflow-y: auto;
+    background-image: url(../image/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    color: rgba(3,2,4,1);
     font-family: '楷体', -apple-system, 'Times New Roman', sans-serif;
     -webkit-text-size-adjust: 100%;
 }
@@ -24,17 +30,7 @@ body {
     border: none;
     width: 100%;
     height: 100%;
-    background-color: rgba(130,36,30,1);
-}
-
-
-@media only screen and (min-width: 808px) {
-
-    body {
-        display: flex;
-        justify-content: space-around;
-    }
-
+    background-color: rgba(244,241,237,0.8);
 }
 
 
@@ -44,9 +40,9 @@ header {
     padding: 0;
     border: none;
     width: 100%;
-    /* height: 8rem; */
+    height: 8rem;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
     align-items: center;
     justify-content:space-around;
     background-color: rgba(130,36,30,1);
@@ -54,10 +50,9 @@ header {
 }
     /* 匾额 */
     div.plaque-box {
-        /* height: 8rem; */
         margin: 0;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding-top: 0;
+        padding-bottom: 0;
         padding-left: 1rem;
         padding-right: 1rem;
         border: none;
@@ -102,28 +97,68 @@ header {
         border-bottom: 1px solid rgba(244,241,237,1);
     }
     table.plaque td.mid {
-        font-size: 1rem; 
-        font-weight: lighter; 
+        font-size: 1rem;
+        font-weight: lighter;
         color: rgba(244,241,237,1);
     }
-    /* \\ 匾额 */
-/* \\ 页首 */
+    /* 菜单 */
+    table.menu, table.menu tr, table.menu td {
+        margin: 0;
+        padding: 0;
+        border: none;    
+        align-items: center;
+        align-content: center;
+        justify-items: center;
+        justify-content: center;
+        text-align: center;
+        vertical-align: middle !important;
+    }
+    table.menu {
+        width: 90%;
+        min-width: 318px;
+        max-width: 818px;
+        font-size: 1.25rem;
+        line-height: 2rem;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-top: 1px solid rgba(244,241,237,1);
+        border-bottom: 1px solid rgba(244,241,237,1);
+    }
+    table.menu a {
+        color: rgba(244,241,237,1);
+        text-decoration: none;
+    }
+    table.menu a:hover {
+        color: rgba(243,215,55,1);
+        text-decoration: underline;
+    }
 
 
-a {
+/* 页底 */
+footer {
+    width: 100%;
     color: rgba(244,241,237,1);
-    text-decoration: none;
-    font-size: 2rem;
+    background-color: rgba(37,86,122,1);
+    user-select: none;
 }
+    div.in-footer-box {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 
 
-main {
-    min-width: calc(100% - 308px);
-    min-height: calc(100% - 108px);
-    /* background-color: rgba(244,241,237,0.8); */
-    background-image: url(../image/background.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
+/* 页面核心 */
+div.core {
+    width: 100%;
+    min-height: calc(100% - 233px);
+    display: flex;
+    justify-content: space-around;
 }
+    main {
+        width: 100%;
+        max-width: 1188px;
+    }
