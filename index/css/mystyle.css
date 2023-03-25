@@ -121,7 +121,7 @@ main {
     min-width: calc(100% - 308px);
     min-height: calc(100% - 108px);
     /* background-color: rgba(244,241,237,0.8); */
-    background-image: url(https://zhengxie.info/assets/image/background.jpg);
+    background-image: url(../image/background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
