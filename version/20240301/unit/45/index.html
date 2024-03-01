@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>纯CSS左侧导航菜单(DIV溢出文字用省略号点代替)</title>
+<style type="text/css">
+/*------纯DIV+CSS左侧导航菜单--------*/
+#menu{
+      border: solid 1px #CCCCCC;
+      width: 150px;
+      float: left;
+      font-size: 13px;
+      padding: 5px;
+      overflow:hidden;
+}
+li{
+      list-style: none;
+      width:100%;
+      float: left;
+}
+#menu li a{
+      padding: 0 1em;
+      line-height: 200%;
+      background: #E4E4E4;
+/*-----溢出文字用省略号点代替---*/
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      overflow:hidden;
+/*---------------------------*/
+      display: block;
+      border-bottom: solid 1px #FFFFFF;
+      color: brown;
+      text-decoration: none;
+}
+#menu li a:hover{
+      background: #FFFFFF;
+      color: black;
+}
+</style>
+</head>
+<body>
+<div id="menu">
+  <li><a title="站长新动力首页" href="/">站长新动力首页</a> </li>
+  <li><a title="SEO优化文摘" href="/seo/">SEO优化文摘</a></li>
+  <li><a title="网页特效" href="/texiao/">网页特效</a></li>
+  <li><a title="Google PR查询" href="/tools/pr/">Google PR查询</a></li>
+  <li><a title="站长工具" href="/tools/">站长工具</a></li>
+  <li><a title="网址收录" href="/web/">网址收录</a></li>
+  <li><a title="友情链接" href="/web/web_add_ok.asp">友情链接</a> </li>
+  <li><a title="此行溢出文字用省略号点代替" href="#">此行溢出文字用省略号点代替</a></li>
+</div>
+</body>
+</html>

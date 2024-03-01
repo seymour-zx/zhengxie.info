@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=gb2312" />
+<title>js向table表格中插入添加新行和选择删除行-综合特效-网页特效-站长新动力-msxindl.com</title>
+<style type="text/css">
+#tab{
+ width:50%;
+}
+#tab td{
+ height:2em;
+ text-align:center;
+}
+</style>
+</head>
+<body>
+<center>
+js向table表格中插入添加新行和选择删除行。
+<table border="1" id="tab">
+ <tr style="background-color:#ccc;">
+  <td>第1行第1列</td><td>第1行第2列</td><td>第1行第3列</td>
+  <td onclick="chooseAll()" style="cursor:pointer;">全(选/不选)</td>
+ </tr>
+</table>
+<br />
+<input type="button" value="添加新行" onclick="add()" />
+<input type="button" value="删除选择的行" onclick="del()" />
+</center>
+<script type="text/javascript">
+var i=1,flag=true;
+var tab=document.getElementById("tab");
+var choose=document.getElementsByName("choose");
+function add(){
+ i++;
+ var row=tab.insertRow(-1);
+ row.insertCell(0).innerHTML="第"+i+"行第1列";
+ row.insertCell(1).innerHTML="第"+i+"行第2列";
+ row.insertCell(2).innerHTML="第"+i+"行第3列";
+ row.insertCell(3).innerHTML="<input type='checkbox' name='choose' \/>";
+}
+function del(){
+ var row=tab.rows;
+ for(var i=row.length-2;i>=0;i--){
+  if(choose[i].checked){
+  tab.deleteRow(i+1);
+  }
+ }
+}
+function chooseAll(){
+ if(choose.length>0){
+  if(flag){
+   for(var i=0;i<choose.length;i++){
+    choose[i].checked=true;
+   }
+   flag=false;
+  }else{
+   for(var i=0;i<choose.length;i++){
+    choose[i].checked=false;
+   }
+   flag=true;
+  }
+ }
+}
+</script>
+</body>
+</html>

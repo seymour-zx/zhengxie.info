@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /index/
+
+User-agent: *
+Disallow: /assets/
+
+Sitemap: https://zhengxie.info/sitemap.xml
