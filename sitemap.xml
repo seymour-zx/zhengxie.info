@@ -2,11 +2,23 @@
 <!--always hourly daily weekly monthly yearly never-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url><loc>https://zhengxie.info/</loc>    
-        <lastmod>2023-03-22T06:39:52+00:00</lastmod>
+        <lastmod>2024-02-22T06:39:52+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.00</priority></url>
-    <url><loc>https://zhengxie.info/assets/public/catalog/</loc>    
-        <lastmod>2023-03-22T06:39:52+00:00</lastmod>
+    <url><loc>https://zhengxie.info/unit/1/</loc>    
+        <lastmod>2024-02-22T06:39:52+00:00</lastmod>
         <changefreq>daily</changefreq>
-        <priority>1.00</priority></url>
+        <priority>0.80</priority></url>
+    <url><loc>https://zhengxie.info/unit/2/</loc>    
+        <lastmod>2024-02-22T06:39:52+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.80</priority></url>
+    <url><loc>https://zhengxie.info/unit/3/</loc>    
+        <lastmod>2024-02-22T06:39:52+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.80</priority></url>
+    <url><loc>https://zhengxie.info/unit/4/</loc>    
+        <lastmod>2024-02-22T06:39:52+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.80</priority></url>
 </urlset>
