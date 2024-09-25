@@ -1,0 +1,146 @@
+
+
+
+
+<body>
+    <!-- 页首 -->
+    <header>
+        <!-- .plaque 匾额 -->
+        <div class="plaque-box">
+            <table class="plaque">
+                <tr>
+                    <td class="logo" rowspan="3"></td>
+                    <td colspan="3">华亲王的小栈</td>
+                </tr>
+                <tr class="mid">
+                    <td>正协</td>
+                    <td class="mid">信<br />息</td>
+                    <td>客栈</td>
+                </tr>
+                <tr><td colspan="3">Z H E N G X I E . I N F O</td></tr>
+            </table> 
+        </div>
+        <!-- .menu 菜单 -->
+        <table class="menu">
+            <tr>
+                <td>
+                    <a href="https://zhengxie.info/" target="_self">首页</a>
+                </td>
+                <td>
+                    <a href="https://zhengxie.info/assets/public/catalog/" target="_self">目录</a>
+                </td>
+                <td>
+                    <a href="https://zhengxie.info/assets/public/about/" target="_self">关于</a>
+                </td>
+                <td>
+                    <a href="https://zhengxie.info/assets/private/bookmark/" target="_self">收藏</a>
+                </td>
+            </tr>
+        </table>
+    </header>
+
+
+    <!-- 页面核心 -->
+    <div class="core">
+
+
+   <!-- Google广告——横向展示 -->
+   <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-6434243103158481"
+        data-ad-slot="4856101005"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+   <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+
+        <main>
+
+
+                                                                                                                                                                                                                                                     header修改
+                                                                                                                                                                                                                                                                                                                                                                                           
+        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+
+
+
+
+        </main>
+
+
+        <!-- Google广告——横向展示 -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins
+            class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-6434243103158481"
+            data-ad-slot="4856101005"
+            data-ad-format="auto"data-full-width-responsive="true">          
+        </ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+    </div>
+
+
+    <!-- 页底 -->
+    <footer>
+        <!-- 正协信息客栈（zhengxie.info）版权所有 -->
+        <div class="in-footer-box">
+            正协信息客栈（zhengxie.info）版权所有
+        </div>
+        <!-- Copyright © 2020-2023 All Rights Reserved. -->
+        <div class="in-footer-box">
+            Copyright © 2020-2023 All Rights Reserved
+        </div>
+        <!-- 举报中心 -->
+        <div class="in-footer-box">
+            <a href="https://www.12377.cn/" target="_blank">违法信息举报中心</a>&nbsp;&nbsp;
+            <a href="https://www.12321.cn/" target="_blank">垃圾信息举报中心</a>
+        </div>
+        <!-- 上次维护 -->
+        <div class="in-footer-box">
+            |&nbsp;&lt;&nbsp;
+            上次维护：<time datetime="2023-03-08T08:36Z">2023-03-08T08:36Z</time>
+            &nbsp;&gt;&nbsp;|
+        </div>
+    </footer>
+    <!--脚本-->
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.portal-box').children("input[type='checkbox']").click(function(){
+                $(this).parent().prevAll().children(":checked").click();
+                $(this).parent().nextAll().children(":checked").click();
+                $(this).nextAll().find(":checked").click();
+                if($(this).is($(".box-lv1").children())){}
+                else {
+                    if($(this).is(":checked")){
+                        $(this).parent().prevAll().css("display","none");
+                        $(this).parent().nextAll().css("display","none");
+                    }
+                    else {                        
+                        $(this).parent().prevAll(".div_img-a").css("display","inline-flex");
+                        $(this).parent().nextAll(".div_img-a").css("display","inline-flex"); 
+                        $(this).parent().prevAll(".portal-box").css("display","block");
+                        $(this).parent().nextAll(".portal-box").css("display","block"); 
+                    }
+                }
+            });                        
+            $("button").click(function(){
+                $(this).next().children("[type='search']").val(document.getElementById("search-input").value);
+                $(this).next().children("[type='submit']").click();
+            });
+        });
+        // else if($(this).is(":not(:checked)")){ }
+        // $(this).parent()[0].scrollIntoView(true);
+        // $(":checked").not(this).click();
+        // $(this).prevAll().$(":checked").click();
+        // $(this).nextAll().$(":checked").click();
+        // $(this).children().$(":checked").click();
+        // if($(this).is(":checked")){ $("#portal-box").children().css("flex","auto"); } else if($(this).is(":not(:checked)")){ }
+        // $('.keyword-lv1').css('width','358px');
+        // $(":checked").parent().css('width','100%');
+    </script>    
+
+</body>
+</html>
