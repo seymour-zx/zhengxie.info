@@ -1,0 +1,120 @@
+html {
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    color: rgba(3,2,4,1);
+    font-family: '宋体', -apple-system, 'Times New Roman', sans-serif;
+    -webkit-text-size-adjust: 100%;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    background-image: url(../image/background.png); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center;
+}
+
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content:space-around;
+  background-color: rgba(130,36,30,1);
+  user-select: none;
+}
+
+.logo-ltr-box {
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border: none;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle !important;
+}
+table.logo-ltr, table.logo-ltr tr, table.logo-ltr td {
+  margin: 0;
+  padding: 0;
+  border: none;    
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle !important;
+}
+table.logo-ltr { border-collapse: collapse; border-spacing: 0; color: rgba(243,215,55,1); }
+table.logo-ltr td.logo-ltr-icon { width: 2.5rem; height: 2.5rem; background-position: center; background-size: contain; background-repeat: no-repeat; background-image: url(../image/favicon.ico); }
+tr.logo-ltr { font-size: 2rem; font-weight: bolder; border-top: 1px solid rgba(244,241,237,1); border-bottom: 1px solid rgba(244,241,237,1); }
+tr.logo-ltr td.mid { font-size: 1rem; font-weight: lighter; color: rgba(244,241,237,1); }
+
+/* .logo-ltr { */
+  /* display: flex; */
+  /* align-items: center; */
+  /* margin: 0 1.5rem; */
+
+
+  /* padding: 0 1.5rem; */
+
+
+/* } */
+
+/* .logo-ltr-icon { */
+
+
+  /* margin-right: 14px; */
+
+
+  /* cursor: pointer; */
+  /* width: 2rem; height: 2rem;  */
+  /* background-position: center; background-size: contain; background-repeat: no-repeat; */
+  /* background-image: url(https://zhengxie.info/assets/image/favicon.ico); */
+
+/* } */
+
+/* .logo-ltr-name { */
+  /* color: #333; */
+  /* font-size: 1.5rem; */
+  /* font-weight: bolder; */
+
+
+  /* font-weight: normal; */
+  /* margin: 0 0.5rem; */
+
+/* } */
+
+
+
+ /* 匾额 */
+ /* 
+
+
+
+table.plaque td.logo + td { text-align-last: justify; }
+table.plaque td.mid { font-size: 1rem;  font-weight: lighter;  color: rgba(244,241,237,1); } */
+/* \\ 匾额 */
+
+ 
