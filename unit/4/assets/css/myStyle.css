@@ -22,8 +22,8 @@ html {
     height: 100%;
     overflow-x: auto;
     overflow-y: auto;
-    /* background-image: url(../image/background.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center; */
-    /* color: rgba(3,2,4,1); */
+    background-image: url(https://zhengxie.info/assets/image/background.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center;
+    color: rgba(3,2,4,1);
     font-family: '宋体', -apple-system, 'Times New Roman', sans-serif;
     -webkit-text-size-adjust: 100%;
 }
