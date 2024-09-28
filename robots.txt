@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /assets/
+Disallow: /private/
 
 Sitemap: https://zhengxie.info/sitemap.xml
