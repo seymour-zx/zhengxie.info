@@ -1,3 +1,23 @@
+        <!-- .menu 菜单 -->
+        <table class="menu">
+            <tr>
+                <td>
+                    <a href="../1/" target="_self">首页</a>
+                </td>
+                <td>
+                    <a href="../2/" target="_self">目录</a>
+                </td>
+                <td>
+                    <a href="../3/" target="_self">关于</a>
+                </td>
+                <td>
+                    <a href="../4/" target="_self">收藏</a>
+                </td>
+            </tr>
+        </table><!-- // .menu 菜单 -->
+
+
+
 
 <!doctype html>
 <html>
@@ -8,34 +28,43 @@
 *{
     margin:0px;
     padding:0px;
-}//清除默认样式
+}
+/* //清除默认样式 */
 div
 {
-    width:800px;//设置宽
-    margin:50px auto;//使其居中
+    width:800px;
+    /* //设置宽 */
+    margin:50px auto;
+    /* //使其居中 */
 }
 p{
-    padding:20px 0px;//内边距上下距离为20，左右距离为0
+    padding:20px 0px;
+    /* //内边距上下距离为20，左右距离为0 */
 }
 h1,h3{
-    padding:20px 0px;//内边距上下距离为20，左右距离为0
+    padding:20px 0px;
+    /* //内边距上下距离为20，左右距离为0 */
 }
 span{
-    margin-right:20px;//右外边距为20
-}
+    margin-right:20px;
+    /* //右外边距为20 */
 }
  
 #addbutton2{
-    width:40px;//+按钮的宽为40
+    width:40px;
+    /* //+按钮的宽为40 */
 }
 #subbutton2{
-    width:40px;//-按钮的宽为40
+    width:40px;
+    /* //-按钮的宽为40 */
 }
 #mulbutton2{
-    width:40px;//*按钮的宽为40
+    width:40px;
+    /* //*按钮的宽为40 */
 }
 #divbutton2{
-    width:40px;//除法按钮的宽为40
+    width:40px;
+    /* //除法按钮的宽为40 */
 }
 </style>
 <script type="text/javascript">
@@ -58,7 +87,7 @@ function computer(op)//op为形参
 <body>
 <div>
 <form name="myform" id="myform" method="post">
-<h3><img src="img/2.png" width="50" height="50">购物简易计算器</h3>
+<h3><img src="../../assets/image/图标.png" width="50" height="50">购物简易计算器</h3>
 <p>第一个数<input type="text" name="txtnum1" class="textbaroder" id="txtnum1" size="25"></p>
 <p>第二个数<input type="text" name="txtnum2" class="textbaroder" id="txtnum2" size="25"></p>
 <span class="sp1"><input type="button" value="+" name="addbutton2" id="addbutton2" onClick="computer('+')"></span>
