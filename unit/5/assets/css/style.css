@@ -12,7 +12,8 @@ html {
   background-size: contain;
   /* background-repeat: no-repeat; */
   background-attachment: fixed;
-  background-position: center;
+  /* background-position: center; */
+  background-position: top;
   background-color: rgba(244,241,237,1);
   background-image: url(../../assets/image/background.png);
   /* background-color: rgb(221, 130, 12); */
