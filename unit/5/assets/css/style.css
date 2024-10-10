@@ -9,8 +9,8 @@ html {
   color: rgba(3,2,4,1);
   font-family: '宋体', -apple-system, 'Times New Roman', sans-serif;
   -webkit-text-size-adjust: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: contain;
+  /* background-repeat: no-repeat; */
   background-attachment: fixed;
   background-position: center;
   background-color: rgba(244,241,237,1);
@@ -52,14 +52,12 @@ header {
   padding: 0;
   border: none;
   width: 99.9999999999999999%;  
-  max-width: 1000px;
+  max-width: 960px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: rgba(130, 36, 30, 1);
   user-select: none;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 
@@ -107,12 +105,16 @@ a.button-href-home {
 
 
 i.button-menu {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
   font-size: 2rem;
   color: rgba(243,215,55,1); 
   cursor: pointer;
   color: rgba(244,241,237,1);
 }
 i.button-uptotop {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
   font-size: 2rem;
   color: rgba(243,215,55,1); 
   cursor: pointer;
@@ -125,7 +127,7 @@ i.button-uptotop {
   top: 0;
   left: -100%;
   height: 100%;
-  width: 280px;
+  width: 320px;
   padding: 1.5rem;
   background: rgba(130, 36, 30, 1);
   box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
@@ -139,8 +141,8 @@ header.open ~ .sidebar {
   top: 0;
   left: -100%;
   height: 100vh;
-  width: 10%;
-  min-width: 360px;
+  width: 100%;
+  /* min-width: 360px; */
   opacity: 0;
   pointer-events: none;
   transition: all 0.4s ease;
@@ -152,3 +154,28 @@ header.open ~ .overlay {
   pointer-events: auto;
 }
 
+/* 页面核心 */
+div.core {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+main {
+  width: 99.9999999999999999%;
+  max-width: 960px;
+  /* min-height: 100%; */
+  /* min-height: calc(100vh - 64px); */
+  min-height: 100vh;
+  background-color: rgba(244,241,237,0.8);
+}
+
+
+div.daohang {
+  margin-top: 4rem;
+  min-height: 20rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  background-position: center;
+  background-image: url(../../assets/image/background.png);
+}
