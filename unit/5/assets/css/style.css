@@ -3,11 +3,12 @@ html {
   padding: 0;
   border: none;
   width: 100%;
-  height: 100svh;
+  height: 100%;
   overflow-x: auto;
   overflow-y: auto;
   color: rgba(3,2,4,1);
-  font-family: '宋体', -apple-system, 'Times New Roman', sans-serif;
+  font-family: '楷体', -apple-system, 'Times New Roman', sans-serif;
+  /* font-family: '宋体', -apple-system, 'Times New Roman', sans-serif; */
   -webkit-text-size-adjust: 100%;
   background-size: contain;
   /* background-repeat: no-repeat; */
@@ -15,11 +16,8 @@ html {
   /* background-position: center; */
   background-position: top;
   background-color: rgba(244,241,237,1);
-  background-image: url(../../assets/image/background.png);
-  /* background-color: rgb(221, 130, 12); */
+  background-image: url(../../../../assets/image/background.png);
 }
-
-
 body {
   margin: 0;
   padding: 0;
@@ -34,31 +32,31 @@ body {
   margin: 0;
   padding: 0;
   border: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(130, 36, 30, 1);
   display: flex;
   flex-wrap: wrap; 
   align-items: center;
   align-content: center;
   justify-items: center;
   justify-content: center;
+  background-color: rgba(130, 36, 30, 1);
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 4rem;
-  /* background-color: rgba(55,241,237,1); */
 }
-
 header {
   margin: 0;
   padding: 0;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   border: none;
-  width: 99.9999999999999999%;  
-  max-width: 960px;
+  align-items: center;
+  user-select: none;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  width: 99.99%;  
+  max-width: 960px;
   background-color: rgba(130, 36, 30, 1);
-  user-select: none;
 }
 
 
@@ -75,7 +73,6 @@ div.plaque-box {
   justify-content: center;
   text-align: center;
   vertical-align: middle !important;
-  /* font-size: 0.75rem; */
 }
 table.plaque, table.plaque tr, table.plaque td {
   margin: 0;
@@ -89,8 +86,18 @@ table.plaque, table.plaque tr, table.plaque td {
   vertical-align: middle !important;
 }
 table.plaque { border-collapse: collapse; border-spacing: 0; color: rgba(243,215,55,1); }
-table.plaque td.logo36 { background-image: url(../../assets/image/favicon.ico); width: 2.5rem; height: 2.5rem; background-position: center; background-size: contain; background-repeat: no-repeat; }
-table.plaque td.logo76 { background-image: url(../../assets/image/favicon.ico); width: 4.75rem; height: 4.75rem; background-position: center; background-size: contain; background-repeat: no-repeat; }
+table.plaque td.logo36 { 
+  background-image: url(../../../../assets/image/favicon.ico);
+  width: 2.5rem;
+  height: 2.5rem;
+  background-position: center; background-size: contain; background-repeat: no-repeat;
+}
+table.plaque td.logo76 {
+  background-image: url(../../../../assets/image/favicon.ico);
+  width: 4.75rem;
+  height: 4.75rem;
+  background-position: center; background-size: contain; background-repeat: no-repeat;
+}
 table.plaque td.logo36 + td { text-align-last: justify; font-size: 1.5rem; font-weight: bolder; }
 table.plaque td.logo76 + td { text-align-last: justify; border-bottom: 1px solid rgba(244,241,237,1); }
 table.plaque tr.mid { font-size: 2rem; font-weight: bolder;  }
@@ -101,25 +108,18 @@ table.plaque td.mid { font-size: 1rem;  font-weight: lighter;  color: rgba(244,2
 a.button-href-home {
   font-size: 2rem;
   color: rgba(243,215,55,1); 
-  color: rgba(244,241,237,1);
 }
 
 
 i.button-menu {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
   font-size: 2rem;
   color: rgba(243,215,55,1); 
   cursor: pointer;
-  color: rgba(244,241,237,1);
 }
 i.button-uptotop {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
   font-size: 2rem;
   color: rgba(243,215,55,1); 
   cursor: pointer;
-  color: rgba(244,241,237,1);
 }
 
 
@@ -140,43 +140,48 @@ header.open ~ .sidebar {
 .overlay {
   position: fixed;
   top: 0;
-  left: -100%;
+  /* left: -100%; */
   height: 100vh;
   width: 100%;
-  /* min-width: 360px; */
-  opacity: 0;
+  opacity: -1;
   pointer-events: none;
   transition: all 0.4s ease;
   background: rgba(0, 0, 0, 0.3);
 }
 header.open ~ .overlay {
   opacity: 1;
-  left: 0;
+  /* left: 0; */
   pointer-events: auto;
 }
 
 /* 页面核心 */
 div.core {
+  padding-top: 4rem;
   width: 100%;
   display: flex;
   justify-content: space-around;
 }
 main {
-  width: 99.9999999999999999%;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  width: 99.99%;
   max-width: 60rem;
-  /* min-height: 100%; */
-  /* min-height: calc(100vh - 64px); */
-  min-height: 100vh;
+  min-height: calc(100vh - 4rem);
   background-color: rgba(244,241,237,0.8);
 }
 
 
-div.daohang {
-  margin-top: 4rem;
-  min-height: 20rem;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: local;
-  background-position: center;
-  background-image: url(../../assets/image/background.png);
+h1 {
+  display: inline-block;
+  text-align: left;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow:hidden;
 }
+
+
+.text {
+  height: 300px; width: 100%; background-color: brown;
+  
+  text-overflow:ellipsis;overflow:hidden;white-space: nowrap;}
