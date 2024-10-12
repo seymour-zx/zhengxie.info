@@ -123,6 +123,7 @@ i.button-uptotop {
   font-size: 2rem;
   color: rgba(243,215,55,1); 
   cursor: pointer;
+  color: rgba(130, 36, 30, 1);
 }
 
 
@@ -160,6 +161,9 @@ header.open ~ .overlay {
   left: 21.5rem;
   pointer-events: auto;
 }
+
+
+
 
 /* 页面核心 */
 div.core {
