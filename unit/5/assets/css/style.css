@@ -4,18 +4,16 @@
 /* @media only screen and (min-width: 750px) {} */
 /* @media only screen and (max-width: 750px) {} */
 /* 
-
-
 pre.code {
   color: rgba(244,241,237,1);
   background-color: rgba(64,144,113,1);
   overflow: auto;
   max-height: 38.2vh;
-} */
+}
+  */
 
 
 html {
-
   margin: 0;
   padding: 0;
   border: none;
@@ -78,6 +76,7 @@ header {
 
 
 div.plaque-box {
+  user-select: none;
   margin: 0;
   padding-top: 0;
   padding-bottom: 0;
@@ -111,25 +110,26 @@ table.plaque td.logo36 {
 }
 table.plaque td.logo76 {
   background-image: url(../../../../assets/image/favicon.ico);
-  width: 4.75rem;
-  height: 4.75rem;
+  width: 4rem;
+  height: 4rem;
   background-position: center; background-size: contain; background-repeat: no-repeat;
 }
 table.plaque td.logo36 + td { text-align-last: justify; font-size: 1.5rem; font-weight: bolder; }
-table.plaque td.logo76 + td { text-align-last: justify; border-bottom: 1px solid rgba(244,241,237,1); }
-table.plaque tr.mid { font-size: 2rem; font-weight: bolder;  }
-table.plaque tr.mid + tr { border-top: 1px solid rgba(244,241,237,1); }
-table.plaque td.mid { font-size: 1rem;  font-weight: lighter;  color: rgba(244,241,237,1); }
+/* table.plaque td.logo76 + td { text-align-last: justify; border-bottom: 1px solid rgba(244,241,237,1); } */
+table.plaque td.logo76 + td { text-align-last: justify; }
+table.plaque tr.mid { font-size: 2rem; font-weight: bolder; }
+/* table.plaque tr.mid + tr { border-top: 1px solid rgba(244,241,237,1); } */
+table.plaque td.mid { font-size: 1rem; font-weight: lighter; color: rgba(244,241,237,1); }
 
 
 a.button-href {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: rgba(243,215,55,1); 
- text-decoration: none;
+  text-decoration: none;
 }
 a.button-href i {
-  margin-right: 1.5rem;
-  width: 2.5rem;
+  margin-right: 1rem;
+  width: 2rem;
 }
 
 i.button-menu {
@@ -146,12 +146,13 @@ i.button-uptotop {
 
 
 .sidebar {
+  user-select: none;
   opacity: 1;
   position: fixed;
   top: 0;
   left: -100%;
   height: 100%;
-  width: 17.5rem;
+  width: 16.5rem;
   padding: 1.5rem;
   background: rgba(130, 36, 30, 1);
   box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
@@ -177,7 +178,7 @@ header.open ~ .sidebar {
 }
 header.open ~ .overlay {
   opacity: 1;
-  left: 19rem;
+  left: 18rem;
   pointer-events: auto;
 }
 
@@ -194,7 +195,7 @@ main {
   margin-top: 4rem;
   width: 99.99%;
   max-width: 60rem;
-  min-height: calc(100vh - 4rem);
+  /* min-height: calc(100vh - 4rem); */
   background-color: rgba(244,241,237,0.8);
 }
 
@@ -214,7 +215,7 @@ h3 {
   text-indent: 2rem;
 }
 h4 {
-  text-indent: 2rem;
+  text-indent: 3rem;
 }
 p {
   word-break: break-all;
@@ -229,7 +230,6 @@ p {
   height: 300px; 
   /* width: 100%;  */
   background-color: brown;
-
   text-overflow:ellipsis;
   overflow:hidden;
   white-space: nowrap;
