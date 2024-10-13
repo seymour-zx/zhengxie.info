@@ -129,6 +129,7 @@ i.button-uptotop {
 
 
 .sidebar {
+  opacity: 999;
   position: fixed;
   top: 0;
   left: -100%;
@@ -158,7 +159,7 @@ header.open ~ .sidebar {
   background-position: left;
 }
 header.open ~ .overlay {
-  opacity: 1;
+  opacity: 999;
   left: 19rem;
   pointer-events: auto;
 }
