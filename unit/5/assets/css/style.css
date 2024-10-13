@@ -1,4 +1,6 @@
 html {
+
+
   margin: 0;
   padding: 0;
   border: none;
@@ -169,12 +171,12 @@ header.open ~ .overlay {
 
 /* 页面核心 */
 div.core {
+  /* opacity: 1; */
   width: 100%;
   display: flex;
   justify-content: space-around;
 }
 main {
-  opacity: 1;
   margin-top: 4rem;
   width: 99.99%;
   max-width: 60rem;
@@ -204,6 +206,22 @@ h1 {
   section {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
-
   }
 
+
+
+  /* 页底 */
+footer {
+  width: 100%;
+  color: rgba(244,241,237,1);
+  background-color: rgba(37,86,122,1);
+  user-select: none;
+}
+  div.in-footer-box {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+  }
