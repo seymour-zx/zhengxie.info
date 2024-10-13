@@ -14,26 +14,7 @@ pre.code {
 } */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 html {
-
 
   margin: 0;
   padding: 0;
@@ -165,7 +146,7 @@ i.button-uptotop {
 
 
 .sidebar {
-  opacity: 999;
+  opacity: 1;
   position: fixed;
   top: 0;
   left: -100%;
@@ -185,7 +166,7 @@ header.open ~ .sidebar {
   /* left: -100%; */
   height: 100vh;
   width: calc(100vw - 20.5rem);
-  opacity: -1;
+  opacity: 0;
   pointer-events: none;
   transition: all 0.4s ease;
   background: rgba(0, 0, 0, 0.3);
@@ -195,7 +176,7 @@ header.open ~ .sidebar {
   background-position: left;
 }
 header.open ~ .overlay {
-  opacity: 999;
+  opacity: 1;
   left: 19rem;
   pointer-events: auto;
 }
