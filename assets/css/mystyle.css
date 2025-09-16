@@ -86,6 +86,9 @@ header {
         border-collapse: collapse;
         border-spacing: 0;
         color: rgba(243,215,55,1);
+        /* color: #B33F40; */
+        
+        
     }
     table.plaque td.logo {
         width: 4.75rem;
