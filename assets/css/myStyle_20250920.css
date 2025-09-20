@@ -1,3 +1,4 @@
+
 /* vertical-align: middle !important; align-items: center; justify-content: center; */
 /* 横屏 *//* @media only screen and (orientation : landscape) {} */
 /* 竖屏 *//* @media only screen and (orientation : portrait) {} */
@@ -217,10 +218,9 @@ div.core {
           display: list-item;
           list-style-position: inside;
           list-style-type: upper-roman;
-          text-indent: 2rem;
         }
         h4 {
-          text-indent: 3rem;
+          text-indent: 2rem;
         }
 p.left-one {
   line-height: 2rem;
