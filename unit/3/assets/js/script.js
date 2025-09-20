@@ -1,5 +1,5 @@
 const navBar = document.querySelector("header"),
-       menuBtns = document.querySelectorAll(".header-button-menu"),
+       menuBtns = document.querySelectorAll(".button-menu"),
        overlay = document.querySelector(".overlay");
 
      menuBtns.forEach((menuBtn) => {
