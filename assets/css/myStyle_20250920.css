@@ -1,17 +1,23 @@
-
 /* vertical-align: middle !important; align-items: center; justify-content: center; */
 /* 横屏 *//* @media only screen and (orientation : landscape) {} */
 /* 竖屏 *//* @media only screen and (orientation : portrait) {} */
 /* @media only screen and (min-width: 750px) {} */
 /* @media only screen and (max-width: 750px) {} */
 /* 
+@media only screen and (min-width: 808px) {
+首页特殊格式
+    body {
+        display: flex;
+        justify-content: space-around;
+    }
+} */
+/* 
 pre.code {
   color: rgba(244,241,237,1);
   background-color: rgba(64,144,113,1);
   overflow: auto;
   max-height: 38.2vh;
-}
-  */
+}*/
 html {
   margin: 0;
   padding: 0;
