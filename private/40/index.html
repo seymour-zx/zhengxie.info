@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>css-directory-animation</title>
+  <style type="text/css">
+    body {
+      padding-top: 20px;
+    }
+    .nd-animation {
+      display: block;
+      position: relative;
+      width: 22px;
+      height: 2px;
+      background-color: #25283D;
+      transition: background-color .2s linear;
+    }
+    .nd-animation::before {
+      position: absolute;
+      content: '';
+      width: 22px;
+      height: 2px;
+      background: #25283D;
+      transform: translateY(-6px);
+      transition: transform .2s linear;
+    }
+    .nd-animation::after {
+      position: absolute;
+      content: '';
+      width: 22px;
+      height: 2px;
+      background: #25283D;
+      transform: translateY(6px);
+      transition: transform .2s linear;
+    }
+    .is-open {
+      background-color: rgba(255, 255, 255, 0);
+    }
+    .is-open::before {
+      transform: rotate(-45deg);
+    }
+    .is-open::after {
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+  <span class="nd-animation"></span>
+  <script type="text/javascript">
+    var node = document.getElementsByClassName('nd-animation')[0];
+    window.addEventListener('click', function() {
+      if (node.classList.contains('is-open')) {
+        node.classList.remove('is-open');
+      }
+      else {
+        node.classList.add('is-open');
+      }
+    }, false);
+  </script>
+</body>
+</html>
