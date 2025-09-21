@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar {
+  width: 20%;
+  background-color: #e60d0d;
+  float: left;
+  overflow: hidden;
+  transition: width 0.5s ease;
+}
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+.sidebar li {
+  padding: 10px;
+}
+.sidebar li:hover {
+  background-color: #4a10eb;
+}
+
+.content {
+  width: 80%;
+  float: left;
+  padding: 20px;
+  transition: width 0.5s ease;
+}
+
+
+.toggle-button {
+  display: block;
+  margin: 20px auto;
+}
