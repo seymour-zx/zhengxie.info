@@ -1,5 +1,5 @@
 const navBar = document.querySelector("header"),
-       menuBtns = document.querySelectorAll(".header-button-menu"),
+       menuBtns = document.querySelectorAll(".button_menu-in-header-box"),
 
        overlay = document.querySelector(".overlay");
 
