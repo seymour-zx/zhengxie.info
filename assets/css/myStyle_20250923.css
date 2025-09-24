@@ -127,7 +127,7 @@ div.plaque-box {
 }
   header.open ~ .overlay {
     opacity: 1;
-    left: 19.5rem;
+    left: 18rem;
     pointer-events: auto;
   }
 /* 侧边栏 */
@@ -207,7 +207,7 @@ footer {
 
 
 
-    
+
 
 
 
