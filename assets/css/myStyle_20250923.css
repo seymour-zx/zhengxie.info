@@ -109,7 +109,7 @@ div.plaque-box {
     table.plaque td.mid { font-size: 1rem; color: rgba(244,241,237,1); }
     /* table.plaque td.mid { font-size: 1rem; font-weight: lighter; color: rgba(244,241,237,1); } */
     table.plaque td.mid + td { font-size: 2rem; font-weight: bolder; }
-    tr.mid { text-align-last: justify; font-size: 0.75rem; font-weight: lighter; }
+    tr.under { text-align-last: justify; font-size: 0.75rem; }
 /* 灰幕 */
 .overlay {
   position: fixed;
