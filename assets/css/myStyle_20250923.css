@@ -105,10 +105,10 @@ div.plaque-box {
       background-position: center; background-size: contain; background-repeat: no-repeat;
     }
     table.plaque td.logo36 + td { text-align-last: justify; font-size: 1.5rem; font-weight: bolder; }
-    /* table.plaque td.logo56 + td { text-align-last: justify; border-bottom: 1px solid rgba(244,241,237,1); } */
-    table.plaque td.logo56 + td { text-align-last: justify; font-size: 2rem; font-weight: bolder; }
-    table.plaque td.mid { font-size: 1rem; font-weight: lighter; color: rgba(244, 241, 237, 1); }
-    table.plaque td.mid + td { text-align-last: justify; font-size: 2rem; font-weight: bolder; }
+    table.plaque td.logo56 + td { font-size: 2rem; font-weight: bolder; }
+    table.plaque td.mid { font-size: 1rem; font-weight: lighter; color: rgba(244,241,237,1); }
+    table.plaque td.mid + td { font-size: 2rem; font-weight: bolder; }
+    tr.mid { text-align-last: justify; font-size: 0.75rem; font-weight: lighter;  }
 /* 灰幕 */
 .overlay {
   position: fixed;
