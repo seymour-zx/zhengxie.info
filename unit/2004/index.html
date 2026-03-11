@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>标签筛选导航网站 - 移动端优化</title>
+    <style>
+        :root {
+            --primary-color: rgba(140, 50, 30, 1);
+            --background-color: rgba(25, 25, 30, 1);
+            --accent-color: rgba(180, 100, 60, 0.9);
+            --text-primary: rgba(240, 240, 240, 0.95);
+            --text-secondary: rgba(200, 200, 200, 0.7);
+            --border-color: rgba(80, 70, 60, 0.6);
+            --card-bg: rgba(40, 40, 45, 0.9);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --tag-bg: rgba(60, 60, 70, 0.8);
+            --tag-active: rgba(100, 150, 220, 0.9);
+            --mobile-bg: rgba(30, 30, 35, 0.98);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* 移动端头部 */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-color), var(--text-primary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 移动端筛选面板 */
+        .mobile-filter-panel {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--mobile-bg);
+            z-index: 999;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .mobile-filter-panel.active {
+            transform: translateX(0);
+        }
+
+        .filter-panel-content {
+            padding: 20px 15px;
+        }
+
+        .filter-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .filter-groups {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .filter-group {
+            background-color: rgba(50, 50, 55, 0.6);
+            border-radius: 10px;
+            padding: 18px;
+            border: 1px solid var(--border-color);
+        }
+
+        .filter-group-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .filter-group-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            min-height: 48px;
+        }
+
+        .checkbox-label.checked {
+            background-color: rgba(180, 100, 60, 0.15);
+            border-color: var(--accent-color);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .checkbox-text {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            flex: 1;
+        }
+
+        /* 主内容区域 */
+        .main-content {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        /* 移动端操作栏 */
+        .mobile-action-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--primary-color);
+            padding: 12px 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+        }
+
+        .action-btn.primary {
+            background-color: var(--accent-color);
+            color: var(--text-primary);
+        }
+
+        .action-btn.secondary {
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        /* 结果统计栏 */
+        .results-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgba(50, 50, 55, 0.6);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .results-count {
+            font-size: 1rem;
+        }
+
+        .count {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .sort-select {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 1rem;
+            min-width: 140px;
+        }
+
+        /* 移动端卡片网格 */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .website-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .website-card.hidden {
+            display: none;
+        }
+
+        .website-card:active {
+            transform: scale(0.98);
+        }
+
+        .card-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-header-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .website-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .website-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .website-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .website-url {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            word-break: break-all;
+            padding: 8px 12px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background-color: var(--tag-bg);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-footer {
+            padding: 15px 20px 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .website-visit {
+            background-color: var(--primary-color);
+            color: var(--text-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        .website-popularity {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* 无结果提示 */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .no-results h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        /* 移动端遮罩 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* 平板设备适配 */
+        @media (min-width: 768px) {
+            html {
+                font-size: 17px;
+            }
+            
+            .container {
+                padding: 0 20px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 25px;
+            }
+            
+            .filter-group-content {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            
+            .results-bar {
+                padding: 20px;
+            }
+        }
+
+        /* 桌面设备适配 */
+        @media (min-width: 1024px) {
+            .mobile-header {
+                position: static;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            }
+            
+            .header-content {
+                padding: 15px 0;
+                height: auto;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .mobile-filter-panel {
+                position: static;
+                transform: none;
+                background-color: transparent;
+                overflow: visible;
+                margin-top: 20px;
+            }
+            
+            .mobile-action-bar {
+                position: static;
+                box-shadow: none;
+                background-color: transparent;
+                padding: 20px 0;
+            }
+            
+            .main-content {
+                padding-top: 20px;
+                padding-bottom: 40px;
+            }
+            
+            .overlay {
+                display: none !important;
+            }
+            
+            .filter-groups {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+            
+            .filter-group {
+                margin-bottom: 0;
+            }
+            
+            .action-btn {
+                width: auto;
+                padding: 12px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 移动端遮罩 -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- 移动端头部 -->
+    <header class="mobile-header">
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">N</div>
+                <span class="logo-text">标签导航</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="filter-toggle">
+                🏷️
+            </button>
+        </div>
+    </header>
+
+    <!-- 移动端筛选面板 -->
+    <div class="mobile-filter-panel" id="filter-panel">
+        <div class="container filter-panel-content">
+            <h2 class="filter-title">筛选标签</h2>
+            
+            <div class="filter-groups">
+                <!-- 类别筛选 -->
+                <div class="filter-group">
+                    <h3 class="filter-group-title">类别</h3>
+                    <div class="filter-group-content">
+                        <label class="checkbox-label" data-tag="开发">
+                            <input type="checkbox" class="tag-filter" data-tag="开发" checked>
+                            <span class="checkbox-text">开发工具</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="设计">
+                            <input type="checkbox" class="tag-filter" data-tag="设计" checked>
+                            <span class="checkbox-text">设计资源</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="学习">
+                            <input type="checkbox" class="tag-filter" data-tag="学习" checked>
+                            <span class="checkbox-text">学习平台</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="工具">
+                            <input type="checkbox" class="tag-filter" data-tag="工具" checked>
+                            <span class="checkbox-text">效率工具</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- 编程语言筛选 -->
+                <div class="filter-group">
+                    <h3 class="filter-group-title">编程语言</h3>
+                    <div class="filter-group-content">
+                        <label class="checkbox-label" data-tag="JavaScript">
+                            <input type="checkbox" class="tag-filter" data-tag="JavaScript" checked>
+                            <span class="checkbox-text">JavaScript</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="Python">
+                            <input type="checkbox" class="tag-filter" data-tag="Python" checked>
+                            <span class="checkbox-text">Python</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="Java">
+                            <input type="checkbox" class="tag-filter" data-tag="Java" checked>
+                            <span class="checkbox-text">Java</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="全栈">
+                            <input type="checkbox" class="tag-filter" data-tag="全栈" checked>
+                            <span class="checkbox-text">全栈开发</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- 难度筛选 -->
+                <div class="filter-group">
+                    <h3 class="filter-group-title">难度级别</h3>
+                    <div class="filter-group-content">
+                        <label class="checkbox-label" data-tag="入门">
+                            <input type="checkbox" class="tag-filter" data-tag="入门" checked>
+                            <span class="checkbox-text">入门</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="中级">
+                            <input type="checkbox" class="tag-filter" data-tag="中级" checked>
+                            <span class="checkbox-text">中级</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="高级">
+                            <input type="checkbox" class="tag-filter" data-tag="高级" checked>
+                            <span class="checkbox-text">高级</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="专家">
+                            <input type="checkbox" class="tag-filter" data-tag="专家" checked>
+                            <span class="checkbox-text">专家</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- 技术筛选 -->
+                <div class="filter-group">
+                    <h3 class="filter-group-title">技术栈</h3>
+                    <div class="filter-group-content">
+                        <label class="checkbox-label" data-tag="前端">
+                            <input type="checkbox" class="tag-filter" data-tag="前端" checked>
+                            <span class="checkbox-text">前端开发</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="后端">
+                            <input type="checkbox" class="tag-filter" data-tag="后端" checked>
+                            <span class="checkbox-text">后端开发</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="数据库">
+                            <input type="checkbox" class="tag-filter" data-tag="数据库" checked>
+                            <span class="checkbox-text">数据库</span>
+                        </label>
+                        <label class="checkbox-label" data-tag="移动端">
+                            <input type="checkbox" class="tag-filter" data-tag="移动端" checked>
+                            <span class="checkbox-text">移动端</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container main-content">
+        <!-- 结果统计栏 -->
+        <div class="results-bar">
+            <div class="results-count">
+                找到 <span class="count" id="result-count">12</span> 个网站
+            </div>
+            <select class="sort-select" id="sort-select">
+                <option value="default">默认排序</option>
+                <option value="name">按名称</option>
+                <option value="popularity">按热度</option>
+            </select>
+        </div>
+
+        <!-- 网站卡片网格 -->
+        <div class="cards-grid" id="cards-grid">
+            <!-- 卡片将通过JavaScript生成 -->
+        </div>
+
+        <!-- 无结果提示 -->
+        <div class="no-results" id="no-results">
+            <div class="no-results-icon">🔍</div>
+            <h3>未找到匹配的网站</h3>
+            <p>请尝试选择其他标签或重置筛选条件</p>
+        </div>
+    </main>
+
+    <!-- 移动端操作栏 -->
+    <div class="mobile-action-bar">
+        <button class="action-btn secondary" onclick="resetFilters()">
+            <span>↺</span> 重置
+        </button>
+        <button class="action-btn primary" onclick="applyFilters()">
+            <span>✓</span> 应用筛选
+        </button>
+    </div>
+
+    <script>
+        // 网站数据
+        const websites = [
+            {
+                id: 1,
+                name: "GitHub",
+                description: "全球最大的代码托管平台，支持Git版本控制和协作开发",
+                url: "https://github.com",
+                icon: "🐙",
+                tags: ["开发", "全栈", "工具", "入门", "中级", "高级"],
+                popularity: 5
+            },
+            {
+                id: 2,
+                name: "MDN Web Docs",
+                description: "Mozilla开发者网络，提供Web技术文档和教程",
+                url: "https://developer.mozilla.org",
+                icon: "📘",
+                tags: ["开发", "前端", "JavaScript", "学习", "入门", "中级"],
+                popularity: 5
+            },
+            {
+                id: 3,
+                name: "Stack Overflow",
+                description: "全球最大的编程问答社区，解决开发中遇到的各种问题",
+                url: "https://stackoverflow.com",
+                icon: "💬",
+                tags: ["开发", "全栈", "学习", "入门", "中级", "高级"],
+                popularity: 5
+            },
+            {
+                id: 4,
+                name: "Figma",
+                description: "在线协作式UI设计工具，支持团队实时协作设计",
+                url: "https://www.figma.com",
+                icon: "🎨",
+                tags: ["设计", "前端", "工具", "入门", "中级"],
+                popularity: 4
+            },
+            {
+                id: 5,
+                name: "VS Code",
+                description: "微软开源的轻量级代码编辑器，支持多种编程语言",
+                url: "https://code.visualstudio.com",
+                icon: "⚡",
+                tags: ["开发", "工具", "全栈", "JavaScript", "Python", "Java"],
+                popularity: 5
+            },
+            {
+                id: 6,
+                name: "React",
+                description: "Facebook开发的用于构建用户界面的JavaScript库",
+                url: "https://reactjs.org",
+                icon: "⚛️",
+                tags: ["开发", "前端", "JavaScript", "中级", "高级"],
+                popularity: 5
+            },
+            {
+                id: 7,
+                name: "Python.org",
+                description: "Python编程语言官方网站，提供文档和下载",
+                url: "https://www.python.org",
+                icon: "🐍",
+                tags: ["开发", "后端", "Python", "学习", "入门", "中级"],
+                popularity: 5
+            },
+            {
+                id: 8,
+                name: "Django",
+                description: "Python的高级Web框架，鼓励快速开发和实用设计",
+                url: "https://www.djangoproject.com",
+                icon: "🎸",
+                tags: ["开发", "后端", "Python", "全栈", "中级", "高级"],
+                popularity: 4
+            },
+            {
+                id: 9,
+                name: "MySQL",
+                description: "世界上最流行的开源关系数据库管理系统",
+                url: "https://www.mysql.com",
+                icon: "🗃️",
+                tags: ["开发", "数据库", "后端", "中级", "高级"],
+                popularity: 4
+            },
+            {
+                id: 10,
+                name: "Flutter",
+                description: "Google的UI工具包，用于构建跨平台移动应用",
+                url: "https://flutter.dev",
+                icon: "📱",
+                tags: ["开发", "移动端", "工具", "中级", "高级"],
+                popularity: 4
+            },
+            {
+                id: 11,
+                name: "LeetCode",
+                description: "编程面试准备平台，提供算法和数据结构练习题",
+                url: "https://leetcode.com",
+                icon: "💻",
+                tags: ["学习", "算法", "工具", "中级", "高级", "专家"],
+                popularity: 5
+            },
+            {
+                id: 12,
+                name: "Notion",
+                description: "一体化工作空间，集笔记、任务、数据库功能于一身",
+                url: "https://www.notion.so",
+                icon: "📝",
+                tags: ["工具", "学习", "入门", "中级"],
+                popularity: 4
+            }
+        ];
+
+        // 当前选中的标签
+        let selectedTags = new Set();
+        
+        // DOM元素
+        const filterToggle = document.getElementById('filter-toggle');
+        const filterPanel = document.getElementById('filter-panel');
+        const overlay = document.getElementById('overlay');
+        const sortSelect = document.getElementById('sort-select');
+
+        // 初始化标签
+        function initializeTags() {
+            const checkboxes = document.querySelectorAll('.tag-filter');
+            const labels = document.querySelectorAll('.checkbox-label');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+                selectedTags.add(checkbox.dataset.tag);
+            });
+            
+            labels.forEach(label => {
+                if (selectedTags.has(label.dataset.tag)) {
+                    label.classList.add('checked');
+                }
+            });
+        }
+        
+        // 更新复选框状态
+        function updateCheckboxStates() {
+            const labels = document.querySelectorAll('.checkbox-label');
+            labels.forEach(label => {
+                if (selectedTags.has(label.dataset.tag)) {
+                    label.classList.add('checked');
+                } else {
+                    label.classList.remove('checked');
+                }
+            });
+        }
+        
+        // 渲染网站卡片
+        function renderWebsites(websitesToRender) {
+            const cardsGrid = document.getElementById('cards-grid');
+            const resultCount = document.getElementById('result-count');
+            const noResults = document.getElementById('no-results');
+            
+            cardsGrid.innerHTML = '';
+            
+            if (websitesToRender.length === 0) {
+                noResults.classList.add('show');
+                resultCount.textContent = '0';
+                return;
+            }
+            
+            noResults.classList.remove('show');
+            resultCount.textContent = websitesToRender.length;
+            
+            websitesToRender.forEach(website => {
+                const card = document.createElement('div');
+                card.className = 'website-card';
+                card.dataset.id = website.id;
+                card.dataset.tags = website.tags.join(',');
+                
+                const tagsHtml = website.tags.map(tag => 
+                    `<span class="tag ${selectedTags.has(tag) ? 'active' : ''}">${tag}</span>`
+                ).join('');
+                
+                const stars = '★'.repeat(website.popularity) + '☆'.repeat(5 - website.popularity);
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-header-top">
+                            <div class="website-icon">${website.icon}</div>
+                            <div>
+                                <h3 class="website-name">${website.name}</h3>
+                                <div class="website-popularity">热度: ${stars}</div>
+                            </div>
+                        </div>
+                        <p class="website-desc">${website.description}</p>
+                    </div>
+                    <div class="card-content">
+                        <a href="${website.url}" class="website-url" target="_blank" rel="noopener">${website.url}</a>
+                        <div class="card-tags">
+                            ${tagsHtml}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="${website.url}" class="website-visit" target="_blank" rel="noopener">访问网站</a>
+                        <span>🔥 ${website.popularity}.0</span>
+                    </div>
+                `;
+                
+                cardsGrid.appendChild(card);
+            });
+        }
+        
+        // 应用筛选
+        function applyFilters() {
+            const checkboxes = document.querySelectorAll('.tag-filter:checked');
+            selectedTags.clear();
+            checkboxes.forEach(checkbox => {
+                selectedTags.add(checkbox.dataset.tag);
+            });
+            
+            // 更新复选框状态
+            updateCheckboxStates();
+            
+            // 如果没有选中任何标签，显示所有网站
+            if (selectedTags.size === 0) {
+                renderWebsites(websites);
+                closeFilterPanel();
+                return;
+            }
+            
+            // 筛选网站：网站必须包含至少一个选中的标签
+            const filteredWebsites = websites.filter(website => {
+                return website.tags.some(tag => selectedTags.has(tag));
+            });
+            
+            renderWebsites(filteredWebsites);
+            closeFilterPanel();
+        }
+        
+        // 重置筛选
+        function resetFilters() {
+            const checkboxes = document.querySelectorAll('.tag-filter');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            
+            selectedTags.clear();
+            checkboxes.forEach(checkbox => {
+                selectedTags.add(checkbox.dataset.tag);
+            });
+            
+            updateCheckboxStates();
+            renderWebsites(websites);
+            closeFilterPanel();
+        }
+        
+        // 排序功能
+        function sortWebsites() {
+            const criteria = sortSelect.value;
+            let sortedWebsites = [...websites];
+            
+            switch(criteria) {
+                case 'name':
+                    sortedWebsites.sort((a, b) => a.name.localeCompare(b.name, 'zh-CN'));
+                    break;
+                case 'popularity':
+                    sortedWebsites.sort((a, b) => b.popularity - a.popularity);
+                    break;
+                default:
+                    // 保持原始顺序
+                    break;
+            }
+            
+            renderWebsites(sortedWebsites);
+        }
+        
+        // 打开筛选面板
+        function openFilterPanel() {
+            filterPanel.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // 关闭筛选面板
+        function closeFilterPanel() {
+            filterPanel.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // 切换筛选面板
+        function toggleFilterPanel() {
+            if (filterPanel.classList.contains('active')) {
+                closeFilterPanel();
+            } else {
+                openFilterPanel();
+            }
+        }
+        
+        // 初始加载
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTags();
+            renderWebsites(websites);
+            
+            // 事件监听
+            filterToggle.addEventListener('click', toggleFilterPanel);
+            overlay.addEventListener('click', closeFilterPanel);
+            sortSelect.addEventListener('change', sortWebsites);
+            
+            // 为所有筛选复选框添加事件监听
+            const checkboxes = document.querySelectorAll('.tag-filter');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const label = this.closest('.checkbox-label');
+                    if (this.checked) {
+                        label.classList.add('checked');
+                    } else {
+                        label.classList.remove('checked');
+                    }
+                });
+            });
+            
+            // 为标签添加点击事件（更好的移动端体验）
+            const labels = document.querySelectorAll('.checkbox-label');
+            labels.forEach(label => {
+                label.addEventListener('click', function(e) {
+                    if (e.target.type !== 'checkbox') {
+                        const checkbox = this.querySelector('input[type="checkbox"]');
+                        checkbox.checked = !checkbox.checked;
+                        checkbox.dispatchEvent(new Event('change'));
+                    }
+                });
+            });
+            
+            // 阻止卡片的默认点击行为
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('website-visit')) {
+                    e.preventDefault();
+                    window.open(e.target.href, '_blank', 'noopener,noreferrer');
+                }
+            });
+            
+            // 移动端返回按钮处理
+            window.addEventListener('popstate', function() {
+                closeFilterPanel();
+            });
+        });
+        
+        // 适配不同屏幕尺寸
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                closeFilterPanel();
+            }
+        });
+    </script>
+</body>
+</html>
