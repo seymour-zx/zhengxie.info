@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HTML5 + CSS3 实现现代响应式网站设计指南 | TechBlog</title>
+    <link rel="stylesheet" href="article.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">B</div>
+                <span class="logo-text">TechBlog</span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="#" class="nav-link">技术文章</a>
+                <a href="#" class="nav-link">前端开发</a>
+                <a href="#" class="nav-link">后端技术</a>
+                <a href="#" class="nav-link active">关于我</a>
+            </nav>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <div class="article-container">
+            <!-- 主内容区域 -->
+            <main>
+                <!-- 文章头部 -->
+                <header class="article-header">
+                    <div class="article-meta">
+                        <span class="article-tag">前端开发</span>
+                        <span><i class="far fa-calendar"></i> 2026-03-10</span>
+                        <span><i class="far fa-eye"></i> 1,245 阅读</span>
+                        <span><i class="far fa-comment"></i> 24 评论</span>
+                        <span><i class="far fa-clock"></i> 8分钟阅读</span>
+                    </div>
+                    <h1 class="article-title">HTML5 + CSS3 实现现代响应式网站设计指南</h1>
+                    <p class="article-subtitle">探索如何使用最新的Web技术创建美观、高效的响应式网站，从基础概念到实际应用案例。</p>
+                    <div class="article-author">
+                        <div class="author-avatar">J</div>
+                        <div class="author-info">
+                            <h4>张三</h4>
+                            <p>前端开发工程师，专注于现代Web技术</p>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- 文章正文 -->
+                <article class="article-body">
+                    <div class="article-content">
+                        <p>响应式网站设计已经成为现代Web开发的标配。它不仅提供跨设备的用户体验，还能提高网站的访问性和SEO表现。本文将深入探讨如何使用HTML5和CSS3实现现代响应式网站设计。</p>
+                        
+                        <h2 id="section1">1. HTML5语义化标签</h2>
+                        <p>HTML5引入了语义化标签，这些标签不仅让代码更易读，还能帮助搜索引擎理解网页结构。</p>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>HTML示例代码</span>
+                                <button class="copy-code"><i class="far fa-copy"></i> 复制</button>
+                            </div>
+                            <pre><code>&lt;header&gt;
+  &lt;h1&gt;网站标题&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#"&gt;首页&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;关于&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h2&gt;文章标题&lt;/h2&gt;
+    &lt;p&gt;文章内容...&lt;/p&gt;
+  &lt;/article&gt;
+  &lt;aside&gt;侧边栏内容&lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;版权信息&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+                        </div>
+                        
+                        <p>使用语义化标签的好处包括：</p>
+                        <ul>
+                            <li>提高代码可读性和可维护性</li>
+                            <li>增强搜索引擎优化（SEO）</li>
+                            <li>改善辅助技术（屏幕阅读器）的访问性</li>
+                            <li>便于样式设计和布局控制</li>
+                        </ul>
+                        
+                        <h2 id="section2">2. CSS3 Flexbox布局</h2>
+                        <p>Flexbox是一种一维布局模型，非常适合处理复杂布局和对齐需求。</p>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>CSS Flexbox示例</span>
+                                <button class="copy-code"><i class="far fa-copy"></i> 复制</button>
+                            </div>
+                            <pre><code>.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.item {
+  flex: 1 1 300px;
+  padding: 20px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.item.featured {
+  flex: 2 1 600px;
+  background-color: rgba(180, 100, 60, 0.1);
+}</code></pre>
+                        </div>
+                        
+                        <p>Flexbox的主要属性包括：</p>
+                        <ul>
+                            <li><code>flex-direction</code>: 定义主轴方向</li>
+                            <li><code>justify-content</code>: 主轴对齐方式</li>
+                            <li><code>align-items</code>: 交叉轴对齐方式</li>
+                            <li><code>flex-wrap</code>: 是否换行</li>
+                            <li><code>gap</code>: 项目间距</li>
+                        </ul>
+                        
+                        <h2 id="section3">3. CSS Grid布局</h2>
+                        <p>CSS Grid是二维布局系统，适合创建复杂的网格布局设计。</p>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>CSS Grid示例</span>
+                                <button class="copy-code"><i class="far fa-copy"></i> 复制</button>
+                            </div>
+                            <pre><code>.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: auto;
+  gap: 20px;
+  padding: 20px;
+}
+
+.grid-item {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.grid-header {
+  grid-column: 1 / -1;
+  background-color: var(--primary-color);
+  color: var(--text-primary);
+}</code></pre>
+                        </div>
+                        
+                        <p>Grid布局的强大功能：</p>
+                        <ul>
+                            <li>精确控制行和列的尺寸</li>
+                            <li>创建响应式布局无需媒体查询</li>
+                            <li>轻松实现复杂的重叠效果</li>
+                            <li>项目可以跨越多行或多列</li>
+                        </ul>
+                        
+                        <h2 id="section4">4. 媒体查询与响应式设计</h2>
+                        <p>媒体查询是实现响应式设计的核心技术，允许根据设备特性应用不同样式。</p>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>媒体查询示例</span>
+                                <button class="copy-code"><i class="far fa-copy"></i> 复制</button>
+                            </div>
+                            <pre><code>/* 基础样式 - 移动优先 */
+.container {
+  padding: 10px;
+  margin: 0 auto;
+}
+
+/* 平板设备 */
+@media (min-width: 768px) {
+  .container {
+    padding: 20px;
+    max-width: 750px;
+  }
+  
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 桌面设备 */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+  }
+  
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .sidebar {
+    display: block;
+  }
+}</code></pre>
+                        </div>
+                        
+                        <blockquote>
+                            <p><strong>移动优先原则</strong>：首先为小屏幕设计，然后逐步增强大屏幕的体验。这种方法能确保所有设备都能获得良好的用户体验。</p>
+                        </blockquote>
+                        
+                        <h2 id="section5">5. CSS变量与主题管理</h2>
+                        <p>CSS自定义属性（变量）可以让我们更轻松地管理主题和样式。</p>
+                        
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span>CSS变量示例</span>
+                                <button class="copy-code"><i class="far fa-copy"></i> 复制</button>
+                            </div>
+                            <pre><code>:root {
+  /* 颜色变量 */
+  --primary-color: rgba(140, 50, 30, 1);
+  --background-color: rgba(25, 25, 30, 1);
+  --accent-color: rgba(180, 100, 60, 0.9);
+  --text-primary: rgba(240, 240, 240, 0.95);
+  --text-secondary: rgba(200, 200, 200, 0.7);
+  
+  /* 间距变量 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* 边框半径 */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+}
+
+.element {
+  background-color: var(--primary-color);
+  color: var(--text-primary);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+}</code></pre>
+                        </div>
+                        
+                        <p>CSS变量的优势：</p>
+                        <ul>
+                            <li>提高代码可维护性</li>
+                            <li>便于主题切换</li>
+                            <li>支持动态更新样式</li>
+                            <li>减少重复代码</li>
+                        </ul>
+                        
+                        <h2 id="section6">6. 性能优化建议</h2>
+                        <p>为了保证响应式网站的良好性能，需要注意以下几点：</p>
+                        
+                        <ul>
+                            <li><strong>图片优化</strong>：使用合适的格式（WebP、AVIF），设置合适的尺寸</li>
+                            <li><strong>代码分割</strong>：按需加载JavaScript和CSS</li>
+                            <li><strong>资源压缩</strong>：压缩CSS、JavaScript和HTML文件</li>
+                            <li><strong>缓存策略</strong>：合理设置HTTP缓存头</li>
+                            <li><strong>字体优化</strong>：使用系统字体或优化Web字体</li>
+                        </ul>
+                        
+                        <p>通过合理应用这些技术，我们可以创建出既美观又高效的现代响应式网站。</p>
+                    </div>
+                </article>
+
+                <!-- 文章底部 -->
+                <div class="article-footer">
+                    <div class="article-tags">
+                        <span class="tags-label">文章标签：</span>
+                        <a href="#" class="tag">HTML5</a>
+                        <a href="#" class="tag">CSS3</a>
+                        <a href="#" class="tag">响应式设计</a>
+                        <a href="#" class="tag">Web开发</a>
+                        <a href="#" class="tag">前端开发</a>
+                        <a href="#" class="tag">Flexbox</a>
+                        <a href="#" class="tag">Grid布局</a>
+                    </div>
+                    
+                    <div class="article-actions">
+                        <div class="share-buttons">
+                            <button class="share-btn" id="copy-link">
+                                <i class="fas fa-link"></i> 复制链接
+                            </button>
+                            <button class="share-btn" id="share-twitter">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </button>
+                            <button class="share-btn" id="share-wechat">
+                                <i class="fab fa-weixin"></i> 微信
+                            </button>
+                        </div>
+                        <div class="nav-buttons">
+                            <a href="#" class="nav-btn">
+                                <i class="fas fa-arrow-left"></i> 上一篇
+                            </a>
+                            <a href="index.html" class="nav-btn">
+                                <i class="fas fa-list"></i> 返回列表
+                            </a>
+                            <a href="#" class="nav-btn">
+                                下一篇 <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 评论区域 -->
+                <section class="comments-section">
+                    <h3 class="section-title">评论 (24)</h3>
+                    
+                    <div class="comment-form">
+                        <h4>发表评论</h4>
+                        <form id="commentForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="name">姓名 *</label>
+                                    <input type="text" id="name" class="form-input" placeholder="请输入您的姓名" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="email">邮箱 *</label>
+                                    <input type="email" id="email" class="form-input" placeholder="请输入您的邮箱" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="comment">评论内容 *</label>
+                                <textarea id="comment" class="form-textarea" placeholder="请输入您的评论..." rows="5" required></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="cancel-btn">取消</button>
+                                <button type="submit" class="submit-btn">发表评论</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="comments-list">
+                        <!-- 评论示例 -->
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-avatar">L</div>
+                                <div>
+                                    <div class="comment-author">李四 <span class="comment-badge">作者</span></div>
+                                    <div class="comment-time"><i class="far fa-clock"></i> 2026-03-11 14:30</div>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                文章内容非常详实，特别是Flexbox和Grid布局的对比讲解得很清楚。期待更多关于CSS新特性的分享！
+                            </div>
+                            <div class="comment-actions">
+                                <button class="comment-action like-btn">
+                                    <i class="far fa-thumbs-up"></i> 12
+                                </button>
+                                <button class="comment-action reply-btn">
+                                    <i class="far fa-comment"></i> 回复
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-avatar">W</div>
+                                <div>
+                                    <div class="comment-author">王五</div>
+                                    <div class="comment-time"><i class="far fa-clock"></i> 2026-03-10 09:15</div>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                请问在移动端适配时，如何处理高清屏的图片显示问题？有没有推荐的最佳实践？
+                            </div>
+                            <div class="comment-actions">
+                                <button class="comment-action like-btn">
+                                    <i class="far fa-thumbs-up"></i> 8
+                                </button>
+                                <button class="comment-action reply-btn">
+                                    <i class="far fa-comment"></i> 回复
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-avatar">Z</div>
+                                <div>
+                                    <div class="comment-author">赵六</div>
+                                    <div class="comment-time"><i class="far fa-clock"></i> 2026-03-09 16:45</div>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                很实用的教程！CSS变量的部分对我帮助很大，之前一直手动修改每个颜色值，现在用变量管理方便多了。
+                            </div>
+                            <div class="comment-actions">
+                                <button class="comment-action like-btn">
+                                    <i class="far fa-thumbs-up"></i> 15
+                                </button>
+                                <button class="comment-action reply-btn">
+                                    <i class="far fa-comment"></i> 回复
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pagination">
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <span class="page-ellipsis">...</span>
+                        <button class="page-btn">5</button>
+                        <button class="page-btn next-btn">下一页 <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </section>
+
+                <!-- 相关文章 -->
+                <section class="related-articles">
+                    <h3 class="section-title">相关文章</h3>
+                    <div class="related-grid">
+                        <div class="related-article">
+                            <div class="related-tag">前端开发</div>
+                            <h4><a href="#">CSS Grid布局完全指南</a></h4>
+                            <p>深入解析CSS Grid布局的各种属性和用法，包含实际案例演示。</p>
+                            <div class="related-meta">
+                                <span><i class="far fa-calendar"></i> 2026-03-05</span>
+                                <span><i class="far fa-eye"></i> 892 阅读</span>
+                            </div>
+                        </div>
+                        <div class="related-article">
+                            <div class="related-tag">JavaScript</div>
+                            <h4><a href="#">现代JavaScript最佳实践</a></h4>
+                            <p>介绍ES6+新特性在实际项目中的应用和最佳实践。</p>
+                            <div class="related-meta">
+                                <span><i class="far fa-calendar"></i> 2026-02-28</span>
+                                <span><i class="far fa-eye"></i> 1,543 阅读</span>
+                            </div>
+                        </div>
+                        <div class="related-article">
+                            <div class="related-tag">性能优化</div>
+                            <h4><a href="#">Web性能优化策略</a></h4>
+                            <p>从加载时间到运行时性能的全面优化指南。</p>
+                            <div class="related-meta">
+                                <span><i class="far fa-calendar"></i> 2026-02-20</span>
+                                <span><i class="far fa-eye"></i> 756 阅读</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- 侧边栏 -->
+            <aside class="sidebar">
+                <!-- 文章目录 -->
+                <div class="sidebar-widget toc">
+                    <h3 class="widget-title"><i class="fas fa-list"></i> 文章目录</h3>
+                    <ul class="toc-list">
+                        <li class="toc-item"><a href="#section1" class="toc-link active">1. HTML5语义化标签</a></li>
+                        <li class="toc-item"><a href="#section2" class="toc-link">2. CSS3 Flexbox布局</a></li>
+                        <li class="toc-item"><a href="#section3" class="toc-link">3. CSS Grid布局</a></li>
+                        <li class="toc-item"><a href="#section4" class="toc-link">4. 媒体查询与响应式设计</a></li>
+                        <li class="toc-item"><a href="#section5" class="toc-link">5. CSS变量与主题管理</a></li>
+                        <li class="toc-item"><a href="#section6" class="toc-link">6. 性能优化建议</a></li>
+                    </ul>
+                </div>
+
+                <!-- 作者信息 -->
+                <div class="sidebar-widget author-info">
+                    <h3 class="widget-title"><i class="fas fa-user"></i> 关于作者</h3>
+                    <div class="author-details">
+                        <div class="author-avatar-large">J</div>
+                        <div class="author-text">
+                            <h4>张三</h4>
+                            <p class="author-title">前端开发工程师</p>
+                            <p class="author-bio">专注于现代Web技术和用户体验设计，拥有8年前端开发经验。喜欢分享技术心得和学习经验。</p>
+                        </div>
+                    </div>
+                    <div class="author-social">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- 热门标签 -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fas fa-tags"></i> 热门标签</h3>
+                    <div class="tag-cloud">
+                        <a href="#" class="tag">HTML5</a>
+                        <a href="#" class="tag">CSS3</a>
+                        <a href="#" class="tag">JavaScript</a>
+                        <a href="#" class="tag">React</a>
+                        <a href="#" class="tag">Vue</a>
+                        <a href="#" class="tag">Node.js</a>
+                        <a href="#" class="tag">Webpack</a>
+                        <a href="#" class="tag">TypeScript</a>
+                        <a href="#" class="tag">响应式设计</a>
+                        <a href="#" class="tag">前端工程化</a>
+                    </div>
+                </div>
+
+                <!-- 订阅 -->
+                <div class="sidebar-widget subscribe">
+                    <h3 class="widget-title"><i class="fas fa-bell"></i> 订阅更新</h3>
+                    <p class="subscribe-text">订阅我们的博客，获取最新的技术文章和更新通知。</p>
+                    <div class="subscribe-form">
+                        <input type="email" class="subscribe-input" placeholder="输入您的邮箱">
+                        <button class="subscribe-btn">订阅</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-info-circle"></i> 关于博客</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 投稿指南</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 友情链接</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 网站地图</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> 技术资源</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 前端资源</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 设计素材</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 工具推荐</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 学习路径</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-users"></i> 社区交流</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 技术论坛</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 问答社区</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 微信群组</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 线下活动</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-envelope"></i> 联系我</h3>
+                    <ul class="footer-links contact-links">
+                        <li><a href="#"><i class="fas fa-envelope"></i> contact@techblog.com</a></li>
+                        <li><a href="#"><i class="fab fa-weixin"></i> TechBlog2026</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> @TechBlog</a></li>
+                        <li><a href="#"><i class="fab fa-github"></i> TechBlogOrg</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 TechBlog 技术博客 | 基于 HTML5 + CSS3 + JavaScript 构建 | 配色风格: 沉稳暖调专业风</p>
+                <p class="color-info">
+                    主色调: rgba(140, 50, 30) | 背景色: rgba(25, 25, 30) | 强调色: rgba(180, 100, 60, 0.9)
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="article.js"></script>
+</body>
+</html>
