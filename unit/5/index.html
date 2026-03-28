@@ -324,8 +324,9 @@
             background-color: white;
             border-radius: 12px;
             width: 90%;
-            max-width: 500px;
-            padding: 2rem;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             animation: modalSlideIn 0.3s ease;
         }
@@ -345,7 +346,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .modal-title {
@@ -364,91 +366,130 @@
             line-height: 1;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #374151;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.2s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .form-textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 1rem;
-            min-height: 100px;
-            resize: vertical;
-            font-family: inherit;
-        }
-
-        .form-textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .submit-form-btn {
-            width: 100%;
-            background-color: #667eea;
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .submit-form-btn:hover {
-            background-color: #5568d3;
-        }
-
-        /* 验证码区域 */
-        .captcha-group {
+        .modal-tabs {
             display: flex;
-            gap: 1rem;
-            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .captcha-input {
+        .tab-btn {
             flex: 1;
+            padding: 1rem 2rem;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 3px solid transparent;
         }
 
-        .captcha-image {
-            width: 120px;
-            height: 42px;
-            background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0),
-                        linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background-color: #f8fafc;
+        }
+
+        .tab-btn:hover {
+            background-color: #f1f5f9;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .modal-body {
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .form-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* GitHub提交面板样式 */
+        .github-panel {
+            padding: 2rem;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .github-intro {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #f8fafc;
             border-radius: 8px;
-            display: flex;
+            border-left: 4px solid #238636;
+        }
+
+        .github-intro h4 {
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .github-intro p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .github-steps {
+            margin-bottom: 2rem;
+        }
+
+        .github-steps ol {
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .github-steps li {
+            margin-bottom: 1rem;
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .github-steps code {
+            background-color: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .github-btn {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #333;
-            letter-spacing: 3px;
-            cursor: pointer;
-            user-select: none;
+            gap: 0.5rem;
+            background-color: #24292f;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .github-btn:hover {
+            background-color: #1a1e22;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .github-note {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #fffbeb;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+            font-size: 0.9rem;
+            color: #92400e;
         }
 
         /* 页脚 */
@@ -526,13 +567,22 @@
                 gap: 1rem;
             }
 
-            .captcha-group {
-                flex-direction: column;
-                align-items: stretch;
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
             }
 
-            .captcha-image {
-                width: 100%;
+            .modal-body {
+                height: 70vh;
+            }
+
+            .tab-btn {
+                padding: 1rem 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .github-panel {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -714,46 +764,53 @@
                 <h3 class="modal-title">提交网站收录</h3>
                 <button class="close-btn" onclick="closeSubmitModal()">&times;</button>
             </div>
-            <form id="submitForm" onsubmit="submitSite(event)">
-                <div class="form-group">
-                    <label class="form-label" for="siteUrl">网站地址</label>
-                    <input type="url" class="form-input" id="siteUrl" placeholder="https://example.com" required>
+            
+            <!-- 提交方式切换标签 -->
+            <div class="modal-tabs">
+                <button class="tab-btn active" onclick="switchTab('wps')">快速提交（推荐）</button>
+                <button class="tab-btn" onclick="switchTab('github')">开发者提交</button>
+            </div>
+            
+            <!-- WPS表单标签页 -->
+            <div class="tab-content active" id="wpsTab">
+                <div class="modal-body">
+                    <iframe class="form-iframe" src="https://f.kdocs.cn/g/0VFr3AsF/" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="siteName">网站名称</label>
-                    <input type="text" class="form-input" id="siteName" placeholder="请输入网站名称" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="siteCategory">所属分类</label>
-                    <select class="form-input" id="siteCategory" required>
-                        <option value="">请选择分类</option>
-                        <option value="工具资源">工具资源</option>
-                        <option value="设计创意">设计创意</option>
-                        <option value="编程开发">编程开发</option>
-                        <option value="学习教育">学习教育</option>
-                        <option value="生活服务">生活服务</option>
-                        <option value="资讯媒体">资讯媒体</option>
-                        <option value="电商购物">电商购物</option>
-                        <option value="娱乐休闲">娱乐休闲</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="siteTags">标签（用逗号分隔）</label>
-                    <input type="text" class="form-input" id="siteTags" placeholder="例如：AI工具,设计素材,在线办公" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="siteDesc">网站描述</label>
-                    <textarea class="form-textarea" id="siteDesc" placeholder="简要介绍网站的功能和特色，不超过200字" maxlength="200" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">验证码</label>
-                    <div class="captcha-group">
-                        <input type="text" class="form-input captcha-input" id="captchaInput" placeholder="请输入验证码" required>
-                        <div class="captcha-image" id="captchaImage" onclick="generateCaptcha()">8A7Z</div>
+            </div>
+            
+            <!-- GitHub提交标签页 -->
+            <div class="tab-content" id="githubTab">
+                <div class="modal-body">
+                    <div class="github-panel">
+                        <div class="github-intro">
+                            <h4>👋 欢迎开发者通过GitHub提交</h4>
+                            <p>如果您是GitHub用户，通过Issue提交可以更快获得审核，提交内容会自动关联到我们的开发流程，审核进度也会实时同步。</p>
+                        </div>
+                        
+                        <div class="github-steps">
+                            <h4>提交步骤：</h4>
+                            <ol>
+                                <li>点击下方「前往GitHub提交」按钮，会跳转到我们的仓库Issue页面</li>
+                                <li>Issue标题和内容已经为您自动填充，只需要确认信息无误即可</li>
+                                <li>提交成功后，我们会在24小时内审核，审核结果会通过Issue回复通知您</li>
+                                <li>审核通过后，您的网站会在下次站点更新时上线</li>
+                            </ol>
+                        </div>
+                        
+                        <a href="https://github.com/seymour-zx/zhengxie.info/issues/new?title=%E6%96%B0%E7%AB%99%E6%8F%90%E4%BA%A4&body=%23%23%20%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%0A-%20%E7%BD%91%E7%AB%99%E5%9C%B0%E5%9D%80%EF%BC%9A%0A-%20%E7%BD%91%E7%AB%99%E5%90%8D%E7%A7%B0%EF%BC%9A%0A-%20%E6%89%80%E5%B1%9E%E5%88%86%E7%B1%BB%EF%BC%9A%0A-%20%E6%A0%87%E7%AD%BE%EF%BC%9A%0A-%20%E7%BD%91%E7%AB%99%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A%0A%23%23%20%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E%0A-%20%E6%8F%90%E4%BA%A4%E6%97%B6%E9%97%B4%EF%BC%9A%0A&labels=site-submission" 
+                           class="github-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            前往GitHub提交
+                        </a>
+                        
+                        <div class="github-note">
+                            <strong>注意：</strong>通过GitHub提交的站点需要符合我们的开源项目收录规范，优先收录技术类、工具类、开源项目站点。普通站点建议使用「快速提交」通道。
+                        </div>
                     </div>
                 </div>
-                <button type="submit" class="submit-form-btn">提交收录申请</button>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -775,7 +832,6 @@
         // 搜索功能
         const searchInput = document.getElementById('searchInput');
         const searchSuggestions = document.getElementById('searchSuggestions');
-        let currentCaptcha = '8A7Z'; // 初始验证码
 
         // 示例站点数据
         const sitesData = [
@@ -786,18 +842,6 @@
             { name: '在线工具箱', url: 'https://example.com', tags: ['工具资源', '实用工具'], desc: '各种实用在线工具集合' },
             { name: '免费图片库', url: 'https://example.com', tags: ['设计素材', '免费图库'], desc: '无版权高清图片下载' }
         ];
-
-        // 生成随机验证码
-        function generateCaptcha() {
-            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            let captcha = '';
-            for (let i = 0; i < 4; i++) {
-                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            currentCaptcha = captcha;
-            document.getElementById('captchaImage').textContent = captcha;
-            return captcha;
-        }
 
         // 防抖函数
         function debounce(func, wait) {
@@ -854,15 +898,29 @@
             }
         });
 
+        // 标签切换功能
+        function switchTab(tabName) {
+            // 移除所有标签的激活状态
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // 激活选中的标签
+            document.querySelector(`.tab-btn:nth-child(${tabName === 'wps' ? 1 : 2})`).classList.add('active');
+            document.getElementById(`${tabName}Tab`).classList.add('active');
+        }
+
         // 模态框操作
         function openSubmitModal() {
-            generateCaptcha(); // 打开模态框时刷新验证码
             document.getElementById('submitModal').style.display = 'flex';
         }
 
         function closeSubmitModal() {
             document.getElementById('submitModal').style.display = 'none';
-            document.getElementById('submitForm').reset();
+            // 重置iframe，清除用户已填写的内容
+            const iframe = document.querySelector('.form-iframe');
+            iframe.src = iframe.src;
+            // 切换回默认标签
+            switchTab('wps');
         }
 
         // 点击模态框外部关闭
@@ -870,59 +928,6 @@
             const modal = document.getElementById('submitModal');
             if (event.target == modal) {
                 closeSubmitModal();
-            }
-        }
-
-        // 提交网站到GitHub Issues
-        async function submitSite(event) {
-            event.preventDefault();
-            
-            // 验证验证码
-            const inputCaptcha = document.getElementById('captchaInput').value.toUpperCase();
-            if (inputCaptcha !== currentCaptcha) {
-                alert('验证码错误，请重新输入');
-                generateCaptcha();
-                document.getElementById('captchaInput').value = '';
-                return;
-            }
-
-            const siteData = {
-                url: document.getElementById('siteUrl').value,
-                name: document.getElementById('siteName').value,
-                category: document.getElementById('siteCategory').value,
-                tags: document.getElementById('siteTags').value.split(',').map(tag => tag.trim()),
-                desc: document.getElementById('siteDesc').value
-            };
-
-            // GitHub配置
-            const GITHUB_USERNAME = 'seymour-zx';
-            const GITHUB_REPO = 'zhengxie.info';
-
-            // 构建Issue内容
-            const issueTitle = `新站提交：${siteData.name}`;
-            const issueBody = `
-## 网站信息
-- **网站地址**：${siteData.url}
-- **网站名称**：${siteData.name}
-- **所属分类**：${siteData.category}
-- **标签**：${siteData.tags.join(', ')}
-- **网站描述**：${siteData.desc}
-
-## 提交信息
-- 提交时间：${new Date().toLocaleString('zh-CN')}
-- 提交者IP：（可通过服务端获取，前端无权限）
-            `.trim();
-
-            try {
-                // 跳转到GitHub新建Issue页面，自动填充内容
-                const githubUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}&labels=site-submission`;
-                window.open(githubUrl, '_blank');
-                
-                alert('提交成功！将跳转到GitHub完成提交，我们会尽快审核您的网站。');
-                closeSubmitModal();
-            } catch (error) {
-                console.error('提交失败:', error);
-                alert('提交失败，请稍后重试或直接通过GitHub Issues提交。');
             }
         }
 
@@ -993,9 +998,6 @@
                 }
             });
         });
-
-        // 页面加载时生成初始验证码
-        document.addEventListener('DOMContentLoaded', generateCaptcha);
     </script>
 </body>
 </html>
