@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正协导航 - 全网网站通讯录</title>
+    <meta name="description" content="正协导航是新网站推广宣发阵地，通过标签化分类让优质新站被更多人发现，打造最实用的上网入口。">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .submit-btn {
+            background-color: white;
+            color: #667eea;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 搜索框样式 */
+        .search-section {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: #334155;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-btn {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+        }
+
+        .search-btn:hover {
+            background-color: #5568d3;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-top: 4px;
+            display: none;
+            z-index: 100;
+        }
+
+        .suggestion-item {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .suggestion-item:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* 主内容区 */
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* 侧边栏 */
+        aside {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .category-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .category-link:hover,
+        .category-link.active {
+            background-color: #667eea;
+            color: white;
+        }
+
+        .tag-cloud {
+            margin-top: 2rem;
+        }
+
+        .tag-cloud-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: #f1f5f9;
+            color: #475569;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover {
+            background-color: #667eea;
+            color: white;
+        }
+
+        /* 主内容 */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title .badge {
+            background-color: #ef4444;
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        /* 站点网格 */
+        .site-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .site-card {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .site-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+            background-color: white;
+        }
+
+        .site-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 auto 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .site-name {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .site-desc {
+            font-size: 0.75rem;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        /* 站点提交模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #64748b;
+            padding: 0.25rem;
+            line-height: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-form-btn {
+            width: 100%;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-form-btn:hover {
+            background-color: #5568d3;
+        }
+
+        /* 验证码区域 */
+        .captcha-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .captcha-input {
+            flex: 1;
+        }
+
+        .captcha-image {
+            width: 120px;
+            height: 42px;
+            background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0),
+                        linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 3px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: white;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 3rem;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: #64748b;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: #667eea;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                position: static;
+            }
+
+            .category-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .category-item {
+                margin-bottom: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-section {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 1.75rem;
+                flex-direction: column;
+            }
+
+            .site-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 1rem;
+            }
+
+            .footer-links {
+                gap: 1rem;
+            }
+
+            .captcha-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .captcha-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo">
+                    正协导航
+                    <span>zhengxie.info</span>
+                </div>
+                <button class="submit-btn" onclick="openSubmitModal()">
+                    提交网站
+                </button>
+            </div>
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="搜索网站名称、标签、描述..." oninput="showSuggestions()">
+                    <button class="search-btn" onclick="searchSites()">搜索</button>
+                    <div class="search-suggestions" id="searchSuggestions">
+                        <!-- 搜索建议将通过JS动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <div class="main-container">
+        <!-- 侧边栏 -->
+        <aside>
+            <h3 class="sidebar-title">网站分类</h3>
+            <ul class="category-list">
+                <li class="category-item">
+                    <a href="#" class="category-link active">全部站点</a>
+                </li>
+                <li class="category-item">
+                    <a href="#" class="category-link">工具资源</a>
+                </li>
+                <li class="category-item">
+                    <a href="#" class="category-link">设计创意</a>
+                </li>
+                <li class="category-item">
+                    <a href="#" class="category-link">编程开发</a>
+                </li>
+                <li class="category-item">
+                    <a href="#" class="category-link">学习教育</a>
+                </li>
+                <li class="category-item">
+                    <a href="#" class="category-link">生活服务</a>
+                </li>
+                <li class="category-item">
+                    <a href="#" class="category-link">资讯媒体</a>
+                </li>
+                <li class="category-item">
+                    <a href="#" class="category-link">电商购物</a>
+                </li>
+                <li class="category-item">
+                    <a href="#" class="category-link">娱乐休闲</a>
+                </li>
+            </ul>
+
+            <div class="tag-cloud">
+                <h4 class="tag-cloud-title">热门标签</h4>
+                <div class="tags">
+                    <span class="tag">AI工具</span>
+                    <span class="tag">设计素材</span>
+                    <span class="tag">在线办公</span>
+                    <span class="tag">代码托管</span>
+                    <span class="tag">学习资源</span>
+                    <span class="tag">免费图库</span>
+                    <span class="tag">云服务</span>
+                    <span class="tag">视频剪辑</span>
+                    <span class="tag">生产力</span>
+                    <span class="tag">开源项目</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 主内容 -->
+        <main>
+            <!-- 最新收录专区 -->
+            <section class="section">
+                <h2 class="section-title">
+                    最新收录
+                    <span class="badge">NEW</span>
+                </h2>
+                <div class="site-grid" id="newSitesGrid">
+                    <!-- 新站点将通过JS动态生成 -->
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">AI</div>
+                        <div class="site-name">AI创作助手</div>
+                        <div class="site-desc">智能写作、画图一站式工具</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">设</div>
+                        <div class="site-name">设计资源库</div>
+                        <div class="site-desc">海量免费设计素材下载</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">码</div>
+                        <div class="site-name">程序员客栈</div>
+                        <div class="site-desc">开发者交流分享社区</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">学</div>
+                        <div class="site-name">在线课程平台</div>
+                        <div class="site-desc">IT技能提升学习网站</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">工</div>
+                        <div class="site-name">在线工具箱</div>
+                        <div class="site-desc">各种实用在线工具集合</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">图</div>
+                        <div class="site-name">免费图片库</div>
+                        <div class="site-desc">无版权高清图片下载</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 热门站点专区 -->
+            <section class="section">
+                <h2 class="section-title">热门站点</h2>
+                <div class="site-grid" id="hotSitesGrid">
+                    <!-- 热门站点将通过JS动态生成 -->
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">百</div>
+                        <div class="site-name">百度</div>
+                        <div class="site-desc">全球最大中文搜索引擎</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">微</div>
+                        <div class="site-name">微信公众平台</div>
+                        <div class="site-desc">公众号运营管理平台</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">知</div>
+                        <div class="site-name">知乎</div>
+                        <div class="site-desc">高质量问答社区</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">B</div>
+                        <div class="site-name">哔哩哔哩</div>
+                        <div class="site-desc">年轻人的文化社区</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">GitHub</div>
+                        <div class="site-name">GitHub</div>
+                        <div class="site-desc">全球最大代码托管平台</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">豆</div>
+                        <div class="site-name">豆瓣</div>
+                        <div class="site-desc">书评影评兴趣社区</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">邮</div>
+                        <div class="site-name">网易邮箱</div>
+                        <div class="site-desc">专业电子邮箱服务</div>
+                    </div>
+                    <div class="site-card" onclick="window.open('https://example.com', '_blank')">
+                        <div class="site-icon">图</div>
+                        <div class="site-name">图虫创意</div>
+                        <div class="site-desc">正版图片素材平台</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 站点提交模态框 -->
+    <div class="modal" id="submitModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">提交网站收录</h3>
+                <button class="close-btn" onclick="closeSubmitModal()">&times;</button>
+            </div>
+            <form id="submitForm" onsubmit="submitSite(event)">
+                <div class="form-group">
+                    <label class="form-label" for="siteUrl">网站地址</label>
+                    <input type="url" class="form-input" id="siteUrl" placeholder="https://example.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="siteName">网站名称</label>
+                    <input type="text" class="form-input" id="siteName" placeholder="请输入网站名称" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="siteCategory">所属分类</label>
+                    <select class="form-input" id="siteCategory" required>
+                        <option value="">请选择分类</option>
+                        <option value="工具资源">工具资源</option>
+                        <option value="设计创意">设计创意</option>
+                        <option value="编程开发">编程开发</option>
+                        <option value="学习教育">学习教育</option>
+                        <option value="生活服务">生活服务</option>
+                        <option value="资讯媒体">资讯媒体</option>
+                        <option value="电商购物">电商购物</option>
+                        <option value="娱乐休闲">娱乐休闲</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="siteTags">标签（用逗号分隔）</label>
+                    <input type="text" class="form-input" id="siteTags" placeholder="例如：AI工具,设计素材,在线办公" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="siteDesc">网站描述</label>
+                    <textarea class="form-textarea" id="siteDesc" placeholder="简要介绍网站的功能和特色，不超过200字" maxlength="200" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">验证码</label>
+                    <div class="captcha-group">
+                        <input type="text" class="form-input captcha-input" id="captchaInput" placeholder="请输入验证码" required>
+                        <div class="captcha-image" id="captchaImage" onclick="generateCaptcha()">8A7Z</div>
+                    </div>
+                </div>
+                <button type="submit" class="submit-form-btn">提交收录申请</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">关于我们</a>
+                <a href="#" class="footer-link">收录标准</a>
+                <a href="#" class="footer-link">联系方式</a>
+                <a href="#" class="footer-link">免责声明</a>
+                <a href="#" class="footer-link">意见反馈</a>
+            </div>
+            <p>© 2026 正协导航 zhengxie.info - 全网网站通讯录 | 新网站推广宣发阵地</p>
+        </div>
+    </footer>
+
+    <script>
+        // 搜索功能
+        const searchInput = document.getElementById('searchInput');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+        let currentCaptcha = '8A7Z'; // 初始验证码
+
+        // 示例站点数据
+        const sitesData = [
+            { name: 'AI创作助手', url: 'https://example.com', tags: ['AI工具', '生产力'], desc: '智能写作、画图一站式工具' },
+            { name: '设计资源库', url: 'https://example.com', tags: ['设计素材', '创意'], desc: '海量免费设计素材下载' },
+            { name: '程序员客栈', url: 'https://example.com', tags: ['编程开发', '开源'], desc: '开发者交流分享社区' },
+            { name: '在线课程平台', url: 'https://example.com', tags: ['学习教育', '在线课程'], desc: 'IT技能提升学习网站' },
+            { name: '在线工具箱', url: 'https://example.com', tags: ['工具资源', '实用工具'], desc: '各种实用在线工具集合' },
+            { name: '免费图片库', url: 'https://example.com', tags: ['设计素材', '免费图库'], desc: '无版权高清图片下载' }
+        ];
+
+        // 生成随机验证码
+        function generateCaptcha() {
+            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let captcha = '';
+            for (let i = 0; i < 4; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            currentCaptcha = captcha;
+            document.getElementById('captchaImage').textContent = captcha;
+            return captcha;
+        }
+
+        // 防抖函数
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // 显示搜索建议
+        const showSuggestions = debounce(function() {
+            const query = searchInput.value.trim().toLowerCase();
+            if (query.length < 1) {
+                searchSuggestions.style.display = 'none';
+                return;
+            }
+
+            const suggestions = sitesData.filter(site => 
+                site.name.toLowerCase().includes(query) || 
+                site.tags.some(tag => tag.toLowerCase().includes(query)) ||
+                site.desc.toLowerCase().includes(query)
+            );
+
+            if (suggestions.length > 0) {
+                searchSuggestions.innerHTML = suggestions.map(site => 
+                    `<div class="suggestion-item" onclick="window.open('${site.url}', '_blank')">
+                        ${site.name} - ${site.desc}
+                    </div>`
+                ).join('');
+                searchSuggestions.style.display = 'block';
+            } else {
+                searchSuggestions.style.display = 'none';
+            }
+        }, 300);
+
+        // 搜索提交
+        function searchSites() {
+            const query = searchInput.value.trim();
+            if (query) {
+                alert(`搜索功能：您搜索的关键词是 "${query}"，可对接后端实现真实搜索`);
+                // 实际开发中可对接后端搜索接口
+            }
+        }
+
+        // 点击页面其他区域关闭搜索建议
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-box')) {
+                searchSuggestions.style.display = 'none';
+            }
+        });
+
+        // 模态框操作
+        function openSubmitModal() {
+            generateCaptcha(); // 打开模态框时刷新验证码
+            document.getElementById('submitModal').style.display = 'flex';
+        }
+
+        function closeSubmitModal() {
+            document.getElementById('submitModal').style.display = 'none';
+            document.getElementById('submitForm').reset();
+        }
+
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            const modal = document.getElementById('submitModal');
+            if (event.target == modal) {
+                closeSubmitModal();
+            }
+        }
+
+        // 提交网站到GitHub Issues
+        async function submitSite(event) {
+            event.preventDefault();
+            
+            // 验证验证码
+            const inputCaptcha = document.getElementById('captchaInput').value.toUpperCase();
+            if (inputCaptcha !== currentCaptcha) {
+                alert('验证码错误，请重新输入');
+                generateCaptcha();
+                document.getElementById('captchaInput').value = '';
+                return;
+            }
+
+            const siteData = {
+                url: document.getElementById('siteUrl').value,
+                name: document.getElementById('siteName').value,
+                category: document.getElementById('siteCategory').value,
+                tags: document.getElementById('siteTags').value.split(',').map(tag => tag.trim()),
+                desc: document.getElementById('siteDesc').value
+            };
+
+            // GitHub配置
+            const GITHUB_USERNAME = 'seymour-zx';
+            const GITHUB_REPO = 'zhengxie.info';
+
+            // 构建Issue内容
+            const issueTitle = `新站提交：${siteData.name}`;
+            const issueBody = `
+## 网站信息
+- **网站地址**：${siteData.url}
+- **网站名称**：${siteData.name}
+- **所属分类**：${siteData.category}
+- **标签**：${siteData.tags.join(', ')}
+- **网站描述**：${siteData.desc}
+
+## 提交信息
+- 提交时间：${new Date().toLocaleString('zh-CN')}
+- 提交者IP：（可通过服务端获取，前端无权限）
+            `.trim();
+
+            try {
+                // 跳转到GitHub新建Issue页面，自动填充内容
+                const githubUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}&labels=site-submission`;
+                window.open(githubUrl, '_blank');
+                
+                alert('提交成功！将跳转到GitHub完成提交，我们会尽快审核您的网站。');
+                closeSubmitModal();
+            } catch (error) {
+                console.error('提交失败:', error);
+                alert('提交失败，请稍后重试或直接通过GitHub Issues提交。');
+            }
+        }
+
+        // 分类切换
+        document.querySelectorAll('.category-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                // 实际开发中可根据分类筛选站点
+                alert(`切换到分类：${this.textContent}`);
+            });
+        });
+
+        // 标签点击
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                // 实际开发中可根据标签筛选站点
+                alert(`筛选标签：${this.textContent}`);
+            });
+        });
+
+        // 本地存储用户收藏功能
+        class StorageManager {
+            constructor(key) {
+                this.key = key;
+            }
+            
+            get() {
+                try {
+                    return JSON.parse(localStorage.getItem(this.key)) || [];
+                } catch (e) {
+                    return [];
+                }
+            }
+            
+            add(item) {
+                const items = this.get();
+                if (!items.find(i => i.url === item.url)) {
+                    items.push(item);
+                    localStorage.setItem(this.key, JSON.stringify(items));
+                    return true;
+                }
+                return false;
+            }
+            
+            remove(url) {
+                const items = this.get().filter(i => i.url !== url);
+                localStorage.setItem(this.key, JSON.stringify(items));
+            }
+        }
+
+        const favoriteManager = new StorageManager('siteFavorites');
+
+        // 为站点卡片添加收藏功能（右键收藏）
+        document.querySelectorAll('.site-card').forEach(card => {
+            card.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                const siteName = this.querySelector('.site-name').textContent;
+                const siteDesc = this.querySelector('.site-desc').textContent;
+                const siteUrl = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                
+                const added = favoriteManager.add({ name: siteName, url: siteUrl, desc: siteDesc });
+                if (added) {
+                    alert(`${siteName} 已添加到收藏夹`);
+                } else {
+                    alert(`${siteName} 已经在收藏夹中`);
+                }
+            });
+        });
+
+        // 页面加载时生成初始验证码
+        document.addEventListener('DOMContentLoaded', generateCaptcha);
+    </script>
+</body>
+</html>

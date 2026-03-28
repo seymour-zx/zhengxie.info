@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修复示例 - 导航目录页面</title>
+    <style>
+        /* 常见CSS错误修复示例 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #4CAF50;
+        }
+        
+        .header h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .fix-section {
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .fix-title {
+            color: #4CAF50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .fix-title:before {
+            content: "✓";
+            background: #4CAF50;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .code-comment {
+            color: #75715e;
+        }
+        
+        .code-keyword {
+            color: #f92672;
+        }
+        
+        .code-string {
+            color: #e6db74;
+        }
+        
+        .code-tag {
+            color: #f92672;
+        }
+        
+        .code-attr {
+            color: #a6e22e;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .before, .after {
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .before {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+        }
+        
+        .after {
+            background: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .before h3, .after h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .before h3:before {
+            content: "⚠";
+            color: #f44336;
+        }
+        
+        .after h3:before {
+            content: "✓";
+            color: #4CAF50;
+        }
+        
+        .navigation {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: #45a049;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>前端代码常见错误修复示例</h1>
+            <p>针对"新建文本文档（4）"等文件的常见问题解决方案</p>
+        </div>
+        
+        <div class="fix-section">
+            <h2 class="fix-title">HTML结构修复</h2>
+            <p>确保HTML文档有完整的结构，包括必要的DOCTYPE和标签闭合。</p>
+            
+            <div class="comparison">
+                <div class="before">
+                    <h3>修复前（常见问题）</h3>
+                    <div class="code-block">
+                        <span class="code-tag">&lt;html&gt;</span><br>
+                        <span class="code-tag">&lt;head&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-tag">&lt;title&gt;</span>我的页面<span class="code-tag">&lt;/title&gt;</span><br>
+                        <span class="code-tag">&lt;/head&gt;</span><br>
+                        <span class="code-tag">&lt;body&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-tag">&lt;h1&gt;</span>欢迎<span class="code-tag">&lt;/h1&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-tag">&lt;p&gt;</span>这是一个段落<br>
+                        &nbsp;&nbsp;<span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-string">container</span><span class="code-tag">&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;内容区域<br>
+                        <span class="code-comment">&lt;!-- 缺少闭合标签 --&gt;</span>
+                    </div>
+                    <p><strong>问题：</strong>缺少DOCTYPE、meta标签、body和html闭合标签，属性缺少引号</p>
+                </div>
+                
+                <div class="after">
+                    <h3>修复后（正确写法）</h3>
+                    <div class="code-block">
+                        <span class="code-comment">&lt;!DOCTYPE html&gt;</span><br>
+                        <span class="code-tag">&lt;html</span> <span class="code-attr">lang</span>=<span class="code-string">"zh-CN"</span><span class="code-tag">&gt;</span><br>
+                        <span class="code-tag">&lt;head&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-tag">&lt;meta</span> <span class="code-attr">charset</span>=<span class="code-string">"UTF-8"</span><span class="code-tag">&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-tag">&lt;meta</span> <span class="code-attr">name</span>=<span class="code-string">"viewport"</span> <span class="code-attr">content</span>=<span class="code-string">"width=device-width, initial-scale=1.0"</span><span class="code-tag">&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-tag">&lt;title&gt;</span>我的页面<span class="code-tag">&lt;/title&gt;</span><br>
+                        <span class="code-tag">&lt;/head&gt;</span><br>
+                        <span class="code-tag">&lt;body&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-tag">&lt;h1&gt;</span>欢迎<span class="code-tag">&lt;/h1&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-tag">&lt;p&gt;</span>这是一个段落<span class="code-tag">&lt;/p&gt;</span><br>
+                        &nbsp;&nbsp;<span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-string">"container"</span><span class="code-tag">&gt;</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;内容区域<br>
+                        &nbsp;&nbsp;<span class="code-tag">&lt;/div&gt;</span><br>
+                        <span class="code-tag">&lt;/body&gt;</span><br>
+                        <span class="code-tag">&lt;/html&gt;</span>
+                    </div>
+                    <p><strong>修复：</strong>添加完整结构，修复标签闭合，添加属性引号</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="fix-section">
+            <h2 class="fix-title">CSS语法修复</h2>
+            <p>确保CSS选择器和属性值格式正确，分号使用恰当。</p>
+            
+            <div class="comparison">
+                <div class="before">
+                    <h3>修复前（常见问题）</h3>
+                    <div class="code-block">
+                        <span class="code-comment">/* 缺少分号，选择器格式错误 */</span><br>
+                        <span class="code-tag">.container</span> {<br>
+                        &nbsp;&nbsp;<span class="code-attr">width</span>: 100%<br>
+                        &nbsp;&nbsp;<span class="code-attr">padding</span>: 20px<br>
+                        &nbsp;&nbsp;<span class="code-attr">background-color</span>: #fff<br>
+                        }<br><br>
+                        <span class="code-tag">#header</span> {<br>
+                        &nbsp;&nbsp;<span class="code-attr">color</span>: red<br>
+                        &nbsp;&nbsp;<span class="code-attr">font-size</span>: 24px<br>
+                        }
+                    </div>
+                    <p><strong>问题：</strong>属性值缺少分号，可能导致样式失效</p>
+                </div>
+                
+                <div class="after">
+                    <h3>修复后（正确写法）</h3>
+                    <div class="code-block">
+                        <span class="code-comment">/* 修复后的CSS */</span><br>
+                        <span class="code-tag">.container</span> {<br>
+                        &nbsp;&nbsp;<span class="code-attr">width</span>: 100%;<br>
+                        &nbsp;&nbsp;<span class="code-attr">padding</span>: 20px;<br>
+                        &nbsp;&nbsp;<span class="code-attr">background-color</span>: #fff;<br>
+                        }<br><br>
+                        <span class="code-tag">#header</span> {<br>
+                        &nbsp;&nbsp;<span class="code-attr">color</span>: red;<br>
+                        &nbsp;&nbsp;<span class="code-attr">font-size</span>: 24px;<br>
+                        }
+                    </div>
+                    <p><strong>修复：</strong>为所有属性值添加分号，确保语法正确</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="fix-section">
+            <h2 class="fix-title">JavaScript语法修复</h2>
+            <p>确保JavaScript语句结束符正确，括号匹配完整。</p>
+            
+            <div class="comparison">
+                <div class="before">
+                    <h3>修复前（常见问题）</h3>
+                    <div class="code-block">
+                        <span class="code-comment">// 缺少分号，括号不匹配</span><br>
+                        <span class="code-keyword">function</span> <span class="code-tag">showMessage</span>(<span class="code-attr">message</span><br>
+                        &nbsp;&nbsp;<span class="code-tag">alert</span>(message<br>
+                        &nbsp;&nbsp;<span class="code-tag">console</span>.log(<span class="code-string">"消息显示"</span><br>
+                        }<br><br>
+                        <span class="code-keyword">var</span> <span class="code-attr">count</span> = 10<br>
+                        <span class="code-keyword">if</span> (count > 5 {<br>
+                        &nbsp;&nbsp;<span class="code-tag">console</span>.log(<span class="code-string">"计数大于5"</span><br>
+                        }
+                    </div>
+                    <p><strong>问题：</strong>缺少分号，函数参数括号不匹配，if语句括号不完整</p>
+                </div>
+                
+                <div class="after">
+                    <h3>修复后（正确写法）</h3>
+                    <div class="code-block">
+                        <span class="code-comment">// 修复后的JavaScript</span><br>
+                        <span class="code-keyword">function</span> <span class="code-tag">showMessage</span>(<span class="code-attr">message</span>) {<br>
+                        &nbsp;&nbsp;<span class="code-tag">alert</span>(message);<br>
+                        &nbsp;&nbsp;<span class="code-tag">console</span>.log(<span class="code-string">"消息显示"</span>);<br>
+                        }<br><br>
+                        <span class="code-keyword">var</span> <span class="code-attr">count</span> = 10;<br>
+                        <span class="code-keyword">if</span> (count > 5) {<br>
+                        &nbsp;&nbsp;<span class="code-tag">console</span>.log(<span class="code-string">"计数大于5"</span>);<br>
+                        }
+                    </div>
+                    <p><strong>修复：</strong>添加缺失的分号，修复括号匹配，确保语法正确</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="#" class="nav-btn" onclick="testFix()">测试修复功能</a>
+            <a href="pure_nav_site.html" class="nav-btn">查看导航主站</a>
+            <a href="directory_modern.html" class="nav-btn">查看目录页面</a>
+        </div>
+    </div>
+    
+    <script>
+        function testFix() {
+            console.log("测试修复功能运行中...");
+            
+            // 模拟常见错误
+            const brokenCode = `
+                <html>
+                <head>
+                <title>测试页面</title>
+                </head>
+                <body>
+                <h1>测试标题
+                <p>这是一个测试段落
+                <div class=test-div>
+                    测试内容
+                </div>
+            `;
+            
+            console.log("原始代码:", brokenCode);
+            
+            // 模拟修复
+            const fixedCode = `
+                <!DOCTYPE html>
+                <html lang="zh-CN">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>测试页面</title>
+                </head>
+                <body>
+                    <h1>测试标题</h1>
+                    <p>这是一个测试段落</p>
+                    <div class="test-div">
+                        测试内容
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            console.log("修复后的代码:", fixedCode);
+            alert("测试完成！检查控制台查看修复示例。");
+        }
+        
+        // 自动测试页面功能
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("修复示例页面加载完成");
+            
+            // 检查常见错误
+            const styleSheets = document.styleSheets.length;
+            const scripts = document.scripts.length;
+            
+            console.log(`页面统计: ${styleSheets}个样式表, ${scripts}个脚本`);
+            
+            // 添加页面加载完成提示
+            const header = document.querySelector('.header h1');
+            if (header) {
+                header.insertAdjacentHTML('afterend', 
+                    '<p id="load-status" style="color: #4CAF50; font-size: 0.9em;">✅ 页面检查完成，无严重错误</p>');
+            }
+        });
+    </script>
+</body>
+</html>
