@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正协导航 - 全网优质网站通讯录</title>
+    <meta name="description" content="正协导航是新网站推广宣发阵地，通过标签化分类让优质新站被更多人发现，打造最实用的上网入口。">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B880S4NQVK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B880S4NQVK');
+    </script>
+    
+    <!-- 百度统计 -->
+    <script async type="text/javascript">
+      var _hmt = _hmt || [];
+      (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?70e38224e5ebd850150b00a19835a25f";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+    
+    <!-- 谷歌广告Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6434243103158481"
+      crossorigin="anonymous"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        /* 头部样式 */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* 搜索框样式 */
+        .search-section {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            background-color: white;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            outline: none;
+            font-size: 0.95rem;
+            color: #334155;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .search-btn:hover {
+            background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);
+        }
+
+        /* 搜索标签栏 */
+        .search-tags {
+            max-width: 1400px;
+            margin: 0.5rem auto 0 auto;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            min-height: 30px;
+        }
+
+        .search-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            animation: tagSlideIn 0.2s ease;
+        }
+
+        @keyframes tagSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .tag-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.65rem;
+            line-height: 1;
+            transition: background 0.2s ease;
+        }
+
+        .tag-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* 广告容器样式 */
+        .ad-container {
+            max-width: 1400px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        .ad-wrapper {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .ad-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+            text-align: right;
+        }
+
+        /* 主内容区 */
+        .main-container {
+            max-width: 1400px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        /* 分类导航 */
+        .category-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .category-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .filter-info {
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .filter-info strong {
+            color: #667eea;
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+        }
+
+        .category-btn {
+            background: #f1f5f9;
+            color: #475569;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        /* 特殊分类按钮样式 */
+        .category-btn.recommended {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .category-btn.recommended:hover,
+        .category-btn.recommended.active {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+        }
+
+        .category-btn.favorite {
+            background: #fff1f2;
+            color: #e11d48;
+        }
+
+        .category-btn.favorite:hover,
+        .category-btn.favorite.active {
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(244, 63, 94, 0.3);
+        }
+
+        /* 操作按钮组 */
+        .action-bar {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: flex-end;
+            padding-top: 0.75rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .clear-all-btn {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 6px rgba(239, 68, 68, 0.25);
+        }
+
+        .clear-all-btn:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(239, 68, 68, 0.35);
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+        }
+
+        .export-btn:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.35);
+        }
+
+        /* 站点网格 */
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        /* 站点卡片 */
+        .site-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .site-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+            border-color: #667eea;
+        }
+
+        .site-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .site-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .site-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .site-info {
+            flex: 1;
+        }
+
+        .site-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.2rem;
+        }
+
+        .site-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 访问链接区 */
+        .visit-links {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .visit-link {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .visit-link:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* 标签区 */
+        .site-tags {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #e0e7ff;
+            color: #4f46e5;
+            padding: 0.25rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover {
+            background: #4f46e5;
+            color: white;
+        }
+
+        /* 空状态 */
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+        }
+
+        .empty-state h3 {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 0.75rem;
+        }
+
+        .empty-state p {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* 分享模态框 */
+        .share-modal .modal-content {
+            max-width: 500px;
+        }
+
+        .share-content {
+            padding: 2rem;
+        }
+
+        .share-intro {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .share-intro h4 {
+            font-size: 1.3rem;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .share-intro p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .share-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .share-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 1rem 0.5rem;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .share-method:hover {
+            background-color: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        .share-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .share-icon.wechat {
+            background: linear-gradient(135deg, #07c160 0%, #06ad56 100%);
+        }
+
+        .share-icon.weibo {
+            background: linear-gradient(135deg, #e6162d 0%, #d41429 100%);
+        }
+
+        .share-icon.qq {
+            background: linear-gradient(135deg, #12b7f5 0%, #0ea8e3 100%);
+        }
+
+        .share-icon.copy {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .share-method-name {
+            font-size: 0.9rem;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .share-link-section {
+            margin-top: 1.5rem;
+        }
+
+        .share-link-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .share-link-box {
+            display: flex;
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .share-link-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        .copy-link-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0 1.2rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .copy-link-btn:hover {
+            background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);
+        }
+
+        /* 站点提交模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #64748b;
+            padding: 0.25rem;
+            line-height: 1;
+        }
+
+        .modal-tabs {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1rem 2rem;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background-color: #f8fafc;
+        }
+
+        .tab-btn:hover {
+            background-color: #f1f5f9;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .modal-body {
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .form-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* GitHub提交面板样式 */
+        .github-panel {
+            padding: 2rem;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .github-intro {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #238636;
+        }
+
+        .github-intro h4 {
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .github-intro p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .github-steps {
+            margin-bottom: 2rem;
+        }
+
+        .github-steps ol {
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .github-steps li {
+            margin-bottom: 1rem;
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #24292f;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .github-btn:hover {
+            background-color: #1a1e22;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .github-note {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #fffbeb;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+
+        /* 页脚 */
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            margin-top: 2rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .footer-link {
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.85rem;
+        }
+
+        .footer-link:hover {
+            color: #667eea;
+        }
+
+        .footer-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+        }
+
+        .footer-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.35);
+        }
+
+        .share-footer-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25);
+        }
+
+        .share-footer-btn:hover {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            box-shadow: 0 3px 10px rgba(245, 158, 11, 0.35);
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 1024px) {
+            .sites-grid {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* 移动端紧凑布局 */
+            header {
+                padding: 0.75rem 1rem;
+            }
+
+            .logo-section {
+                margin-bottom: 0.75rem;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+
+            .logo span {
+                font-size: 0.75rem;
+            }
+
+            .search-input {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .search-btn {
+                padding: 0 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .search-tags {
+                margin: 0.3rem auto 0 auto;
+                gap: 0.4rem;
+            }
+
+            .search-tag {
+                padding: 0.25rem 0.7rem 0.25rem 0.8rem;
+                font-size: 0.7rem;
+            }
+
+            .ad-container {
+                margin: 1rem auto;
+            }
+
+            .main-container {
+                margin: 1rem auto;
+            }
+
+            .category-nav {
+                padding: 0.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .category-title {
+                font-size: 0.95rem;
+            }
+
+            .filter-info {
+                font-size: 0.75rem;
+            }
+
+            .category-buttons {
+                gap: 0.4rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .category-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .action-bar {
+                padding-top: 0.5rem;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .clear-all-btn,
+            .export-btn {
+                padding: 0.35rem 0.7rem;
+                font-size: 0.75rem;
+            }
+
+            .sites-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .site-card {
+                padding: 0.85rem;
+            }
+
+            .site-logo {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .site-name {
+                font-size: 1rem;
+            }
+
+            .site-desc {
+                font-size: 0.78rem;
+            }
+
+            .footer-links {
+                gap: 1rem;
+            }
+
+            .footer-link {
+                font-size: 0.8rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+
+            .modal-body {
+                height: 70vh;
+            }
+
+            .tab-btn {
+                padding: 1rem 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .github-panel {
+                padding: 1.5rem;
+            }
+
+            .share-methods {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .share-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo">
+                    正协导航
+                    <span>zhengxie.info</span>
+                </div>
+            </div>
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="搜索网站名称、标签、描述..." onkeydown="handleSearchKeydown(event)">
+                    <button class="search-btn" onclick="addSearchTag()">搜索</button>
+                </div>
+            </div>
+            <div class="search-tags" id="searchTags">
+                <!-- 搜索标签将动态生成 -->
+            </div>
+        </div>
+    </header>
+
+    <!-- 顶部广告位 -->
+    <div class="ad-container">
+        <div class="ad-wrapper">
+            <div class="ad-label">广告</div>
+            <!-- Google AdSense——自适应广告 -->
+            <ins class="adsbygoogle"
+              style="display:block"
+              data-ad-client="ca-pub-6434243103158481"
+              data-ad-slot="4856101005"
+              data-ad-format="auto"
+              data-full-width-responsive="true"></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="main-container">
+        <!-- 分类导航 -->
+        <div class="category-nav">
+            <div class="category-header">
+                <h2 class="category-title">网站分类</h2>
+                <div class="filter-info" id="filterInfo">
+                    共 <strong id="resultCount">8</strong> 个站点
+                </div>
+            </div>
+            <div class="category-buttons" id="categoryButtons">
+                <!-- 分类按钮将动态生成 -->
+            </div>
+            <div class="action-bar">
+                <button class="clear-all-btn" onclick="clearAllFilters()">
+                    全部站点 / 清除筛选
+                </button>
+                <button class="export-btn" onclick="exportFilteredSites()">
+                    📥 导出当前结果
+                </button>
+            </div>
+        </div>
+
+        <!-- 站点网格 -->
+        <div class="sites-grid" id="sitesGrid">
+            <!-- 站点卡片将动态生成 -->
+        </div>
+    </div>
+
+    <!-- 站点提交模态框 -->
+    <div class="modal" id="submitModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">提交网站收录</h3>
+                <button class="close-btn" onclick="closeSubmitModal()">&times;</button>
+            </div>
+            
+            <!-- 提交方式切换标签 -->
+            <div class="modal-tabs">
+                <button class="tab-btn active" onclick="switchTab('wps')">快速提交（推荐）</button>
+                <button class="tab-btn" onclick="switchTab('github')">开发者提交</button>
+            </div>
+            
+            <!-- WPS表单标签页 -->
+            <div class="tab-content active" id="wpsTab">
+                <div class="modal-body">
+                    <iframe class="form-iframe" src="https://f.kdocs.cn/g/0VFr3AsF/" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <!-- GitHub提交标签页 -->
+            <div class="tab-content" id="githubTab">
+                <div class="modal-body">
+                    <div class="github-panel">
+                        <div class="github-intro">
+                            <h4>👋 欢迎开发者通过GitHub提交</h4>
+                            <p>如果您是GitHub用户，通过Issue提交可以更快获得审核，提交内容会自动关联到我们的开发流程，审核进度也会实时同步。</p>
+                        </div>
+                        
+                        <div class="github-steps">
+                            <h4>提交步骤：</h4>
+                            <ol>
+                                <li>点击下方「前往GitHub提交」按钮，会跳转到我们的仓库Issue页面</li>
+                                <li>Issue标题和内容已经为您自动填充，只需要确认信息无误即可</li>
+                                <li>提交成功后，我们会在24小时内审核，审核结果会通过Issue回复通知您</li>
+                                <li>审核通过后，您的网站会在下次站点更新时上线</li>
+                            </ol>
+                        </div>
+                        
+                        <a href="https://github.com/seymour-zx/zhengxie.info/issues/new?title=%E6%96%B0%E7%AB%99%E6%8F%90%E4%BA%A4&body=%23%23%20%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%0A-%20%E7%BD%91%E7%AB%99%E5%9C%B0%E5%9D%80%EF%BC%9A%0A-%20%E7%BD%91%E7%AB%99%E5%90%8D%E7%A7%B0%EF%BC%9A%0A-%20%E6%89%80%E5%B1%9E%E5%88%86%E7%B1%BB%EF%BC%9A%0A-%20%E6%A0%87%E7%AD%BE%EF%BC%9A%0A-%20%E7%BD%91%E7%AB%99%E6%8F%8F%E8%BF%B0%EF%BC%9A%0A-%20%E6%98%AF%E5%90%A6%E5%8A%A0%E5%85%A5%E6%94%B6%E8%97%8F%EF%BC%9A%0A-%20%E6%98%AF%E5%90%A6%E8%AE%BE%E4%B8%BA%E6%96%B0%E6%8E%A8%E8%8D%90%EF%BC%9A%0A%0A%23%23%20%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E%0A-%20%E6%8F%90%E4%BA%A4%E6%97%B6%E9%97%B4%EF%BC%9A%0A&labels=site-submission" 
+                           class="github-btn" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            前往GitHub提交
+                        </a>
+                        
+                        <div class="github-note">
+                            <strong>注意：</strong>通过GitHub提交的站点需要符合我们的开源项目收录规范，优先收录技术类、工具类、开源项目站点。普通站点建议使用「快速提交」通道。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分享模态框 -->
+    <div class="modal share-modal" id="shareModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">分享网站</h3>
+                <button class="close-btn" onclick="closeShareModal()">&times;</button>
+            </div>
+            <div class="share-content">
+                <div class="share-intro">
+                    <h4>✨ 分享正协导航给朋友</h4>
+                    <p>全网优质网站通讯录，让更多人发现好用的新站</p>
+                </div>
+                
+                <div class="share-methods">
+                    <div class="share-method" onclick="shareToWechat()">
+                        <div class="share-icon wechat">💬</div>
+                        <span class="share-method-name">微信</span>
+                    </div>
+                    <div class="share-method" onclick="shareToWeibo()">
+                        <div class="share-icon weibo">📱</div>
+                        <span class="share-method-name">微博</span>
+                    </div>
+                    <div class="share-method" onclick="shareToQQ()">
+                        <div class="share-icon qq">🐧</div>
+                        <span class="share-method-name">QQ</span>
+                    </div>
+                    <div class="share-method" onclick="copyShareLink()">
+                        <div class="share-icon copy">🔗</div>
+                        <span class="share-method-name">复制链接</span>
+                    </div>
+                </div>
+
+                <div class="share-link-section">
+                    <div class="share-link-title">网站链接</div>
+                    <div class="share-link-box">
+                        <input type="text" class="share-link-input" id="shareLinkInput" value="https://zhengxie.info" readonly>
+                        <button class="copy-link-btn" onclick="copyShareLink()">复制</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">关于我们</a>
+                <a href="#" class="footer-link">收录标准</a>
+                <a href="#" class="footer-link">联系方式</a>
+                <a href="#" class="footer-link">免责声明</a>
+                <a href="#" class="footer-link">意见反馈</a>
+                <button class="footer-btn share-footer-btn" onclick="openShareModal()">
+                    🔗 分享网站
+                </button>
+                <button class="footer-btn" onclick="openSubmitModal()">
+                    提交网站
+                </button>
+            </div>
+            <p>© 2026 正协导航 zhengxie.info - 全网优质网站通讯录 | 新网站推广宣发阵地</p>
+        </div>
+    </footer>
+
+    <script>
+        // 站点数据 - 已从最新表格导入
+        const sitesData = [
+            {
+                id: 1,
+                name: "正协导航",
+                logo: "正协",
+                logoUrl: "https://zhengxie.info/favicon.ico",
+                description: "全网网站通讯录",
+                category: "资讯媒体",
+                isFavorite: true,
+                isRecommended: true,
+                tags: ["导航网站", "网站收录"],
+                links: [
+                    { name: "官网", url: "https://zhengxie.info" }
+                ]
+            },
+            {
+                id: 2,
+                name: "WPS 灵犀",
+                logo: "WPS",
+                logoUrl: "",
+                description: "WPS",
+                category: "其他",
+                isFavorite: false,
+                isRecommended: false,
+                tags: ["AI"],
+                links: [
+                    { name: "官网", url: "https://365.kdocs.cn/3rd/lingxi/aioffice/chat/10830185741025407" }
+                ]
+            },
+            {
+                id: 3,
+                name: "表单",
+                logo: "表单",
+                logoUrl: "",
+                description: "123",
+                category: "工具资源",
+                isFavorite: false,
+                isRecommended: false,
+                tags: ["123"],
+                links: [
+                    { name: "官网", url: "https://f.kdocs.cn/ksform/w/write/0VFr3AsF#routePromt" }
+                ]
+            },
+            {
+                id: 4,
+                name: "WPS 灵犀",
+                logo: "WPS",
+                logoUrl: "",
+                description: "AI办公助手，支持文档处理、智能写作",
+                category: "工具资源",
+                isFavorite: false,
+                isRecommended: true,
+                tags: ["AI工具", "办公", "免费"],
+                links: [
+                    { name: "官网", url: "https://365.kdocs.cn/3rd/lingxi/aioffice/chat" }
+                ]
+            },
+            {
+                id: 5,
+                name: "在线格式转换",
+                logo: "格式",
+                logoUrl: "",
+                description: "支持超过300种文件格式的在线转换",
+                category: "工具资源",
+                isFavorite: false,
+                isRecommended: false,
+                tags: ["格式转换", "在线工具", "免费"],
+                links: [
+                    { name: "官网", url: "https://convertio.co/zh/" }
+                ]
+            },
+            {
+                id: 6,
+                name: "TinyPNG",
+                logo: "Tiny",
+                logoUrl: "",
+                description: "智能PNG和JPEG图片压缩工具",
+                category: "工具资源",
+                isFavorite: false,
+                isRecommended: false,
+                tags: ["图片处理", "在线工具", "免费"],
+                links: [
+                    { name: "官网", url: "https://tinypng.com/" }
+                ]
+            },
+            {
+                id: 7,
+                name: "SmallPDF",
+                logo: "PDF",
+                logoUrl: "",
+                description: "一站式PDF处理工具，支持压缩、转换、编辑",
+                category: "工具资源",
+                isFavorite: false,
+                isRecommended: false,
+                tags: ["PDF处理", "在线工具", "效率"],
+                links: [
+                    { name: "官网", url: "https://smallpdf.com/cn" }
+                ]
+            },
+            {
+                id: 8,
+                name: "百度翻译",
+                logo: "翻译",
+                logoUrl: "",
+                description: "支持200多种语言的在线翻译服务",
+                category: "工具资源",
+                isFavorite: false,
+                isRecommended: false,
+                tags: ["翻译工具", "免费", "在线"],
+                links: [
+                    { name: "官网", url: "https://fanyi.baidu.com/" }
+                ]
+            },
+            {
+                id: 9,
+                name: "二维码生成器",
+                logo: "二维码",
+                logoUrl: "",
+                description: "免费在线二维码生成和识别工具",
+                category: "工具资源",
+                isFavorite: false,
+                isRecommended: false,
+                tags: ["二维码", "工具", "免费"],
+                links: [
+                    { name: "官网", url: "https://cli.im/" }
+                ]
+            }
+        ];
+
+        // 当前筛选状态
+        let currentCategory = "all";
+        let searchTags = []; // 存储所有搜索标签
+        let filteredSites = [...sitesData]; // 存储当前筛选结果
+        const allCategories = [...new Set(sitesData.map(site => site.category))];
+
+        // 初始化页面
+        function initPage() {
+            renderCategories();
+            renderSites();
+        }
+
+        // 更新结果计数
+        function updateResultCount() {
+            document.getElementById('resultCount').textContent = filteredSites.length;
+        }
+
+        // 渲染分类按钮
+        function renderCategories() {
+            const container = document.getElementById('categoryButtons');
+            
+            // 先添加「最新推荐」分类按钮
+            const recommendedButton = document.createElement('button');
+            recommendedButton.className = 'category-btn recommended';
+            recommendedButton.textContent = '🔥 最新推荐';
+            recommendedButton.dataset.category = 'recommended';
+            recommendedButton.onclick = () => filterByCategory('recommended');
+            container.appendChild(recommendedButton);
+            
+            // 再添加「我的收藏」分类按钮
+            const favoriteButton = document.createElement('button');
+            favoriteButton.className = 'category-btn favorite';
+            favoriteButton.textContent = '⭐ 我的收藏';
+            favoriteButton.dataset.category = 'favorite';
+            favoriteButton.onclick = () => filterByCategory('favorite');
+            container.appendChild(favoriteButton);
+            
+            // 最后添加其他分类按钮
+            allCategories.forEach(category => {
+                const button = document.createElement('button');
+                button.className = 'category-btn';
+                button.textContent = category;
+                button.dataset.category = category;
+                button.onclick = () => filterByCategory(category);
+                container.appendChild(button);
+            });
+        }
+
+        // 渲染搜索标签
+        function renderSearchTags() {
+            const container = document.getElementById('searchTags');
+            container.innerHTML = searchTags.map((tag, index) => `
+                <div class="search-tag">
+                    ${tag}
+                    <button class="tag-close" onclick="removeSearchTag(${index})">×</button>
+                </div>
+            `).join('');
+        }
+
+        // 处理搜索框回车键
+        function handleSearchKeydown(event) {
+            if (event.key === 'Enter') {
+                addSearchTag();
+            }
+        }
+
+        // 添加搜索标签
+        function addSearchTag() {
+            const input = document.getElementById('searchInput');
+            const keyword = input.value.trim();
+            
+            if (!keyword) return;
+            if (searchTags.includes(keyword)) {
+                alert('该搜索标签已存在');
+                input.value = '';
+                return;
+            }
+
+            searchTags.push(keyword);
+            input.value = '';
+            renderSearchTags();
+            renderSites();
+        }
+
+        // 移除搜索标签
+        function removeSearchTag(index) {
+            searchTags.splice(index, 1);
+            renderSearchTags();
+            renderSites();
+        }
+
+        // 渲染站点卡片
+        function renderSites() {
+            const container = document.getElementById('sitesGrid');
+            filteredSites = sitesData.filter(site => {
+                let matchCategory;
+                if (currentCategory === 'recommended') {
+                    // 最新推荐分类：只显示isRecommended为true的站点
+                    matchCategory = site.isRecommended === true;
+                } else if (currentCategory === 'favorite') {
+                    // 我的收藏分类：只显示isFavorite为true的站点
+                    matchCategory = site.isFavorite === true;
+                } else {
+                    // 普通分类：按原有分类匹配
+                    matchCategory = currentCategory === "all" || site.category === currentCategory;
+                }
+                
+                // 所有搜索标签必须同时满足（AND关系）
+                const matchAllTags = searchTags.every(tag => {
+                    const lowerTag = tag.toLowerCase();
+                    return site.name.toLowerCase().includes(lowerTag) ||
+                           site.description.toLowerCase().includes(lowerTag) ||
+                           site.tags.some(t => t.toLowerCase().includes(lowerTag));
+                });
+                
+                return matchCategory && matchAllTags;
+            });
+
+            updateResultCount();
+
+            if (filteredSites.length === 0) {
+                if (currentCategory === 'recommended') {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <h3>🔥 暂无最新推荐站点</h3>
+                            <p>在提交模板中标记「最新推荐」为"是"，即可在这里展示精选网站</p>
+                        </div>
+                    `;
+                } else if (currentCategory === 'favorite') {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <h3>❤️ 还没有收藏的站点</h3>
+                            <p>在提交模板中标记「我的收藏」为"是"，即可在这里显示常用网站</p>
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <h3>🔍 没有找到匹配的站点</h3>
+                            <p>试试调整搜索关键词或筛选条件，或者点击上方按钮清空所有筛选</p>
+                        </div>
+                    `;
+                }
+                return;
+            }
+
+            container.innerHTML = filteredSites.map(site => `
+                <div class="site-card">
+                    <div class="site-header">
+                        <div class="site-logo">
+                            ${site.logoUrl ? `<img src="${site.logoUrl}" alt="${site.name} logo" loading="lazy">` : site.logo}
+                        </div>
+                        <div class="site-info">
+                            <h3 class="site-name">
+                                ${site.name} 
+                                ${site.isRecommended ? '🔥' : ''}
+                                ${site.isFavorite ? '⭐' : ''}
+                            </h3>
+                            <p class="site-desc" title="${site.description}">${site.description}</p>
+                        </div>
+                    </div>
+                    <div class="visit-links">
+                        ${site.links.map(link => 
+                            `<a href="${link.url}" target="_blank" class="visit-link">${link.name}</a>`
+                        ).join('')}
+                    </div>
+                    <div class="site-tags">
+                        ${site.tags.map(tag => 
+                            `<span class="tag" onclick="addTagToSearch('${tag}')">${tag}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 点击卡片标签添加到搜索
+        function addTagToSearch(tag) {
+            if (!searchTags.includes(tag)) {
+                searchTags.push(tag);
+                renderSearchTags();
+                renderSites();
+            }
+        }
+
+        // 按分类筛选
+        function filterByCategory(category) {
+            currentCategory = category;
+            
+            // 更新按钮状态
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.category === category);
+            });
+            
+            renderSites();
+        }
+
+        // 清空所有筛选
+        function clearAllFilters() {
+            currentCategory = "all";
+            searchTags = [];
+            
+            document.getElementById('searchInput').value = "";
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            renderSearchTags();
+            renderSites();
+        }
+
+        // 导出当前筛选结果
+        function exportFilteredSites() {
+            if (filteredSites.length === 0) {
+                alert("没有可导出的站点数据");
+                return;
+            }
+
+            // 生成CSV内容
+            const headers = ["网站名称", "网站描述", "所属分类", "最新推荐", "我的收藏", "标签", "访问链接"];
+            const rows = filteredSites.map(site => {
+                const links = site.links.map(link => `${link.name}: ${link.url}`).join("；");
+                const tags = site.tags.join("，");
+                return [
+                    `"${site.name}"`,
+                    `"${site.description}"`,
+                    `"${site.category}"`,
+                    `"${site.isRecommended ? '是' : '否'}"`,
+                    `"${site.isFavorite ? '是' : '否'}"`,
+                    `"${tags}"`,
+                    `"${links}"`
+                ];
+            });
+
+            const csvContent = [
+                headers.join(","),
+                ...rows.map(row => row.join(","))
+            ].join("\n");
+
+            // 创建下载链接
+            const blob = new Blob(["\ufeff" + csvContent], { type: "text/csv;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            
+            // 生成文件名（包含筛选条件）
+            let fileName = "正协导航站点导出";
+            if (currentCategory !== "all") fileName += `_${currentCategory}`;
+            if (searchTags.length > 0) fileName += `_${searchTags.join('_')}`;
+            fileName += `_${new Date().toLocaleDateString()}.csv`;
+            
+            link.download = fileName;
+            link.click();
+            URL.revokeObjectURL(url);
+
+            alert(`成功导出 ${filteredSites.length} 个站点数据`);
+        }
+
+        // 标签切换功能
+        function switchTab(tabName) {
+            // 移除所有标签的激活状态
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // 激活选中的标签
+            document.querySelector(`.tab-btn:nth-child(${tabName === 'wps' ? 1 : 2})`).classList.add('active');
+            document.getElementById(`${tabName}Tab`).classList.add('active');
+        }
+
+        // 提交模态框操作
+        function openSubmitModal() {
+            document.getElementById('submitModal').style.display = 'flex';
+        }
+
+        function closeSubmitModal() {
+            document.getElementById('submitModal').style.display = 'none';
+            // 重置iframe，清除用户已填写的内容
+            const iframe = document.querySelector('.form-iframe');
+            iframe.src = iframe.src;
+            // 切换回默认标签
+            switchTab('wps');
+        }
+
+        // 分享模态框操作
+        function openShareModal() {
+            document.getElementById('shareModal').style.display = 'flex';
+            // 自动填充当前页面链接
+            document.getElementById('shareLinkInput').value = window.location.href;
+        }
+
+        function closeShareModal() {
+            document.getElementById('shareModal').style.display = 'none';
+        }
+
+        // 分享功能
+        function shareToWechat() {
+            alert("请截图保存二维码或复制链接，在微信中分享");
+        }
+
+        function shareToWeibo() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent("正协导航 - 全网优质网站通讯录，发现更多好用的新网站！");
+            window.open(`https://service.weibo.com/share/share.php?url=${url}&title=${title}`, '_blank');
+        }
+
+        function shareToQQ() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent("正协导航 - 全网优质网站通讯录");
+            window.open(`https://connect.qq.com/widget/shareqq/index.html?url=${url}&title=${title}`, '_blank');
+        }
+
+        function copyShareLink() {
+            const input = document.getElementById('shareLinkInput');
+            input.select();
+            document.execCommand('copy');
+            alert("链接已复制到剪贴板，快去分享给朋友吧！");
+        }
+
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            const submitModal = document.getElementById('submitModal');
+            const shareModal = document.getElementById('shareModal');
+            
+            if (event.target == submitModal) {
+                closeSubmitModal();
+            }
+            if (event.target == shareModal) {
+                closeShareModal();
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+</body>
+</html>
