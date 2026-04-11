@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多功能实用导航站</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- 👇 直接把你所有的JS脚本粘贴到这里 -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B880S4NQVK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B880S4NQVK');
+    </script>
+    <!-- 百度统计 -->
+    <script async type="text/javascript">
+      var _hmt = _hmt || [];
+      (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?70e38224e5ebd850150b00a19835a25f";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+    <!-- 谷歌广告Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6434243103158481"
+      crossorigin="anonymous"></script>
+    <!-- 👆 脚本粘贴结束 -->
+
+</head>
+<body>
+
+    <header class="fixed-header">
+        <div class="container header-inner">
+            <!-- 左侧logo -->
+            <div class="logo">
+                <span class="logo-icon">正</span>
+            </div>
+            <!-- 右侧文字 -->
+            <div class="header-text">
+                <div class="header-title">正协导航</div>
+                <div class="header-domain">zhengxie.info</div>
+            </div>
+            <!-- 右侧背景切换按钮（保留原有功能） -->
+            <div class="bg-switch-group">
+                <button id="bgColorBtn" class="bg-switch-btn">🎨 换配色</button>
+                <button id="bgImageBtn" class="bg-switch-btn">🖼️ 换背景图</button>
+                <button id="bgResetBtn" class="bg-switch-btn">↺ 重置</button>
+            </div>
+        </div>
+    </header>
+    <!-- 头部占位，避免内容被固定头部挡住 -->
+    <div class="header-placeholder"></div>
+
+
+
+    <main class="container main-content">
+
+
+        <!-- 🆕 移动到此处的搜索框板块 + 分类tab栏（吸顶容器） -->
+        <div class="sticky-container" id="stickyContainer">
+            <!-- 搜索框 -->
+            <div class="sticky-search-box">
+                <input type="text" id="search-input" placeholder="搜索站点名称/关键词...">
+                <button id="search-btn">搜索</button>
+            </div>
+            <!-- 👇 新增：搜索标签容器，放在搜索和分类之间 -->
+            <div class="search-tags-bar" id="search-tags-bar" style="display: none;">
+                <span class="tags-label">筛选条件：</span>
+                <div class="tags-list" id="tags-list"></div>
+            </div>
+            <!-- 原有一级分类tab栏（代码不变） -->
+            <div class="cate-tab-bar">
+                <div class="cate-tab active" data-cate="all">🏠 全部</div>
+                <div class="cate-tab active" data-cate="tool">🔧 实用工具</div>
+                <div class="cate-tab" data-cate="news">📰 资讯媒体</div>
+                <div class="cate-tab" data-cate="edu">📚 学习教育</div>
+                <div class="cate-tab" data-cate="entertainment">🎮 休闲娱乐</div>
+                <div class="cate-tab" data-cate="life">🏠 生活服务</div>
+            </div>
+
+
+
+        </div>
+        <!-- 吸顶占位，避免吸顶时布局跳动 -->
+        <div class="sticky-placeholder" id="stickyPlaceholder"></div>
+
+
+
+        <!-- 👇 直接把广告位容器粘贴到这里 -->
+        <div class="ad-container">
+            <div class="ad-wrapper">
+                <div class="ad-label">广告</div>
+                <!-- Google AdSense——自适应广告 -->
+                <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-6434243103158481"
+                data-ad-slot="4856101005"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+        <!-- 👆 广告位粘贴结束 -->
+
+        <!-- 🆕 新增：电商式轮播板块 -->
+        <div class="carousel-section">
+            <div class="carousel-container" id="carousel">
+                <div class="carousel-wrapper">
+                    <!-- 轮播项，可自行替换图片链接和跳转地址 -->
+                    <a href="https://www.zhengxie.info" target="_blank" class="carousel-item">
+                        <img src="https://picsum.photos/1200/300?random=1" alt="轮播图1">
+                    </a>
+                    <a href="https://www.zhengxie.info" target="_blank" class="carousel-item">
+                        <img src="https://picsum.photos/1200/300?random=2" alt="轮播图2">
+                    </a>
+                    <a href="https://www.zhengxie.info" target="_blank" class="carousel-item">
+                        <img src="https://picsum.photos/1200/300?random=3" alt="轮播图3">
+                    </a>
+                    <a href="https://www.zhengxie.info" target="_blank" class="carousel-item">
+                        <img src="https://picsum.photos/1200/300?random=4" alt="轮播图4">
+                    </a>
+                </div>
+                <!-- 轮播左右箭头 -->
+                <button class="carousel-arrow carousel-prev">‹</button>
+                <button class="carousel-arrow carousel-next">›</button>
+                <!-- 轮播指示器 -->
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-index="0"></span>
+                    <span class="indicator" data-index="1"></span>
+                    <span class="indicator" data-index="2"></span>
+                    <span class="indicator" data-index="3"></span>
+                </div>
+            </div>
+        </div>
+    
+
+
+        <!-- 分类内容区 -->
+        <div class="cate-content-wrapper">
+            <!-- 实用工具分类内容 -->
+            <div class="cate-content active" id="tool-content">
+
+            <!-- 👇 新增：二级分类tab栏，所有二级标题放这一行，最后加「全部」 -->
+            <div class="level2-tab-bar">
+                <div class="level2-tab" data-level2="all">全部</div> <!-- 最后加全部标签 -->
+                <div class="level2-tab active" data-level2="efficiency">效率工具</div>
+                <div class="level2-tab" data-level2="design">设计创意</div>
+                <div class="level2-tab" data-level2="development">开发工具</div>
+            </div>
+
+                <!-- 第二层分类1-1：效率办公 -->
+                <div class="category-level2" data-level2="efficiency">
+                    <div class="site-grid">
+                        <a href="https://www.wps.cn" target="_blank" class="site-card">
+                            <div class="site-icon">📄</div>
+                            <div class="site-info">
+                                <div class="site-name">WPS Office官方办公软件平台</div>
+                                <div class="site-desc">文档/表格/演示全功能办公</div>
+                            </div>
+                        </a>
+                        <a href="https://www.notion.so" target="_blank" class="site-card">
+                            <div class="site-icon">📝</div>
+                            <div class="site-info">
+                                <div class="site-name">Notion 一站式团队协作与知识管理工具</div>
+                                <div class="site-desc">笔记、项目管理一体化</div>
+                            </div>
+                        </a>
+                        <a href="https://trello.com" target="_blank" class="site-card">
+                            <div class="site-icon">📋</div>
+                            <div class="site-info">
+                                <div class="site-name">Trello 可视化看板项目任务管理平台</div>
+                                <div class="site-desc">敏捷项目管理首选</div>
+                            </div>
+                        </a>
+                        <a href="https://www.baidu.com" target="_blank" class="site-card">
+                            <div class="site-icon">🔍</div>
+                            <div class="site-info">
+                                <div class="site-name">百度搜索引擎</div>
+                                <div class="site-desc">全球最大中文搜索引擎</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 第二层分类1-2：设计创意 -->
+                <div class="category-level2" data-level2="design">
+                    <div class="site-grid">
+                        <a href="https://www.zcool.com.cn" target="_blank" class="site-card">
+                            <div class="site-icon">🎨</div>
+                            <div class="site-info">
+                                <div class="site-name">站酷 中国设计师互动交流平台</div>
+                                <div class="site-desc">设计作品、灵感参考</div>
+                            </div>
+                        </a>
+                        <a href="https://www.behance.net" target="_blank" class="site-card">
+                            <div class="site-icon">🖼️</div>
+                            <div class="site-info">
+                                <div class="site-name">Behance 全球创意设计作品展示平台</div>
+                                <div class="site-desc">国际顶级设计作品库</div>
+                            </div>
+                        </a>
+                        <a href="https://www.adobe.com/cn" target="_blank" class="site-card">
+                            <div class="site-icon">✂️</div>
+                            <div class="site-info">
+                                <div class="site-name">Adobe官方创意云系列软件正版订阅与资源下载中心</div>
+                                <div class="site-desc">PS/AI/PR等专业设计软件</div>
+                            </div>
+                        </a>
+                        <a href="https://www.huaban.com" target="_blank" class="site-card">
+                            <div class="site-icon">🌹</div>
+                            <div class="site-info">
+                                <div class="site-name">花瓣网 图片素材灵感收集平台</div>
+                                <div class="site-desc">高清设计素材图库</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 剩余分类的二级内容和你原来的完全一致，直接复制原来的二级分类到对应cate-content里即可 -->
+            </div>
+
+            <!-- 其余4个一级分类的cate-content结构同上，把你原来的对应分类内容放进来即可，注意每个cate-content的id要和tab的data-cate对应 -->
+            <div class="cate-content" id="news-content">
+
+            <!-- 👇 新增：二级分类tab栏，所有二级标题放这一行，最后加「全部」 -->
+            <div class="level2-tab-bar">
+                <div class="level2-tab" data-level2="all">全部</div> <!-- 最后加全部标签 -->
+                <div class="level2-tab active" data-level2="zonghexinwen">综合新闻</div>
+                <div class="level2-tab" data-level2="kejizixun">科技资讯</div>
+                <div class="level2-tab" data-level2="caijingzixun">财经资讯</div>
+            </div>
+
+
+                <!-- 第二层分类2-1：综合新闻 -->
+                <div class="category-level2"  data-level2="zonghexinwen">
+                    <div class="site-grid">
+                        <a href="https://www.people.com.cn" target="_blank" class="site-card">
+                            <div class="site-icon">📰</div>
+                            <div class="site-info">
+                                <div class="site-name">人民网 中央重点新闻网站官方平台</div>
+                                <div class="site-desc">权威时政新闻发布</div>
+                            </div>
+                        </a>
+                        <a href="https://www.xinhuanet.com" target="_blank" class="site-card">
+                            <div class="site-icon">📢</div>
+                            <div class="site-info">
+                                <div class="site-name">新华网 国家通讯社官方新闻网站</div>
+                                <div class="site-desc">最新政策、时政资讯</div>
+                            </div>
+                        </a>
+                        <a href="https://www.ifeng.com" target="_blank" class="site-card">
+                            <div class="site-icon">🔥</div>
+                            <div class="site-info">
+                                <div class="site-name">凤凰网 全球华人领先的综合资讯门户</div>
+                                <div class="site-desc">两岸三地资讯汇总</div>
+                            </div>
+                        </a>
+                        <a href="https://www.thepaper.cn" target="_blank" class="site-card">
+                            <div class="site-icon">📄</div>
+                            <div class="site-info">
+                                <div class="site-name">澎湃新闻 原创新闻聚合平台</div>
+                                <div class="site-desc">深度新闻报道</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 第二层分类2-2：科技资讯 -->
+                <div class="category-level2"  data-level2="kejizixun">
+                    <div class="site-grid">
+                        <a href="https://www.36kr.com" target="_blank" class="site-card">
+                            <div class="site-icon">💻</div>
+                            <div class="site-info">
+                                <div class="site-name">36氪 新商业媒体与创业服务平台</div>
+                                <div class="site-desc">创投、科技行业动态</div>
+                            </div>
+                        </a>
+                        <a href="https://www.huxiu.com" target="_blank" class="site-card">
+                            <div class="site-icon">🐯</div>
+                            <div class="site-info">
+                                <div class="site-name">虎嗅网 聚焦科技与商业的深度资讯平台</div>
+                                <div class="site-desc">科技行业深度分析</div>
+                            </div>
+                        </a>
+                        <a href="https://techcrunch.com" target="_blank" class="site-card">
+                            <div class="site-icon">🌐</div>
+                            <div class="site-info">
+                                <div class="site-name">TechCrunch 国际科技创业新闻媒体</div>
+                                <div class="site-desc">全球科技创业动态</div>
+                            </div>
+                        </a>
+                        <a href="https://www.ithome.com" target="_blank" class="site-card">
+                            <div class="site-icon">📱</div>
+                            <div class="site-info">
+                                <div class="site-name">IT之家 数码科技资讯门户网站</div>
+                                <div class="site-desc">数码产品、软件资讯</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 第二层分类2-3：财经资讯 -->
+                <div class="category-level2"  data-level2="caijingzixun">
+                    <div class="site-grid">
+                        <a href="https://www.eastmoney.com" target="_blank" class="site-card">
+                            <div class="site-icon">📈</div>
+                            <div class="site-info">
+                                <div class="site-name">东方财富网 专业财经证券资讯门户</div>
+                                <div class="site-desc">股票、基金行情查询</div>
+                            </div>
+                        </a>
+                        <a href="https://wallstreetcn.com" target="_blank" class="site-card">
+                            <div class="site-icon">💹</div>
+                            <div class="site-info">
+                                <div class="site-name">华尔街见闻 全球金融市场实时资讯平台</div>
+                                <div class="site-desc">全球财经动态实时更新</div>
+                            </div>
+                        </a>
+                        <a href="https://www.caixin.com" target="_blank" class="site-card">
+                            <div class="site-icon">💰</div>
+                            <div class="site-info">
+                                <div class="site-name">财新网 原创财经新闻与深度分析媒体</div>
+                                <div class="site-desc">财经政策深度解读</div>
+                            </div>
+                        </a>
+                        <a href="https://www.10jqka.com.cn" target="_blank" class="site-card">
+                            <div class="site-icon">📊</div>
+                            <div class="site-info">
+                                <div class="site-name">同花顺 金融数据与证券服务平台</div>
+                                <div class="site-desc">炒股、理财工具</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div><!-- 原来的资讯媒体分类内容 -->
+
+            <div class="cate-content" id="edu-content">
+
+            <!-- 👇 新增：二级分类tab栏，所有二级标题放这一行，最后加「全部」 -->
+            <div class="level2-tab-bar">
+                <div class="level2-tab" data-level2="all">全部</div> <!-- 最后加全部标签 -->
+                <div class="level2-tab active" data-level2="gaodengjiaoyu">高等教育</div>
+                <div class="level2-tab" data-level2="yuyanxuexi">语言学习</div>
+                <div class="level2-tab" data-level2="zhiyejineng">职业技能</div>
+            </div>
+
+
+                <!-- 第二层分类3-1：高等教育 -->
+                <div class="category-level2"  data-level2="gaodengjiaoyu">
+                    <div class="site-grid">
+                        <a href="https://www.chsi.com.cn" target="_blank" class="site-card">
+                            <div class="site-icon">🎓</div>
+                            <div class="site-info">
+                                <div class="site-name">中国高等教育学生信息网(学信网)官方查询平台</div>
+                                <div class="site-desc">学历、学籍信息查询</div>
+                            </div>
+                        </a>
+                        <a href="https://www.coursera.org" target="_blank" class="site-card">
+                            <div class="site-icon">🏫</div>
+                            <div class="site-info">
+                                <div class="site-name">Coursera 全球名校公开课程学习平台</div>
+                                <div class="site-desc">世界名校课程免费学</div>
+                            </div>
+                        </a>
+                        <a href="https://www.icourse163.org" target="_blank" class="site-card">
+                            <div class="site-icon">📚</div>
+                            <div class="site-info">
+                                <div class="site-name">中国大学MOOC 国内高校精品课程平台</div>
+                                <div class="site-desc">国内大学公开课资源</div>
+                            </div>
+                        </a>
+                        <a href="https://www.xuetangx.com" target="_blank" class="site-card">
+                            <div class="site-icon">🎒</div>
+                            <div class="site-info">
+                                <div class="site-name">学堂在线 清华大学发起的慕课平台</div>
+                                <div class="site-desc">优质在线学习资源</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 第二层分类3-2：语言学习 -->
+                <div class="category-level2"  data-level2="yuyanxuexi">
+                    <div class="site-grid">
+                        <a href="https://www.duolingo.cn" target="_blank" class="site-card">
+                            <div class="site-icon">🇺🇸</div>
+                            <div class="site-info">
+                                <div class="site-name">多邻国 免费多语种趣味学习平台</div>
+                                <div class="site-desc">英语、日语等多语种学习</div>
+                            </div>
+                        </a>
+                        <a href="https://dict.youdao.com" target="_blank" class="site-card">
+                            <div class="site-icon">📖</div>
+                            <div class="site-info">
+                                <div class="site-name">网易有道词典 在线翻译与语言学习工具</div>
+                                <div class="site-desc">翻译、单词查询</div>
+                            </div>
+                        </a>
+                        <a href="https://www.babbel.com" target="_blank" class="site-card">
+                            <div class="site-icon">🗣️</div>
+                            <div class="site-info">
+                                <div class="site-name">Babbel 实用外语口语专项学习平台</div>
+                                <div class="site-desc">口语能力提升</div>
+                            </div>
+                        </a>
+                        <a href="https://www.hjenglish.com" target="_blank" class="site-card">
+                            <div class="site-icon">🇬🇧</div>
+                            <div class="site-info">
+                                <div class="site-name">沪江英语 英语学习资源门户</div>
+                                <div class="site-desc">英语考试、学习资料</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 第二层分类3-3：职业技能 -->
+                <div class="category-level2"  data-level2="zhiyejineng">
+                    <div class="site-grid">
+                        <a href="https://study.163.com" target="_blank" class="site-card">
+                            <div class="site-icon">💼</div>
+                            <div class="site-info">
+                                <div class="site-name">网易云课堂 职业技能在线学习平台</div>
+                                <div class="site-desc">IT、设计、职场技能课程</div>
+                            </div>
+                        </a>
+                        <a href="https://www.imooc.com" target="_blank" class="site-card">
+                            <div class="site-icon">⌨️</div>
+                            <div class="site-info">
+                                <div class="site-name">慕课网 互联网IT技能在线学习平台</div>
+                                <div class="site-desc">编程、开发实战课程</div>
+                            </div>
+                        </a>
+                        <a href="https://www.zhihu.com/education" target="_blank" class="site-card">
+                            <div class="site-icon">🧠</div>
+                            <div class="site-info">
+                                <div class="site-name">知乎学堂 职场与生活技能学习平台</div>
+                                <div class="site-desc">各领域实用技能课程</div>
+                            </div>
+                        </a>
+                        <a href="https://www.jikexueyuan.com" target="_blank" class="site-card">
+                            <div class="site-icon">👨‍💻</div>
+                            <div class="site-info">
+                                <div class="site-name">极客学院 IT职业技能提升学习平台</div>
+                                <div class="site-desc">IT技术进阶课程</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div><!-- 原来的学习教育分类内容 -->
+
+            <div class="cate-content" id="entertainment-content">
+
+            <!-- 👇 新增：二级分类tab栏，所有二级标题放这一行，最后加「全部」 -->
+            <div class="level2-tab-bar">
+                <div class="level2-tab" data-level2="all">全部</div> <!-- 最后加全部标签 -->
+                <div class="level2-tab active" data-level2="shipinpingtai">视频平台</div>
+                <div class="level2-tab" data-level2="yinyuepingtai">音乐平台</div>
+                <div class="level2-tab" data-level2="xingqushequ">兴趣社区</div>
+            </div>
+
+                <!-- 第二层分类4-1：视频平台 -->
+                <div class="category-level2"  data-level2="shipinpingtai">
+                    <div class="site-grid">
+                        <a href="https://www.bilibili.com" target="_blank" class="site-card">
+                            <div class="site-icon">📺</div>
+                            <div class="site-info">
+                                <div class="site-name">哔哩哔哩 年轻人流行文化视频社区平台</div>
+                                <div class="site-desc">番剧、教程、生活视频</div>
+                            </div>
+                        </a>
+                        <a href="https://v.qq.com" target="_blank" class="site-card">
+                            <div class="site-icon">🎬</div>
+                            <div class="site-info">
+                                <div class="site-name">腾讯视频 综合视频内容播放平台</div>
+                                <div class="site-desc">剧集、综艺、电影资源</div>
+                            </div>
+                        </a>
+                        <a href="https://www.iqiyi.com" target="_blank" class="site-card">
+                            <div class="site-icon">🥝</div>
+                            <div class="site-info">
+                                <div class="site-name">爱奇艺 正版高清视频在线播放平台</div>
+                                <div class="site-desc">影视、综艺内容观看</div>
+                            </div>
+                        </a>
+                        <a href="https://www.douyin.com" target="_blank" class="site-card">
+                            <div class="site-icon">🎵</div>
+                            <div class="site-info">
+                                <div class="site-name">抖音 短视频内容创作与分享平台</div>
+                                <div class="site-desc">短视频内容浏览</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 第二层分类4-2：音乐平台 -->
+                <div class="category-level2"  data-level2="yinyuepingtai">
+                    <div class="site-grid">
+                        <a href="https://music.163.com" target="_blank" class="site-card">
+                            <div class="site-icon">🎵</div>
+                            <div class="site-info">
+                                <div class="site-name">网易云音乐 音乐社区与播放平台</div>
+                                <div class="site-desc">音乐播放、歌单推荐</div>
+                            </div>
+                        </a>
+                        <a href="https://y.qq.com" target="_blank" class="site-card">
+                            <div class="site-icon">🎧</div>
+                            <div class="site-info">
+                                <div class="site-name">QQ音乐 正版数字音乐播放平台</div>
+                                <div class="site-desc">海量正版音乐资源</div>
+                            </div>
+                        </a>
+                        <a href="https://www.kugou.com" target="_blank" class="site-card">
+                            <div class="site-icon">🎤</div>
+                            <div class="site-info">
+                                <div class="site-name">酷狗音乐 专业音频播放与K歌平台</div>
+                                <div class="site-desc">音乐播放、K歌功能</div>
+                            </div>
+                        </a>
+                        <a href="https://www.xiami.com" target="_blank" class="site-card">
+                            <div class="site-icon">🎶</div>
+                            <div class="site-info">
+                                <div class="site-name">虾米音乐 小众音乐推荐与播放平台</div>
+                                <div class="site-desc">小众音乐、独立音乐人作品</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 第二层分类4-3：兴趣社区 -->
+                <div class="category-level2"  data-level2="xingqushequ">
+                    <div class="site-grid">
+                        <a href="https://www.douban.com" target="_blank" class="site-card">
+                            <div class="site-icon">📔</div>
+                            <div class="site-info">
+                                <div class="site-name">豆瓣 书籍电影音乐评分与兴趣社区</div>
+                                <div class="site-desc">书影音评分、兴趣小组</div>
+                            </div>
+                        </a>
+                        <a href="https://www.xiaohongshu.com" target="_blank" class="site-card">
+                            <div class="site-icon">🍠</div>
+                            <div class="site-info">
+                                <div class="site-name">小红书 生活方式分享与种草社区</div>
+                                <div class="site-desc">生活攻略、好物推荐</div>
+                            </div>
+                        </a>
+                        <a href="https://www.zhihu.com" target="_blank" class="site-card">
+                            <div class="site-icon">❓</div>
+                            <div class="site-info">
+                                <div class="site-name">知乎 中文互联网高质量问答社区</div>
+                                <div class="site-desc">专业知识、经验分享</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div><!-- 原来的休闲娱乐分类内容 -->
+
+            <div class="cate-content" id="life-content">
+
+            <!-- 👇 新增：二级分类tab栏，所有二级标题放这一行，最后加「全部」 -->
+            <div class="level2-tab-bar">
+                <div class="level2-tab" data-level2="all">全部</div> <!-- 最后加全部标签 -->
+                <div class="level2-tab active" data-level2="zhengwuminsheng">政务民生</div>
+                <div class="level2-tab" data-level2="chuxinglvyou">出行旅游</div>
+            </div>
+
+                <!-- 第二层分类5-1：政务民生 -->
+                <div class="category-level2"  data-level2="zhengwuminsheng">
+                    <div class="site-grid">
+                        <a href="https://www.gjzwfw.gov.cn" target="_blank" class="site-card">
+                            <div class="site-icon">🏛️</div>
+                            <div class="site-info">
+                                <div class="site-name">国家政务服务平台全国一体化在线政务服务入口</div>
+                                <div class="site-desc">全国政务事项在线办理</div>
+                            </div>
+                        </a>
+                        <a href="https://www.12306.cn" target="_blank" class="site-card">
+                            <div class="site-icon">🚄</div>
+                            <div class="site-info">
+                                <div class="site-name">中国铁路12306官方购票服务平台</div>
+                                <div class="site-desc">火车票查询、购票</div>
+                            </div>
+                        </a>
+                        <a href="https://bj.122.gov.cn" target="_blank" class="site-card">
+                            <div class="site-icon">🚗</div>
+                            <div class="site-info">
+                                <div class="site-name">公安部交通管理局互联网交通安全服务管理平台</div>
+                                <div class="site-desc">交管业务在线办理</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 第二层分类5-2：出行旅游 -->
+                <div class="category-level2"  data-level2="chuxinglvyou">
+                    <div class="site-grid">
+                        <a href="https://www.ctrip.com" target="_blank" class="site-card">
+                            <div class="site-icon">✈️</div>
+                            <div class="site-info">
+                                <div class="site-name">携程旅行 酒店机票门票预订服务平台</div>
+                                <div class="site-desc">出行、住宿一站式预订</div>
+                            </div>
+                        </a>
+                        <a href="https://www.fliggy.com" target="_blank" class="site-card">
+                            <div class="site-icon">🐷</div>
+                            <div class="site-info">
+                                <div class="site-name">飞猪旅行 阿里巴巴旗下旅行服务平台</div>
+                                <div class="site-desc">旅游产品、出行票务预订</div>
+                            </div>
+                        </a>
+                        <a href="https://www.qunar.com" target="_blank" class="site-card">
+                            <div class="site-icon">🗺️</div>
+                            <div class="site-info">
+                                <div class="site-name">去哪儿网 机票酒店比价预订平台</div>
+                                <div class="site-desc">低价出行产品查询</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div><!-- 原来的生活服务分类内容 -->              
+                
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 实用导航站 | 收录50+优质站点</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
