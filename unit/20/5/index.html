@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>正协网址导航-收录实用网站与工具的权威综合导航平台</title>
+    <meta name="description" content="正协网址导航致力于为用户提供精选的网站收录服务，涵盖常用网站、实用工具、行业资源、热门资讯等分类导航。一站式解决您的上网需求，快速找到所需网站，大幅提升上网效率与浏览体验。">
+    <meta name="keywords" content="网址导航,网站收录,常用网站,工具导航,实用网址,网站大全,上网导航,资源导航">
+    <link rel="shortcut icon" href="https://zhengxie.info/favicon.ico">
+    <link rel="canonical" href="https://zhengxie.info">
+    <meta property="og:title" content="正协网址导航-收录实用网站与工具的权威综合导航平台">
+    <meta property="og:description" content="正协网址导航致力于为用户提供精选的网站收录服务，涵盖常用网站、实用工具、行业资源、热门资讯等分类导航。一站式解决您的上网需求，快速找到所需网站，大幅提升上网效率与浏览体验。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zhengxie.info">
+    <style>
+        * {margin: 0;padding: 0;box-sizing: border-box;font-family: system-ui, -apple-system, sans-serif;}
+        html, body {overflow-x: hidden;max-width: 100vw;}
+        :root {--primary: #2563eb;--gray: #f3f4f6;--gray-dark: #6b7280;--border: #e5e7eb;--radius: 8px;}
+        body {background-color: #f9fafb;color: #111827;padding-top: 180px;}
+        /* 置顶区域 */
+        .sticky-header {position: fixed;top: 0;left: 0;right: 0;background: white;box-shadow: 0 2px 10px rgba(0,0,0,0.05);z-index: 999;max-width: 100vw;}
+        /* 标题板块 */
+        .header-top {display: flex;justify-content: space-between;align-items: center;padding: 12px 20px;border-bottom: 1px solid var(--border);max-width: 1200px;margin: 0 auto;width: 100%;}
+        .logo-area {display: flex;align-items: center;gap: 10px;}
+        .logo-icon {width: 36px;height: 36px;background: var(--primary);color: white;border-radius: var(--radius);display: flex;align-items: center;justify-content: center;font-size: 18px;font-weight: bold;overflow: hidden;}
+        .logo-icon img {width: 100%;height: 100%;object-fit: cover;}
+        .logo-text h1 {font-size: 20px;font-weight: 600;}
+        .logo-text p {font-size: 12px;color: var(--gray-dark);}
+        .submit-btn {width: 36px;height: 36px;border: 1px solid var(--border);border-radius: var(--radius);display: flex;align-items: center;justify-content: center;cursor: pointer;transition: 0.2s;}
+        .submit-btn:hover {background: var(--gray);border-color: var(--primary);}
+        /* 搜索板块 */
+        .search-area {padding: 12px 20px;border-bottom: 1px solid var(--border);max-width: 1200px;margin: 0 auto;width: 100%;}
+        .search-box {display: flex;gap: 8px;}
+        .search-input {flex: 1;padding: 10px 14px;border: 1px solid var(--border);border-radius: var(--radius);font-size: 14px;outline: none;transition: 0.2s;max-width: calc(100% - 80px);}
+        .search-input:focus {border-color: var(--primary);box-shadow: 0 0 0 3px rgba(37,99,235,0.1);}
+        .search-btn {padding: 0 20px;background: var(--primary);color: white;border: none;border-radius: var(--radius);cursor: pointer;transition: 0.2s;flex-shrink: 0;}
+        .search-btn:hover {background: #1d4ed8;}
+        .search-tags {display: flex;flex-wrap: wrap;gap: 8px;margin-top: 10px;min-height: 28px;max-width: 100%;}
+        .tag-item {display: flex;align-items: center;gap: 6px;padding: 4px 8px;background: var(--gray);border-radius: 6px;font-size: 13px;flex-shrink: 0;}
+        .tag-close {cursor: pointer;color: var(--gray-dark);font-size: 16px;line-height: 1;}
+        .tag-close:hover {color: #ef4444;}
+        /* 分类板块 */
+        .category-area {padding: 12px 20px;border-bottom: 1px solid var(--border);max-width: 1200px;margin: 0 auto;width: 100%;}
+        .category-header {display: flex;justify-content: space-between;align-items: center;margin-bottom: 10px;flex-wrap: wrap;gap: 8px;}
+        .category-title {display: flex;align-items: center;gap: 6px;font-size: 15px;font-weight: 500;}
+        .category-count {font-size: 13px;color: var(--gray-dark);display: flex;align-items: center;gap: 8px;flex-shrink: 0;}
+        .export-btn {cursor: pointer;color: var(--primary);transition: 0.2s;}
+        .export-btn:hover {color: #1d4ed8;}
+        .category-tabs {display: flex;gap: 8px;overflow-x: auto;padding-bottom: 2px;max-width: 100%;scrollbar-width: none;}
+        .category-tabs::-webkit-scrollbar {display: none;}
+        .category-tab {padding: 6px 14px;border: 1px solid var(--border);border-radius: 20px;font-size: 14px;cursor: pointer;transition: 0.2s;white-space: nowrap;flex-shrink: 0;}
+        .category-tab.active {background: var(--primary);color: white;border-color: var(--primary);}
+        .category-tab:hover {border-color: var(--primary);}
+        /* 广告板块 */
+        .ad-section {max-width: 1200px;margin: 20px auto;padding: 0 20px;}
+        .ad-container {width: 100%;min-height: 100px;background: white;border-radius: var(--radius);border: 1px solid var(--border);padding: 10px;position: relative;max-width: 100%;}
+        .ad-label {position: absolute;top: 10px;left: 10px;background: #f59e0b;color: white;padding: 2px 6px;border-radius: 4px;font-size: 12px;z-index: 10;}
+        /* 轮播板块 */
+        .carousel-section {max-width: 1200px;margin: 20px auto;padding: 0 20px;}
+        .carousel {width: 100%;height: 200px;background: white;border-radius: var(--radius);border: 1px solid var(--border);display: flex;align-items: center;justify-content: center;color: var(--gray-dark);position: relative;overflow: hidden;max-width: 100%;}
+        .carousel-item {width: 100%;height: 100%;position: absolute;top: 0;left: 0;opacity: 0;transition: 0.5s;display: flex;align-items: center;justify-content: center;}
+        .carousel-item.active {opacity: 1;}
+        /* 站点列表 */
+        .site-list {max-width: 1200px;margin: 20px auto;padding: 0 20px;display: grid;grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));gap: 16px;}
+        .site-card {background: white;border-radius: var(--radius);border: 1px solid var(--border);padding: 16px;transition: 0.2s;max-width: 100%;overflow: hidden;}
+        .site-card:hover {box-shadow: 0 4px 12px rgba(0,0,0,0.05);}
+        /* 卡片第一层 */
+        .site-header {display: flex;gap: 12px;align-items: center;margin-bottom: 12px;min-height: 48px;overflow-x: auto;position: relative;scrollbar-width: none;max-width: 100%;}
+        .site-header::-webkit-scrollbar {display: none;}
+        .site-logo {width: 40px;height: 40px;border-radius: var(--radius);display: flex;align-items: center;justify-content: center;font-weight: bold;color: white;background: var(--primary);flex-shrink: 0;overflow: hidden;}
+        .site-logo img {width: 100%;height: 100%;object-fit: cover;}
+        .site-info {flex: 1;min-width: 0;max-width: calc(100% - 64px);}
+        .site-name {font-weight: 600;font-size: 15px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+        .site-desc {font-size: 13px;color: var(--gray-dark);white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin-top: 2px;}
+        .site-header:hover .scroll-arrow {opacity: 1;}
+        .scroll-arrow {position: absolute;top: 50%;transform: translateY(-50%);background: rgba(255,255,255,0.9);width: 24px;height: 24px;border-radius: 50%;display: flex;align-items: center;justify-content: center;opacity: 0;transition: 0.2s;z-index: 2;cursor: pointer;}
+        .scroll-arrow.left {left: 0;}
+        .scroll-arrow.right {right: 0;}
+        /* 卡片第二层 */
+        .site-category {display: flex;gap: 6px;margin-bottom: 10px;min-height: 24px;overflow-x: auto;scrollbar-width: none;max-width: 100%;}
+        .site-category::-webkit-scrollbar {display: none;}
+        .cate-tag {padding: 3px 8px;background: var(--gray);border-radius: 4px;font-size: 12px;white-space: nowrap;flex-shrink: 0;}
+        .tag-icon {font-size: 12px;margin-left: 4px;}
+        /* 卡片第三层 */
+        .site-links {display: flex;gap: 6px;margin-bottom: 10px;min-height: 24px;overflow-x: auto;scrollbar-width: none;max-width: 100%;}
+        .site-links::-webkit-scrollbar {display: none;}
+        .link-tag {padding: 3px 8px;border: 1px solid var(--border);border-radius: 4px;font-size: 12px;white-space: nowrap;cursor: pointer;transition: 0.2s;flex-shrink: 0;}
+        .link-tag:hover {border-color: var(--primary);color: var(--primary);}
+        /* 卡片第四层 */
+        .site-keywords {display: flex;gap: 6px;min-height: 24px;overflow-x: auto;scrollbar-width: none;max-width: 100%;}
+        .site-keywords::-webkit-scrollbar {display: none;}
+        .keyword-tag {padding: 3px 8px;background: #eff6ff;color: var(--primary);border-radius: 4px;font-size: 12px;white-space: nowrap;cursor: pointer;transition: 0.2s;flex-shrink: 0;}
+        .keyword-tag:hover {background: #dbeafe;}
+        /* 附加板块 */
+        .tools-section {max-width: 1200px;margin: 20px auto;padding: 20px;background: white;border-radius: var(--radius);border: 1px solid var(--border);display: flex;gap: 30px;flex-wrap: wrap;justify-content: space-around;max-width: calc(100% - 40px);margin-left: auto;margin-right: auto;}
+        .tool-item {text-align: center;}
+        .tool-value {font-size: 24px;font-weight: 600;margin-bottom: 4px;}
+        .tool-label {font-size: 13px;color: var(--gray-dark);}
+        /* 页脚 */
+        footer {max-width: 1200px;margin: 40px auto;padding: 20px;text-align: center;color: var(--gray-dark);font-size: 13px;border-top: 1px solid var(--border);max-width: 100%;}
+        .footer-links {display: flex;gap: 20px;justify-content: center;margin-bottom: 10px;flex-wrap: wrap;}
+        .footer-links a {color: var(--gray-dark);text-decoration: none;}
+        .footer-links a:hover {color: var(--primary);}
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            body {padding-top: 200px;}
+            .site-list {grid-template-columns: 1fr;padding: 0 16px;}
+            .header-top, .search-area, .category-area {padding: 10px 16px;}
+            .logo-text h1 {font-size: 18px;}
+            .logo-text p {font-size: 11px;}
+            .search-input {font-size: 13px;}
+            .category-tab {font-size: 13px;padding: 5px 12px;}
+            .tools-section {gap: 20px;padding: 16px;max-width: calc(100% - 32px);}
+            .tool-value {font-size: 20px;}
+            .tool-label {font-size: 12px;}
+            footer {padding: 16px;font-size: 12px;}
+            .footer-links {gap: 12px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="sticky-header">
+        <!-- 标题板块 -->
+        <div class="header-top">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <img src="https://zhengxie.info/favicon.ico" alt="正协导航" onerror="this.parentElement.innerHTML='正'">
+                </div>
+                <div class="logo-text">
+                    <h1>正协导航</h1>
+                    <p>zhengxie.info</p>
+                </div>
+            </div>
+            <div class="submit-btn" onclick="window.open('#', '_blank')">✍️</div>
+        </div>
+        <!-- 搜索板块 -->
+        <div class="search-area">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="输入关键词搜索站点">
+                <button class="search-btn" id="searchBtn">搜索</button>
+            </div>
+            <div class="search-tags" id="searchTags"></div>
+        </div>
+        <!-- 分类板块 -->
+        <div class="category-area">
+            <div class="category-header">
+                <div class="category-title">
+                    <span>🔍</span>
+                    <span>网站分类</span>
+                </div>
+                <div class="category-count">
+                    <span>当前筛选: <span id="siteCount">0</span> 个站点</span>
+                    <span class="export-btn" onclick="exportExcel()">📥 导出</span>
+                </div>
+            </div>
+            <div class="category-tabs" id="categoryTabs">
+                <div class="category-tab" data-cate="我的收藏">我的收藏</div>
+                <div class="category-tab" data-cate="最新收录">最新收录</div>
+                <div class="category-tab" data-cate="全部">全部</div>
+                <div class="category-tab" data-cate="政府机构">政府机构</div>
+                <div class="category-tab" data-cate="银行机构">银行机构</div>
+                <div class="category-tab" data-cate="工具资源">工具资源</div>
+                <div class="category-tab" data-cate="资讯媒体">资讯媒体</div>
+                <div class="category-tab" data-cate="社交平台">社交平台</div>
+                <div class="category-tab" data-cate="其他">其他</div>
+            </div>
+        </div>
+    </div>
+    <!-- 广告板块 -->
+    <div class="ad-section">
+    </div>
+    <!-- 轮播板块 -->
+    <div class="carousel-section">
+        <div class="carousel" id="carousel">
+            <div class="carousel-item active">轮播图1</div>
+            <div class="carousel-item">轮播图2</div>
+            <div class="carousel-item">轮播图3</div>
+        </div>
+    </div>
+    <!-- 站点列表 -->
+    <div class="site-list" id="siteList"></div>
+    <!-- 附加板块 -->
+    <div class="tools-section">
+        <div class="tool-item">
+            <div class="tool-value" id="currentTime"></div>
+            <div class="tool-label">当前时间</div>
+        </div>
+        <div class="tool-item">
+            <div class="tool-value" id="currentDate"></div>
+            <div class="tool-label">当前日期</div>
+        </div>
+        <div class="tool-item">
+            <div class="tool-value" id="weather">--℃</div>
+            <div class="tool-label">本地天气</div>
+        </div>
+    </div>
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-links">
+            <a href="/">首页</a>
+            <a href="/directory">目录</a>
+            <a href="/about">关于我们</a>
+            <a href="/privacy">隐私政策</a>
+        </div>
+        <p>© 2024 正协导航 保留所有权利 | 本站收录的所有网站均来自用户提交，如有侵权请联系删除。</p>
+    </footer>
+    <script>
+        const siteData = [
+            {"id":1,"name":"百度","logo":"https://www.baidu.com/favicon.ico","desc":"全球最大的中文搜索引擎","category":["工具资源","其他"],"tags":["热门"],"links":{"官网":"https://www.baidu.com"},"keywords":["搜索","搜索引擎","百度"],"is_new":false,"is_fav":true},
+            {"id":2,"name":"腾讯网","logo":"https://www.qq.com/favicon.ico","desc":"中国最大的门户网站","category":["资讯媒体","其他"],"tags":["热门"],"links":{"官网":"https://www.qq.com"},"keywords":["新闻","资讯","腾讯"],"is_new":false,"is_fav":true},
+            {"id":3,"name":"阿里巴巴","logo":"https://www.1688.com/favicon.ico","desc":"全球领先的批发采购平台","category":["其他"],"tags":["电商"],"links":{"官网":"https://www.1688.com"},"keywords":["电商","批发","采购"],"is_new":true,"is_fav":false},
+            {"id":4,"name":"这是一个超长的站点名称用来测试文本溢出效果是否正常","logo":"","desc":"这是一个超长的站点描述，用来测试描述字段的文本溢出效果是否正常，超过部分会自动隐藏显示省略号","category":["测试","其他"],"tags":["测试数据"],"links":{},"keywords":["超长名称","超长描述","测试"],"is_new":true,"is_fav":false},
+            {"id":5,"name":"无logo测试站点","logo":"","desc":"这个站点没有配置logo，会自动显示名称第一个字","category":["测试","其他"],"tags":["无logo"],"links":{"官网":"https://example.com"},"keywords":["无logo","测试"],"is_new":false,"is_fav":false},
+            {"id":6,"name":"多分类测试站点","logo":"","desc":"这个站点属于多个分类，测试分类筛选功能","category":["工具资源","资讯媒体","社交平台","其他"],"tags":["多分类"],"links":{"官网":"https://example.com","GitHub":"https://github.com"},"keywords":["多分类","测试"],"is_new":false,"is_fav":true},
+            {"id":7,"name":"全平台链接测试","logo":"","desc":"这个站点配置了所有平台的链接，测试多链接横向滚动","category":["测试","其他"],"tags":["全链接"],"links":{"官网":"https://example.com","小红书":"https://xiaohongshu.com","知乎":"https://zhihu.com","微信公众号":"https://mp.weixin.qq.com","抖音":"https://douyin.com","GitHub":"https://github.com","百度贴吧":"https://tieba.baidu.com","其他":"https://example.com/other"},"keywords":["多链接","全平台","测试"],"is_new":true,"is_fav":false},
+            {"id":8,"name":"多关键词测试站点","logo":"","desc":"这个站点有非常多的关键词，测试关键词横向滚动","category":["测试","其他"],"tags":["多关键词"],"links":{},"keywords":["关键词1","关键词2","关键词3","关键词4","关键词5","关键词6","关键词7","关键词8","关键词9","关键词10"],"is_new":false,"is_fav":false},
+            {"id":9,"name":"无描述测试站点","logo":"","desc":"","category":["测试","其他"],"tags":["无描述"],"links":{},"keywords":[],"is_new":false,"is_fav":false},
+            {"id":10,"name":"特殊符号测试@#$%^&*","logo":"","desc":"名称包含特殊符号，测试渲染效果","category":["测试","其他"],"tags":["特殊符号"],"links":{},"keywords":["特殊符号","测试"],"is_new":false,"is_fav":false},
+            // 政府机构类10个
+            {"id":11,"name":"中华人民共和国中央人民政府","logo":"https://www.gov.cn/favicon.ico","desc":"中央人民政府官方网站","category":["政府机构"],"tags":["官方"],"links":{"官网":"https://www.gov.cn"},"keywords":["政府","中央","官方"],"is_new":false,"is_fav":true},
+            {"id":12,"name":"国家发展和改革委员会","logo":"https://www.ndrc.gov.cn/favicon.ico","desc":"国家发展和改革委员会官方网站","category":["政府机构"],"tags":["官方"],"links":{"官网":"https://www.ndrc.gov.cn"},"keywords":["发改委","政府","官方"],"is_new":false,"is_fav":false},
+            {"id":13,"name":"教育部","logo":"https://www.moe.gov.cn/favicon.ico","desc":"教育部官方网站","category":["政府机构"],"tags":["官方"],"links":{"官网":"https://www.moe.gov.cn"},"keywords":["教育","政府","官方"],"is_new":false,"is_fav":false},
+            {"id":14,"name":"科学技术部","logo":"https://www.most.gov.cn/favicon.ico","desc":"科学技术部官方网站","category":["政府机构"],"tags":["官方"],"links":{"官网":"https://www.most.gov.cn"},"keywords":["科技","政府","官方"],"is_new":false,"is_fav":false},
+            {"id":15,"name":"工业和信息化部","logo":"https://www.miit.gov.cn/favicon.ico","desc":"工业和信息化部官方网站","category":["政府机构"],"tags":["官方"],"links":{"官网":"https://www.miit.gov.cn"},"keywords":["工信","政府","官方"],"is_new":false,"is_fav":false},
+            {"id":16,"name":"公安部","logo":"https://www.mps.gov.cn/favicon.ico","desc":"公安部官方网站","category":["政府机构"],"tags":["官方"],"links":{"官网":"https://www.mps.gov.cn"},"keywords":["公安","政府","官方"],"is_new":false,"is_fav":false},
+            {"id":17,"name":"民政部","logo":"https://www.mca.gov.cn/favicon.ico","desc":"民政部官方网站","category":["政府机构"],"tags":["官方"],"links":{"官网":"https://www.mca.gov.cn"},"keywords":["民政","政府","官方"],"is_new":false,"is_fav":false},
+            {"id":18,"name":"司法部","logo":"https://www.moj.gov.cn/favicon.ico","desc":"司法部官方网站","category":["政府机构"],"tags":["官方"],"links":{"官网":"https://www.moj.gov.cn"},"keywords":["司法","政府","官方"],"is_new":false,"is_fav":false},
+            {"id":19,"name":"财政部","logo":"https://www.mof.gov.cn/favicon.ico","desc":"财政部官方网站","category":["政府机构"],"tags":["官方"],"links":{"官网":"https://www.mof.gov.cn"},"keywords":["财政","政府","官方"],"is_new":false,"is_fav":false},
+            {"id":20,"name":"人力资源和社会保障部","logo":"https://www.mohrss.gov.cn/favicon.ico","desc":"人力资源和社会保障部官方网站","category":["政府机构"],"tags":["官方"],"links":{"官网":"https://www.mohrss.gov.cn"},"keywords":["人社","政府","官方"],"is_new":false,"is_fav":false},
+            // 银行机构类10个
+            {"id":21,"name":"中国人民银行","logo":"https://www.pbc.gov.cn/favicon.ico","desc":"中国人民银行官方网站","category":["银行机构"],"tags":["官方"],"links":{"官网":"https://www.pbc.gov.cn"},"keywords":["央行","银行","官方"],"is_new":false,"is_fav":true},
+            {"id":22,"name":"中国工商银行","logo":"https://www.icbc.com.cn/favicon.ico","desc":"中国工商银行官方网站","category":["银行机构"],"tags":["银行"],"links":{"官网":"https://www.icbc.com.cn"},"keywords":["工行","银行"],"is_new":false,"is_fav":false},
+            {"id":23,"name":"中国农业银行","logo":"https://www.abchina.com/favicon.ico","desc":"中国农业银行官方网站","category":["银行机构"],"tags":["银行"],"links":{"官网":"https://www.abchina.com"},"keywords":["农行","银行"],"is_new":false,"is_fav":false},
+            {"id":24,"name":"中国银行","logo":"https://www.boc.cn/favicon.ico","desc":"中国银行官方网站","category":["银行机构"],"tags":["银行"],"links":{"官网":"https://www.boc.cn"},"keywords":["中行","银行"],"is_new":false,"is_fav":false},
+            {"id":25,"name":"中国建设银行","logo":"https://www.ccb.com/favicon.ico","desc":"中国建设银行官方网站","category":["银行机构"],"tags":["银行"],"links":{"官网":"https://www.ccb.com"},"keywords":["建行","银行"],"is_new":false,"is_fav":false},
+            {"id":26,"name":"交通银行","logo":"https://www.bankcomm.com/favicon.ico","desc":"交通银行官方网站","category":["银行机构"],"tags":["银行"],"links":{"官网":"https://www.bankcomm.com"},"keywords":["交行","银行"],"is_new":false,"is_fav":false},
+            {"id":27,"name":"中国邮政储蓄银行","logo":"https://www.psbc.com/favicon.ico","desc":"中国邮政储蓄银行官方网站","category":["银行机构"],"tags":["银行"],"links":{"官网":"https://www.psbc.com"},"keywords":["邮储","银行"],"is_new":false,"is_fav":false},
+            {"id":28,"name":"招商银行","logo":"https://www.cmbchina.com/favicon.ico","desc":"招商银行官方网站","category":["银行机构"],"tags":["银行"],"links":{"官网":"https://www.cmbchina.com"},"keywords":["招行","银行"],"is_new":false,"is_fav":false},
+            {"id":29,"name":"浦发银行","logo":"https://www.spdb.com.cn/favicon.ico","desc":"上海浦东发展银行官方网站","category":["银行机构"],"tags":["银行"],"links":{"官网":"https://www.spdb.com.cn"},"keywords":["浦发","银行"],"is_new":false,"is_fav":false},
+            {"id":30,"name":"民生银行","logo":"https://www.cmbc.com.cn/favicon.ico","desc":"中国民生银行官方网站","category":["银行机构"],"tags":["银行"],"links":{"官网":"https://www.cmbc.com.cn"},"keywords":["民生","银行"],"is_new":false,"is_fav":false},
+            // 工具资源类10个
+            {"id":31,"name":"GitHub","logo":"https://github.com/favicon.ico","desc":"全球最大的代码托管平台","category":["工具资源"],"tags":["开发","热门"],"links":{"官网":"https://github.com"},"keywords":["代码","开发","开源"],"is_new":true,"is_fav":true},
+            {"id":32,"name":"Stack Overflow","logo":"https://stackoverflow.com/favicon.ico","desc":"全球最大的程序员问答社区","category":["工具资源"],"tags":["开发"],"links":{"官网":"https://stackoverflow.com"},"keywords":["编程","问答","开发"],"is_new":false,"is_fav":false},
+            {"id":33,"name":"Figma","logo":"https://www.figma.com/favicon.ico","desc":"在线UI设计协作工具","category":["工具资源"],"tags":["设计"],"links":{"官网":"https://www.figma.com"},"keywords":["设计","UI","协作"],"is_new":false,"is_fav":false},
+            {"id":34,"name":"Canva可画","logo":"https://www.canva.cn/favicon.ico","desc":"在线平面设计工具","category":["工具资源"],"tags":["设计"],"links":{"官网":"https://www.canva.cn"},"keywords":["设计","海报","PPT"],"is_new":false,"is_fav":false},
+            {"id":35,"name":"腾讯文档","logo":"https://docs.qq.com/favicon.ico","desc":"在线协作文档工具","category":["工具资源"],"tags":["办公"],"links":{"官网":"https://docs.qq.com"},"keywords":["文档","协作","办公"],"is_new":false,"is_fav":false},
+            {"id":36,"name":"石墨文档","logo":"https://shimo.im/favicon.ico","desc":"在线协作文档工具","category":["工具资源"],"tags":["办公"],"links":{"官网":"https://shimo.im"},"keywords":["文档","协作","办公"],"is_new":false,"is_fav":false},
+            {"id":37,"name":"Notion","logo":"https://www.notion.so/favicon.ico","desc":"全能笔记与工作空间","category":["工具资源"],"tags":["办公","笔记"],"links":{"官网":"https://www.notion.so"},"keywords":["笔记","工作流","协作"],"is_new":true,"is_fav":false},
+            {"id":38,"name":"阿里云","logo":"https://www.aliyun.com/favicon.ico","desc":"阿里云官方网站","category":["工具资源"],"tags":["云服务"],"links":{"官网":"https://www.aliyun.com"},"keywords":["云服务器","云服务","阿里云"],"is_new":false,"is_fav":false},
+            {"id":39,"name":"腾讯云","logo":"https://cloud.tencent.com/favicon.ico","desc":"腾讯云官方网站","category":["工具资源"],"tags":["云服务"],"links":{"官网":"https://cloud.tencent.com"},"keywords":["云服务器","云服务","腾讯云"],"is_new":false,"is_fav":false},
+            {"id":40,"name":"百度云","logo":"https://cloud.baidu.com/favicon.ico","desc":"百度智能云官方网站","category":["工具资源"],"tags":["云服务"],"links":{"官网":"https://cloud.baidu.com"},"keywords":["云服务器","云服务","百度云"],"is_new":false,"is_fav":false},
+            // 资讯媒体类5个
+            {"id":41,"name":"新华网","logo":"https://www.xinhuanet.com/favicon.ico","desc":"新华社官方网站","category":["资讯媒体"],"tags":["官方","新闻"],"links":{"官网":"https://www.xinhuanet.com"},"keywords":["新闻","官方","资讯"],"is_new":false,"is_fav":true},
+            {"id":42,"name":"人民网","logo":"https://www.people.com.cn/favicon.ico","desc":"人民日报官方网站","category":["资讯媒体"],"tags":["官方","新闻"],"links":{"官网":"https://www.people.com.cn"},"keywords":["新闻","官方","资讯"],"is_new":false,"is_fav":false},
+            {"id":43,"name":"澎湃新闻","logo":"https://www.thepaper.cn/favicon.ico","desc":"澎湃新闻官方网站","category":["资讯媒体"],"tags":["新闻"],"links":{"官网":"https://www.thepaper.cn"},"keywords":["新闻","资讯","深度报道"],"is_new":false,"is_fav":false},
+            {"id":44,"name":"界面新闻","logo":"https://www.jiemian.com/favicon.ico","desc":"界面新闻官方网站","category":["资讯媒体"],"tags":["新闻"],"links":{"官网":"https://www.jiemian.com"},"keywords":["新闻","资讯","商业"],"is_new":false,"is_fav":false},
+            {"id":45,"name":"36氪","logo":"https://36kr.com/favicon.ico","desc":"36氪官方网站","category":["资讯媒体"],"tags":["科技","创业"],"links":{"官网":"https://36kr.com"},"keywords":["科技","创业","创投"],"is_new":true,"is_fav":false},
+            // 社交平台类5个
+            {"id":46,"name":"微信","logo":"https://weixin.qq.com/favicon.ico","desc":"微信官方网站","category":["社交平台"],"tags":["热门","社交"],"links":{"官网":"https://weixin.qq.com"},"keywords":["社交","聊天","微信"],"is_new":false,"is_fav":true},
+            {"id":47,"name":"微博","logo":"https://weibo.com/favicon.ico","desc":"微博官方网站","category":["社交平台"],"tags":["热门","社交"],"links":{"官网":"https://weibo.com"},"keywords":["社交","热点","微博"],"is_new":false,"is_fav":false},
+            {"id":48,"name":"知乎","logo":"https://www.zhihu.com/favicon.ico","desc":"知乎官方网站","category":["社交平台"],"tags":["问答","社交"],"links":{"官网":"https://www.zhihu.com"},"keywords":["问答","知识","社交"],"is_new":false,"is_fav":false},
+            {"id":49,"name":"小红书","logo":"https://www.xiaohongshu.com/favicon.ico","desc":"小红书官方网站","category":["社交平台"],"tags":["生活","社交"],"links":{"官网":"https://www.xiaohongshu.com"},"keywords":["生活","种草","社交"],"is_new":false,"is_fav":false},
+            {"id":50,"name":"抖音","logo":"https://www.douyin.com/favicon.ico","desc":"抖音官方网站","category":["社交平台"],"tags":["短视频","社交"],"links":{"官网":"https://www.douyin.com"},"keywords":["短视频","娱乐","社交"],"is_new":true,"is_fav":false}
+        ];
+        let activeCate = '全部';
+        let activeKeywords = [];
+
+        // 渲染站点
+        function renderSites() {
+            const filtered = siteData.filter(site => {
+                if (activeCate !== '全部' && !site.category.includes(activeCate)) return false;
+                if (activeKeywords.length > 0 && !activeKeywords.every(k => site.keywords.includes(k) || site.name.includes(k) || site.desc.includes(k))) return false;
+                return true;
+            });
+            document.getElementById('siteCount').textContent = filtered.length;
+            const list = document.getElementById('siteList');
+            list.innerHTML = filtered.map(site => `
+                <div class="site-card">
+                    <div class="site-header" onwheel="handleScroll(event, this)">
+                        <div class="scroll-arrow left" onclick="scrollLeft(this.parentElement)">←</div>
+                        <div class="site-logo">
+                            ${site.logo ? `<img src="${site.logo}" alt="${site.name}" onerror="this.parentElement.innerHTML='${site.name[0]}'">` : site.name[0]}
+                        </div>
+                        <div class="site-info">
+                            <div class="site-name">${site.name}</div>
+                            <div class="site-desc">${site.desc || ''}</div>
+                        </div>
+                        <div class="scroll-arrow right" onclick="scrollRight(this.parentElement)">→</div>
+                    </div>
+                    <div class="site-category">
+                        ${site.category.map(c => `<span class="cate-tag">${c}</span>`).join('')}
+                        ${site.tags.map(t => `<span class="cate-tag">${t}</span>`).join('')}
+                        ${site.is_new ? '<span class="cate-tag" style="background:#fef2f2;color:#dc2626">新</span>' : ''}
+                    </div>
+                    <div class="site-links">
+                        ${Object.entries(site.links).map(([name, url]) => `<span class="link-tag" onclick="window.open('${url}', '_blank')">${name}</span>`).join('')}
+                    </div>
+                    <div class="site-keywords">
+                        ${site.keywords.map(k => `<span class="keyword-tag" onclick="addKeyword('${k}')">${k}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 横向滚动逻辑
+        function handleScroll(e, el) {
+            e.preventDefault();
+            el.scrollLeft += e.deltaY;
+        }
+        function scrollLeft(el) {
+            el.scrollBy({left: -100, behavior: 'smooth'});
+        }
+        function scrollRight(el) {
+            el.scrollBy({left: 100, behavior: 'smooth'});
+        }
+
+        // 搜索逻辑
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            const val = document.getElementById('searchInput').value.trim();
+            if (val && !activeKeywords.includes(val)) {
+                addKeyword(val);
+                document.getElementById('searchInput').value = '';
+            }
+        });
+        document.getElementById('searchInput').addEventListener('keydown', e => {
+            if (e.key === 'Enter') document.getElementById('searchBtn').click();
+        });
+
+        function addKeyword(key) {
+            if (!activeKeywords.includes(key)) {
+                activeKeywords.push(key);
+                renderSearchTags();
+                renderSites();
+            }
+        }
+
+        function renderSearchTags() {
+            const tagsEl = document.getElementById('searchTags');
+            tagsEl.innerHTML = activeKeywords.map((k, i) => `
+                <span class="tag-item">
+                    ${k}
+                    <span class="tag-close" onclick="removeKeyword(${i})">×</span>
+                </span>
+            `).join('');
+        }
+
+        function removeKeyword(index) {
+            activeKeywords.splice(index, 1);
+            renderSearchTags();
+            renderSites();
+        }
+
+        // 分类切换
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                activeCate = tab.dataset.cate;
+                renderSites();
+            });
+        });
+        document.querySelector('.category-tab[data-cate="全部"]').classList.add('active');
+
+        // 导出Excel逻辑
+        function exportExcel() {
+            window.open('https://kdocs.cn/l/your-excel-export-link', '_blank');
+        }
+
+        // 轮播逻辑
+        let carouselIndex = 0;
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        setInterval(() => {
+            carouselItems.forEach(i => i.classList.remove('active'));
+            carouselIndex = (carouselIndex + 1) % carouselItems.length;
+            carouselItems[carouselIndex].classList.add('active');
+        }, 3000);
+
+        // 工具板块逻辑
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString('zh-CN');
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('zh-CN', {year:'numeric', month:'2-digit', day:'2-digit', weekday:'long'});
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // 初始化
+        renderSites();
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正协导航 - 全网实用站点聚合</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">正协导航</h1>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- 搜索板块 -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="输入站点名称/描述搜索...">
+            <button id="search-btn">🔍 搜索</button>
+        </div>
+
+        <!-- 筛选标签栏 -->
+        <div class="search-tags-bar" id="search-tags-bar" style="display: none;">
+            <span class="tags-label">筛选条件：</span>
+            <div class="tags-list" id="tags-list"></div>
+        </div>
+
+        <!-- 一级分类tab -->
+        <div class="cate-tab-bar">
+            <div class="cate-tab active" data-cate="all">🏠 全部</div>
+            <div class="cate-tab" data-cate="tool">🔧 实用工具</div>
+            <div class="cate-tab" data-cate="news">📰 资讯媒体</div>
+            <div class="cate-tab" data-cate="edu">📚 学习教育</div>
+            <div class="cate-tab" data-cate="entertainment">🎮 休闲娱乐</div>
+            <div class="cate-tab" data-cate="life">🏠 生活服务</div>
+        </div>
+
+        <!-- Google广告位 👇 替换为你自己的广告代码 -->
+        <div class="ad-container">
+            <!-- <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-xxxxxx"
+                data-ad-slot="xxxxxx"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script> -->
+            <div style="text-align: center; padding: 20px; background: #f5f5f5; border-radius: 8px;">Google广告位</div>
+        </div>
+
+        <!-- 分类内容区 -->
+        <div class="cate-content-wrapper">
+            <!-- 实用工具分类 -->
+            <div class="cate-content" id="tool-content">
+                <div class="level2-tab-bar">
+                    <div class="level2-tab active" data-level2="efficiency">效率工具</div>
+                    <div class="level2-tab" data-level2="design">设计创意</div>
+                    <div class="level2-tab" data-level2="development">开发工具</div>
+                    <div class="level2-tab" data-level2="all">全部</div>
+                </div>
+                <div class="category-level2" data-level2="efficiency">
+                    <div class="site-grid">
+                        <!-- 站点卡片示例 👇 可复制新增更多卡片 -->
+                        <div class="site-card">
+                            <div class="site-logo">
+                                <!-- 有logo填img地址，没有留空自动生成首字logo -->
+                                <!-- <img src="https://xxx.com/logo.png" alt="logo"> -->
+                            </div>
+                            <div class="site-right">
+                                <div class="site-name-scroll">
+                                    <span class="site-name">飞书文档</span>
+                                </div>
+                                <div class="site-desc-scroll">
+                                    <span class="site-desc">字节跳动旗下在线协作办公工具，支持文档、表格、会议多场景</span>
+                                </div>
+                                <div class="site-platforms">
+                                    <a href="https://www.feishu.cn" target="_blank" class="platform-tag">官网</a>
+                                    <a href="https://www.douyin.com/xxx" target="_blank" class="platform-tag">抖音</a>
+                                    <a href="https://www.zhihu.com/org/xxx" target="_blank" class="platform-tag">知乎</a>
+                                </div>
+                                <div class="site-search-tags">
+                                    <span class="search-tag-item">办公</span>
+                                    <span class="search-tag-item">协作</span>
+                                    <span class="search-tag-item">免费</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="site-card">
+                            <div class="site-logo"></div>
+                            <div class="site-right">
+                                <div class="site-name-scroll">
+                                    <span class="site-name">Figma 在线设计</span>
+                                </div>
+                                <div class="site-desc-scroll">
+                                    <span class="site-desc">专业UI/UX在线设计工具，支持多人实时协作，海量设计资源</span>
+                                </div>
+                                <div class="site-platforms">
+                                    <a href="https://www.figma.com" target="_blank" class="platform-tag">官网</a>
+                                    <a href="https://www.xiaohongshu.com/xxx" target="_blank" class="platform-tag">小红书</a>
+                                </div>
+                                <div class="site-search-tags">
+                                    <span class="search-tag-item">设计</span>
+                                    <span class="search-tag-item">UI</span>
+                                    <span class="search-tag-item">协作</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 站点卡片示例结束 -->
+                    </div>
+                </div>
+                <div class="category-level2" data-level2="design">
+                    <div class="site-grid">
+                        <!-- 设计类站点卡片放这里 -->
+                    </div>
+                </div>
+                <div class="category-level2" data-level2="development">
+                    <div class="site-grid">
+                        <!-- 开发类站点卡片放这里 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 资讯媒体分类（和实用工具结构一致，自行填充内容） -->
+            <div class="cate-content" id="news-content" style="display: none;">
+                <div class="level2-tab-bar">
+                    <div class="level2-tab active" data-level2="tech">科技资讯</div>
+                    <div class="level2-tab" data-level2="finance">财经资讯</div>
+                    <div class="level2-tab" data-level2="all">全部</div>
+                </div>
+                <div class="category-level2" data-level2="tech">
+                    <div class="site-grid"></div>
+                </div>
+                <div class="category-level2" data-level2="finance">
+                    <div class="site-grid"></div>
+                </div>
+            </div>
+
+            <!-- 其余分类（学习教育、休闲娱乐、生活服务）按上面结构自行补充即可 -->
+            <div class="cate-content" id="edu-content" style="display: none;"></div>
+            <div class="cate-content" id="entertainment-content" style="display: none;"></div>
+            <div class="cate-content" id="life-content" style="display: none;"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">© 2024 正协导航 版权所有</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
