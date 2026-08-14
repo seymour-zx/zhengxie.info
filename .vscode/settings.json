@@ -1,0 +1,12 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^powershell -NoProfile -Command \"\\$p='d:\\\\Visual Studio Code\\\\zhengxie\\.info\\\\unit\\\\0'; Get-ChildItem \\$p -Recurse \\| Select-Object FullName; Write-Host '---'; Get-Content \\$p\\\\index\\.html -TotalCount 40; Write-Host '---'; Get-Content \\$p\\\\assets\\\\js\\\\main\\.js -TotalCount 80\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^powershell -NoProfile -Command \"\\$p='d:\\\\Visual Studio Code\\\\zhengxie\\.info\\\\unit\\\\0'; Get-Content \\$p\\\\index\\.html -TotalCount 220; Write-Host '---JS---'; Get-Content \\$p\\\\assets\\\\js\\\\main\\.js -TotalCount 220\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
