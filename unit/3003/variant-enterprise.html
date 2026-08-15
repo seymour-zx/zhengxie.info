@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>导航站 - 企业版</title>
+    <style>
+      :root {
+        --bg: #0b1120;
+        --panel: rgba(17, 24, 39, 0.86);
+        --line: rgba(255,255,255,0.08);
+        --text: #edf3ff;
+        --muted: #b8c9e7;
+        --blue: #7c9cff;
+        --cyan: #60e0c1;
+        --card: rgba(255,255,255,0.03);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+        background: linear-gradient(180deg, #0b1120 0%, #111b2d 100%);
+        color: var(--text);
+      }
+      .wrap {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 30px 0 60px;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 22px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(13,18,30,0.8);
+        backdrop-filter: blur(8px);
+      }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .logo {
+        width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px;
+        background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #07131c; font-weight: 800;
+      }
+      .brand h1 { margin: 0; font-size: 1.3rem; }
+      .brand p { margin: 2px 0 0; color: var(--muted); font-size: .8rem; }
+      .nav { display: flex; gap: 10px; flex-wrap: wrap; }
+      .nav a {
+        color: var(--muted); text-decoration: none; padding: 9px 12px; border-radius: 999px; border: 1px solid transparent;
+      }
+      .nav a:hover { background: rgba(124,156,255,0.12); border-color: rgba(124,156,255,0.2); color: #fff; }
+      .hero {
+        margin-top: 28px; display: grid; grid-template-columns: 1.4fr .6fr; gap: 22px;
+      }
+      .hero-copy, .hero-side, .section { border:1px solid var(--line); background: var(--panel); border-radius: 24px; }
+      .hero-copy { padding: 30px 28px; }
+      .tag {
+        display: inline-block; padding: 7px 12px; border-radius: 999px; background: rgba(124,156,255,0.12); border:1px solid rgba(124,156,255,0.25); color: #dfe8ff; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+      }
+      h2 { margin: 18px 0 12px; font-size: clamp(2rem, 4vw, 3rem); }
+      .hero-copy p { margin: 0; color: var(--muted); line-height: 1.8; }
+      .search {
+        display: flex; gap: 10px; margin-top: 24px; padding: 10px 10px 10px 16px; border-radius: 16px; border:1px solid var(--line); background: rgba(255,255,255,0.02);
+      }
+      .search input { flex:1; border:0; background: transparent; color: var(--text); outline: none; font-size: 1rem; }
+      .search button {
+        border:0; padding: 12px 18px; border-radius: 12px; background: linear-gradient(135deg, var(--blue), var(--cyan)); color: white; font-weight: 700; cursor: pointer;
+      }
+      .stats { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 20px; }
+      .stats span { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,0.02); color: var(--muted); }
+      .hero-side { padding: 18px; display:grid; gap:14px; }
+      .mini { padding: 18px; border:1px solid var(--line); border-radius:18px; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); }
+      .mini span { color: var(--muted); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+      .mini strong { display:block; margin-top:8px; font-size: 1.35rem; }
+      .section { padding: 20px; margin-top: 22px; }
+      .section-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+      .section-head h3 { margin:0; }
+      .section-head span { color: var(--muted); font-size: .8rem; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+      .item { padding: 18px; border-radius: 18px; border:1px solid var(--line); background: var(--card); }
+      .item .top { display:flex; align-items:center; gap: 12px; }
+      .icon { width:40px; height:40px; border-radius: 12px; display:grid; place-items:center; background: linear-gradient(135deg, rgba(124,156,255,0.18), rgba(96,224,193,0.14)); }
+      .item h4 { margin: 0; font-size:1.05rem; }
+      .item p { margin: 10px 0 14px; color: var(--muted); line-height:1.7; font-size: .9rem; }
+      .item a { display:inline-block; text-decoration:none; color: #edf3ff; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius:10px; border:1px solid var(--line); }
+      @media (max-width: 760px){ .hero{grid-template-columns:1fr;} .topbar{display:grid; gap:16px;} .search{flex-direction:column;} .search button{width:100%;} }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo">N</div>
+          <div>
+            <h1>导航站</h1>
+            <p>高效访问 · 好站精选</p>
+          </div>
+        </div>
+        <nav class="nav">
+          <a href="#hot">热门</a>
+          <a href="#tools">工具</a>
+          <a href="#community">社区</a>
+          <a href="#contact">联系</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <span class="tag">专业导航门户</span>
+            <h2>让访问更高效</h2>
+            <p>汇总常用办公、学习、开发和资讯站点，适合正式展示与高效率访问。</p>
+            <div class="search">
+              <input type="text" placeholder="搜索站点、关键词或网址" />
+              <button>搜索</button>
+            </div>
+            <div class="stats">
+              <span><strong>120+</strong> 站点</span>
+              <span><strong>8</strong> 分类</span>
+              <span><strong>24h</strong> 更新</span>
+            </div>
+          </div>
+          <div class="hero-side">
+            <div class="mini"><span>推荐</span><strong>开发者工具</strong></div>
+            <div class="mini"><span>热门</span><strong>资讯阅读</strong></div>
+            <div class="mini"><span>效率</span><strong>协作平台</strong></div>
+          </div>
+        </section>
+
+        <section id="hot" class="section">
+          <div class="section-head"><h3>热门站点</h3><span>精选高频入口</span></div>
+          <div class="grid">
+            <div class="item"><div class="top"><div class="icon">B</div><h4>百度</h4></div><p>中文搜索入口，信息检索常用平台。</p><a href="https://www.baidu.com" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">W</div><h4>微信</h4></div><p>社交沟通与内容分享平台。</p><a href="https://weixin.qq.com" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">Z</div><h4>知乎</h4></div><p>知识问答与学习社区。</p><a href="https://www.zhihu.com" target="_blank">访问</a></div>
+          </div>
+        </section>
+
+        <section id="tools" class="section">
+          <div class="section-head"><h3>工具站点</h3><span>效率工具集合</span></div>
+          <div class="grid">
+            <div class="item"><div class="top"><div class="icon">G</div><h4>GitHub</h4></div><p>全球领先的代码托管与协作平台。</p><a href="https://github.com" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">T</div><h4>Google 翻译</h4></div><p>语言翻译与多语言互译工具。</p><a href="https://translate.google.com" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">B</div><h4>Bilibili</h4></div><p>视频学习与娱乐社区。</p><a href="https://www.bilibili.com" target="_blank">访问</a></div>
+          </div>
+        </section>
+
+        <section id="community" class="section">
+          <div class="section-head"><h3>社区资源</h3><span>学习交流中心</span></div>
+          <div class="grid">
+            <div class="item"><div class="top"><div class="icon">C</div><h4>CSDN</h4></div><p>程序员技术社区与教程资源。</p><a href="https://www.csdn.net" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">M</div><h4>MDN</h4></div><p>Web 技术文档和学习资料。</p><a href="https://developer.mozilla.org/zh-CN/" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">S</div><h4>Stack Overflow</h4></div><p>全球编程问答平台。</p><a href="https://stackoverflow.com" target="_blank">访问</a></div>
+          </div>
+        </section>
+      </main>
+
+      <footer id="contact" class="section" style="margin-top:22px;">
+        <div class="section-head"><h3>联系</h3><span>商务合作 / 建议反馈</span></div>
+        <p style="margin:0;color:var(--muted);line-height:1.8;">邮箱：hello@example.com</p>
+      </footer>
+    </div>
+  </body>
+</html>

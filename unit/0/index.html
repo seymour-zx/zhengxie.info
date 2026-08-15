@@ -1,847 +1,109 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>导航站 - 古典尊贵版</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
-
-      :root {
-        --bg: #f6efe6;
-        --bg-2: #efe1cc;
-        --panel: #fffaf4;
-        --panel-2: #f7efe5;
-        --line: rgba(140, 31, 42, 0.2);
-        --text: #2a1a1b;
-        --muted: #6f4d45;
-        --red-500: #8f1e2d;
-        --red-700: #651920;
-        --gold-400: #c8a15e;
-        --gold-500: #d7b56b;
-        --gold-700: #a77a3a;
-        --ivory: #f3e9dc;
-        --shadow: 0 20px 34px rgba(58, 38, 30, 0.08);
-      }
-
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        font-family: "Noto Sans SC", "Segoe UI", sans-serif;
-        background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
-        color: var(--text);
-      }
-
-      a { color: inherit; }
-
-      .wrap {
-        width: min(1220px, calc(100% - 32px));
-        margin: 0 auto;
-        padding: 72px 0 60px;
-      }
-
-      .topbar {
-        position: fixed;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: min(1220px, calc(100% - 32px));
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 18px;
-        padding: 12px 18px 14px;
-        border: 1px solid var(--line);
-        border-radius: 18px 18px 0 0;
-        background: rgba(255, 250, 244, 0.98);
-        box-shadow: 0 10px 22px rgba(58, 38, 30, 0.04);
-        backdrop-filter: blur(6px);
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        min-width: 0;
-        padding-right: 8px;
-        height: 100%;
-      }
-
-      .logo {
-        width: 36px;
-        height: 36px;
-        border-radius: 10px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, var(--red-500), var(--gold-500));
-        color: #fffaf5;
-        font-weight: 800;
-        font-size: 0.95rem;
-        box-shadow: 0 10px 20px rgba(143, 30, 45, 0.12);
-      }
-
-      .brand h1 {
-        margin: 0;
-        font-family: "Cormorant Garamond", serif;
-        font-size: clamp(1.8rem, 1.4vw + 1rem, 2.2rem);
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        line-height: 1;
-        color: var(--red-700);
-      }
-
-      .nav-panel {
-        position: sticky;
-        top: 72px;
-        z-index: 9;
-        width: min(1220px, calc(100% - 32px));
-        margin: 0 auto;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0;
-        padding: 0 18px;
-        border: 1px solid var(--line);
-        border-top: 0;
-        border-radius: 0 0 18px 18px;
-        background: rgba(255, 250, 244, 0.95);
-        box-shadow: 0 8px 18px rgba(58, 38, 30, 0.04);
-        backdrop-filter: blur(6px);
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 8px;
-        flex-wrap: wrap;
-        flex: 1 1 auto;
-        min-height: 52px;
-      }
-
-      .nav a {
-        position: relative;
-        text-decoration: none;
-        color: var(--muted);
-        font-size: 0.86rem;
-        font-weight: 700;
-        letter-spacing: 0.02em;
-        padding: 0 11px;
-        min-height: 44px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        transition: 0.2s ease;
-      }
-
-      .nav a:hover,
-      .nav a.active {
-        background: rgba(143, 30, 45, 0.06);
-        border-color: rgba(167, 122, 58, 0.38);
-        color: var(--text);
-        box-shadow: inset 0 0 0 1px rgba(167, 122, 58, 0.08);
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: 1.3fr 0.7fr;
-        gap: 22px;
-        margin-top: 26px;
-      }
-
-      .hero-copy,
-      .hero-side,
-      .section,
-      .footer-block {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 26px;
-        box-shadow: var(--shadow);
-      }
-
-      .hero-copy {
-        padding: 30px 28px 26px;
-      }
-
-      .tag {
-        display: inline-block;
-        padding: 8px 12px;
-        border-radius: 900px;
-        background: rgba(215, 181, 107, 0.12);
-        border: 1px solid rgba(167, 122, 58, 0.35);
-        color: var(--red-500);
-        font-size: 0.72rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      h2 {
-        margin: 18px 0 12px;
-        font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2.6rem, 4vw, 4.3rem);
-        line-height: 1.05;
-        letter-spacing: 0.02em;
-      }
-
-      .hero-copy p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.8;
-      }
-
-      .search {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        width: min(340px, 100%);
-        max-width: 340px;
-        padding: 6px 6px 6px 10px;
-        border-radius: 12px;
-        border: 1px solid rgba(140, 31, 42, 0.18);
-        background: rgba(255, 255, 255, 0.82);
-        box-shadow: inset 0 0 0 1px rgba(143, 30, 45, 0.02);
-        height: 100%;
-      }
-
-      .search input {
-        flex: 1;
-        min-width: 0;
-        border: 0;
-        background: transparent;
-        color: var(--text);
-        outline: none;
-        font-size: 0.92rem;
-      }
-
-      .search input::placeholder {
-        color: rgba(111, 77, 69, 0.72);
-      }
-
-      .search button {
-        border: 0;
-        border-radius: 10px;
-        padding: 8px 13px;
-        font-weight: 700;
-        cursor: pointer;
-        color: #fffaf5;
-        background: linear-gradient(135deg, var(--red-500), var(--gold-500));
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        align-self: stretch;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .search button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 18px rgba(143, 30, 45, 0.15);
-      }
-
-      .stats {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 20px;
-      }
-
-      .stats span {
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.45);
-        color: var(--muted);
-      }
-
-
-      .section {
-        padding: 20px 20px 18px;
-        margin-top: 24px;
-      }
-
-      .section-head {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 10px;
-        margin-bottom: 16px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid rgba(140, 31, 42, 0.12);
-      }
-
-      .section-head h3 {
-        margin: 0;
-        font-family: "Cormorant Garamond", serif;
-        font-size: 2.1rem;
-        letter-spacing: 0.02em;
-      }
-
-      .section-head span {
-        color: var(--muted);
-        font-size: 0.8rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 18px;
-      }
-
-      .item {
-        padding: 18px;
-        border-radius: 18px;
-        background: var(--panel-2);
-        border: 1px solid var(--line);
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
-        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .item:hover {
-        transform: translateY(-2px);
-        border-color: rgba(167, 122, 58, 0.38);
-        box-shadow: 0 14px 22px rgba(58, 38, 30, 0.06);
-      }
-
-      .top {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 12px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, rgba(143,30,45,0.10), rgba(215,181,107,0.18));
-        color: var(--red-500);
-        font-weight: 800;
-      }
-
-      .item h4 {
-        margin: 0;
-        font-size: 1.08rem;
-      }
-
-      .meta {
-        display: inline-block;
-        margin-top: 12px;
-        color: var(--gold-700);
-        font-size: 0.74rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .item p {
-        margin: 10px 0 14px;
-        color: var(--muted);
-        line-height: 1.7;
-        font-size: 0.9rem;
-      }
-
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 14px;
-      }
-
-      .tag-pill {
-        display: inline-block;
-        padding: 5px 8px;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.55);
-        border: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 0.7rem;
-      }
-
-      .item a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        padding: 8px 12px;
-        border-radius: 10px;
-        font-size: 0.84rem;
-        border: 1px solid rgba(167, 122, 58, 0.32);
-        background: rgba(215, 181, 107, 0.08);
-        color: var(--red-500);
-        transition: all 0.2s ease;
-      }
-
-      .item a:hover {
-        background: rgba(143, 30, 45, 0.08);
-      }
-
-      .footer-block {
-        margin-top: 22px;
-        padding: 20px;
-      }
-
-      .footer-block p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.8;
-      }
-
-      @media (max-width: 760px) {
-        .topbar {
-          display: flex;
-          flex-wrap: nowrap;
-          align-items: center;
-          justify-content: space-between;
-          gap: 12px;
-        }
-
-        .brand {
-          gap: 8px;
-        }
-
-        .logo {
-          width: 30px;
-          height: 30px;
-          font-size: 0.8rem;
-        }
-
-        .brand h1 {
-          font-size: 1.45rem;
-        }
-
-        .nav-panel {
-          align-items: stretch;
-          padding: 10px 12px;
-        }
-
-        .nav {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 8px;
-        }
-
-        .nav a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          min-height: 36px;
-          padding: 7px 8px;
-          text-align: center;
-        }
-
-        .search {
-          width: min(260px, 48vw);
-          max-width: 260px;
-          min-width: 180px;
-          flex-direction: row;
-        }
-
-        .search input {
-          font-size: 0.8rem;
-        }
-
-        .search button {
-          width: auto;
-          padding: 8px 10px;
-          font-size: 0.75rem;
-        }
-
-        .grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .hero {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (min-width: 768px) and (max-width: 1024px) {
-        .grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <header class="topbar">
-        <div class="brand">
-          <div class="logo">正</div>
-          <div>
-            <h1>正协导航</h1>
-          </div>
-        </div>
-        <div class="search">
-          <input type="text" placeholder="搜索站点、关键词或网址" />
-          <button type="button">搜索</button>
-        </div>
-      </header>
-
-      <section class="nav-panel">
-        <nav class="nav">
-          <a class="active" href="#hot">热门</a>
-          <a href="#dev">开发</a>
-          <a href="#learn">学习</a>
-          <a href="#tools">工具</a>
-          <a href="#community">社区</a>
-          <a href="#info">资讯</a>
-          <a href="#contact">联系</a>
-        </nav>
-      </section>
-
-      <main>
-        <section id="hot" class="section">
-          <div class="section-head">
-            <h3>热门站点</h3>
-            <span>高频入口</span>
-          </div>
-          <div class="grid">
-            <div class="item">
-              <div class="top"><div class="icon">B</div><h4>百度</h4></div>
-              <span class="meta">搜索</span>
-              <p>中文搜索与信息检索的基础入口，适合常规查询。</p>
-              <div class="tags"><span class="tag-pill">中文</span><span class="tag-pill">搜索</span></div>
-              <a href="https://www.baidu.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">Z</div><h4>知乎</h4></div>
-              <span class="meta">知识</span>
-              <p>知识问答与学习社区，适合查资料、解概念与获取观点。</p>
-              <div class="tags"><span class="tag-pill">问答</span><span class="tag-pill">学习</span></div>
-              <a href="https://www.zhihu.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">W</div><h4>微信</h4></div>
-              <span class="meta">社交</span>
-              <p>沟通、客服与内容分享的重要入口，适合日常高频使用。</p>
-              <div class="tags"><span class="tag-pill">消息</span><span class="tag-pill">社交</span></div>
-              <a href="https://weixin.qq.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">T</div><h4>淘宝</h4></div>
-              <span class="meta">消费</span>
-              <p>电商购物与日用服务的常用入口，适合便捷选购。</p>
-              <div class="tags"><span class="tag-pill">购物</span><span class="tag-pill">生活</span></div>
-              <a href="https://www.taobao.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">J</div><h4>京东</h4></div>
-              <span class="meta">购物</span>
-              <p>日常消费、数码和生活服务的统一入口。</p>
-              <div class="tags"><span class="tag-pill">电商</span><span class="tag-pill">消费</span></div>
-              <a href="https://www.jd.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">D</div><h4>豆瓣</h4></div>
-              <span class="meta">发现</span>
-              <p>书影音、话题讨论和生活观察的优质平台入口。</p>
-              <div class="tags"><span class="tag-pill">社区</span><span class="tag-pill">兴趣</span></div>
-              <a href="https://www.douban.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-          </div>
-        </section>
-
-        <section id="dev" class="section">
-          <div class="section-head">
-            <h3>开发资源</h3>
-            <span>实用效率</span>
-          </div>
-          <div class="grid">
-            <div class="item">
-              <div class="top"><div class="icon">G</div><h4>GitHub</h4></div>
-              <span class="meta">代码</span>
-              <p>全球领先的代码托管与协作平台，是开发实践与项目追踪中心。</p>
-              <div class="tags"><span class="tag-pill">托管</span><span class="tag-pill">协作</span></div>
-              <a href="https://github.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">M</div><h4>MDN</h4></div>
-              <span class="meta">文档</span>
-              <p>标准化前端文档的官方参考站，适合看规范和技术细节。</p>
-              <div class="tags"><span class="tag-pill">前端</span><span class="tag-pill">规范</span></div>
-              <a href="https://developer.mozilla.org/zh-CN/" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">S</div><h4>Stack Overflow</h4></div>
-              <span class="meta">问答</span>
-              <p>开发者常用问题求解平台，适合解决难点和对照经验。</p>
-              <div class="tags"><span class="tag-pill">开发</span><span class="tag-pill">社区</span></div>
-              <a href="https://stackoverflow.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">V</div><h4>Vercel</h4></div>
-              <span class="meta">部署</span>
-              <p>前端项目部署平台，适合快速上线和静态站点托管。</p>
-              <div class="tags"><span class="tag-pill">前端</span><span class="tag-pill">部署</span></div>
-              <a href="https://vercel.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">N</div><h4>npm</h4></div>
-              <span class="meta">包管理</span>
-              <p>前端依赖生态与组件包获取的核心入口。</p>
-              <div class="tags"><span class="tag-pill">JS</span><span class="tag-pill">依赖</span></div>
-              <a href="https://www.npmjs.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">G</div><h4>Gitee</h4></div>
-              <span class="meta">代码</span>
-              <p>国内代码托管平台，适合项目协作与仓库管理。</p>
-              <div class="tags"><span class="tag-pill">国内</span><span class="tag-pill">托管</span></div>
-              <a href="https://gitee.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-          </div>
-        </section>
-
-        <section id="learn" class="section">
-          <div class="section-head">
-            <h3>学习资源</h3>
-            <span>知识与参考</span>
-          </div>
-          <div class="grid">
-            <div class="item">
-              <div class="top"><div class="icon">C</div><h4>CSDN</h4></div>
-              <span class="meta">教程</span>
-              <p>技术文章、案例与实战经验的集中入口，适合深入学习。</p>
-              <div class="tags"><span class="tag-pill">技术</span><span class="tag-pill">教程</span></div>
-              <a href="https://www.csdn.net" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">B</div><h4>Bilibili</h4></div>
-              <span class="meta">视频</span>
-              <p>视频学习平台，适合课程、演示和专业知识传播。</p>
-              <div class="tags"><span class="tag-pill">视频</span><span class="tag-pill">学习</span></div>
-              <a href="https://www.bilibili.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">E</div><h4>Coursera</h4></div>
-              <span class="meta">课程</span>
-              <p>系统性课程与专业知识平台，适合结构化学习和扩展视野。</p>
-              <div class="tags"><span class="tag-pill">在线课</span><span class="tag-pill">专业</span></div>
-              <a href="https://www.coursera.org" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">K</div><h4>Khan Academy</h4></div>
-              <span class="meta">基础</span>
-              <p>适合知识补全、基础学习及跨领域认知提升。</p>
-              <div class="tags"><span class="tag-pill">教育</span><span class="tag-pill">基础</span></div>
-              <a href="https://www.khanacademy.org" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">W</div><h4>W3School</h4></div>
-              <span class="meta">前端</span>
-              <p>适合快速上手基础语法与前端案例演示。</p>
-              <div class="tags"><span class="tag-pill">HTML</span><span class="tag-pill">CSS</span></div>
-              <a href="https://www.w3school.com.cn" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">O</div><h4>OSChina</h4></div>
-              <span class="meta">社区</span>
-              <p>开源技术资讯、文章和开发实践的中文参考入口。</p>
-              <div class="tags"><span class="tag-pill">开源</span><span class="tag-pill">文章</span></div>
-              <a href="https://www.oschina.net" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-          </div>
-        </section>
-
-        <section id="tools" class="section">
-          <div class="section-head">
-            <h3>工具站点</h3>
-            <span>生产力</span>
-          </div>
-          <div class="grid">
-            <div class="item">
-              <div class="top"><div class="icon">T</div><h4>Google 翻译</h4></div>
-              <span class="meta">办公</span>
-              <p>语言翻译与跨语言信息沟通的高效工具。</p>
-              <div class="tags"><span class="tag-pill">翻译</span><span class="tag-pill">效率</span></div>
-              <a href="https://translate.google.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">N</div><h4>Notion</h4></div>
-              <span class="meta">笔记</span>
-              <p>知识库、待办事项与团队协作的统一文档管理入口。</p>
-              <div class="tags"><span class="tag-pill">笔记</span><span class="tag-pill">协作</span></div>
-              <a href="https://www.notion.so" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">F</div><h4>Figma</h4></div>
-              <span class="meta">设计</span>
-              <p>界面设计与原型协作，适合视觉沟通和交互构思。</p>
-              <div class="tags"><span class="tag-pill">设计</span><span class="tag-pill">原型</span></div>
-              <a href="https://www.figma.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">A</div><h4>阿里云</h4></div>
-              <span class="meta">服务</span>
-              <p>云计算与服务平台，适合网站、应用及基础设施部署场景。</p>
-              <div class="tags"><span class="tag-pill">云</span><span class="tag-pill">部署</span></div>
-              <a href="https://www.aliyun.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">C</div><h4>Canva</h4></div>
-              <span class="meta">设计</span>
-              <p>快速生成海报、图文内容和视觉素材的在线工具。</p>
-              <div class="tags"><span class="tag-pill">海报</span><span class="tag-pill">素材</span></div>
-              <a href="https://www.canva.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">G</div><h4>GitBook</h4></div>
-              <span class="meta">文档</span>
-              <p>文档编写、知识库和团队说明书的高效工具。</p>
-              <div class="tags"><span class="tag-pill">文档</span><span class="tag-pill">知识库</span></div>
-              <a href="https://www.gitbook.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-          </div>
-        </section>
-
-        <section id="community" class="section">
-          <div class="section-head">
-            <h3>社区资源</h3>
-            <span>交流中心</span>
-          </div>
-          <div class="grid">
-            <div class="item">
-              <div class="top"><div class="icon">R</div><h4>Reddit</h4></div>
-              <span class="meta">讨论</span>
-              <p>全球社群讨论平台，适合发现观点、热点和不同圈层信息。</p>
-              <div class="tags"><span class="tag-pill">社区</span><span class="tag-pill">讨论</span></div>
-              <a href="https://www.reddit.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">X</div><h4>X</h4></div>
-              <span class="meta">动态</span>
-              <p>社会资讯、观点传播与事件更新的重要入口。</p>
-              <div class="tags"><span class="tag-pill">资讯</span><span class="tag-pill">动态</span></div>
-              <a href="https://x.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">T</div><h4>Telegram</h4></div>
-              <span class="meta">群组</span>
-              <p>即时沟通、实时资讯与兴趣社群交流平台。</p>
-              <div class="tags"><span class="tag-pill">消息</span><span class="tag-pill">交流</span></div>
-              <a href="https://telegram.org" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">D</div><h4>Discord</h4></div>
-              <span class="meta">社群</span>
-              <p>兴趣社群、项目交流和即时协作的通用通讯入口。</p>
-              <div class="tags"><span class="tag-pill">团体</span><span class="tag-pill">协作</span></div>
-              <a href="https://discord.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">H</div><h4>Hacker News</h4></div>
-              <span class="meta">技术</span>
-              <p>技术观点、创业和产品讨论的高质量信息源。</p>
-              <div class="tags"><span class="tag-pill">资讯</span><span class="tag-pill">观点</span></div>
-              <a href="https://news.ycombinator.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">P</div><h4>Product Hunt</h4></div>
-              <span class="meta">发现</span>
-              <p>新产品、工具和趋势发现的优质社群入口。</p>
-              <div class="tags"><span class="tag-pill">产品</span><span class="tag-pill">趋势</span></div>
-              <a href="https://www.producthunt.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-          </div>
-        </section>
-
-        <section id="info" class="section">
-          <div class="section-head">
-            <h3>资讯阅读</h3>
-            <span>观点与热点</span>
-          </div>
-          <div class="grid">
-            <div class="item">
-              <div class="top"><div class="icon">3</div><h4>36氪</h4></div>
-              <span class="meta">创业</span>
-              <p>行业动态、创业资讯与产品观察的阅读入口。</p>
-              <div class="tags"><span class="tag-pill">趋势</span><span class="tag-pill">资讯</span></div>
-              <a href="https://36kr.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">N</div><h4>腾讯新闻</h4></div>
-              <span class="meta">新闻</span>
-              <p>时事信息、热点消息和综合资讯阅读入口。</p>
-              <div class="tags"><span class="tag-pill">新闻</span><span class="tag-pill">时事</span></div>
-              <a href="https://news.qq.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">G</div><h4>果壳</h4></div>
-              <span class="meta">科普</span>
-              <p>自然科学、科技现象与生活认知的小众知识入口。</p>
-              <div class="tags"><span class="tag-pill">科普</span><span class="tag-pill">知识</span></div>
-              <a href="https://www.guokr.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">R</div><h4>Readhub</h4></div>
-              <span class="meta">聚合</span>
-              <p>资讯聚合与热点内容整理的快速阅读入口。</p>
-              <div class="tags"><span class="tag-pill">聚合</span><span class="tag-pill">热点</span></div>
-              <a href="https://readhub.cn" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">T</div><h4>头条新闻</h4></div>
-              <span class="meta">聚合</span>
-              <p>国内热点、社会事件和消费趋势的快捷入口。</p>
-              <div class="tags"><span class="tag-pill">热点</span><span class="tag-pill">聚合</span></div>
-              <a href="https://www.toutiao.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-
-            <div class="item">
-              <div class="top"><div class="icon">B</div><h4>BBC</h4></div>
-              <span class="meta">国际</span>
-              <p>全球视野、国际事件和深度观察的参考入口。</p>
-              <div class="tags"><span class="tag-pill">国际</span><span class="tag-pill">观察</span></div>
-              <a href="https://www.bbc.com" target="_blank" rel="noreferrer">访问站点</a>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer id="contact" class="footer-block">
-        <div class="section-head">
-          <h3>联系</h3>
-          <span>商务合作 / 建议反馈</span>
-        </div>
-        <p>邮箱：hello@example.com &nbsp;｜&nbsp; 网址导航站 / 古典尊贵版</p>
-      </footer>
+<head>
+<meta charset="UTF-8">
+<title>正协导航 - 单卡不溢出定稿</title>
+<style>
+:root { --gold:#FFC107; --ivory:#FAF7F2; --red:#E8453C; }
+body { font-family: sans-serif; padding:40px; background:var(--ivory); }
+
+.card {
+  width: 320px;
+  background: #fff;
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:16px;
+}
+
+.head { display:flex; gap:12px; align-items:flex-start; }
+
+.icon {
+  width:48px; height:48px;
+  border-radius:50%; background:var(--gold);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+
+/* 关键：文字块变 flex column，子项可压 */
+.text {
+  flex:1;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+}
+
+.title {
+  margin:0 0 4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:clip;
+  min-width:0;
+  padding:4px 6px;
+  border-radius:6px;
+}
+.desc {
+  margin:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:clip;
+  min-width:0;
+  padding:4px 6px;
+  border-radius:6px;
+}
+
+/* 悬停无条横滑 */
+.title:hover,.desc:hover,.tags:hover,.links:hover {
+  background: rgba(255,193,7,0.2);
+  text-overflow:clip;
+  overflow:hidden;
+  overflow-y:hidden;
+}
+
+.tags { display:flex; gap:6px; margin:12px 0; white-space:nowrap; overflow:hidden; }
+.tag { padding:2px 8px; border:1px solid var(--gold); border-radius:4px; white-space:nowrap; flex-shrink:0; }
+
+.links { display:flex; gap:8px; margin-top:auto; white-space:nowrap; overflow:hidden; }
+.link { padding:4px 10px; background:var(--ivory); color:var(--red); text-decoration:none; white-space:nowrap; flex-shrink:0; }
+</style>
+</head>
+
+<body>
+<div class="card">
+  <div class="head">
+    <div class="icon">G</div>
+    <div class="text">
+      <div class="title">这是一个非常非常长的名称会被直接截断不画省略号</div>
+      <div class="desc">这是一段很长的描述文字也会被直接截断不画省略号</div>
     </div>
-  </body>
+  </div>
+  <div class="tags">
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+  </div>
+  <div class="links">
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+
+  </div>
+</div>
+
+<script>
+['title','desc','tags','links'].forEach(cls => {
+  const el = document.querySelector('.'+cls);
+  el.addEventListener('wheel', e => {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
+    }
+  }, {passive: false});
+});
+</script>
+</body>
 </html>

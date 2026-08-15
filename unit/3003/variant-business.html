@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>导航站 - 高端商务版</title>
+    <style>
+      :root {
+        --bg: #120d0d;
+        --bg-2: #1a1413;
+        --panel: rgba(30, 22, 20, 0.88);
+        --panel-2: #221b18;
+        --line: rgba(217, 177, 93, 0.25);
+        --text: #f8f0e7;
+        --muted: #d3c1b0;
+        --red-500: #c93039;
+        --red-700: #8d1f2a;
+        --gold-400: #d9b15d;
+        --gold-500: #f0d08d;
+        --gold-700: #ad8544;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+        background:
+          radial-gradient(circle at top, rgba(201, 48, 57, 0.18), transparent 26%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+        color: var(--text);
+      }
+      .wrap {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 60px;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 22px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(22, 17, 16, 0.84);
+        box-shadow: 0 20px 38px rgba(0,0,0,0.18);
+        backdrop-filter: blur(8px);
+      }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .logo {
+        width: 42px; height: 42px; border-radius: 14px;
+        display: grid; place-items: center;
+        background: linear-gradient(135deg, var(--red-500), var(--gold-400));
+        color: #fffaf5; font-weight: 800; box-shadow: 0 12px 26px rgba(201, 48, 57, 0.2);
+      }
+      .brand h1 { margin: 0; font-size: 1.35rem; }
+      .brand p { margin: 2px 0 0; color: var(--muted); font-size: .8rem; }
+      .nav { display: flex; gap: 10px; flex-wrap: wrap; }
+      .nav a {
+        text-decoration: none; color: var(--muted); padding: 9px 12px; border-radius: 999px;
+        border: 1px solid transparent; transition: 0.2s ease;
+      }
+      .nav a:hover, .nav a.active {
+        border-color: rgba(217,177,93,0.35);
+        background: rgba(217,177,93,0.08);
+        color: var(--text);
+      }
+      .hero {
+        display: grid; grid-template-columns: 1.3fr .7fr; gap: 22px; margin-top: 28px;
+      }
+      .hero-copy, .hero-side, .section {
+        background: var(--panel); border: 1px solid var(--line); border-radius: 24px;
+        box-shadow: 0 22px 40px rgba(0,0,0,0.16);
+      }
+      .hero-copy { padding: 30px 28px; }
+      .tag {
+        display: inline-block; padding: 8px 12px; border-radius: 999px;
+        background: rgba(217,177,93,0.08); border: 1px solid rgba(217,177,93,0.35);
+        color: var(--gold-500); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+      }
+      h2 { margin: 18px 0 12px; font-size: clamp(2.1rem, 4vw, 3.3rem); line-height: 1.08; }
+      .hero-copy p { margin: 0; color: var(--muted); line-height: 1.8; }
+      .search {
+        display: flex; gap: 10px; margin-top: 26px; padding: 10px 10px 10px 14px;
+        border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,0.02);
+      }
+      .search input {
+        flex: 1; min-width: 0; border: 0; outline: none; background: transparent; color: var(--text);
+        font-size: 1rem;
+      }
+      .search input::placeholder { color: rgba(211,193,176,0.75); }
+      .search button {
+        border: 0; border-radius: 12px; padding: 12px 18px; font-weight: 700; cursor: pointer;
+        color: #fff; background: linear-gradient(135deg, var(--red-500), var(--gold-400));
+      }
+      .stats { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 20px; }
+      .stats span {
+        padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line);
+        background: rgba(255,255,255,0.02); color: var(--muted);
+      }
+      .hero-side { padding: 18px; display: grid; gap: 14px; }
+      .mini {
+        min-height: 120px; display: flex; flex-direction: column; justify-content: center; padding: 20px 18px;
+        border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+        border: 1px solid var(--line);
+      }
+      .mini span { color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-size: .7rem; }
+      .mini strong { display: block; margin-top: 8px; font-size: 1.35rem; }
+      .section { padding: 20px; margin-top: 22px; }
+      .section-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
+      .section-head h3 { margin: 0; }
+      .section-head span { color: var(--muted); font-size: .8rem; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+      .item {
+        padding: 18px; border-radius: 18px; background: var(--panel-2); border: 1px solid var(--line);
+      }
+      .top { display: flex; align-items: center; gap: 12px; }
+      .icon {
+        width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+        background: linear-gradient(135deg, rgba(201,48,57,0.16), rgba(217,177,93,0.18));
+        color: var(--gold-500); font-weight: 800;
+      }
+      .item h4 { margin: 0; font-size: 1.05rem; }
+      .item p {
+        margin: 12px 0 14px; color: var(--muted); line-height: 1.7; font-size: .9rem;
+      }
+      .item a {
+        display: inline-block; text-decoration: none; color: var(--text); padding: 8px 12px;
+        border-radius: 10px; background: rgba(217,177,93,0.08); border: 1px solid var(--line);
+      }
+      @media (max-width: 760px) {
+        .topbar { display: grid; gap: 16px; }
+        .hero { grid-template-columns: 1fr; }
+        .search { flex-direction: column; }
+        .search button { width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo">N</div>
+          <div>
+            <h1>导航站</h1>
+            <p>高端商务 · 高效访问</p>
+          </div>
+        </div>
+        <nav class="nav">
+          <a class="active" href="#hot">热门</a>
+          <a href="#tools">工具</a>
+          <a href="#community">社区</a>
+          <a href="#contact">联系</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <span class="tag">高端商务</span>
+            <h2>让访问更专业、更高效</h2>
+            <p>面向正式展示场景，兼顾商务可靠感与红金奢华质感，适合企业、团队与品牌型导航站。</p>
+            <div class="search">
+              <input type="text" placeholder="搜索站点、关键词或网址" />
+              <button>搜索</button>
+            </div>
+            <div class="stats">
+              <span><strong>120+</strong> 站点</span>
+              <span><strong>8</strong> 分类</span>
+              <span><strong>24h</strong> 更新</span>
+            </div>
+          </div>
+          <div class="hero-side">
+            <div class="mini"><span>推荐</span><strong>开发者工具</strong></div>
+            <div class="mini"><span>热门</span><strong>资讯阅读</strong></div>
+            <div class="mini"><span>效率</span><strong>协作平台</strong></div>
+          </div>
+        </section>
+
+        <section id="hot" class="section">
+          <div class="section-head"><h3>热门站点</h3><span>精选高频入口</span></div>
+          <div class="grid">
+            <div class="item"><div class="top"><div class="icon">B</div><h4>百度</h4></div><p>中文搜索入口，信息检索常用平台。</p><a href="https://www.baidu.com" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">W</div><h4>微信</h4></div><p>社交沟通与内容分享平台。</p><a href="https://weixin.qq.com" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">Z</div><h4>知乎</h4></div><p>知识问答与学习社区。</p><a href="https://www.zhihu.com" target="_blank">访问</a></div>
+          </div>
+        </section>
+
+        <section id="tools" class="section">
+          <div class="section-head"><h3>工具站点</h3><span>效率工具集合</span></div>
+          <div class="grid">
+            <div class="item"><div class="top"><div class="icon">G</div><h4>GitHub</h4></div><p>全球领先的代码托管与协作平台。</p><a href="https://github.com" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">T</div><h4>Google 翻译</h4></div><p>语言翻译与多语言互译工具。</p><a href="https://translate.google.com" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">B</div><h4>Bilibili</h4></div><p>视频学习与娱乐社区。</p><a href="https://www.bilibili.com" target="_blank">访问</a></div>
+          </div>
+        </section>
+
+        <section id="community" class="section">
+          <div class="section-head"><h3>社区资源</h3><span>学习交流中心</span></div>
+          <div class="grid">
+            <div class="item"><div class="top"><div class="icon">C</div><h4>CSDN</h4></div><p>程序员技术社区与教程资源。</p><a href="https://www.csdn.net" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">M</div><h4>MDN</h4></div><p>Web 技术文档和学习资料。</p><a href="https://developer.mozilla.org/zh-CN/" target="_blank">访问</a></div>
+            <div class="item"><div class="top"><div class="icon">S</div><h4>Stack Overflow</h4></div><p>全球编程问答平台。</p><a href="https://stackoverflow.com" target="_blank">访问</a></div>
+          </div>
+        </section>
+      </main>
+
+      <footer id="contact" class="section" style="margin-top:22px;">
+        <div class="section-head"><h3>联系</h3><span>商务合作 / 建议反馈</span></div>
+        <p style="margin:0;color:var(--muted);line-height:1.8;">邮箱：hello@example.com</p>
+      </footer>
+    </div>
+  </body>
+</html>
