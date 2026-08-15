@@ -95,6 +95,7 @@ body { font-family: sans-serif; padding:40px; background:var(--ivory); }
 </div>
 
 <script>
+// —— 桌面：滚轮横滑（保留你贴的那版） ——
 ['title','desc','tags','links'].forEach(cls => {
   const el = document.querySelector('.'+cls);
   el.addEventListener('wheel', e => {
@@ -103,6 +104,22 @@ body { font-family: sans-serif; padding:40px; background:var(--ivory); }
       el.scrollLeft += e.deltaY;
     }
   }, {passive: false});
+});
+
+// —— 移动端：触摸横滑（新增） ——
+['title','desc','tags','links'].forEach(cls => {
+  const el = document.querySelector('.'+cls);
+  let startX = 0;
+
+  el.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  }, {passive: true});
+
+  el.addEventListener('touchmove', e => {
+    const dx = startX - e.touches[0].clientX;
+    el.scrollLeft += dx;
+    startX = e.touches[0].clientX; // 连续位移
+  }, {passive: true});
 });
 </script>
 </body>
