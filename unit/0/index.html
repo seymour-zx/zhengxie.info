@@ -52,11 +52,18 @@ body { font-family: sans-serif; padding:40px; background:var(--ivory); }
 }
 
 /* 悬停无条横滑 */
-.title:hover,.desc:hover,.tags:hover,.links:hover {
+.title:hover, .desc:hover, .tags:hover, .links:hover {
   background: rgba(255,193,7,0.2);
-  text-overflow:clip;
-  overflow:hidden;
-  overflow-y:hidden;
+  text-overflow: clip;
+  overflow-x: auto;      /* ← 关键：让浏览器认可是可横向滚动盒 */
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox 无条 */
+}
+.title:hover::-webkit-scrollbar,
+.desc:hover::-webkit-scrollbar,
+.tags:hover::-webkit-scrollbar,
+.links:hover::-webkit-scrollbar {
+  display: none;         /* Chrome 无条 */
 }
 
 .tags { display:flex; gap:6px; margin:12px 0; white-space:nowrap; overflow:hidden; }
@@ -107,18 +114,17 @@ body { font-family: sans-serif; padding:40px; background:var(--ivory); }
 });
 
 // —— 移动端：触摸横滑（新增） ——
+// 移动：必须基于 scrollable 盒
 ['title','desc','tags','links'].forEach(cls => {
   const el = document.querySelector('.'+cls);
   let startX = 0;
-
   el.addEventListener('touchstart', e => {
     startX = e.touches[0].clientX;
   }, {passive: true});
-
   el.addEventListener('touchmove', e => {
     const dx = startX - e.touches[0].clientX;
     el.scrollLeft += dx;
-    startX = e.touches[0].clientX; // 连续位移
+    startX = e.touches[0].clientX;
   }, {passive: true});
 });
 </script>
