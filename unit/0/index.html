@@ -131,22 +131,15 @@ sponsored： 广告
   <div class="head">
     <div class="icon">G</div>
     <div class="text">
-      <div class="title">这是一个非常非常长的名称会被直接截断不画省略号</div>
-      <div class="desc">这是一段很长的描述文字也会被直接截断不画省略号</div>
+      <div class="title">这是一个非常非常略号</div>
+      <div class="desc">这是一段很不画省略号</div>
     </div>
   </div>
   <div class="tags">
     <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
     <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
-    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
-    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
-    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
-    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
   </div>
   <div class="links">
-    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
-    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
-    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
     <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
     <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
 
@@ -210,7 +203,27 @@ sponsored： 广告
   </div>
 </div>
 
+<div class="frame-box">
+  <!-- 同站相对路径 -->
+    
+  <!-- referrerpolicy="no-referrer" 不要让子页面知道父页面的地址 -->
+  <iframe 
+    referrerpolicy="no-referrer"
+    src="../3/index.html"
+    title="内嵌子页面"
+    sandbox="allow-scripts allow-same-origin allow-forms"
+    loading="lazy">
+  </iframe>
 
+
+<button onclick="f.src='../911/index.html'">子页1</button>
+<button onclick="f.src='../912/index.html'">子页2</button>
+<iframe referrerpolicy="no-referrer" id="f" src="../911/index.html" style="width:100%;height:480px;border:0" loading="lazy"></iframe>
+  <!-- referrerpolicy="no-referrer" 不要让子页面知道父页面的地址 -->
+
+
+
+</div>
 
 <div class="card">
   <div class="head">
@@ -222,50 +235,74 @@ sponsored： 广告
   </div>
   <div class="tags">
     <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
-    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
-    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
-    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
-    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+  </div>
+  <div class="links">
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+  </div>
+</div>
+<div class="card">
+  <div class="head">
+    <div class="icon">G</div>
+    <div class="text">
+      <div class="title">这是一个非常非常长的名称会被直接截断不画省略号</div>
+      <div class="desc">这是一段很长的描述文字也会被直接截断不画省略号</div>
+    </div>
+  </div>
+  <div class="tags">
     <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
   </div>
   <div class="links">
     <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
-    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
-    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
-    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
-    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
-
   </div>
 </div>
 
-
-
+<div class="card">
+  <div class="head">
+    <div class="icon">G</div>
+    <div class="text">
+      <div class="title">这是一个非常非常长的名称会被直接截断不画省略号</div>
+      <div class="desc">这是一段很长的描述文字也会被直接截断不画省略号</div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+  </div>
+  <div class="links">
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+  </div>
+</div>
 
 <script>
-// —— 桌面：滚轮横滑（保留你贴的那版） ——
+// 桌面：滚轮横滑（仅超出时）
 ['title','desc','tags','links'].forEach(cls => {
-  const el = document.querySelector('.'+cls);
-  el.addEventListener('wheel', e => {
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      e.preventDefault();
-      el.scrollLeft += e.deltaY;
-    }
-  }, {passive: false});
+  document.querySelectorAll('.'+cls).forEach(el => {
+    el.addEventListener('wheel', e => {
+      if (el.scrollWidth <= el.clientWidth) return; // ← 没超直接放
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        el.scrollLeft += e.deltaY;
+      }
+    }, {passive: false});
+  });
 });
 
-// —— 移动端：触摸横滑（新增） ——
-// 移动：必须基于 scrollable 盒
+// 移动：触摸横滑（仅超出时）
 ['title','desc','tags','links'].forEach(cls => {
-  const el = document.querySelector('.'+cls);
-  let startX = 0;
-  el.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-  }, {passive: true});
-  el.addEventListener('touchmove', e => {
-    const dx = startX - e.touches[0].clientX;
-    el.scrollLeft += dx;
-    startX = e.touches[0].clientX;
-  }, {passive: true});
+  document.querySelectorAll('.'+cls).forEach(el => {
+    let startX = 0;
+    el.addEventListener('touchstart', e => {
+      if (el.scrollWidth <= el.clientWidth) return;
+      startX = e.touches[0].clientX;
+    }, {passive: true});
+
+    el.addEventListener('touchmove', e => {
+      if (el.scrollWidth <= el.clientWidth) return; // ← 没超直接放
+      e.preventDefault();
+      const dx = startX - e.touches[0].clientX;
+      el.scrollLeft += dx;
+      startX = e.touches[0].clientX;
+    }, {passive: false});
+  });
 });
 </script>
 </body>
