@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>正协导航 - 单卡×Grid 最终合并锚点</title>
+<style>
+/* ========== 设计令牌（从 style.css 原样搬） ========== */
+:root{
+  --vermilion-500:#E8453C;--vermilion-600:#D6362E;--vermilion-700:#A82028;--vermilion-900:#5C0F12;
+  --gold-300:#FFE082;--gold-500:#FFC107;--gold-600:#FFB300;--gold-700:#C9A24A;--gold-800:#9A7B35;
+  --ivory-50:#FDFBF7;--ivory-100:#FAF7F2;--ivory-200:#F5EFE6;--ivory-300:#EDE4D3;
+  --ink-900:#0F0B08;--ink-800:#1E1915;--ink-700:#2D2520;--ink-600:#423830;--ink-500:#6B5D52;--ink-400:#8C7D70;
+  --bg-page:#F7F3ED;--bg-card:#FFFFFF;--text-primary:var(--ink-800);--text-secondary:var(--ink-500);--text-muted:var(--ink-400);
+  --border:var(--ivory-300);--border-light:#F0E8D8;
+  --shadow-sm:0 1px 3px rgba(94,15,18,0.06);--shadow-md:0 4px 16px rgba(94,15,18,0.08);--shadow-lg:0 8px 30px rgba(94,15,18,0.12);
+  --radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-xl:16px;--radius-full:999px;
+  --font-serif:"Noto Serif SC","Songti SC",serif;--font-sans:"Noto Sans SC",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  --ease:cubic-bezier(0.4,0,0.2,1);--dur:250ms;
+  --max-width:1200px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);background:var(--bg-page);color:var(--text-primary);line-height:1.65;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input{font-family:inherit}
+
+/* ========== Grid 容器（你真实项目的 site-grid，按你规则重写断点） ========== */
+/* 规则：列数由 Grid 决定，卡宽 = 列宽，最大宽度 = 屏幕宽，永远无横向滚动条 */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); /* 桌面：约4列，最多6列由max-width锁 */
+  gap:14px;
+}
+/* 断点由“列数”反推，不是“像素” */
+/* 手机2~3列 */
+@media (max-width:900px){.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
+/* 手机特小：2列（不再1列，2列更实用） */
+@media (max-width:640px){.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}}
+/* 超大屏：最多6列（max-width 1200 / 260+gap ≈ 6） */
+
+/* ========== 单卡（你真实项目的 site-card，内部逻辑原样，只修一致性） ========== */
+.card{
+  display:flex;flex-direction:column;
+  padding:16px;background:var(--bg-card);
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  transition:all var(--dur) var(--ease);
+  overflow:hidden;position:relative;
+}
+.card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--vermilion-500),var(--gold-500));
+  opacity:0;transition:opacity var(--dur) var(--ease);
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:rgba(232,69,60,0.2)}
+.card:hover::before{opacity:1}
+
+/* 顶部：图标 + 名称区 + 收藏 */
+.card-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.icon{width:40px;height:40px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;background:linear-gradient(135deg,rgba(232,69,60,0.08),rgba(201,162,74,0.08));border:1px solid var(--border-light)}
+.text{flex:1;min-width:0;display:flex;flex-direction:column} /* ← 锁单行不溢出：flex column + min-width:0 */
+
+/* 名称：单行截断，无...（你要求 clip 风格） */
+.name{margin:0 0 4px;font-weight:700;font-size:0.98rem;color:var(--ink-800);white-space:nowrap;overflow:hidden;text-overflow:clip;min-width:0;display:flex;align-items:center;gap:6px}
+
+/* 描述：2行截断（项目原风格），但卡高由 grid 行高撑，描述短/长不影响同行对齐 */
+.desc{margin:0;font-size:0.8rem;color:var(--text-secondary);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* 收藏：桌面 hover 显示，移动端靠 .is-fav 常显（修你项目 Bug E） */
+.fav{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;background:var(--ivory-50);border:1px solid var(--border-light);transition:all var(--dur) var(--ease);opacity:0;cursor:pointer}
+.card:hover .fav,.fav.is-fav{opacity:1}
+.fav:hover{background:rgba(255,193,7,0.15);transform:scale(1.1)}
+.fav.is-fav{background:rgba(255,193,7,0.2);opacity:1}
+.fav.is-fav::after{content:"★"}
+.fav:not(.is-fav)::after{content:"☆"}
+
+/* 分隔线 */
+.divider{height:1px;background:linear-gradient(to right,var(--border),transparent);margin:4px 0}
+
+/* 标签行：标签不省略，一行放不下就裁（行容器裁，标签自身不省略） */
+.tags{display:flex;gap:4px;margin-bottom:8px;white-space:nowrap;overflow:hidden}
+.tag{padding:2px 8px;font-size:0.72rem;background:rgba(201,162,74,0.1);color:var(--gold-800);border:1px solid rgba(201,162,74,0.2);border-radius:var(--radius-sm);transition:all var(--dur) var(--ease);cursor:pointer;white-space:nowrap;flex-shrink:0}
+.tag:hover{background:rgba(201,162,74,0.2);color:var(--ink-800)}
+.tag.active{background:var(--vermilion-500);color:#fff;border-color:var(--vermilion-500)}
+
+/* 链接行：不省略，一行裁 */
+.links{display:flex;gap:6px;margin-top:auto;white-space:nowrap;overflow:hidden}
+.link{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:5px 8px;font-size:0.75rem;color:var(--ink-500);background:var(--ivory-50);border:1px solid var(--border-light);border-radius:var(--radius-sm);transition:all var(--dur) var(--ease);white-space:nowrap;flex-shrink:0}
+.link:hover{background:rgba(232,69,60,0.06);color:var(--vermilion-700);border-color:rgba(232,69,60,0.2)}
+
+/* 页面容器（锁最大宽度，确保“最大宽度=屏幕”在本页内成立） */
+.page{max-width:var(--max-width);width:100%;margin:0 auto;padding:24px}
+
+/*
+  关键说明（给你底层理解）：
+  1. 列数由 Grid 的 minmax 断点决定 → 卡宽 = 列宽 ≤ 屏幕宽 → 页面无横向滚动条
+  2. 名称/标签/链接用 nowrap+overflow:hidden → 超列宽裁掉，不撑破卡、不出横条
+  3. 描述用 2 行 line-clamp → 同行卡片靠 grid 行高对齐，不等高问题由 Grid 解决
+  4. 卡内 flex column + margin-top:auto → 链接贴底，同行对齐
+  5. 整页 body 没设 overflow-x，但 max-width+width:100% 保证不超屏
+*/
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="grid">
+    <!-- 12 张，结构严格复用。这里写 3 张示意，你复制满 12 -->
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">G</div>
+        <div class="text">
+          <div class="name">GitHub</div>
+          <div class="desc">全球最大代码托管平台，支持 Git 版本管理与协作开发</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">代码</span><span class="tag">开源</span><span class="tag">协作</span></div>
+      <div class="links"><a class="link" href="#">官网</a><a class="link" href="#">文档</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">知</div>
+        <div class="text">
+          <div class="name">知乎</div>
+          <div class="desc">中文互联网高质量问答社区和创作者聚集的原创内容平台</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">问答</span><span class="tag">社区</span><span class="tag">学习</span></div>
+      <div class="links"><a class="link" href="#">主页</a><a class="link" href="#">专栏</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">D</div>
+        <div class="text">
+          <div class="name">极长超长名字演示单行截断不画省略号也不溢出卡片</div>
+          <div class="desc">这是一段很长的描述文字用于演示两行截断在窄列下的表现</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">演示</span><span class="tag">截断</span><span class="tag">工具</span><span class="tag">测试</span></div>
+      <div class="links"><a class="link" href="#">官网</a><a class="link" href="#">文档</a><a class="link" href="#">社区</a></div>
+    </div>
+
+        <div class="card">
+      <div class="card-top">
+        <div class="icon">知</div>
+        <div class="text">
+          <div class="name">知乎</div>
+          <div class="desc">中文互联网高质量问答社区和创作者聚集的原创内容平台</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">问答</span><span class="tag">社区</span><span class="tag">学习</span></div>
+      <div class="links"><a class="link" href="#">主页</a><a class="link" href="#">专栏</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">D</div>
+        <div class="text">
+          <div class="name">极长超长名字演示单行截断不画省略号也不溢出卡片</div>
+          <div class="desc">这是一段很长的描述文字用于演示两行截断在窄列下的表现</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">演示</span><span class="tag">截断</span><span class="tag">工具</span><span class="tag">测试</span></div>
+      <div class="links"><a class="link" href="#">官网</a><a class="link" href="#">文档</a><a class="link" href="#">社区</a></div>
+    </div>
+        <div class="card">
+      <div class="card-top">
+        <div class="icon">知</div>
+        <div class="text">
+          <div class="name">知乎</div>
+          <div class="desc">中文互联网高质量问答社区和创作者聚集的原创内容平台</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">问答</span><span class="tag">社区</span><span class="tag">学习</span></div>
+      <div class="links"><a class="link" href="#">主页</a><a class="link" href="#">专栏</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">D</div>
+        <div class="text">
+          <div class="name">极长超长名字演示单行截断不画省略号也不溢出卡片</div>
+          <div class="desc">这是一段很长的描述文字用于演示两行截断在窄列下的表现</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">演示</span><span class="tag">截断</span><span class="tag">工具</span><span class="tag">测试</span></div>
+      <div class="links"><a class="link" href="#">官网</a><a class="link" href="#">文档</a><a class="link" href="#">社区</a></div>
+    </div>
+        <div class="card">
+      <div class="card-top">
+        <div class="icon">知</div>
+        <div class="text">
+          <div class="name">知乎</div>
+          <div class="desc">中文互联网高质量问答社区和创作者聚集的原创内容平台</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">问答</span><span class="tag">社区</span><span class="tag">学习</span></div>
+      <div class="links"><a class="link" href="#">主页</a><a class="link" href="#">专栏</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">D</div>
+        <div class="text">
+          <div class="name">极长超长名字演示单行截断不画省略号也不溢出卡片</div>
+          <div class="desc">这是一段很长的描述文字用于演示两行截断在窄列下的表现</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">演示</span><span class="tag">截断</span><span class="tag">工具</span><span class="tag">测试</span></div>
+      <div class="links"><a class="link" href="#">官网</a><a class="link" href="#">文档</a><a class="link" href="#">社区</a></div>
+    </div>
+
+
+
+
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">G</div>
+        <div class="text">
+          <div class="name">GitHub</div>
+          <div class="desc">全球最大代码托管平台，支持 Git 版本管理与协作开发</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">代码</span><span class="tag">开源</span><span class="tag">协作</span></div>
+      <div class="links"><a class="link" href="#">官网</a><a class="link" href="#">文档</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">知</div>
+        <div class="text">
+          <div class="name">知乎</div>
+          <div class="desc">中文互联网高质量问答社区和创作者聚集的原创内容平台</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">问答</span><span class="tag">社区</span><span class="tag">学习</span></div>
+      <div class="links"><a class="link" href="#">主页</a><a class="link" href="#">专栏</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">D</div>
+        <div class="text">
+          <div class="name">极长超长名字演示单行截断不画省略号也不溢出卡片</div>
+          <div class="desc">这是一段很长的描述文字用于演示两行截断在窄列下的表现</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">演示</span><span class="tag">截断</span><span class="tag">工具</span><span class="tag">测试</span></div>
+      <div class="links"><a class="link" href="#">官网</a><a class="link" href="#">文档</a><a class="link" href="#">社区</a></div>
+    </div>
+
+        <div class="card">
+      <div class="card-top">
+        <div class="icon">知</div>
+        <div class="text">
+          <div class="name">知乎</div>
+          <div class="desc">中文互联网高质量问答社区和创作者聚集的原创内容平台</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">问答</span><span class="tag">社区</span><span class="tag">学习</span></div>
+      <div class="links"><a class="link" href="#">主页</a><a class="link" href="#">专栏</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">D</div>
+        <div class="text">
+          <div class="name">极长超长名字演示单行截断不画省略号也不溢出卡片</div>
+          <div class="desc">这是一段很长的描述文字用于演示两行截断在窄列下的表现</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">演示</span><span class="tag">截断</span><span class="tag">工具</span><span class="tag">测试</span></div>
+      <div class="links"><a class="link" href="#">官网</a><a class="link" href="#">文档</a><a class="link" href="#">社区</a></div>
+    </div>
+        <div class="card">
+      <div class="card-top">
+        <div class="icon">知</div>
+        <div class="text">
+          <div class="name">知乎</div>
+          <div class="desc">中文互联网高质量问答社区和创作者聚集的原创内容平台</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">问答</span><span class="tag">社区</span><span class="tag">学习</span></div>
+      <div class="links"><a class="link" href="#">主页</a><a class="link" href="#">专栏</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">D</div>
+        <div class="text">
+          <div class="name">极长超长名字演示单行截断不画省略号也不溢出卡片</div>
+          <div class="desc">这是一段很长的描述文字用于演示两行截断在窄列下的表现</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">演示</span><span class="tag">截断</span><span class="tag">工具</span><span class="tag">测试</span></div>
+      <div class="links"><a class="link" href="#">官网</a><a class="link" href="#">文档</a><a class="link" href="#">社区</a></div>
+    </div>
+        <div class="card">
+      <div class="card-top">
+        <div class="icon">知</div>
+        <div class="text">
+          <div class="name">知乎</div>
+          <div class="desc">中文互联网高质量问答社区和创作者聚集的原创内容平台</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">问答</span><span class="tag">社区</span><span class="tag">学习</span></div>
+      <div class="links"><a class="link" href="#">主页</a><a class="link" href="#">专栏</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="icon">D</div>
+        <div class="text">
+          <div class="name">极长超长名字演示单行截断不画省略号也不溢出卡片</div>
+          <div class="desc">这是一段很长的描述文字用于演示两行截断在窄列下的表现</div>
+        </div>
+        <button class="fav" title="收藏"></button>
+      </div>
+      <div class="divider"></div>
+      <div class="tags"><span class="tag">演示</span><span class="tag">截断</span><span class="tag">工具</span><span class="tag">测试</span></div>
+      <div class="links"><a class="link" href="#">官网</a><a class="link" href="#">文档</a><a class="link" href="#">社区</a></div>
+    </div>
+    <!-- ↑ 复制至 12 -->
+  </div>
+</div>
+</body>
+</html>

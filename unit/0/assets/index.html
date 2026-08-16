@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正协导航 - 12卡 Grid（单卡定稿基底）</title>
+<style>
+:root { --gold:#FFC107; --ivory:#FAF7F2; --red:#E8453C; }
+* { box-sizing: border-box; }
+body { font-family: sans-serif; padding:24px; background:var(--ivory); }
+
+/* Grid 容器 */
+.grid {
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:16px;
+}
+@media (max-width:640px){ .grid { grid-template-columns: repeat(2,1fr); } }
+
+/* 卡片：单卡定稿原样，补 z-index */
+.card {
+  background:#fff; border:1px solid #ddd; border-radius:12px;
+  padding:16px; position:relative; z-index:0;
+}
+.head { display:flex; gap:12px; align-items:flex-start; }
+.icon {
+  width:48px; height:48px; border-radius:50%; background:var(--gold);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.text { flex:1; min-width:0; display:flex; flex-direction:column; }
+
+/* 名称/描述：单卡定稿截断无... */
+.title { margin:0 0 4px; white-space:nowrap; overflow:hidden; text-overflow:clip; min-width:0; padding:4px 6px; border-radius:6px; }
+.desc { margin:0; white-space:nowrap; overflow:hidden; text-overflow:clip; min-width:0; padding:4px 6px; border-radius:6px; }
+
+/* 悬停横滑上下文 */
+.title:hover,.desc:hover,.tags:hover,.links:hover {
+  background: rgba(255,193,7,0.2);
+  text-overflow:clip; overflow:hidden; overflow-y:hidden;
+}
+.tags { display:flex; gap:6px; margin:12px 0; white-space:nowrap; overflow:hidden; padding-right:4px;}
+.tag { padding:2px 8px; border:1px solid var(--gold); border-radius:4px; white-space:nowrap; flex-shrink:0; }
+
+.links { display:flex; gap:8px; margin-top:auto; white-space:nowrap; overflow:hidden; padding-right:4px;}
+.link { padding:4px 10px; background:var(--ivory); color:var(--red); text-decoration:none; white-space:nowrap; flex-shrink:0; }
+</style>
+</head>
+
+<body>
+<main class="grid">
+  <!-- 12 张，结构严格复用单卡。这里写 2 张示意，你复制满 12 -->
+  <article class="card">
+    <div class="head"><div class="icon">G</div><div class="text">
+      <div class="title">这是一个非常非常长的名称会被直接截断不画省略号</div>
+      <div class="desc">这是一段很长的描述文字也会被直接截断不画省略号</div>
+    </div></div>
+    <div class="tags"><span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span></div>
+    <div class="links"><a class="link">官网</a><a class="link">文档</a></div>
+  </article>
+  <article class="card">
+    <div class="head"><div class="icon">知</div><div class="text">
+      <div class="title">知乎是一个很长很长名字的问答社区平台截断演示</div>
+      <div class="desc">中文互联网高质量问答社区和创作者聚集的原创内容平台截断演示</div>
+    </div></div>
+    <div class="tags"><span class="tag">问答</span><span class="tag">社区</span><span class="tag">学习</span></div>
+    <div class="links"><a class="link">主页</a><a class="link">专栏</a></div>
+  </article>
+  <!-- ↑ 复制至 12 -->
+</main>
+
+<script>
+/* 桌面 + 移动：全选器，单卡定稿 JS 逻辑 */
+['title','desc','tags','links'].forEach(cls => {
+  document.querySelectorAll('.'+cls).forEach(el => {
+    el.addEventListener('wheel', e => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        el.scrollLeft += e.deltaY;
+      }
+    }, {passive: false});
+
+    let sx=0;
+    el.addEventListener('touchstart', e=>{ sx=e.touches[0].clientX; },{passive:true});
+    el.addEventListener('touchmove', e=>{
+      const dx = sx - e.touches[0].clientX;
+      el.scrollLeft += dx;
+      sx = e.touches[0].clientX;
+    },{passive:true});
+  });
+});
+</script>
+</body>
+</html>
