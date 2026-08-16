@@ -2,5 +2,6 @@ User-agent: *
 Disallow: /assets/
 Disallow: /private/
 Disallow: /index/
+Disallow: /backups/
 
 Sitemap: https://zhengxie.info/sitemap.xml

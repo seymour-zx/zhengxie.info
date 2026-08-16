@@ -1,80 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<title>正协导航 - 单卡不溢出定稿</title>
-<style>
-:root { --gold:#FFC107; --ivory:#FAF7F2; --red:#E8453C; }
-body { font-family: sans-serif; padding:40px; background:var(--ivory); }
-
-.card {
-  width: 320px;
-  background: #fff;
-  border:1px solid #ddd;
-  border-radius:12px;
-  padding:16px;
-}
-
-.head { display:flex; gap:12px; align-items:flex-start; }
-
-.icon {
-  width:48px; height:48px;
-  border-radius:50%; background:var(--gold);
-  display:flex; align-items:center; justify-content:center;
-  flex-shrink:0;
-}
-
-/* 关键：文字块变 flex column，子项可压 */
-.text {
-  flex:1;
-  min-width:0;
-  display:flex;
-  flex-direction:column;
-}
-
-.title {
-  margin:0 0 4px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:clip;
-  min-width:0;
-  padding:4px 6px;
-  border-radius:6px;
-}
-.desc {
-  margin:0;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:clip;
-  min-width:0;
-  padding:4px 6px;
-  border-radius:6px;
-}
-
-/* 悬停无条横滑 */
-.title:hover, .desc:hover, .tags:hover, .links:hover {
-  background: rgba(255,193,7,0.2);
-  text-overflow: clip;
-  overflow-x: auto;      /* ← 关键：让浏览器认可是可横向滚动盒 */
-  overflow-y: hidden;
-  scrollbar-width: none; /* Firefox 无条 */
-}
-.title:hover::-webkit-scrollbar,
-.desc:hover::-webkit-scrollbar,
-.tags:hover::-webkit-scrollbar,
-.links:hover::-webkit-scrollbar {
-  display: none;         /* Chrome 无条 */
-}
-
-.tags { display:flex; gap:6px; margin:12px 0; white-space:nowrap; overflow:hidden; }
-.tag { padding:2px 8px; border:1px solid var(--gold); border-radius:4px; white-space:nowrap; flex-shrink:0; }
-
-.links { display:flex; gap:8px; margin-top:auto; white-space:nowrap; overflow:hidden; }
-.link { padding:4px 10px; background:var(--ivory); color:var(--red); text-decoration:none; white-space:nowrap; flex-shrink:0; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, mininmum-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>正协导航 - 让每一次寻找，都不止于找到</title>
 </head>
 
+
+
 <body>
+
+<!-- <link rel="canonical" href="https://example.com/products"> -->
+ 内部链接，这些都不加
+ <br>
+ nofollow ： 不传递权重
+<br>
+noopener： 不让新网页控制本页面
+<br>
+noreferrer：不传递页面的地址
+<br>
+sponsored： 广告
+<br>
+<br>
+<a href="https://zhihu.com" target="_blank" rel="nofollow noopener noreferrer">
+  普通外链
+</a>
+<br>
+<br>
+<a href="https://zhihu.com" target="_blank" rel="nofollow sponsored noopener noreferrer">
+  赞助商链接，【不按导流算佣金的话】
+</a>
+<br>
+<br>
+<a href="https://zhihu.com" target="_blank" rel="nofollow sponsored noopener">
+  【按导流算佣金的话】联盟营销 / Affiliate 赚钱链接（别丢佣金！）
+  ❌ noreferrer （可能丢佣）
+</a>
+<br>
+<br>
+<a href="https://zhihu.com" referrerpolicy="origin" rel="nofollow noopener">如果要让下一个网站知道从本站过去，提供域名，但没具体页面地址</a>
+<br>
+<br>
+
+
 <div class="card">
   <div class="head">
     <div class="icon">G</div>
@@ -100,6 +69,177 @@ body { font-family: sans-serif; padding:40px; background:var(--ivory); }
 
   </div>
 </div>
+
+
+<div class="card">
+  <div class="head">
+    <div class="icon">G</div>
+    <div class="text">
+      <div class="title">这是一个非常非常长的名称会被直接截断不画省略号</div>
+      <div class="desc">这是一段很长的描述文字也会被直接截断不画省略号</div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+  </div>
+  <div class="links">
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+
+  </div>
+</div>
+
+
+
+<div class="card">
+  <div class="head">
+    <div class="icon">G</div>
+    <div class="text">
+      <div class="title">这是一个非常非常长的名称会被直接截断不画省略号</div>
+      <div class="desc">这是一段很长的描述文字也会被直接截断不画省略号</div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+  </div>
+  <div class="links">
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+
+  </div>
+</div>
+
+
+
+<div class="card">
+  <div class="head">
+    <div class="icon">G</div>
+    <div class="text">
+      <div class="title">这是一个非常非常长的名称会被直接截断不画省略号</div>
+      <div class="desc">这是一段很长的描述文字也会被直接截断不画省略号</div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+  </div>
+  <div class="links">
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+
+  </div>
+</div>
+
+
+
+<div class="card">
+  <div class="head">
+    <div class="icon">G</div>
+    <div class="text">
+      <div class="title">这是一个非常非常长的名称会被直接截断不画省略号</div>
+      <div class="desc">这是一段很长的描述文字也会被直接截断不画省略号</div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+  </div>
+  <div class="links">
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+
+  </div>
+</div>
+
+
+
+
+<div class="card">
+  <div class="head">
+    <div class="icon">G</div>
+    <div class="text">
+      <div class="title">这是一个非常非常长的名称会被直接截断不画省略号</div>
+      <div class="desc">这是一段很长的描述文字也会被直接截断不画省略号</div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+  </div>
+  <div class="links">
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+
+  </div>
+</div>
+
+
+
+<div class="card">
+  <div class="head">
+    <div class="icon">G</div>
+    <div class="text">
+      <div class="title">这是一个非常非常长的名称会被直接截断不画省略号</div>
+      <div class="desc">这是一段很长的描述文字也会被直接截断不画省略号</div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+    <span class="tag">代码</span><span class="tag">开源</span><span class="tag">工具</span><span class="tag">平台</span>
+  </div>
+  <div class="links">
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+    <a class="link">官网入口</a><a class="link">文档中心</a><a class="link">社区讨论</a>
+
+  </div>
+</div>
+
+
+
 
 <script>
 // —— 桌面：滚轮横滑（保留你贴的那版） ——
