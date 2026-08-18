@@ -1,3 +1,31 @@
+/* 广告容器样式 */
+
+.ad-container {
+    max-width: 1400px;     /* 广告外层最大宽，和你 main 的 1400 一致 ✅ */
+    margin: 1.5rem auto;   /* 上下 1.5rem 外边距，左右自动居中 ✅ */
+    padding: 0 0.25rem;       /* 左右留 0.25rem 呼吸感 ✅ */
+}
+
+.ad-wrapper {
+    background: rgba(255, 255, 255, 0.95); /* 白底微透，和卡片 .card 同色系 ✅ */
+    backdrop-filter: blur(10px);           /* 毛玻璃（仅 WebKit 强支持） */
+    border-radius: 4px;                   /* 圆角比卡片(10px)略大，区分层级 ✅ */
+    padding: 0.25rem;                         /* 内边距 ✅ */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); /* 悬浮感，比卡片深一点 ✅ */
+}
+
+.ad-label {
+    font-size: 0.75rem;     /* 12px（你根 16px 下 .75rem），合规 ✅ */
+    color: #94a3b8;         /* 浅蓝灰，弱存在感 ✅ */
+    margin-bottom: 0.25rem;  /* 和广告间距 ✅ */
+    text-align: right;      /* 标在右上/右，不抢左文 ✅ */
+}
+
+
+
+
+
+
 :root { --gold:#FFC107; --ivory:#FAF7F2; --red:#E8453C; }
 
 html {
@@ -164,24 +192,3 @@ body { font-family: sans-serif; padding:40px; background:var(--ivory); }
 
 
 
-            /* 广告容器样式 */
-        .ad-container {
-            max-width: 1400px;
-            margin: 1.5rem auto;
-            padding: 0 1rem;
-        }
-
-        .ad-wrapper {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
-
-        .ad-label {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            margin-bottom: 0.5rem;
-            text-align: right;
-        }
