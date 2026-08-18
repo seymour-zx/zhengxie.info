@@ -3,14 +3,14 @@
 .ad-container {
     max-width: 1400px;     /* 广告外层最大宽，和你 main 的 1400 一致 ✅ */
     margin: 1.5rem auto;   /* 上下 1.5rem 外边距，左右自动居中 ✅ */
-    padding: 0 0.25rem;       /* 左右留 0.25rem 呼吸感 ✅ */
+    padding: 0.25rem 0;       /* 上下留 0.25rem 呼吸感 ✅ */
 }
 
 .ad-wrapper {
     background: rgba(255, 255, 255, 0.95); /* 白底微透，和卡片 .card 同色系 ✅ */
     backdrop-filter: blur(10px);           /* 毛玻璃（仅 WebKit 强支持） */
     border-radius: 4px;                   /* 圆角比卡片(10px)略大，区分层级 ✅ */
-    padding: 0.25rem;                         /* 内边距 ✅ */
+    padding: 0.25rem 0;                         /* 上下 0.25rem 内边距 ✅ */
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); /* 悬浮感，比卡片深一点 ✅ */
 }
 
@@ -98,7 +98,7 @@ css
 
 
 
-body { font-family: sans-serif; padding:40px; background:var(--ivory); }
+body { font-family: sans-serif; padding:0; background:var(--ivory); }
 
 .card {
   width: 320px;
