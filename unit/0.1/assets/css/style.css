@@ -158,30 +158,3 @@ body { font-family: sans-serif; padding:40px; background:var(--ivory); }
       border: 0;
       display: block;
     }
-
-
-
-
-
-
-            /* 广告容器样式 */
-        .ad-container {
-            max-width: 1400px;
-            margin: 1.5rem auto;
-            padding: 0 1rem;
-        }
-
-        .ad-wrapper {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
-
-        .ad-label {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            margin-bottom: 0.5rem;
-            text-align: right;
-        }
