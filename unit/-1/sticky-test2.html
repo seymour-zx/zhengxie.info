@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>正协导航 - 初始不吸顶·2屏内容</title>
+<style>
+:root{--ivory:#FAF7F2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ivory);font-family:sans-serif;color:#333}
+
+/* ① 初始：搜索框在流里，不吸顶 */
+.search{
+  padding:12px 16px;
+  background:var(--ivory);
+  border-bottom:1px solid #eee;
+}
+.search input{width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;font-size:16px}
+
+/* ② 触发后才吸顶（由 JS 加类） */
+.search.stuck{
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+/* 标语 */
+.hero{padding:32px 16px;background:#fff;border-bottom:1px solid #eee}
+.hero h1{margin:0 0 8px;font-size:28px}
+.hero p{margin:0;color:#666;font-size:14px}
+
+/* 卡片网格 */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:16px}
+.card{background:#fff;border:1px solid #ddd;border-radius:8px;padding:12px;min-height:80px;display:flex;align-items:center;justify-content:center;font-size:14px}
+
+/* 底部留白 */
+.footer{padding:40px 16px;text-align:center;color:#999;font-size:12px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>正协导航</h1>
+  <p>一站式资源发现平台</p>
+</div>
+
+<div class="search" id="searchBar">
+  <input placeholder="搜索站点…">
+</div>
+
+<main class="grid" id="grid"></main>
+
+<div class="footer">— 已到底 —</div>
+
+<script>
+// 生成 40 张卡 → 保证 2 屏以上，能真滚动测试
+var grid=document.getElementById('grid');
+var names=['GitHub','Google','YouTube','Twitter','Facebook','Wikipedia','Baidu','QQ','微博','知乎',
+'GitHub','Google','YouTube','Twitter','Facebook','Wikipedia','Baidu','QQ','微博','知乎',
+'GitHub','Google','YouTube','Twitter','Facebook','Wikipedia','Baidu','QQ','微博','知乎',
+'GitHub','Google','YouTube','Twitter','Facebook','Wikipedia','Baidu','QQ','微博','知乎'];
+for(var i=0;i<40;i++){
+  var d=document.createElement('div');
+  d.className='card';
+  d.textContent=names[i%names.length]+' #'+(i+1);
+  grid.appendChild(d);
+}
+
+// 精确触发：搜索框到视口顶 → 加 stuck（初始不吸顶）
+// var bar=document.getElementById('searchBar');
+// function onScroll(){
+//   if(bar.getBoundingClientRect().top<=0){
+//     bar.classList.add('stuck');
+//   }else{
+//     bar.classList.remove('stuck');
+//   }
+// }
+// window.addEventListener('scroll',onScroll,{passive:true});
+// onScroll();
+</script>
+</body>
+</html>
