@@ -60,7 +60,6 @@ body{
 @media (max-width:719px){ .grid{grid-template-columns:repeat(3,1fr);} } /* 480~719：3列 */
 @media (max-width:479px){ .grid{grid-template-columns:repeat(2,1fr);} } /* 320~479：2列 */
 @media (max-width:319px){ .grid{grid-template-columns:repeat(1,1fr);} } /* <320：1列 */
-
 /* ========== 单卡（全用rem） ========== */
 .card{
   background:#fff;border:1px solid #eaeaea;border-radius:var(--radius);
