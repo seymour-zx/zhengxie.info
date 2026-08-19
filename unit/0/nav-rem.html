@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>正协导航</title>
+<link rel="stylesheet" href="assets/css/nav-rem.css">
+</head>
+<body>
+
+<header class="site-header" id="hdr">
+  <span class="logo">正协导航</span>
+  <span class="slogan">一站式资源发现平台</span>
+  <div class="search"><input type="text" placeholder="搜索站点…"></div>
+</header>
+
+<main style="max-width:87.5rem;margin:0 auto"> <!-- 1400px -->
+
+  <section>
+    <div class="section-head"><h3>精选推荐</h3><span class="count">1个</span></div>
+    <div class="grid">
+      <div class="card">
+        <div class="title">🌟 今日推荐</div>
+        <div class="desc">编辑精选的优质站点，每天更新</div>
+        <div class="tags"><span class="tag">推荐</span><span class="tag">每日更新</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h3>设计资源</h3><span class="count">2个</span></div>
+    <div class="grid">
+      <div class="card">
+        <div class="title">Figma</div>
+        <div class="desc">在线UI/UX设计工具，团队协作画原型</div>
+        <div class="tags"><span class="tag">设计</span><span class="tag">协作</span></div>
+      </div>
+      <div class="card">
+        <div class="title">Dribbble</div>
+        <div class="desc">全球设计师作品分享社区</div>
+        <div class="tags"><span class="tag">灵感</span><span class="tag">社区</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h3>学习平台</h3><span class="count">3个</span></div>
+    <div class="grid">
+      <div class="card">
+        <div class="title">Coursera</div>
+        <div class="desc">全球名校在线课程，学位与专项课程</div>
+        <div class="tags"><span class="tag">课程</span><span class="tag">英文</span></div>
+      </div>
+      <div class="card">
+        <div class="title">B站学习</div>
+        <div class="desc">中文视频教程，从入门到进阶</div>
+        <div class="tags"><span class="tag">中文</span><span class="tag">视频</span></div>
+      </div>
+      <div class="card">
+        <div class="title">MDN Web Docs</div>
+        <div class="desc">Mozilla 官方Web技术文档</div>
+        <div class="tags"><span class="tag">文档</span><span class="tag">英文</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h3>常用工具</h3><span class="count">4个</span></div>
+    <div class="grid">
+      <div class="card">
+        <div class="title">JSON 格式化</div>
+        <div class="desc">在线JSON查看与格式化</div>
+        <div class="tags"><span class="tag">开发</span></div>
+      </div>
+      <div class="card">
+        <div class="title">正则表达式测试</div>
+        <div class="desc">在线正则表达式测试与调试</div>
+        <div class="tags"><span class="tag">开发</span></div>
+      </div>
+      <div class="card">
+        <div class="title">Color Hunt</div>
+        <div class="desc">每日配色方案社区</div>
+        <div class="tags"><span class="tag">设计</span><span class="tag">配色</span></div>
+      </div>
+      <div class="card">
+        <div class="title">Excalidraw</div>
+        <div class="desc">手绘风格在线白板</div>
+        <div class="tags"><span class="tag">协作</span><span class="tag">白板</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h3>全部站点</h3><span class="count">5个</span></div>
+    <div class="grid">
+      <div class="card">
+        <div class="title">GitHub</div>
+        <div class="desc">全球最大代码托管与协作平台</div>
+        <div class="tags"><span class="tag">开发</span><span class="tag">代码</span></div>
+      </div>
+      <div class="card">
+        <div class="title">Google</div>
+        <div class="desc">谷歌搜索与各类在线服务</div>
+        <div class="tags"><span class="tag">搜索</span></div>
+      </div>
+      <div class="card">
+        <div class="title">YouTube</div>
+        <div class="desc">全球最大视频分享平台</div>
+        <div class="tags"><span class="tag">视频</span></div>
+      </div>
+      <div class="card">
+        <div class="title">Wikipedia</div>
+        <div class="desc">自由的百科全书</div>
+        <div class="tags"><span class="tag">百科</span><span class="tag">英文</span></div>
+      </div>
+      <div class="card">
+        <div class="title">Twitter</div>
+        <div class="desc">实时资讯与社交平台</div>
+        <div class="tags"><span class="tag">社交</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="footer">正协导航 · 一站式资源发现平台</div>
+
+<script>
+/* 吸顶效果 */
+var hdr=document.getElementById('hdr');
+var io=new IntersectionObserver(function(e){
+  hdr.classList.toggle('is-stuck',!e[0].isIntersecting);
+},{threshold:0});
+io.observe(hdr);
+</script>
+
+</body>
+</html>
