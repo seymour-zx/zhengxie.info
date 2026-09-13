@@ -4,4 +4,4 @@ Allow: /assets/css/
 Allow: /assets/js/
 Allow: /assets/images/
 
-Sitemap: https://zhengxie.com.cn/sitemap.xml
+Sitemap: https://zhengxie.info/sitemap.xml

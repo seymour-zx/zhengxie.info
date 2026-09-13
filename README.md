@@ -31,7 +31,7 @@
 ├── index.html               站点主页/导航产品页（静态，根域 /，首页=政协+民主党派专题）
 ├── README.md                本手册
 ├── 404.html                 错误页（自包含、按来源动态返回）
-├── CNAME                    自定义域名（zhengxie.com.cn）
+├── CNAME                    自定义域名（zhengxie.info）
 ├── robots.txt               爬虫规则
 ├── sitemap.xml              搜索引擎站点地图
 ├── ads.txt                  AdSense 授权

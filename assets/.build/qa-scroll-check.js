@@ -83,7 +83,7 @@ function buildEnv(scrollToImpl) {
     document: fakeDoc, matchMedia: () => ({ matches: true }),
     IntersectionObserver: function () { this.observe = () => {}; this.disconnect = () => {}; this.unobserve = () => {}; },
     MutationObserver: function () { this.observe = () => {}; this.disconnect = () => {}; },
-    location: { href: 'https://zhengxie.com.cn/index.html', hostname: 'zhengxie.com.cn', hash: '', pathname: '/index.html', search: '' },
+    location: { href: 'https://zhengxie.info/index.html', hostname: 'zhengxie.info', hash: '', pathname: '/index.html', search: '' },
     history: { pushState: () => {}, replaceState: () => {} },
     Image: function () {}, Blob: function () {}, setTimeout: () => 0, clearTimeout: () => {}, Date,
     requestAnimationFrame: () => 0, performance: { now: () => 0 },

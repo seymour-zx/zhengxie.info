@@ -89,7 +89,7 @@
   var randomExit = document.getElementById('random-exit');
 
   /* 百度统计兜底注入：页面未自带 snippet（window._hmt 不存在）时加载，避免重复 */
-  var ZX_BAIDU_TONGJI_ID = '2f4df5057c929092e36a0d6357e35261';  // 百度统计站点 ID（与 build 注入 snippet 同一 ID）
+  var ZX_BAIDU_TONGJI_ID = '70e38224e5ebd850150b00a19835a25f';  // 百度统计站点 ID（与 build 注入 snippet 同一 ID）
   (function loadBaiduTongji() {
     if (!ZX_BAIDU_TONGJI_ID || window._hmt) { return; }
     var s = document.createElement('script');

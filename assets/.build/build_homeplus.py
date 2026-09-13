@@ -30,7 +30,7 @@ XLSX = os.path.join(BASE, "assets", "xlsx")
 CARDS = os.path.join(XLSX, "cards.unified.xlsx")
 PAGES = os.path.join(XLSX, "pages.unified.xlsx")
 
-SITE_DOMAIN = "https://zhengxie.com.cn"
+SITE_DOMAIN = "https://zhengxie.info"
 BRAND = "正协导航"
 SLOGAN = "让每一次寻找，都不止于找到"
 
@@ -475,7 +475,7 @@ MARKETING_ATTR = 'target="_blank" rel="sponsored noopener noreferrer nofollow"'
 UGCCOMMENT_ATTR = 'target="_blank" rel="ugc noopener noreferrer nofollow"'
 EXPOSED_ATTR = 'target="_blank" rel="noopener" referrerpolicy="origin"'  # 政务官方：公开来源、传递权重
 DEFAULT_LINK_ATTR = 'target="_blank" rel="nofollow noopener noreferrer"'
-SAME_FAMILY = ["zhengxie.info", "zhengxie.com.cn"]
+SAME_FAMILY = ["zhengxie.info"]
 MARKETING = []
 UGCCOMMENT = []
 EXPOSED = ["beian.miit.gov.cn", "gov.cn"]  # .gov.cn 全覆盖（含 www/cppcc/各省市）
