@@ -27,6 +27,13 @@
 - 私有层（.workbuddy/）：治理/记忆/契约；URL 404
 - 内部治理一律进 .workbuddy/
 
+## 发布（GitHub Pages）
+- 发布源=**`docs/` 目录**（2026-09-14 由根目录发布改为 docs 发布；造物主在 GitHub 设置切换）
+- 站点文件全部位于 `docs/` 根：index/404/robots/sitemap/ads/favicon/CNAME + assets/ + pages/ + topics/
+- `CNAME`(域名) 必须留在 `docs/` 内；`.workbuddy/`/README/.gitignore 留仓库根(不被发布)
+- 构建脚本 `BASE=dirname(dirname(HERE))` 随 `assets/.build` 进 `docs/` 自动指向 `docs/`，重建产物天然落 docs/，无需改代码
+- 相对路径按"层级深度"写(`../assets`、`../../assets`)，搬进 docs 后拓扑不变→引用不变
+
 ## 世界坐标保护（防泄漏第一）
 - 公开层禁止：GitHub 用户名/仓库名/github.com 用户路径/users.noreply/<用户>.github.io
 - 平台名"GitHub Pages"可公开（仅仓库名/用户名属泄露红线；2026-08-31 造物主裁定）
