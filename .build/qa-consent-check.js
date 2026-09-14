@@ -9,7 +9,7 @@
 const fs = require('fs');
 const { chromium } = require('playwright-core');
 const BASE = 'http://127.0.0.1:8899';
-const CSS_PATH = require('path').join(__dirname, '..', 'css', 'style.css');
+const CSS_PATH = require('path').join(__dirname, '..', 'docs', 'assets', 'css', 'style.css');  // publish/.build -> publish/docs/assets
 const FRESH = fs.readFileSync(CSS_PATH, 'utf8');
 
 // 模拟 8/30 补丁之前的 CSS：剔除 [hidden] 规则、:has 规则、has-notice 规则

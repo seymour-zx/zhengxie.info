@@ -24,9 +24,10 @@ import json
 import hashlib
 import openpyxl
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-BASE = os.path.dirname(os.path.dirname(HERE))      # 新世界根
-XLSX = os.path.join(BASE, "assets", "xlsx")
+HERE = os.path.dirname(os.path.abspath(__file__))   # publish/.build/
+REPO = os.path.dirname(HERE)                         # publish/（仓库根，不随 GitHub Pages 发布）
+BASE = os.path.join(REPO, "docs")                    # 新世界根（发布源）
+XLSX = os.path.join(REPO, "xlsx")                    # 源数据（已移出 docs/，不发布）
 CARDS = os.path.join(XLSX, "cards.unified.xlsx")
 PAGES = os.path.join(XLSX, "pages.unified.xlsx")
 

@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const BASE = path.resolve(__dirname, '..', '..');
+const BASE = path.resolve(__dirname, '..', 'docs');   // publish/.build -> publish/docs（发布源）
 const html = fs.readFileSync(path.join(BASE, 'index.html'), 'utf-8');
 const mainjs = fs.readFileSync(path.join(BASE, 'assets', 'js', 'main.js'), 'utf-8');
 

@@ -27,11 +27,12 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # 复用 build_homeplus 的「按表头名解析」逻辑，避免硬编码列索引（如 row[7]）：
 # 一旦 xlsx 列顺序调整，死链检测不会再静默读错列。
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_homeplus import load_rows, collect_links
+from build_homeplus import read_xlsx, collect_links
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-XLSX_PATH = os.path.join(BASE_DIR, "assets", "xlsx", "cards.unified.xlsx")
-REPORT_PATH = os.path.join(BASE_DIR, "assets", ".build", "reports", "link_report.txt")
+HERE = os.path.dirname(os.path.abspath(__file__))            # publish/.build/
+BASE_DIR = os.path.join(os.path.dirname(HERE), "docs")        # publish/docs（发布源）
+XLSX_PATH = os.path.join(os.path.dirname(HERE), "xlsx", "cards.unified.xlsx")  # 源数据（移出 docs）
+REPORT_PATH = os.path.join(HERE, "reports", "link_report.txt")                 # publish/.build/reports
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -40,9 +41,9 @@ HEADERS = {
 
 
 def collect_urls(xlsx_path, limit=None):
-    """按表头名读取链接单元格（复用 load_rows + collect_links），逐项解析出 (名称, URL)。
+    """按表头名读取链接单元格（复用 read_xlsx + collect_links），逐项解析出 (名称, URL)。
     仅检查 http/https 链接（HEAD 请求），其余跳过。"""
-    rows, _ = load_rows(xlsx_path)
+    _, rows = read_xlsx(xlsx_path)
     urls = []
     for rec in rows:
         for name, url in collect_links(rec):
@@ -80,7 +81,7 @@ def main():
 
     urls = collect_urls(XLSX_PATH, args.limit)
     if not urls:
-        sys.exit("错误：self_links.xlsx 中没有可检查的 URL。")
+        sys.exit("错误：cards.unified.xlsx 中没有可检查的 URL。")
 
     print(f"开始检查 {len(urls)} 个 URL ...")
     results = []

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# 生成声明条/滚动按钮诊断副本页（assets/.build/diag-index.html）
+# 生成声明条/滚动按钮诊断副本页（.build/diag-index.html）
 # 用法: python assets/.build/make-diag-page.py
 # 然后在浏览器打开 http://127.0.0.1:8899/assets/.build/diag-index.html
 # 页面会自动扫描底部区域，标出拦截点击/悬停的覆盖元素，并收集 JS/资源错误
@@ -149,11 +149,11 @@ DIAG = r"""
 </script>
 """
 
-# 诊断页位于 assets/.build/ 子目录，所有 assets/ 相对路径需回退两级，否则 CSS/JS 404（页面完全无样式）
-out = src.replace('"assets/', '"../../assets/')
+# 诊断页位于 .build/ 目录（与 docs/ 平级），assets/ 相对路径需回退到 ../docs/assets/，否则 CSS/JS 404
+out = src.replace('"assets/', '"../docs/assets/')
 out = out.replace("</body>", DIAG + "\n</body>")
 if "diag-overlay" in src:
     raise SystemExit("index.html 已含诊断块，拒绝重复注入")
-dst = ROOT / "assets" / ".build" / "diag-index.html"
+dst = pathlib.Path(__file__).resolve().parent / "diag-index.html"   # 与脚本同目录 publish/.build/
 dst.write_text(out, encoding="utf-8")
 print("written:", dst)

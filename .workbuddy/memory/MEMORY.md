@@ -29,9 +29,10 @@
 
 ## 发布（GitHub Pages）
 - 发布源=**`docs/` 目录**（2026-09-14 由根目录发布改为 docs 发布；造物主在 GitHub 设置切换）
-- 站点文件全部位于 `docs/` 根：index/404/robots/sitemap/ads/favicon/CNAME + assets/ + pages/ + topics/
-- `CNAME`(域名) 必须留在 `docs/` 内；`.workbuddy/`/README/.gitignore 留仓库根(不被发布)
-- 构建脚本 `BASE=dirname(dirname(HERE))` 随 `assets/.build` 进 `docs/` 自动指向 `docs/`，重建产物天然落 docs/，无需改代码
+- 站点文件全部位于 `docs/` 根：index/404/robots/sitemap/ads/favicon/CNAME + assets/(仅 css/js/images/json 公开资源) + pages/ + topics/
+- `CNAME`(域名) 必须留在 `docs/` 内；`.workbuddy/`/README/.gitignore/xlsx/.build 留仓库根(不被发布)
+- **xlsx 源数据 与 .build 构建/校验脚本已移出 docs/，置于仓库根 `publish/xlsx` 与 `publish/.build`（2026-09-14 第二轮，避免源码/数据随 Pages 公开）**
+- 构建脚本路径基准：`.build` 在仓库根 → `REPO=dirname(HERE)`、`BASE=os.path.join(REPO,"docs")`、`XLSX=os.path.join(REPO,"xlsx")`；不再依赖"随 assets/.build 进 docs"的自动推算
 - 相对路径按"层级深度"写(`../assets`、`../../assets`)，搬进 docs 后拓扑不变→引用不变
 
 ## 世界坐标保护（防泄漏第一）
@@ -77,5 +78,5 @@
 
 ## 路线与现状
 - 路线见宪法 §四；进度：立宪✅分层✅身份✅2-9步✅→第9步提纯✅→第10步取代上线(push+删壳)
-- **独立小世界愿景**：assets/=可运行本体；.workbuddy=内部治理(剥离不留)
+- **独立小世界愿景**：可运行本体=仓库根 `xlsx/`(源数据)+`.build/`(构建/校验)+`docs/assets/`(公开产物)；`.workbuddy`=内部治理(剥离不留)
 - DEC 库：宪法 §五(DEC-001~008)；产品决策(D/N)由 contracts/ 承载

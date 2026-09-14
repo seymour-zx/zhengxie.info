@@ -25,8 +25,8 @@ from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(os.path.dirname(HERE))
+HERE = os.path.dirname(os.path.abspath(__file__))   # publish/.build/
+ROOT = os.path.join(os.path.dirname(HERE), "docs")   # publish/docs（发布源）
 REPORT_DIR = os.path.join(HERE, "reports")
 EXCLUDE_DIRS = {"assets", ".workbuddy", ".git", "node_modules", "__pycache__"}
 
