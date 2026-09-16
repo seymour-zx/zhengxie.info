@@ -150,7 +150,6 @@ def frag_head(page, dp, has_ad, rel="", pages=None):
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="referrer" content="no-referrer">
   <meta name="description" content="{esc(desc)}">
   <meta name="keywords" content="{esc(kws)}">
   <meta name="author" content="{BRAND}">
