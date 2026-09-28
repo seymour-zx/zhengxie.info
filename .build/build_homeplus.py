@@ -67,7 +67,7 @@ GA4_SCRIPT = ('<script async src="https://www.googletagmanager.com/gtag/js?id=G-
               '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
               'gtag("js",new Date());gtag("config","G-B880S4NQVK");</script>')
 BAIDU_SCRIPT = ('<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");'
-                'hm.src="https://hm.baidu.com/hm.js?2f4df5057c929092e36a0d6357e35261";'
+                'hm.src="https://hm.baidu.com/hm.js?70e38224e5ebd850150b00a19835a25f";'
                 'var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>')
 FOUC = ('<script>(function(){try{var t=localStorage.getItem("zx_theme");'
         'if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();</script>')
@@ -193,8 +193,8 @@ def build_jsonld(page, dp, canonical, pages=None):
         }, ensure_ascii=False)]
     if dp == "topics":
         # 对齐旧世界频道导航 hub：CollectionPage + mainEntity ItemList（专题列表）+ BreadcrumbList
-        order = ["/", "topics/gov", "topics/search"]
-        labels = {"/": "政协专题", "topics/gov": "政务导航", "topics/search": "搜索工具"}
+        order = ["/", "topics/gov", "topics/search", "topics/snh48"]
+        labels = {"/": "政协专题", "topics/gov": "政务导航", "topics/search": "搜索工具", "topics/snh48": "SNH48 成员索引"}
         items = []
         pos = 1
         for d in order:
@@ -772,11 +772,12 @@ def build_topics_hub(page, pages, rel):
     head = frag_head(page, dp, False, rel, pages) + "\n" + CHANNEL_CSS
     order = ["/", "topics/gov", "topics/search"]
     labels = {"/": "政协专题", "topics/gov": "政务导航", "topics/search": "搜索工具"}
-    icons = {"/": "协", "topics/gov": "政", "topics/search": "搜"}
+    icons = {"/": "协", "topics/gov": "政", "topics/search": "搜", "topics/snh48": "S"}
     descs = {
         "/": "政协与民主党派官方入口，按层级与组织分类陈列，链接直达官网、域名可见。",
         "topics/gov": "全国人民代表大会及地方各级人大，与国务院、国家政务服务平台及主要组成部门的官方入口，覆盖立法监督、宏观政策、民生办事与行业监管等权威政务信息，一键直达官方平台。",
         "topics/search": "聚合全网搜索工具入口：在站内一键调用 Google、必应、百度等检索，并收录购物、社区、开发、知识等各类搜索工具。",
+        "topics/snh48": "收录 SNH48（上海）女子偶像组合现役成员，按 Team SII / NII / HII / X 及预备生分组陈列，每张卡片直达成员官方主页，方便粉丝快速查找。",
     }
     cards = []
     for d in order:
