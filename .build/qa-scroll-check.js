@@ -53,8 +53,8 @@ function makeEl() {
 
 function buildEnv(scrollToImpl) {
   const byId = {};
-  ['cards-container', 'site-search-input', 'filter-tags', 'fav-toggle', 'theme-toggle', 'random-site',
-   'random-bar', 'random-refresh', 'random-exit', 'consent-bar', 'consent-close', 'scroll-btns',
+  ['cards-container', 'site-search-input', 'filter-tags', 'fav-toggle', 'theme-toggle',
+   'consent-bar', 'consent-close', 'scroll-btns',
    'engine-search', 'engine-input', 'empty-state', 'filter-tags-track', 'filter-tags-hint',
    'filter-tag-clear', 'category-bar', 'category-track', 'result-count'].forEach(id => byId[id] = makeEl());
   byId['site-search-input'].value = '';

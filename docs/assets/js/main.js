@@ -83,10 +83,6 @@
   var favToggleStar = favToggle ? favToggle.querySelector('.category-nav__fav-star') : null;
   var themeToggle = document.getElementById('theme-toggle');
   var emptyState = document.getElementById('empty-state');
-  var randomBtn = document.getElementById('random-site');
-  var randomBar = document.getElementById('random-bar');
-  var randomRefresh = document.getElementById('random-refresh');
-  var randomExit = document.getElementById('random-exit');
 
   /* 百度统计兜底注入：页面未自带 snippet（window._hmt 不存在）时加载，避免重复 */
   var ZX_BAIDU_TONGJI_ID = '70e38224e5ebd850150b00a19835a25f';  // 百度统计站点 ID（与 build 注入 snippet 同一 ID）
@@ -1095,120 +1091,6 @@
       out = out.replace(/(\d+)/g, function (_, i) { return '<mark>' + map[+i] + '</mark>'; });
       el.innerHTML = out;
     });
-  }
-
-  /* ── 12. 随机漫步：当前筛选池（含广告卡，不分普通/广告）数量加权随机类型 → 随机 2 行（行内同 type）；用户自选，不跳转 ── */
-  var RANDOM_LINES = 2;        // 随机卡行数（当前筛选池，含广告卡）
-  var inRandom = false;
-
-  function cardType(c) {
-    if (c.classList.contains('card--t2')) { return '2'; }
-    if (c.classList.contains('card--t3')) { return '3'; }
-    return '1';
-  }
-
-  function groupByType(pool) {
-    var g = { '1': [], '2': [], '3': [] };
-    pool.forEach(function (c) { g[cardType(c)].push(c); });
-    return g;
-  }
-
-  function shuffle(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i]; a[i] = a[j]; a[j] = t;
-    }
-    return a;
-  }
-
-  /* 当前筛选状态下的可见卡（与 applyFilter 同条件；广告卡同池参与，不分普通/广告） */
-  function getVisibleCards() {
-    var kw = siteInput.value.trim();
-    var visible = [];
-    cards.forEach(function (card) {
-      var catOk = activeCat === 'all' || card.getAttribute('data-cat') === activeCat;
-      var text = card.__searchLower;            // 复用预计算的小写副本
-      var kwOk = true;
-      var i;
-      for (i = 0; i < filterTags.length; i++) {
-        if (!textMatches(text, filterTags[i])) { kwOk = false; break; }
-      }
-      if (kwOk && kw && !textMatches(text, kw)) { kwOk = false; }
-      var favOk = !showFav || !!favs[card.__favKey];   // 复用缓存的收藏键
-      if (catOk && kwOk && favOk) { visible.push(card); }
-    });
-    return visible;
-  }
-
-  /* 一行数量：桌面 4 / 平板 3 / 移动 2（与 CSS grid 列数一致） */
-  function getRowSize() {
-    try {
-      if (window.matchMedia('(min-width: 1024px)').matches) { return 4; }
-      if (window.matchMedia('(min-width: 768px)').matches) { return 3; }
-    } catch (e) { /* 无 matchMedia 时退回移动端 */ }
-    return 2;
-  }
-
-  /* 数量加权随机选类型：类型数量越多越可能被选中（不做任何排除——造物主 2026-08-30 拍板，排除会拔高少数类型） */
-  function weightedTypePick(candidates, group) {
-    var total = 0, i;
-    for (i = 0; i < candidates.length; i++) { total += group[candidates[i]].length; }
-    if (!total) { return candidates[0]; }
-    var r = Math.random() * total;
-    for (i = 0; i < candidates.length; i++) {
-      r -= group[candidates[i]].length;
-      if (r < 0) { return candidates[i]; }
-    }
-    return candidates[candidates.length - 1];
-  }
-
-  /* 随机取 n 行：按数量加权随机一个卡片类型 → 从该类型随机取 n 行（行内同 type；不足取全部 → 1~n*size 张） */
-  function pickLines(group, n, size) {
-    var allTypes = ['1', '2', '3'].filter(function (t) { return group[t].length > 0; });
-    if (!allTypes.length) { return { type: null, cards: [] }; }   // 池空（如筛选无结果）→ 空批
-    var t = weightedTypePick(allTypes, group);
-    return { type: t, cards: shuffle(group[t]).slice(0, n * size) };
-  }
-
-  function enterRandom() {
-    var rowSize = getRowSize();
-    // 当前筛选池（含广告卡）数量加权随机类型 → 随机 2 行
-    var group = groupByType(getVisibleCards());
-    var picked = pickLines(group, RANDOM_LINES, rowSize);
-    var pick = picked.cards;
-    // 显示随机卡，隐藏其余（不调 applyFilter，随机模式锁定）
-    /* 必须同步 __shown：applyFilter 靠它与上一轮比对来做脏检查，
-       若这里只改 hidden 而不更新 __shown，退出随机后筛选会算出「状态未变」
-       而跳过写入，导致卡片显隐错乱。 */
-    cards.forEach(function (c) { c.hidden = true; c.__shown = false; });
-    pick.forEach(function (c) { c.hidden = false; c.__shown = true; });
-    // UI：显示随机条，隐藏分类标签 + 本地收藏按钮（随机模式不筛选收藏）
-    if (randomBar) { randomBar.hidden = false; }
-    document.querySelectorAll('.category-btn').forEach(function (b) { b.style.display = 'none'; });
-    document.querySelectorAll('.category-nav__fav').forEach(function (b) { b.style.display = 'none'; });
-    inRandom = true;
-    // 结果计数：随机漫步状态（手动更新，不用 applyFilter，防止按分类/搜索覆盖随机选择）
-    if (resultCount) { resultCount.textContent = '随机漫步：' + pick.length + ' 张卡片'; }
-  }
-
-  function exitRandom() {
-    cards.forEach(function (c) { c.hidden = false; c.__shown = true; });
-    if (randomBar) { randomBar.hidden = true; }
-    document.querySelectorAll('.category-btn').forEach(function (b) { b.style.display = ''; });
-    document.querySelectorAll('.category-nav__fav').forEach(function (b) { b.style.display = ''; });
-    inRandom = false;
-    applyFilter();
-  }
-
-  if (randomBtn) {
-    randomBtn.addEventListener('click', function () { enterRandom(); });
-  }
-  if (randomRefresh) {
-    randomRefresh.addEventListener('click', function () { enterRandom(); });
-  }
-  if (randomExit) {
-    randomExit.addEventListener('click', function () { exitRandom(); });
   }
 
   /* ── 初始化 ── */

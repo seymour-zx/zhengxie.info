@@ -60,7 +60,8 @@
 - 结构/类名/id 与继承 main.js/style.css 一致：分类行 `category-nav__inner+ul.category-nav__list.track#category-bar+li>h2>button`、logo 双文字、fav 星标文本 span（★/☆）、scroll-btns 4 状态
 - 卡片=旧 build_card：type t1/t2/t3 + media 5 形态(首字 fallback)+ tags 按钮 + links(link_attr+箭头)+ fav key(首 URL/标题#row_seq)；**type 变化处插 grid-break 强制分行**(契约 02「type 1→2→3 分行」=排序+分行)
 - 搜索框=hero__search/hero__engines/hero__searchrow/track + 21 data-engine；footer=sun/moon+完整导航
-- 新功能(random-bar/广告标识)只**新增元素**，禁改结构；改动先呈报
+- 新功能(广告标识等)只**新增元素**，禁改结构；改动先呈报
+- 随机漫步/random-bar 已于 2026-09-28 移除（页脚入口 + 分类区随机条 + 对应 JS 逻辑/CSS 样式/README/文档），勿再引用
 - **无链接卡=空行占位**(`<div class="card__links"></div>`；不加提示文字；"暂无网址"=agent 自删)
 
 ## 回归闸门（改 main.js 必跑）

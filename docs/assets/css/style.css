@@ -80,7 +80,7 @@ html {
   /* ⚠ scroll-behavior:smooth 已移除（2026-08-30 22:3x，真根因）：
      它与 JS window.scrollTo({behavior:'smooth'}) 冲突，导致 scrollTo 完全失效
      （实测：CSS smooth 下 scrollTo(0,800) 后 scrollY=0；auto 后 scrollY=1600）。
-     滚动平滑由 JS safeScrollTo 统一接管（滚动按钮/随机漫步均经它）。 */
+     滚动平滑由 JS safeScrollTo 统一接管（滚动按钮经它）。 */
   /* ── 跨浏览器字体一致性（三道防线） ──
      1) 显式 16px 基准：浏览器默认字号可被用户设置改写，显式声明固定基数；
      2) text-size-adjust:100%：禁止浏览器（尤其移动端）"自动膨胀"文字，
@@ -853,19 +853,12 @@ body.has-notice .scroll-btns { bottom: calc(var(--taskbar-inset, 0px) + 76px); }
 @media (max-width: 768px) {
   body.has-notice .scroll-btns { bottom: calc(var(--taskbar-inset, 0px) + 84px); }
 }
-/* 工具簇：随机漫步 + 暗色切换，分隔成一组控制条 */
+/* 工具簇：暗色切换控制条 */
 .footer__tools {
   display: flex; align-items: center; justify-content: center;
   gap: 16px; width: 100%; max-width: 320px;
   padding-top: 14px; border-top: 1px solid var(--gold);
 }
-.footer__random {
-  border: 1px solid var(--gold); background: transparent;
-  color: var(--red); font-size: 13px; padding: 6px 18px;
-  border-radius: 999px; cursor: pointer; white-space: nowrap;
-  transition: color .15s ease, background-color .15s ease, border-color .15s ease;
-}
-.footer__random:hover { background: var(--red); color: #fff; border-color: var(--red); }
 /* 暗色切换（已在 footer 工具簇中） */
 .footer__tools .theme-toggle { width: 38px; height: 38px; flex: none; }
 .footer__tools .theme-toggle svg { width: 18px; height: 18px; }
@@ -873,7 +866,7 @@ body.has-notice .scroll-btns { bottom: calc(var(--taskbar-inset, 0px) + 76px); }
 /* ── 打印样式 ── */
 @media print {
   .hero__search, .ad, .sticky-top, .scroll-btns, .theme-toggle,
-  .card__fav, .filter-tags, .site-search, .result-count, .footer__random,
+  .card__fav, .filter-tags, .site-search, .result-count,
   .skip-link, .empty-state { display: none !important; }
   .card { border: 1px solid #ccc; box-shadow: none; break-inside: avoid; }
   .cards-container { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
@@ -889,7 +882,6 @@ body.has-notice .scroll-btns { bottom: calc(var(--taskbar-inset, 0px) + 76px); }
 [data-theme="dark"] .site-search input { background: var(--bg-warm); }
 [data-theme="dark"] .filter-tag { background: var(--bg-warm); }
 [data-theme="dark"] .card__tag { background: var(--bg-warm); }
-[data-theme="dark"] .footer__random { background: transparent; }
 
 /* ═══ 面包屑导航（B 档新增 + 底部位置改造，红/金配色，亮暗双模式） ═══ */
 .breadcrumb {
@@ -942,19 +934,6 @@ body.has-notice .scroll-btns { bottom: calc(var(--taskbar-inset, 0px) + 76px); }
 [data-theme="dark"] .breadcrumb__item--current { color: var(--red); }
 
 /* ═══ miniworld 新增（第 8 步）═══ */
-
-/* 随机漫步条（分类容器内 sticky，做-5） */
-.random-bar {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 4px 12px; font-size: 14px; color: var(--text);
-  background: var(--bg-warm, #fff8f2);
-}
-.random-bar[hidden] { display: none; }
-.random-btn {
-  border: 1px solid var(--gold); background: var(--red); color: #fff;
-  padding: 3px 14px; border-radius: 999px; cursor: pointer; font-size: 13px;
-}
-.random-btn--ghost { background: transparent; color: var(--text-sub); }
 
 /* 广告卡标识（is_ad，D-15） */
 .card--ad { position: relative; }

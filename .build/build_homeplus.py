@@ -304,7 +304,7 @@ def frag_ads(slot_numbers):
 
 
 def frag_category_nav(categories, active="all"):
-    """分类导航：还原旧世界结构——category-nav__inner + logo 双文字 + ul.category-nav__list.track 滑道（id=category-bar，main.js 依赖）+ 文本星标 fav + random-bar。
+    """分类导航：还原旧世界结构——category-nav__inner + logo 双文字 + ul.category-nav__list.track 滑道（id=category-bar，main.js 依赖）+ 文本星标 fav。
     结构与旧世界 index.html 一致，main.js / style.css 继承自旧世界，类名必须匹配。"""
     btns = []
     for c in categories:
@@ -321,11 +321,6 @@ def frag_category_nav(categories, active="all"):
         <span class="category-nav__fav-star" aria-hidden="true">☆</span>
         <span class="category-nav__fav-text" aria-hidden="true"><span>本地</span><span>收藏</span></span>
       </button>
-    </div>
-    <div class="random-bar" id="random-bar" hidden>
-      <span>🎲 随机漫步</span>
-      <button type="button" class="random-btn" id="random-refresh">换一批</button>
-      <button type="button" class="random-btn random-btn--ghost" id="random-exit">退出</button>
     </div>
   </nav>
 """
@@ -602,10 +597,8 @@ def frag_consent_bar():
 """
 
 
-def frag_footer(rel="", show_random=True):
+def frag_footer(rel=""):
     tools = ""
-    if show_random:
-        tools += '        <button type="button" class="footer__random" id="random-site">随机漫步</button>\n'
     tools += '''        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="切换深色/浅色模式" aria-pressed="false">
           <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.2" y1="4.2" x2="5.6" y2="5.6"/><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.2" y1="19.8" x2="5.6" y2="18.4"/><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"/></svg>
           <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -825,7 +818,7 @@ def build_topics_hub(page, pages, rel):
     </p>
   </main>
 
-{frag_footer(rel, show_random=False)}
+{frag_footer(rel)}
 {HUB_THEME_SCRIPT}
 </body>
 </html>
