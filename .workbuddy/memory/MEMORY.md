@@ -58,7 +58,7 @@
 
 ## 结构铁律（build HTML 必须与旧世界一致）
 - 结构/类名/id 与继承 main.js/style.css 一致：分类行 `category-nav__inner+ul.category-nav__list.track#category-bar+li>h2>button`、logo 双文字、fav 星标文本 span（★/☆）、scroll-btns 4 状态
-- 卡片=旧 build_card：type t1/t2/t3 + media 5 形态(首字 fallback)+ tags 按钮 + links(link_attr+箭头)+ fav key(首 URL/标题#row_seq)；**type 变化处插 grid-break 强制分行**(契约 02「type 1→2→3 分行」=排序+分行)
+- 卡片=旧 build_card：type t1/t2/t3 + media 5 形态(首字 fallback)+ tags 按钮 + links(link_attr+箭头)+ fav key(首 URL/标题#row_seq)；**相邻 type 变化处插 grid-break 强制分行**（2026-09-30 修订：卡片排序仅按 row_seq，type 不参与排序，排序与分行解耦；有意偏离旧世界"先 type 分组"模式）
 - 搜索框=hero__search/hero__engines/hero__searchrow/track + 21 data-engine；footer=sun/moon+完整导航
 - 新功能(广告标识等)只**新增元素**，禁改结构；改动先呈报
 - 随机漫步/random-bar 已于 2026-09-28 移除（页脚入口 + 分类区随机条 + 对应 JS 逻辑/CSS 样式/README/文档），勿再引用

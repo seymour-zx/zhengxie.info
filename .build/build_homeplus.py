@@ -11,8 +11,8 @@ build_homeplus.py —— miniworld 页面生成器（第 8 步，片段化拼装
 xlsx 读取健壮性（契约 02 §一·B）：
 - 读第一个 tab / 自动识别表头行 / 列乱序不影响 / 额外列安全
 
-排序（契约 02 §二，与旧世界一致）：
-- 分类按钮 = 分类名首次出现顺序；卡片 = 先 card_layout（type 1→2→3）再 row_seq；py 不重排
+排序（契约 02 §二，2026-09-30 修订）：
+- 分类按钮 = 分类名首次出现顺序；卡片 = 仅按 row_seq（type 不参与排序），渲染时相邻 type 变化处插 grid-break 分行；py 不自动编号
 
 用法：
     python assets/.build/build_homeplus.py
@@ -649,9 +649,9 @@ def build_page(dp, page, cards, categories, pages):
     search_box = frag_search_box() if val(page, "search_box") in ("True", "1", "true") else ""
     intro = frag_intro(page)
     ads_top, ads_bottom = frag_ads(slot_numbers)
-    # 卡片区分组渲染：先 type 再 row_seq；本页分类 = 本页卡片 cat 首次出现顺序
+    # 卡片区渲染：仅按 row_seq 排序（type 不参与排序，2026-09-30 拍板）；本页分类 = 本页卡片 cat 首次出现顺序
     page_cards = [c for c in cards if val(c, "dir_path") == dp]
-    page_cards.sort(key=lambda c: (int_val(c, "card_layout", 99), int_val(c, "row_seq", 0)))
+    page_cards.sort(key=lambda c: int_val(c, "row_seq", 0))
     page_cats = []
     for c in page_cards:
         cat = val(c, "cat_name")
@@ -661,7 +661,7 @@ def build_page(dp, page, cards, categories, pages):
     if dp == "topics":
         return build_topics_hub(page, pages, rel)
     else:
-        # 卡片渲染：type 变化处插入 grid-break 强制换行（契约 02：type 1→2→3 分行；与旧世界 build_cards 一致）
+        # 卡片渲染：相邻 type 变化处插入 grid-break 强制换行（不同类型不共行；type 不参与排序，2026-09-30 拍板修订，有意偏离旧世界"先 type 分组"模式）
         parts = []
         prev_type = None
         for c in page_cards:
