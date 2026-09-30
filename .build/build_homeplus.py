@@ -107,7 +107,9 @@ def load_pages():
     pages = {}
     for r in rows:
         dp = str(r.get("dir_path") or "").strip()
-        if dp:
+        # 契约 02 §一：enabled 空 / 0 = 不生成该页（2026-09-30 修补，此前漏执行）
+        en = str(r.get("enabled") or "").strip().lower()
+        if dp and en in ("true", "1"):
             pages[dp] = r
     return pages
 
@@ -650,7 +652,9 @@ def build_page(dp, page, cards, categories, pages):
     intro = frag_intro(page)
     ads_top, ads_bottom = frag_ads(slot_numbers)
     # 卡片区渲染：仅按 row_seq 排序（type 不参与排序，2026-09-30 拍板）；本页分类 = 本页卡片 cat 首次出现顺序
-    page_cards = [c for c in cards if val(c, "dir_path") == dp]
+    # 铁律：enabled 空 = 不渲染（2026-09-30 修补，此前漏执行）
+    page_cards = [c for c in cards
+                  if val(c, "dir_path") == dp and val(c, "enabled").lower() in ("true", "1")]
     page_cards.sort(key=lambda c: int_val(c, "row_seq", 0))
     page_cats = []
     for c in page_cards:
@@ -770,8 +774,8 @@ def build_topics_hub(page, pages, rel):
     旧 hub 页 = hero + 标题区 + channel-grid（首字图标卡）+ 非官方声明 + footer；head 内联 channel 样式。"""
     dp = "topics"
     head = frag_head(page, dp, False, rel, pages) + "\n" + CHANNEL_CSS
-    order = ["/", "topics/gov", "topics/search"]
-    labels = {"/": "政协专题", "topics/gov": "政务导航", "topics/search": "搜索工具"}
+    order = ["/", "topics/gov", "topics/search", "topics/snh48"]  # 2026-09-30 修补：补 snh48（此前漏列致孤儿页；与 build_jsonld hub order 对齐）
+    labels = {"/": "政协专题", "topics/gov": "政务导航", "topics/search": "搜索工具", "topics/snh48": "SNH48 成员索引"}
     icons = {"/": "协", "topics/gov": "政", "topics/search": "搜", "topics/snh48": "S"}
     descs = {
         "/": "政协与民主党派官方入口，按层级与组织分类陈列，链接直达官网、域名可见。",
