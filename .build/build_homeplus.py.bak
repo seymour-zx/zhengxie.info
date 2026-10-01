@@ -16,15 +16,7 @@ xlsx 读取健壮性（契约 02 §一·B）：
 
 用法：
     python assets/.build/build_homeplus.py
-
-重构说明（2026-10-01）：在不改变任何生成 HTML 输出的前提下，做了可读性/可维护性整理：
-- 抽取 is_true / is_enabled 统一真理值判断（原先散落约 10 处 `val(...) in ("True","1","true")`）
-- 抽出 TOPIC_CHANNELS 作为专题频道唯一数据源（原先 build_jsonld 与 build_topics_hub 各硬编码一份）
-- 抽出 rel_prefix / parse_ad_slots / select_page_cards / ordered_categories / render_cards 子函数，拆分巨型 build_page
-- build_jsonld 中重命名被遮蔽的变量 page → webpage_ld
-- 删除 build_page 未被使用的 categories 参数及其在 main 中的死代码
 """
-
 import os
 import re
 import sys
@@ -32,9 +24,6 @@ import json
 import hashlib
 import openpyxl
 
-# ─────────────────────────────────────────────────────────────
-# 路径（publish/.build → 仓库根 publish/ → docs 发布源 / xlsx 源数据）
-# ─────────────────────────────────────────────────────────────
 HERE = os.path.dirname(os.path.abspath(__file__))   # publish/.build/
 REPO = os.path.dirname(HERE)                         # publish/（仓库根，不随 GitHub Pages 发布）
 BASE = os.path.join(REPO, "docs")                    # 新世界根（发布源）
@@ -42,20 +31,11 @@ XLSX = os.path.join(REPO, "xlsx")                    # 源数据（已移出 doc
 CARDS = os.path.join(XLSX, "cards.unified.xlsx")
 PAGES = os.path.join(XLSX, "pages.unified.xlsx")
 
-# ─────────────────────────────────────────────────────────────
-# 站点常量
-# ─────────────────────────────────────────────────────────────
 SITE_DOMAIN = "https://zhengxie.info"
 BRAND = "正协导航"
 SLOGAN = "让每一次寻找，都不止于找到"
 
-# 真理值集合：xlsx 布尔列的常见写法（"True" 为 Excel 直接导出，区分大小写与原文一致）
-TRUE_FLAGS = ("true", "1", "True")
-
-
-# ─────────────────────────────────────────────────────────────
-# 资源版本戳（内容 hash，防浏览器缓存不同步——2026-08-30 造物主拍板方案 A）
-# ─────────────────────────────────────────────────────────────
+# ── 资源版本戳（内容 hash，防浏览器缓存不同步——2026-08-30 造物主拍板方案 A）──
 def asset_ver(abs_path):
     """取文件内容 md5 前 8 位作版本号；文件不可读返回 '0'。"""
     try:
@@ -63,14 +43,10 @@ def asset_ver(abs_path):
     except OSError:
         return "0"
 
-
 CSS_VER = asset_ver(os.path.join(BASE, "assets", "css", "style.css"))
 JS_VER = asset_ver(os.path.join(BASE, "assets", "js", "main.js"))
 
-
-# ─────────────────────────────────────────────────────────────
-# 片段库（契约 03 §七：广告编号 = 片段索引；新增需 AdSense 后台建单元拿 slot）
-# ─────────────────────────────────────────────────────────────
+# ── 广告位片段库（契约 03 §七：编号 = 片段索引；新增需 AdSense 后台建单元拿 slot）──
 AD_SLOTS = {
     1: ('<aside class="ad ad--top" aria-label="广告">'
         '<p class="ad__label">广告</p>'
@@ -100,78 +76,7 @@ FOUC = ('<script>(function(){try{var t=localStorage.getItem("zx_theme");'
 # 不再内联进 HTML：消除与 main.js 的重复维护，并去除内联脚本的 CSP 隐患。
 # 收敛后声明条逻辑仅由 main.js 顶部 IIFE 负责（详见 assets/js/main.js 第 13 节）。
 
-# 专题频道唯一数据源：build_jsonld（hub 的 ItemList/Breadcrumb）与 build_topics_hub（卡片网格）共用。
-# 顺序即陈列顺序；补 snh48 与 build_jsonld hub order 对齐（2026-09-30 修补：此前漏列致孤儿页）。
-TOPIC_CHANNELS = [
-    {"path": "/", "label": "政协专题", "icon": "协",
-     "desc": "政协与民主党派官方入口，按层级与组织分类陈列，链接直达官网、域名可见。"},
-    {"path": "topics/gov", "label": "政务导航", "icon": "政",
-     "desc": "全国人民代表大会及地方各级人大，与国务院、国家政务服务平台及主要组成部门的官方入口，覆盖立法监督、宏观政策、民生办事与行业监管等权威政务信息，一键直达官方平台。"},
-    {"path": "topics/search", "label": "搜索工具", "icon": "搜",
-     "desc": "聚合全网搜索工具入口：在站内一键调用 Google、必应、百度等检索，并收录购物、社区、开发、知识等各类搜索工具。"},
-    {"path": "topics/snh48", "label": "SNH48 成员索引", "icon": "S",
-     "desc": "收录 SNH48（上海）女子偶像组合现役成员，按 Team SII / NII / HII / X 及预备生分组陈列，每张卡片直达成员官方主页，方便粉丝快速查找。"},
-]
 
-
-# ─────────────────────────────────────────────────────────────
-# 外链属性预设（继承旧世界：同主域/同族/营销/评论/公开/默认）
-# ─────────────────────────────────────────────────────────────
-SAME_DOMAIN_ATTR = 'target="_self"'  # 同主域站：原地打开
-SAME_FAMILY_ATTR = 'target="_blank" rel="noopener"'
-MARKETING_ATTR = 'target="_blank" rel="sponsored noopener noreferrer nofollow"'
-UGCCOMMENT_ATTR = 'target="_blank" rel="ugc noopener noreferrer nofollow"'
-EXPOSED_ATTR = 'target="_blank" rel="noopener" referrerpolicy="origin"'  # 政务官方：公开来源、传递权重
-DEFAULT_LINK_ATTR = 'target="_blank" rel="nofollow noopener noreferrer"'
-SAME_FAMILY = ["zhengxie.info"]
-MARKETING = []
-UGCCOMMENT = []
-EXPOSED = ["beian.miit.gov.cn", "gov.cn"]  # .gov.cn 全覆盖（含 www/cppcc/各省市）
-
-
-# ─────────────────────────────────────────────────────────────
-# 通用工具
-# ─────────────────────────────────────────────────────────────
-def val(r, k, default=""):
-    """取单元格值并去除首尾空白；缺失或空白返回 default。"""
-    v = r.get(k)
-    return default if v is None or v == "" else str(v).strip()
-
-
-def int_val(r, k, default=0):
-    try:
-        return int(r.get(k) or default)
-    except (ValueError, TypeError):
-        return default
-
-
-def esc(s):
-    """HTML 转义：& < > " 四字符。"""
-    s = str(s)
-    return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-             .replace('"', "&quot;"))
-
-
-def is_true(r, k):
-    """xlsx 布尔列 = 真（"true"/"1"/"True"，区分大小写与原文一致）。"""
-    return val(r, k) in TRUE_FLAGS
-
-
-def is_enabled(r, k):
-    """enabled 类列：小写后匹配 true/1（"TRUE" 也视为启用，与前版 load_pages 行为一致）。"""
-    return val(r, k).lower() in ("true", "1")
-
-
-def rel_prefix(dp):
-    """相对路径前缀：根目录(''/ '/')→''，其余按层级深度补 '../'。
-    本地 file:// 与 GitHub Pages 根/子路径均兼容，对齐旧世界相对路径规范。"""
-    depth = 0 if dp in ("/", "") else len(dp.split("/"))
-    return ("../" * depth) if depth else ""
-
-
-# ─────────────────────────────────────────────────────────────
-# xlsx 读取（契约 02 §一·B：第一个 tab / 自动表头 / 列乱序 / 额外列安全）
-# ─────────────────────────────────────────────────────────────
 def read_xlsx(path):
     """读 xlsx 第一个 tab，自动识别表头行，返回 (header, rows)，rows 为 dict 列表。"""
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
@@ -198,12 +103,13 @@ def read_xlsx(path):
 
 
 def load_pages():
-    """返回 {dir_path: row}；enabled 空 / 0 = 不生成该页（契约 02 §一）。"""
     _, rows = read_xlsx(PAGES)
     pages = {}
     for r in rows:
         dp = str(r.get("dir_path") or "").strip()
-        if dp and is_enabled(r, "enabled"):
+        # 契约 02 §一：enabled 空 / 0 = 不生成该页（2026-09-30 修补，此前漏执行）
+        en = str(r.get("enabled") or "").strip().lower()
+        if dp and en in ("true", "1"):
             pages[dp] = r
     return pages
 
@@ -213,9 +119,20 @@ def load_cards():
     return rows
 
 
-# ─────────────────────────────────────────────────────────────
-# 片段生成
-# ─────────────────────────────────────────────────────────────
+def val(r, k, default=""):
+    v = r.get(k)
+    return default if v is None or v == "" else str(v).strip()
+
+
+def int_val(r, k, default=0):
+    try:
+        return int(r.get(k) or default)
+    except (ValueError, TypeError):
+        return default
+
+
+# ── 片段生成 ──────────────────────────────────────────────
+
 def frag_head(page, dp, has_ad, rel="", pages=None):
     """head 元信息（自动生成：title/meta/OG/Twitter/JSON-LD/canonical 同源联动）"""
     title = val(page, "title") or f"{BRAND} - {SLOGAN}"
@@ -223,12 +140,10 @@ def frag_head(page, dp, has_ad, rel="", pages=None):
     kws = val(page, "keywords")
     canonical = SITE_DOMAIN + ("/" if dp == "/" else "/" + dp + "/")
     jsonld = build_jsonld(page, dp, canonical, pages)
-    ga4_on = is_true(page, "stat_ga4")
-    baidu_on = is_true(page, "stat_baidu")
     pre = []
-    if ga4_on:
+    if val(page, "stat_ga4") in ("True", "1", "true"):
         pre.append('<link rel="preconnect" href="https://www.googletagmanager.com">')
-    if baidu_on:
+    if val(page, "stat_baidu") in ("True", "1", "true"):
         pre.append('<link rel="preconnect" href="https://hm.baidu.com">')
     if has_ad:
         pre.append('<link rel="preconnect" href="https://pagead2.googlesyndication.com">')
@@ -259,8 +174,8 @@ def frag_head(page, dp, has_ad, rel="", pages=None):
   <link rel="apple-touch-icon" href="{rel}assets/images/logo.svg">
   {FOUC}
   {''.join(pre)}
-  {GA4_SCRIPT if ga4_on else ''}
-  {BAIDU_SCRIPT if baidu_on else ''}
+  {GA4_SCRIPT if val(page, 'stat_ga4') in ('True', '1', 'true') else ''}
+  {BAIDU_SCRIPT if val(page, 'stat_baidu') in ('True', '1', 'true') else ''}
   {AD_LOADER if has_ad else ''}
   <title>{esc(title)}</title>
 """ + "".join(f'  <script type="application/ld+json">{b}</script>\n' for b in jsonld)
@@ -280,12 +195,14 @@ def build_jsonld(page, dp, canonical, pages=None):
         }, ensure_ascii=False)]
     if dp == "topics":
         # 对齐旧世界频道导航 hub：CollectionPage + mainEntity ItemList（专题列表）+ BreadcrumbList
+        order = ["/", "topics/gov", "topics/search", "topics/snh48"]
+        labels = {"/": "政协专题", "topics/gov": "政务导航", "topics/search": "搜索工具", "topics/snh48": "SNH48 成员索引"}
         items = []
         pos = 1
-        for ch in TOPIC_CHANNELS:
-            if pages and ch["path"] in pages:
-                items.append({"@type": "ListItem", "position": pos, "name": ch["label"],
-                              "url": SITE_DOMAIN + ("/" if ch["path"] == "/" else "/" + ch["path"] + "/")})
+        for d in order:
+            if pages and d in pages:
+                items.append({"@type": "ListItem", "position": pos, "name": labels.get(d, d),
+                              "url": SITE_DOMAIN + ("/" if d == "/" else "/" + d + "/")})
                 pos += 1
         hub_ld = json.dumps({
             "@context": "https://schema.org", "@type": "CollectionPage",
@@ -300,10 +217,10 @@ def build_jsonld(page, dp, canonical, pages=None):
                              ]}, ensure_ascii=False)
         return [hub_ld, bc_hub]
     # 专题页：WebPage + BreadcrumbList（面包屑：首页 › 专题导航 › 本专题）
-    webpage_ld = json.dumps({"@context": "https://schema.org", "@type": "WebPage",
-                             "name": title, "url": canonical, "description": desc,
-                             "isPartOf": {"@type": "WebSite", "name": BRAND,
-                                          "url": SITE_DOMAIN + "/"}}, ensure_ascii=False)
+    page = json.dumps({"@context": "https://schema.org", "@type": "WebPage",
+                       "name": title, "url": canonical, "description": desc,
+                       "isPartOf": {"@type": "WebSite", "name": BRAND,
+                                    "url": SITE_DOMAIN + "/"}}, ensure_ascii=False)
     topic_name = title.split(" - ")[0]
     bc = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList",
                      "itemListElement": [
@@ -311,7 +228,7 @@ def build_jsonld(page, dp, canonical, pages=None):
                          {"@type": "ListItem", "position": 2, "name": "专题导航", "item": SITE_DOMAIN + "/topics/"},
                          {"@type": "ListItem", "position": 3, "name": topic_name, "item": canonical},
                      ]}, ensure_ascii=False)
-    return [webpage_ld, bc]
+    return [page, bc]
 
 
 def frag_search_box():
@@ -367,7 +284,7 @@ def frag_search_box():
 
 
 def frag_intro(page):
-    enabled = is_true(page, "channel_intro_enabled")
+    enabled = val(page, "channel_intro_enabled") in ("True", "1", "true")
     content = val(page, "channel_intro")
     if enabled and content:
         return f'    <section class="channel-intro" aria-label="专题介绍">\n      <p class="channel-intro__desc">{esc(content)}</p>\n    </section>\n'
@@ -548,6 +465,19 @@ def is_color(s):
     return True
 
 
+# ── 外链属性预设（继承旧世界：同主域/同族/营销/评论/公开/默认）──
+SAME_DOMAIN_ATTR = 'target="_self"'  # 同主域站：原地打开
+SAME_FAMILY_ATTR = 'target="_blank" rel="noopener"'
+MARKETING_ATTR = 'target="_blank" rel="sponsored noopener noreferrer nofollow"'
+UGCCOMMENT_ATTR = 'target="_blank" rel="ugc noopener noreferrer nofollow"'
+EXPOSED_ATTR = 'target="_blank" rel="noopener" referrerpolicy="origin"'  # 政务官方：公开来源、传递权重
+DEFAULT_LINK_ATTR = 'target="_blank" rel="nofollow noopener noreferrer"'
+SAME_FAMILY = ["zhengxie.info"]
+MARKETING = []
+UGCCOMMENT = []
+EXPOSED = ["beian.miit.gov.cn", "gov.cn"]  # .gov.cn 全覆盖（含 www/cppcc/各省市）
+
+
 def link_attr(url):
     """同主域 → 原地打开；命中预设域名 → 对应属性；均未命中 → DEFAULT（nofollow）。"""
     try:
@@ -640,7 +570,7 @@ def frag_card(c):
     cat = val(c, "cat_name")
     layout = val(c, "card_layout", "1")
     cls = {"1": "card--t1", "2": "card--t2", "3": "card--t3"}.get(layout, "card--t2")
-    is_ad = is_true(c, "is_ad")
+    is_ad = val(c, "is_ad") in ("True", "1", "true")
     media_html = build_media(val(c, "card_media"), t)
     tags_html = build_tags(cat, parse_tags(val(c, "card_tags")))
     links = collect_links(c)
@@ -698,68 +628,54 @@ def frag_footer(rel=""):
 """
 
 
-# ─────────────────────────────────────────────────────────────
-# 页面组装
-# ─────────────────────────────────────────────────────────────
-def parse_ad_slots(page):
-    """解析 ad_slots 字段（"1,3" 式逗号分隔），返回插槽号列表；空/缺失返回 []。"""
-    raw = page.get("ad_slots")
-    if not raw:
-        return []
-    slots = []
-    for part in str(raw).split(","):
-        p = part.strip()
-        if p.isdigit():
-            slots.append(int(p))
-    return slots
+def esc(s):
+    s = str(s)
+    return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+             .replace('"', "&quot;"))
 
 
-def select_page_cards(cards, dp):
-    """本页卡片：dir_path 匹配且 enabled，仅按 row_seq 排序（type 不参与排序，2026-09-30 拍板）。"""
-    selected = [c for c in cards if val(c, "dir_path") == dp and is_enabled(c, "enabled")]
-    selected.sort(key=lambda c: int_val(c, "row_seq", 0))
-    return selected
+# ── 页面组装 ──────────────────────────────────────────────
 
-
-def ordered_categories(cards):
-    """分类按钮顺序 = 本页卡片 cat_name 首次出现顺序。"""
-    cats = []
-    for c in cards:
-        cat = val(c, "cat_name")
-        if cat and cat not in cats:
-            cats.append(cat)
-    return cats
-
-
-def render_cards(cards):
-    """卡片区渲染：相邻 type（card_layout）变化处插入 grid-break 强制换行（不同类型不共行）。
-    type 不参与排序（2026-09-30 拍板修订，有意偏离旧世界"先 type 分组"模式）。"""
-    parts = []
-    prev_type = None
-    for c in cards:
-        t = val(c, "card_layout", "1")
-        if prev_type is not None and t != prev_type:
-            parts.append('<div class="grid-break" aria-hidden="true"></div>')
-        prev_type = t
-        parts.append(frag_card(c))
-    return "".join(parts)
-
-
-def build_page(dp, page, cards, pages):
-    """生成页面：分类按钮只显示本页分类（首次出现顺序）；topics hub 页罗列专题。
-    铁律：enabled 空 = 不渲染（2026-09-30 修补，此前漏执行）。"""
-    rel = rel_prefix(dp)
-    slot_numbers = parse_ad_slots(page)
-    search_box = frag_search_box() if is_true(page, "search_box") else ""
+def build_page(dp, page, cards, categories, pages):
+    """生成页面：分类按钮只显示本页分类（首次出现顺序）；topics hub 页罗列专题。"""
+    # 相对路径前缀（本地 file:// 与 GitHub Pages 根/子路径均兼容，对齐旧世界相对路径规范）
+    depth = 0 if dp in ("/", "") else len(dp.split("/"))
+    rel = ("../" * depth) if depth else ""
+    has_ad = bool(page.get("ad_slots"))
+    slot_numbers = []
+    if has_ad:
+        for part in str(page.get("ad_slots") or "").split(","):
+            p = part.strip()
+            if p.isdigit():
+                slot_numbers.append(int(p))
+    search_box = frag_search_box() if val(page, "search_box") in ("True", "1", "true") else ""
     intro = frag_intro(page)
     ads_top, ads_bottom = frag_ads(slot_numbers)
-    page_cards = select_page_cards(cards, dp)
-    page_cats = ordered_categories(page_cards)
+    # 卡片区渲染：仅按 row_seq 排序（type 不参与排序，2026-09-30 拍板）；本页分类 = 本页卡片 cat 首次出现顺序
+    # 铁律：enabled 空 = 不渲染（2026-09-30 修补，此前漏执行）
+    page_cards = [c for c in cards
+                  if val(c, "dir_path") == dp and val(c, "enabled").lower() in ("true", "1")]
+    page_cards.sort(key=lambda c: int_val(c, "row_seq", 0))
+    page_cats = []
+    for c in page_cards:
+        cat = val(c, "cat_name")
+        if cat and cat not in page_cats:
+            page_cats.append(cat)
     # topics hub 页：完全独立的频道导航页（channel-grid/channel-card，不走统一模板）
     if dp == "topics":
         return build_topics_hub(page, pages, rel)
-    cards_html = render_cards(page_cards)
-    nav = frag_category_nav(page_cats)
+    else:
+        # 卡片渲染：相邻 type 变化处插入 grid-break 强制换行（不同类型不共行；type 不参与排序，2026-09-30 拍板修订，有意偏离旧世界"先 type 分组"模式）
+        parts = []
+        prev_type = None
+        for c in page_cards:
+            t = val(c, "card_layout", "1")
+            if prev_type is not None and t != prev_type:
+                parts.append('<div class="grid-break" aria-hidden="true"></div>')
+            prev_type = t
+            parts.append(frag_card(c))
+        cards_html = "".join(parts)
+        nav = frag_category_nav(page_cats)
     html = f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -858,16 +774,23 @@ def build_topics_hub(page, pages, rel):
     旧 hub 页 = hero + 标题区 + channel-grid（首字图标卡）+ 非官方声明 + footer；head 内联 channel 样式。"""
     dp = "topics"
     head = frag_head(page, dp, False, rel, pages) + "\n" + CHANNEL_CSS
+    order = ["/", "topics/gov", "topics/search", "topics/snh48"]  # 2026-09-30 修补：补 snh48（此前漏列致孤儿页；与 build_jsonld hub order 对齐）
+    labels = {"/": "政协专题", "topics/gov": "政务导航", "topics/search": "搜索工具", "topics/snh48": "SNH48 成员索引"}
+    icons = {"/": "协", "topics/gov": "政", "topics/search": "搜", "topics/snh48": "S"}
+    descs = {
+        "/": "政协与民主党派官方入口，按层级与组织分类陈列，链接直达官网、域名可见。",
+        "topics/gov": "全国人民代表大会及地方各级人大，与国务院、国家政务服务平台及主要组成部门的官方入口，覆盖立法监督、宏观政策、民生办事与行业监管等权威政务信息，一键直达官方平台。",
+        "topics/search": "聚合全网搜索工具入口：在站内一键调用 Google、必应、百度等检索，并收录购物、社区、开发、知识等各类搜索工具。",
+        "topics/snh48": "收录 SNH48（上海）女子偶像组合现役成员，按 Team SII / NII / HII / X 及预备生分组陈列，每张卡片直达成员官方主页，方便粉丝快速查找。",
+    }
     cards = []
-    for ch in TOPIC_CHANNELS:
-        d = ch["path"]
+    for d in order:
         if d in pages:
             url = SITE_DOMAIN + ("/" if d == "/" else "/" + d + "/")   # 页面导航内链 = 完整 URL（造物主拍板 B 方案）
-            icon = ch["icon"]; label = ch["label"]; desc = ch["desc"]
             cards.append(f"""      <a class="channel-card" href="{url}">
-        <div class="channel-card__icon" aria-hidden="true">{icon}</div>
-        <h3 class="channel-card__title">{label}</h3>
-        <p class="channel-card__desc">{desc}</p>
+        <div class="channel-card__icon" aria-hidden="true">{icons.get(d, '站')}</div>
+        <h3 class="channel-card__title">{labels.get(d, d)}</h3>
+        <p class="channel-card__desc">{descs.get(d, '')}</p>
         <span class="channel-card__more">进入频道 →</span>
       </a>""")
     return f"""<!DOCTYPE html>
@@ -920,9 +843,15 @@ def main():
     pages = load_pages()
     cards = load_cards()
     print(f"页面配置: {list(pages.keys())} | 卡片: {len(cards)}")
+    # 分类顺序：cards 中 cat_name 首次出现顺序（按 dir_path 分组内）
+    categories = []
+    for c in cards:
+        cat = val(c, "cat_name")
+        if cat and cat not in categories:
+            categories.append(cat)
     # 生成各页面
     for dp, page in pages.items():
-        html = build_page(dp, page, cards, pages)
+        html = build_page(dp, page, cards, categories, pages)
         if dp == "/":
             write(os.path.join(BASE, "index.html"), html)
         elif dp == "topics":
