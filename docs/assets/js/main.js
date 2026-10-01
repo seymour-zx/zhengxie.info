@@ -19,6 +19,23 @@
 (function () {
   'use strict';
 
+  /* ── 通用工具 ── */
+  /* 安全 closest：旧内核/怪异元素无 closest 方法时返回 null，避免抛错 */
+  function closestEl(el, sel) {
+    return (el && el.closest) ? el.closest(sel) : null;
+  }
+  /* 按钮组互斥激活：清除组内 .active 与 aria-pressed，仅 activeBtn 置为激活态 */
+  function activateInGroup(groupBtns, activeBtn) {
+    groupBtns.forEach(function (b) {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    if (activeBtn) {
+      activeBtn.classList.add('active');
+      activeBtn.setAttribute('aria-pressed', 'true');
+    }
+  }
+
   /* ── 0. 首次访问声明条（D-18 + 30 天有效期）── 单一真源 + 顶部优先执行：
         原 HTML 内联 NOTICE_SCRIPT 已于 2026-08-31 移除，声明条逻辑仅在本文件维护（避免重复 + 消除内联 CSP 隐患）。
         置于 main.js 大 IIFE 最前：即便后续功能代码抛未捕获错误，本段已先执行，声明条仍会初始化（不被连累）。
@@ -355,9 +372,7 @@
   catBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
       activeCat = btn.getAttribute('data-cat');
-      catBtns.forEach(function (b) { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed', 'true');
+      activateInGroup(catBtns, btn);
       applyFilter();
     });
   });
@@ -546,7 +561,7 @@
 
   /* 卡片内：星标按钮（内含 SVG，用 closest 命中）+ 文字标签按钮点击（事件委托） */
   cardsContainer.addEventListener('click', function (e) {
-    var favBtn = e.target.closest ? e.target.closest('.card__fav') : null;
+    var favBtn = closestEl(e.target, '.card__fav');
     /* 星标按钮：toggle 本地收藏，不影响其他行为 */
     if (favBtn) {
       e.preventDefault();
@@ -561,10 +576,10 @@
       return;
     }
     /* 类型1/2/3 卡片：名称区→整行联动展名；描述区→整行联动展描述 */
-    var targetCard = e.target.closest ? e.target.closest('.card') : null;
+    var targetCard = closestEl(e.target, '.card');
     if (targetCard && !targetCard.hidden && getCardExpandType(targetCard)) {
-      var onDesc = e.target.closest('.card__desc');
-      var onTitle = e.target.closest('.card__title');
+      var onDesc = closestEl(e.target, '.card__desc');
+      var onTitle = closestEl(e.target, '.card__title');
       if (onDesc || onTitle) {
         e.preventDefault();
         if (onDesc) { toggleDescExpand(targetCard); }
@@ -584,7 +599,7 @@
   tagsWrap.addEventListener('click', function (e) {
     var t = e.target;
     if (t.classList && t.classList.contains('filter-tag__del')) {
-      var chip = t.closest('.filter-tag');
+      var chip = closestEl(t, '.filter-tag');
       if (chip) {
         var word = chip.querySelector('.filter-tag__text').textContent;
         var idx = filterTags.indexOf(word);
@@ -612,12 +627,7 @@
   var engineBtns = Array.prototype.slice.call(document.querySelectorAll('[data-engine]'));
   var currentEngineUrl = '';
   function setActiveEngine(btn) {
-    engineBtns.forEach(function (b) {
-      b.classList.remove('active');
-      b.setAttribute('aria-pressed', 'false');
-    });
-    btn.classList.add('active');
-    btn.setAttribute('aria-pressed', 'true');
+    activateInGroup(engineBtns, btn);
     currentEngineUrl = btn.getAttribute('data-url') || '';
   }
   var initEngine = document.querySelector('[data-engine].active') || engineBtns[0];
@@ -644,7 +654,7 @@
   /* 类型1/2/3 的标题/描述是「点击展开」交互，不作为横向滚动行：
      排除后不会被标 is-scrollable，避免悬停时滚轮被接管、显示抓取光标。 */
   function isScrollRow(el) {
-    var c = el.closest ? el.closest('.card') : null;
+    var c = closestEl(el, '.card');
     if (c && c.__etype && (el.classList.contains('card__title') || el.classList.contains('card__desc'))) { return false; }
     return true;
   }
@@ -658,7 +668,7 @@
   });
   /* 不属于任何卡片的独立滑道（分类滑道 / 筛选标签滑道 / 引擎滑道等，数量很少） */
   var standaloneRows = Array.prototype.slice.call(document.querySelectorAll(SCROLL_ROW_SEL))
-    .filter(function (el) { return !(el.closest && el.closest('.card')); });
+    .filter(function (el) { return !closestEl(el, '.card'); });
 
   function markRows(rows) {
     for (var i = 0; i < rows.length; i++) {
@@ -738,7 +748,7 @@
     if (touchActiveEl) { touchActiveEl.classList.remove('is-touch-active'); touchActiveEl = null; }
   }
   document.addEventListener('touchstart', function (e) {
-    var el = e.target.closest ? e.target.closest(SCROLL_ROW_SEL) : null;
+    var el = closestEl(e.target, SCROLL_ROW_SEL);
     if (el && el.classList.contains('is-scrollable')) {
       clearTouchActive();
       touchActiveEl = el;
@@ -757,7 +767,7 @@
      pointerover / wheel，这段在移动端是零成本。 */
   var wheelTarget = null;
   function resolveWheelTarget(t) {
-    var el = t && t.closest ? t.closest(SCROLL_ROW_SEL) : null;
+    var el = closestEl(t, SCROLL_ROW_SEL);
     if (el && !isScrollRow(el)) { el = null; }
     return (el && el.classList.contains('is-scrollable')) ? el : null;
   }
@@ -792,7 +802,7 @@
     document.addEventListener('pointerdown', function (e) {
       if (e.pointerType === 'touch') { return; }   // 触屏用原生 touch 滚动
       if (e.pointerType === 'mouse' && e.button !== 0) { return; }
-      var el = e.target.closest ? e.target.closest(SCROLL_ROW_SEL) : null;
+      var el = closestEl(e.target, SCROLL_ROW_SEL);
       if (!el || !isScrollRow(el) || !el.classList.contains('is-scrollable')) { return; }
       active = el; moved = false; startX = e.clientX; startLeft = el.scrollLeft;
     });
@@ -863,8 +873,10 @@
        y < alignTarget → 向下（编号 3）
        y > alignTarget → 向上（编号 1） */
   var scrollBtns = document.getElementById('scroll-btns');
-  if (scrollBtns) {
-    var catBar = document.getElementById('category-bar');
+  initScrollButtons();
+
+  function initScrollButtons() {
+    if (!scrollBtns) { return; }
     var stickyTop = document.querySelector('.sticky-top');   // 分类容器所在的 sticky 整体块
     var EPS = 0.5;
     var bottomYAbs = function () {
@@ -1121,7 +1133,7 @@
     cardsContainer.addEventListener('keydown', function (e) {
       if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') { return; }
       var t = e.target;
-      var card = t.closest ? t.closest('.card') : null;
+      var card = closestEl(t, '.card');
       if (!card || card.hidden || !card.__etype) { return; }
       if (t.classList.contains('card__title')) { e.preventDefault(); toggleTitleExpand(card); }
       else if (t.classList.contains('card__desc')) { e.preventDefault(); toggleDescExpand(card); }
@@ -1143,30 +1155,9 @@
   applyFilter();
   syncFromHash();
 
-  /* ── 13. 埋点：广告位曝光/点击（仅 slot 位置，不含广告内容） ── */
-  (function () {
-    var adEls = Array.prototype.slice.call(document.querySelectorAll('.ad'));
-    if (!adEls.length || !('IntersectionObserver' in window)) { return; }
-    function slotOf(cls) {
-      return /ad--top/.test(cls) ? 'top' : (/ad--bottom/.test(cls) ? 'bottom' : 'other');
-    }
-    var seen = {};
-    var io = new window.IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        var cls = en.target.className || '';
-        if (en.isIntersecting && !seen[cls]) {
-          seen[cls] = true;
-        }
-      });
-    }, { threshold: 0.5 });
-    adEls.forEach(function (el) {
-      io.observe(el);
-      var slot = slotOf(el.className || '');
-      el.addEventListener('click', function () { /* 广告点击（打点已移除，D-16） */ });
-    });
-  })();
+  /* 广告位曝光/点击埋点已于 D-16 移除，此处不再保留空桩（原 ── 13. ──） */
 
-  /* ── 14. 埋点：about 页浏览/阅读（整站级可信载体触达） ── */
+  /* ── 13. 埋点：about 页浏览/阅读（整站级可信载体触达） ── */
   (function () {
     var aboutArticle = document.querySelector('.about-content');
     if (!aboutArticle) { return; }
