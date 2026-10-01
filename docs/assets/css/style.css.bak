@@ -25,18 +25,13 @@
   --gold-deep: #B08D3E;    /* 深金：星形描边 */
   --focus-ring: #B08D3E;   /* 焦点环（亮色对比度 ~4.6:1 达标） */
   --ad-label: #64748b;     /* 广告标签色 */
-  /* 主题不变的「通道值」：阴影/描边等半透明叠加刻意沿用亮色调，
-     暗色模式也不跟随 --red/--gold 变化（避免暗底光晕过曝），故单列固定通道值 */
-  --white: #fff;                   /* 纯白反白文字（红/金底上，亮暗同值） */
-  --red-rgb: 158, 27, 34;  /* #9E1B22 的 RGB 通道，供 rgba() 阴影复用 */
-  --gold-rgb: 197, 165, 114; /* #C5A572 的 RGB 通道，供 rgba() 描边/光晕复用 */
   --bg: #FFFFFF;           /* 主背景（大面积白） */
   --bg-warm: #FAF6F0;      /* 暖白：卡片底/分区 */
   --text: #1A1A1A;         /* 主文字 */
   --text-sub: #5C5C5C;     /* 次要文字 */
   --radius: 8px;
   --shadow: 0 1px 3px rgba(26, 26, 26, .06);
-  --shadow-hover: 0 8px 20px rgba(var(--red-rgb), .12);
+  --shadow-hover: 0 8px 20px rgba(158, 27, 34, .12);
   --serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
   --sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
@@ -70,13 +65,13 @@
   background: var(--bg);
 }
 /* B9 暗色描边柔和化：暗底下金描边改用半透明金，避免过亮刺眼 */
-[data-theme="dark"] .card { border-color: rgba(var(--gold-rgb), .35); }
+[data-theme="dark"] .card { border-color: rgba(197, 165, 114, .35); }
 [data-theme="dark"] .card.is-scrollable,
 [data-theme="dark"] .card__title.is-scrollable,
 [data-theme="dark"] .card__desc.is-scrollable,
 [data-theme="dark"] .card__tags.is-scrollable,
 [data-theme="dark"] .card__links.is-scrollable {
-  box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), .35);
+  box-shadow: inset 0 0 0 1px rgba(197, 165, 114, .35);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -147,7 +142,7 @@ input, textarea, select { font-family: inherit; }
 .track.is-scrollable.is-touch-active,
 .card__title.is-scrollable.is-touch-active, .card__desc.is-scrollable.is-touch-active,
 .card__tags.is-scrollable.is-touch-active, .card__links.is-scrollable.is-touch-active {
-  background: linear-gradient(180deg, rgba(var(--gold-rgb), .10), rgba(var(--gold-rgb), .20));
+  background: linear-gradient(180deg, rgba(197, 165, 114, .10), rgba(197, 165, 114, .20));
   box-shadow: inset 0 0 0 1px var(--gold);
   border-radius: 6px;
 }
@@ -190,7 +185,7 @@ input, textarea, select { font-family: inherit; }
   border: 1px solid var(--gold);
   border-radius: 16px;
   padding: 22px 26px;
-  box-shadow: 0 4px 14px rgba(var(--red-rgb), .08);
+  box-shadow: 0 4px 14px rgba(158, 27, 34, .08);
 }
 .channel-intro__desc {
   margin: 0;
@@ -215,14 +210,14 @@ input, textarea, select { font-family: inherit; }
   font-size: 14px; white-space: nowrap;
   transition: background-color .15s ease, color .15s ease;
 }
-.hero__engines button.active { background: var(--red); color: var(--white); }
+.hero__engines button.active { background: var(--red); color: #fff; }
 .hero__searchrow {
   display: flex;
   background: var(--bg);
   border: 1px solid var(--gold);
   border-radius: 999px;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(var(--red-rgb), .08);
+  box-shadow: 0 4px 14px rgba(158, 27, 34, .08);
 }
 .hero__searchrow input {
   flex: 1; min-width: 0;
@@ -233,7 +228,7 @@ input, textarea, select { font-family: inherit; }
 .hero__searchrow button {
   border: none;
   background: linear-gradient(135deg, var(--red), var(--red-deep));
-  color: var(--white);
+  color: #fff;
   padding: 0 28px; font-size: 15px; letter-spacing: .1em;
 }
 .hero__searchrow button:hover { background: var(--red-deep); }
@@ -252,8 +247,9 @@ input, textarea, select { font-family: inherit; }
   transition: color .15s ease, background-color .15s ease, border-color .15s ease;
 }
 .hero__engines-track button:hover { color: var(--red); border-color: var(--gold-bright); }
-.hero__engines-track button.active { background: var(--red); color: var(--white); border-color: var(--red); }
+.hero__engines-track button.active { background: var(--red); color: #fff; border-color: var(--red); }
 
+/* ═══════════ 第2/7行块：广告位 ═══════════ */
 /* ═══════════ 第2/7行块：Google 广告位 ═══════════
    布局原则（重要，勿改）：
    - 左右【零】margin / 零 padding，撑满可用宽度 → 给 Google 全宽响应式广告
@@ -283,7 +279,7 @@ input, textarea, select { font-family: inherit; }
      --bg 随主题切换（亮色 #FFFFFF / 暗色 #1E1B1F），故暗色无需单独覆盖。 */
   background: var(--bg);
   border-bottom: 1px solid var(--gold);
-  box-shadow: 0 2px 8px rgba(var(--red-rgb), .05);
+  box-shadow: 0 2px 8px rgba(158, 27, 34, .05);
 }
 
 /* ── 分类导航：三段式（左 logo + 中滑道 + 右本地收藏） ── */
@@ -320,8 +316,8 @@ input, textarea, select { font-family: inherit; }
 .category-btn:hover { color: var(--red); border-color: var(--gold); background: var(--bg-warm); }
 .category-btn.active {
   background: linear-gradient(135deg, var(--red), var(--red-deep));
-  color: var(--white); border-color: var(--red);
-  box-shadow: 0 2px 8px rgba(var(--red-rgb), .25);
+  color: #fff; border-color: var(--red);
+  box-shadow: 0 2px 8px rgba(158, 27, 34, .25);
 }
 
 /* 左：方形文字 logo（在 .category-btn 之后声明，确保覆盖）。
@@ -330,11 +326,11 @@ input, textarea, select { font-family: inherit; }
   flex: none;
   width: 44px; height: 44px; border-radius: 8px;
   background: linear-gradient(135deg, var(--red-soft), var(--red-soft-deep));
-  color: var(--white); border: none; padding: 0;
+  color: #fff; border: none; padding: 0;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   font-family: var(--serif); font-size: inherit;
-  box-shadow: 0 2px 6px rgba(var(--red-rgb), .22);
+  box-shadow: 0 2px 6px rgba(158, 27, 34, .22);
   transition: box-shadow .15s ease;
 }
 /* logo 双文字（v4.3）：激活=品牌名「正协/导航」；未激活（已选某分类）=「全部」，
@@ -352,10 +348,10 @@ input, textarea, select { font-family: inherit; }
 .category-nav__logo:not(.active) .logo__all { display: block; }
 .category-nav__logo.active {
   background: linear-gradient(135deg, var(--red), var(--red-deep));
-  color: var(--white);
-  box-shadow: 0 2px 8px rgba(var(--red-rgb), .35), 0 0 0 2px var(--gold-bright);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(158, 27, 34, .35), 0 0 0 2px var(--gold-bright);
 }
-.category-nav__logo:hover { box-shadow: 0 2px 8px rgba(var(--red-rgb), .45), 0 0 0 2px var(--gold); }
+.category-nav__logo:hover { box-shadow: 0 2px 8px rgba(158, 27, 34, .45), 0 0 0 2px var(--gold); }
 
 /* 右：本地收藏按钮（v4.1：与 logo 同尺寸正方形，金色系。
    未点击显示 ★ 图标；点击（激活）显示「本地/收藏」两行文字。） */
@@ -367,7 +363,7 @@ input, textarea, select { font-family: inherit; }
   color: var(--red-deep);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--serif);
-  box-shadow: 0 2px 6px rgba(var(--gold-rgb), .35);
+  box-shadow: 0 2px 6px rgba(197, 165, 114, .35);
   transition: box-shadow .15s ease;
 }
 .category-nav__fav-star { font-size: 20px; line-height: 1; }
@@ -375,11 +371,11 @@ input, textarea, select { font-family: inherit; }
 .category-nav__fav-text span { line-height: 1.15; display: block; }
 .category-nav__fav-text span:first-child { font-size: 13px; letter-spacing: .12em; }
 .category-nav__fav-text span:last-child  { font-size: 12px; letter-spacing: .2em; }
-.category-nav__fav:hover { box-shadow: 0 2px 8px rgba(var(--gold-rgb), .5), 0 0 0 2px var(--gold-bright); }
+.category-nav__fav:hover { box-shadow: 0 2px 8px rgba(197, 165, 114, .5), 0 0 0 2px var(--gold-bright); }
 /* 激活态：显示文字 + 金色描边环（与 logo 激活态呼应） */
 .category-nav__fav.active {
   background: linear-gradient(135deg, var(--gold-bright), var(--gold));
-  box-shadow: 0 2px 8px rgba(var(--gold-rgb), .5), 0 0 0 2px var(--red);
+  box-shadow: 0 2px 8px rgba(197, 165, 114, .5), 0 0 0 2px var(--red);
 }
 .category-nav__fav.active .category-nav__fav-star { display: none; }
 .category-nav__fav.active .category-nav__fav-text { display: flex; }
@@ -394,13 +390,13 @@ input, textarea, select { font-family: inherit; }
   background: var(--bg); color: var(--text);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, .04);
 }
-.site-search input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(var(--red-rgb), .12); }
+.site-search input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(158, 27, 34, .12); }
 
 /* ── 第4.5行块：结果计数（搜索框与筛选标签行之间） ──
    无筛选：「共 N 个站点」；有筛选：「当前显示 X / N 个站点」；
    0 结果时红色加粗提醒。 */
 .result-count { margin-top: 8px; text-align: center; }
-.result-count__text { font-size: 14px; color: var(--text-sub); letter-spacing: .05em; }
+.result-count__text { font-size: 12px; color: var(--text-sub); letter-spacing: .05em; }
 .result-count__text.is-empty { color: var(--red); font-weight: 600; }
 
 /* ── 第5行块：筛选标签区（1行三段式，在置顶区内随整体 sticky） ── */
@@ -429,14 +425,14 @@ input, textarea, select { font-family: inherit; }
   color: var(--text-sub); font-size: 14px; line-height: 1;
   padding: 2px 6px; border-radius: 50%;
 }
-.filter-tag__del:hover { color: var(--white); background: var(--red); }
+.filter-tag__del:hover { color: #fff; background: var(--red); }
 .filter-tag__clear {
   flex: none;
   border: 1px solid var(--gold); background: transparent;
   color: var(--red); font-size: 13px; padding: 4px 12px; border-radius: 999px;
   white-space: nowrap;
 }
-.filter-tag__clear:hover { background: var(--red); color: var(--white); }
+.filter-tag__clear:hover { background: var(--red); color: #fff; }
 
 /* ═══════════ 第6行块：卡片容器（Grid 响应式） ═══════════
    手机一行 2 个，平板 3 个，桌面 4 个；
@@ -486,9 +482,9 @@ input, textarea, select { font-family: inherit; }
   border: none; background: transparent; border-radius: 6px;
   display: flex; align-items: center; justify-content: center;
   padding: 0; cursor: pointer;
-  color: var(--gold);
   transition: transform .15s ease;
 }
+.card__fav { color: var(--gold); }
 .card__fav svg { width: 20px; height: 20px; display: block; }
 .card__fav[aria-pressed="true"] { color: var(--gold-bright); }
 /* 同上：缩放悬停只在支持真实悬停的设备启用，避免移动端触摸后粘滞重绘 */
@@ -502,7 +498,7 @@ input, textarea, select { font-family: inherit; }
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--serif); font-weight: 700; font-size: 34px;
-  color: var(--white); text-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+  color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, .25);
 }
 .card__media-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* 纯色块占位（media 列仅填颜色值）：inline style 已设 background，此处保证铺满且无图时不露红底 */
@@ -518,6 +514,8 @@ input, textarea, select { font-family: inherit; }
   font-size: 14px; color: var(--text-sub);   /* B11 可读性 13→14px */
   min-width: 0;
 }
+.result-count__text { font-size: 14px; }                                  /* B11 可读性 */
+.card__link { font-size: 14px; }                                          /* B11 可读性 */
 
 /* 标签行 & 链接行 */
 .card__tags, .card__links {
@@ -533,7 +531,7 @@ input, textarea, select { font-family: inherit; }
   padding: 2px 10px; font-size: 12px;
   transition: color .15s ease, background-color .15s ease, border-color .15s ease;
 }
-.card__tag:hover { background: var(--red); color: var(--white); border-color: var(--red); }
+.card__tag:hover { background: var(--red); color: #fff; border-color: var(--red); }
 .card__tag--cat { border-color: var(--red); font-weight: 600; }
 .card__link {
   flex: none;
@@ -543,7 +541,7 @@ input, textarea, select { font-family: inherit; }
   padding: 3px 12px;
   transition: color .15s ease, background-color .15s ease, border-color .15s ease;
 }
-.card__link:hover { background: var(--red); color: var(--white); border-color: var(--red); }
+.card__link:hover { background: var(--red); color: #fff; border-color: var(--red); }
 .card__link-arrow { font-size: 11px; margin-left: 2px; opacity: .7; }
 .card__link:hover .card__link-arrow { opacity: 1; }
 
@@ -703,7 +701,7 @@ input, textarea, select { font-family: inherit; }
   left: 16px;
   z-index: 9999;
   background: var(--red);
-  color: var(--white);
+  color: #fff;
   padding: 8px 20px;
   border-radius: 0 0 8px 8px;
   font-size: 14px;
@@ -727,7 +725,7 @@ input, textarea, select { font-family: inherit; }
 .theme-toggle__moon { display: none; }
 [data-theme="dark"] .theme-toggle__sun { display: none; }
 [data-theme="dark"] .theme-toggle__moon { display: block; }
-.theme-toggle:hover { border-color: var(--gold-bright); color: var(--gold-bright); box-shadow: 0 0 0 2px rgba(var(--gold-rgb), .3); }
+.theme-toggle:hover { border-color: var(--gold-bright); color: var(--gold-bright); box-shadow: 0 0 0 2px rgba(197, 165, 114, .3); }
 @media (max-width: 639px) {
   .theme-toggle { width: 40px; height: 40px; }
   .theme-toggle svg { width: 18px; height: 18px; }
@@ -828,7 +826,7 @@ input, textarea, select { font-family: inherit; }
    若 z-index 更高则拦截按钮点击（新世界 22:19 实测 bug，造物主定位图层覆盖）。 */
 .official-banner {
   position: fixed; left: 0; right: 0; bottom: var(--taskbar-inset, 0px); z-index: 80;
-  background: var(--red-deep); color: var(--white);
+  background: var(--red-deep); color: #fff;
   padding: 10px 48px 10px 16px; text-align: center;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, .25);
 }
@@ -836,7 +834,7 @@ input, textarea, select { font-family: inherit; }
 .official-banner__text { margin: 0; font-size: 13px; line-height: 1.5; letter-spacing: .02em; }
 .official-banner__close {
   position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-  background: transparent; border: none; color: var(--white); font-size: 22px; line-height: 1;
+  background: transparent; border: none; color: #fff; font-size: 22px; line-height: 1;
   cursor: pointer; padding: 2px 8px;
 }
 .official-banner__close:hover { opacity: .8; }
@@ -872,7 +870,7 @@ body.has-notice .scroll-btns { bottom: calc(var(--taskbar-inset, 0px) + 76px); }
   .skip-link, .empty-state { display: none !important; }
   .card { border: 1px solid #ccc; box-shadow: none; break-inside: avoid; }
   .cards-container { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
-  body { background: var(--white); color: #000; }
+  body { background: #fff; color: #000; }
 }
 
 /* ── 暗色模式适配 ── */
@@ -890,7 +888,7 @@ body.has-notice .scroll-btns { bottom: calc(var(--taskbar-inset, 0px) + 76px); }
   max-width: 1200px;
   margin: 0 auto;
   padding: 14px 20px 12px;
-  border-top: 1px solid rgba(var(--gold-rgb), .4);
+  border-top: 1px solid rgba(197, 165, 114, .4);
   font-family: var(--sans);
   font-size: 12px;
   line-height: 1.6;
@@ -941,7 +939,7 @@ body.has-notice .scroll-btns { bottom: calc(var(--taskbar-inset, 0px) + 76px); }
 .card--ad { position: relative; }
 .card__ad-label {
   position: absolute; top: 4px; right: 4px; z-index: 2;
-  background: var(--gold, #d9b978); color: var(--white); font-size: 10px;
+  background: var(--gold, #d9b978); color: #fff; font-size: 10px;
   padding: 1px 6px; border-radius: 3px; letter-spacing: .05em;
 }
 
