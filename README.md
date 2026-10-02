@@ -54,7 +54,7 @@
 │   └── changelog/index.html  更新日志
 ├── articles/                文章区（站长方法论随笔，与索引内容区分）
 │   ├── index.html           文章集合页 hub
-│   └── file-naming/index.html  首篇：如何对文件分类与命名
+│   └── 如何对文件分类与命名：可长期维护的整理方法/index.html  首篇：如何对文件分类与命名：可长期维护的整理方法
 └── assets/
     ├── css/
     │   └── style.css        全站样式（红 / 金 / 白配色、响应式 Grid）
