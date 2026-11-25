@@ -202,7 +202,7 @@ git push -u origin main
 
 ### 2. 开启 GitHub Pages
 
-仓库 → **Settings → Pages**：Source 选 `Deploy from a branch`，Branch 选 `main` / `/ (root)`，Save 后访问 `https://<用户名>.github.io/<仓库名>/`。
+仓库 → **Settings → Pages**：Source 选 `Deploy from a branch`，Branch 选 `main` / `/docs`（发布源为 `docs/` 目录），Save 后访问 `https://<用户名>.github.io/<仓库名>/`。
 
 ### 3. 绑定自有域名
 

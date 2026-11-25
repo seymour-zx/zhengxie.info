@@ -10,12 +10,12 @@
  *   场景 B 老内核（小米 X5/老 Chromium）：scrollTo(options) 抛 TypeError → 降级 scrollTo(0,y)
  *   断言：无运行时错误 / scrollTo 被调用 4 次 / is-active 切换 ≥ 8 次 / 无锁死
  *
- * 用法：node assets/.build/qa-scroll-check.js   （退出码 0=通过，1=失败）
+ * 用法：node .build/qa-scroll-check.js   （退出码 0=通过，1=失败）
  */
 const fs = require('fs');
 const path = require('path');
 
-const BASE = path.resolve(__dirname, '..', 'docs');   // publish/.build -> publish/docs（发布源）
+const BASE = path.resolve(__dirname, '..', 'docs');   // 仓库根 .build/ -> docs/（发布源）
 const html = fs.readFileSync(path.join(BASE, 'index.html'), 'utf-8');
 const mainjs = fs.readFileSync(path.join(BASE, 'assets', 'js', 'main.js'), 'utf-8');
 

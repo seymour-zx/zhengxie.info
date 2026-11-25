@@ -2,12 +2,12 @@
 """
 check_links.py —— 正协导航 · 死链检测
 ====================================
-读取 assets/xlsx/self_links.xlsx 中链接单元格的 URL，逐个请求检查可达性，
-输出报告 assets/.build/link_report.txt。
+读取仓库根 xlsx/cards.unified.xlsx 中链接单元格的 URL，逐个请求检查可达性，
+输出报告 .build/reports/link_report.txt。
 
 用法：
-    python assets/.build/check_links.py              # 检查全部链接
-    python assets/.build/check_links.py --limit 5    # 只检查前 5 条（快速测试）
+    python .build/check_links.py              # 检查全部链接
+    python .build/check_links.py --limit 5    # 只检查前 5 条（快速测试）
 
 说明：
 - 链接录入为「多组单元格」：link1_name/link1_url … link10_name/link10_url（每组 名称+URL），
@@ -29,10 +29,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_homeplus import read_xlsx, collect_links
 
-HERE = os.path.dirname(os.path.abspath(__file__))            # publish/.build/
-BASE_DIR = os.path.join(os.path.dirname(HERE), "docs")        # publish/docs（发布源）
-XLSX_PATH = os.path.join(os.path.dirname(HERE), "xlsx", "cards.unified.xlsx")  # 源数据（移出 docs）
-REPORT_PATH = os.path.join(HERE, "reports", "link_report.txt")                 # publish/.build/reports
+HERE = os.path.dirname(os.path.abspath(__file__))            # 仓库根/.build/
+BASE_DIR = os.path.join(os.path.dirname(HERE), "docs")        # 仓库根/docs（发布源）
+XLSX_PATH = os.path.join(os.path.dirname(HERE), "xlsx", "cards.unified.xlsx")  # 源数据（仓库根/xlsx）
+REPORT_PATH = os.path.join(HERE, "reports", "link_report.txt")                 # 仓库根/.build/reports
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "

@@ -9,8 +9,8 @@ verify_site.py —— miniworld 站点静态校验（L1，第 8 步改造版）
 - 闭环：下次运行读上次报告「造物主决定」列 → 豁免项标注「已豁免(日期)」
 
 用法：
-    python assets/.build/verify_site.py            # 校验全站 → 出 xlsx 报告
-    python assets/.build/verify_site.py --strict   # 严重项也视为须关注
+    python .build/verify_site.py            # 校验全站 → 出 xlsx 报告
+    python .build/verify_site.py --strict   # 严重项也视为须关注
 """
 import argparse
 import datetime
@@ -25,8 +25,8 @@ from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 
-HERE = os.path.dirname(os.path.abspath(__file__))   # publish/.build/
-ROOT = os.path.join(os.path.dirname(HERE), "docs")   # publish/docs（发布源）
+HERE = os.path.dirname(os.path.abspath(__file__))   # 仓库根/.build/
+ROOT = os.path.join(os.path.dirname(HERE), "docs")   # 仓库根/docs（发布源）
 REPORT_DIR = os.path.join(HERE, "reports")
 EXCLUDE_DIRS = {"assets", ".workbuddy", ".git", "node_modules", "__pycache__"}
 

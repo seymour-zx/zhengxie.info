@@ -15,7 +15,7 @@ xlsx 读取健壮性（契约 02 §一·B）：
 - 分类按钮 = 分类名首次出现顺序；卡片 = 仅按 row_seq（type 不参与排序），渲染时相邻 type 变化处插 grid-break 分行；py 不自动编号
 
 用法：
-    python assets/.build/build_homeplus.py
+    python .build/build_homeplus.py
 
 重构说明（2026-10-01）：在不改变任何生成 HTML 输出的前提下，做了可读性/可维护性整理：
 - 抽取 is_true / is_enabled 统一真理值判断（原先散落约 10 处 `val(...) in ("True","1","true")`）
@@ -33,12 +33,12 @@ import hashlib
 import openpyxl
 
 # ─────────────────────────────────────────────────────────────
-# 路径（publish/.build → 仓库根 publish/ → docs 发布源 / xlsx 源数据）
+# 路径（仓库根 .build/ → 仓库根 → docs 发布源 / xlsx 源数据）
 # ─────────────────────────────────────────────────────────────
-HERE = os.path.dirname(os.path.abspath(__file__))   # publish/.build/
-REPO = os.path.dirname(HERE)                         # publish/（仓库根，不随 GitHub Pages 发布）
-BASE = os.path.join(REPO, "docs")                    # 新世界根（发布源）
-XLSX = os.path.join(REPO, "xlsx")                    # 源数据（已移出 docs/，不发布）
+HERE = os.path.dirname(os.path.abspath(__file__))   # 仓库根/.build/
+REPO = os.path.dirname(HERE)                         # 仓库根（不随 GitHub Pages 发布）
+BASE = os.path.join(REPO, "docs")                    # docs/（发布源）
+XLSX = os.path.join(REPO, "xlsx")                    # xlsx/（源数据，已移出 docs/，不发布）
 CARDS = os.path.join(XLSX, "cards.unified.xlsx")
 PAGES = os.path.join(XLSX, "pages.unified.xlsx")
 

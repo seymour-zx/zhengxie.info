@@ -1,7 +1,7 @@
 // 声明条（#consent-bar）回归闸门 —— 与 qa-scroll-check.js 并列
 // 用法：
 //   1) 起本地服务：python -m http.server 8899 --bind 127.0.0.1（项目根目录）
-//   2) NODE_PATH=<装了 playwright-core 的 node_modules> node assets/.build/qa-consent-check.js
+//   2) NODE_PATH=<装了 playwright-core 的 node_modules> node .build/qa-consent-check.js
 //   可选：QA_CHANNEL=chrome 切到 Chrome 通道（默认 msedge，调本机真实 Edge）
 // 覆盖：新/旧 CSS（模拟 8/30 补丁前：剔除 [hidden] / :has() / .has-notice 三条规则）
 //       × 桌面 1280 / 窄屏 390 × 顶部 / 滚动后 × 首页 / 政务页 / 搜索页
@@ -9,7 +9,7 @@
 const fs = require('fs');
 const { chromium } = require('playwright-core');
 const BASE = 'http://127.0.0.1:8899';
-const CSS_PATH = require('path').join(__dirname, '..', 'docs', 'assets', 'css', 'style.css');  // publish/.build -> publish/docs/assets
+const CSS_PATH = require('path').join(__dirname, '..', 'docs', 'assets', 'css', 'style.css');  // 仓库根 .build/ -> docs/assets
 const FRESH = fs.readFileSync(CSS_PATH, 'utf8');
 
 // 模拟 8/30 补丁之前的 CSS：剔除 [hidden] 规则、:has 规则、has-notice 规则
