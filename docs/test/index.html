@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>正协导航 - 让每一次寻找，都不止于找到</title>
+<meta name="description" content="正协导航最简版预览：独立第三方卡片陈列馆，首页汇集政协与民主党派词条索引，无网址词条同样陈列。">
+<script>
+(function(){try{var t=localStorage.getItem('zx_theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();
+</script>
+<style>
+:root{
+  --red:#A81C22; --red-deep:#8A1419; --gold:#C9A24B; --gold-bright:#D9B978;
+  --white:#FFFFFF; --bg:#F7F4EF; --surface:#FFFFFF; --surface-2:#FBF9F5;
+  --text:#2B2622; --muted:#6B625A; --border:#E6DFD4; --border-2:#D6CDBE;
+  --shadow:0 1px 2px rgba(43,38,34,.04); --shadow-hover:0 6px 18px rgba(43,38,34,.1);
+  --radius:12px;
+}
+html[data-theme="dark"]{
+  --red:#C4383F; --red-deep:#A81C22; --gold:#D9B978; --gold-bright:#E7CE96;
+  --white:#1E1B1F; --bg:#1E1B1F; --surface:#2A252A; --surface-2:#322C32;
+  --text:#ECE6DF; --muted:#B9AEA6; --border:#3A333A; --border-2:#4A424A;
+  --shadow:0 1px 2px rgba(0,0,0,.3); --shadow-hover:0 6px 18px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6;font-size:15px}
+input,button{font-family:inherit;font-size:inherit}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+.hero{text-align:center;padding:38px 16px 22px}
+.hero__logo{display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:14px;background:var(--red);color:var(--gold-bright);font-size:26px;font-weight:500;letter-spacing:1px;box-shadow:var(--shadow)}
+.hero__name{margin:14px 0 4px;font-size:26px;font-weight:500;letter-spacing:3px;color:var(--red)}
+.hero__slogan{margin:0;font-size:14px;color:var(--gold);letter-spacing:1px}
+
+.sticky-top{position:sticky;top:0;z-index:50;background:var(--bg);padding:8px 0 10px;border-bottom:1px solid var(--border)}
+.catbar{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.catbar__all{flex:none;padding:7px 13px;border:1px solid var(--border-2);border-radius:8px;background:var(--surface);color:var(--text);cursor:pointer}
+.catbar__all.active{background:var(--red);color:var(--white);border-color:var(--red)}
+.track{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex:1}
+.track::-webkit-scrollbar{display:none}
+.cat{flex:none;padding:7px 13px;border:1px solid var(--border-2);border-radius:8px;background:var(--surface);color:var(--muted);cursor:pointer;white-space:nowrap}
+.cat:hover{border-color:var(--gold)}
+.cat.active{background:var(--surface-2);color:var(--red);border-color:var(--red);font-weight:500}
+.catbar__fav{flex:none;padding:7px 13px;border:1px solid var(--border-2);border-radius:8px;background:var(--surface);color:var(--text);cursor:pointer}
+.catbar__fav.active{background:var(--gold);color:#2B2622;border-color:var(--gold)}
+
+.searchrow{display:flex;gap:8px;margin-bottom:8px}
+.searchrow input{flex:1;padding:10px 13px;border:1px solid var(--border-2);border-radius:8px;background:var(--surface);color:var(--text);outline:none}
+.searchrow input:focus{border-color:var(--red)}
+.searchrow button{padding:10px 15px;border:1px solid var(--border-2);border-radius:8px;background:var(--red);color:var(--white);cursor:pointer}
+
+.metaline{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{padding:3px 9px;border:1px solid var(--border-2);border-radius:20px;background:var(--surface);color:var(--muted);cursor:pointer;font-size:12px}
+.tag:hover{border-color:var(--red);color:var(--red)}
+
+.grid{margin:18px auto 40px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media(max-width:1023px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:767px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s,border-color .15s;min-width:0}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:var(--gold)}
+.card__head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.card__media{flex:none;width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--red),var(--red-deep));color:var(--gold-bright);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:500}
+.card__title{margin:0;font-size:15px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card__fav{flex:none;border:0;background:none;color:var(--gold);cursor:pointer;padding:0;line-height:1;font-size:18px}
+.card__fav[aria-pressed="true"]{color:var(--gold-bright)}
+.card__desc{margin:0 0 10px;font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card__tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.card__tag{font-size:11px;padding:2px 7px;border-radius:5px;background:var(--surface-2);color:var(--muted);border:1px solid var(--border)}
+.card__tag:first-child{color:var(--red);border-color:var(--border-2)}
+.links{border-top:1px dashed var(--border);padding-top:9px;margin-top:auto;display:flex;flex-direction:column;gap:5px}
+.link{font-size:12px;color:#185FA5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html[data-theme="dark"] .link{color:#8DB8E8}
+.link:hover{text-decoration:underline}
+.no-link{font-size:12px;color:var(--muted);font-style:normal}
+
+.empty{padding:60px 16px;text-align:center;color:var(--muted)}
+
+.footer{border-top:1px solid var(--border);padding:22px 16px 40px;text-align:center;font-size:13px;color:var(--muted)}
+.footer__links{margin-top:8px}
+.footer__links a{margin:0 8px;color:var(--muted)}
+.footer__links a:hover{color:var(--red)}
+.toolbar{margin-top:14px;display:flex;justify-content:center;gap:10px}
+.toolbar button{padding:6px 12px;border:1px solid var(--border-2);border-radius:8px;background:var(--surface);color:var(--text);cursor:pointer;font-size:13px}
+
+.totop{position:fixed;right:18px;bottom:22px;width:42px;height:42px;border-radius:50%;border:1px solid var(--border-2);background:var(--surface);color:var(--red);cursor:pointer;box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;font-size:18px;z-index:60}
+.totop.show{display:flex}
+
+.consent{position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--surface);border-top:1px solid var(--border-2);box-shadow:0 -2px 12px rgba(0,0,0,.06)}
+.consent__inner{max-width:1180px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:14px}
+.consent__text{flex:1;font-size:13px;color:var(--muted)}
+.consent__text b{color:var(--red);font-weight:500}
+.consent__ok{padding:6px 14px;border:1px solid var(--red);border-radius:8px;background:var(--red);color:var(--white);cursor:pointer;font-size:13px;white-space:nowrap}
+.consent__x{border:0;background:none;color:var(--muted);cursor:pointer;font-size:20px;line-height:1;padding:0 4px}
+body.with-consent .totop{bottom:78px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero__logo">正协</div>
+    <h1 class="hero__name">正协导航</h1>
+    <p class="hero__slogan">让每一次寻找，都不止于找到</p>
+  </div>
+</header>
+
+<div class="sticky-top">
+  <div class="wrap">
+    <div class="catbar">
+      <button class="catbar__all active" data-cat="__all__">全部</button>
+      <div class="track" id="cats"></div>
+      <button class="catbar__fav" id="favOnly">☆ 收藏</button>
+    </div>
+    <div class="searchrow">
+      <input id="q" type="search" placeholder="筛选词条：名称 / 描述 / 分类" autocomplete="off">
+      <button id="clearBtn">清除</button>
+    </div>
+    <div class="metaline">
+      <div class="tags" id="activeTags"></div>
+      <div id="count">共 0 张卡片</div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap grid">
+  <div class="cards" id="cards"></div>
+  <div class="empty" id="empty" style="display:none">没有匹配的词条，换个关键词试试。</div>
+</main>
+
+<footer class="footer">
+  <div>正协导航 · 独立第三方陈列馆 · 与任何官方机构无隶属关系</div>
+  <div class="footer__links"><a href="#">关于本站</a><a href="#">收录申请</a><a href="#">免责声明</a></div>
+  <div class="toolbar"><button id="themeBtn">切换暗色</button></div>
+</footer>
+
+<button class="totop" id="totop" title="回到顶部">↑</button>
+
+<div class="consent" id="consent" style="display:none">
+  <div class="consent__inner">
+    <div class="consent__text"><b>独立第三方声明：</b>本站是独立第三方词条索引陈列馆，与任何官方机构无隶属关系、无官方授权；所收录链接仅作索引聚合，不代表本站立场或担保。</div>
+    <button class="consent__ok" id="consentOk">我已了解</button>
+    <button class="consent__x" id="consentX" title="关闭">×</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var CARDS=[
+    {t:"中国人民政治协商会议全国委员会",d:"全国性政协组织官方网站",c:"全国政协",links:[["官网","www.cppcc.gov.cn"]]},
+    {t:"北京市政协",d:"北京市委员会官方网站",c:"省级政协",links:[["官网","www.bjzx.gov.cn"]]},
+    {t:"上海市政协",d:"上海市委员会官方网站",c:"省级政协",links:[["官网","www.shszx.gov.cn"]]},
+    {t:"沈阳市政协",d:"副省级城市政协组织",c:"副省级政协",links:[]},
+    {t:"中国国民党革命委员会中央委员会",d:"民主党派中央组织",c:"民革",links:[["官网","www.minge.gov.cn"]]},
+    {t:"中国民主同盟中央委员会",d:"民主党派中央组织",c:"民盟",links:[["官网","www.mmzy.org.cn"]]},
+    {t:"中国民主建国会中央委员会",d:"民主党派中央组织",c:"民建",links:[["官网","www.cndca.org.cn"]]},
+    {t:"中国民主促进会中央委员会",d:"民主党派中央组织",c:"民进",links:[]},
+    {t:"中国农工民主党中央委员会",d:"民主党派中央组织",c:"农工党",links:[["官网","www.ngd.org.cn"]]},
+    {t:"中国致公党中央委员会",d:"民主党派中央组织",c:"致公党",links:[]},
+    {t:"九三学社中央委员会",d:"民主党派中央组织",c:"九三学社",links:[["官网","www.93.gov.cn"]]},
+    {t:"台湾民主自治同盟中央委员会",d:"民主党派中央组织",c:"台盟",links:[]},
+    {t:"中国企业联合会",d:"暂无独立网址，按词条陈列",c:"相关机构",links:[]}
+  ];
+
+  var favs={};
+  try{favs=JSON.parse(localStorage.getItem('zx_favs')||'{}')||{};}catch(e){favs={};}
+  function saveFavs(){try{localStorage.setItem('zx_favs',JSON.stringify(favs));}catch(e){}}
+
+  var state={cat:'__all__',q:'',favOnly:false};
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  function buildCats(){
+    var seen={},list=[];
+    CARDS.forEach(function(c){if(!seen[c.c]){seen[c.c]=1;list.push(c.c);}});
+    var box=document.getElementById('cats');
+    box.innerHTML=list.map(function(c){return '<button class="cat" data-cat="'+esc(c)+'">'+esc(c)+'</button>';}).join('');
+    box.addEventListener('click',function(e){
+      var b=e.target.closest('.cat'); if(!b)return;
+      state.cat=(state.cat===b.dataset.cat)?'__all__':b.dataset.cat; sync();
+    });
+  }
+
+  function render(){
+    var kw=state.q.trim().toLowerCase();
+    var shown=CARDS.filter(function(c){
+      if(state.cat!=='__all__'&&c.c!==state.cat)return false;
+      if(state.favOnly&&!favs[c.t])return false;
+      if(kw){
+        var hay=(c.t+' '+c.d+' '+c.c).toLowerCase();
+        if(hay.indexOf(kw)<0)return false;
+      }
+      return true;
+    });
+    var box=document.getElementById('cards');
+    box.innerHTML=shown.map(function(c,i){
+      var fav=favs[c.t]?'aria-pressed="true"':'aria-pressed="false"';
+      var media=esc(c.t.slice(0,1));
+      var links=c.links.length
+        ? c.links.map(function(l){return '<a class="link" href="#" onclick="return false">'+esc(l[0])+' — '+esc(l[1])+' ↗</a>';}).join('')
+        : '<span class="no-link">此条暂无网址 · 仍作词条陈列</span>';
+      return '<article class="card">'
+        +'<div class="card__head"><div class="card__media">'+media+'</div>'
+        +'<h3 class="card__title" title="'+esc(c.t)+'">'+esc(c.t)+'</h3>'
+        +'<button class="card__fav" '+fav+' data-title="'+esc(c.t)+'" title="收藏">★</button></div>'
+        +'<p class="card__desc" title="'+esc(c.d)+'">'+esc(c.d)+'</p>'
+        +'<div class="card__tags"><span class="card__tag">'+esc(c.c)+'</span><span class="card__tag">词条</span></div>'
+        +'<div class="links">'+links+'</div></article>';
+    }).join('');
+
+    document.getElementById('empty').style.display=shown.length?'none':'block';
+    document.getElementById('count').textContent='共 '+shown.length+' 张卡片';
+
+    var tags=[];
+    if(state.cat!=='__all__')tags.push('<span class="tag" data-k="cat">分类：'+esc(state.cat)+' ×</span>');
+    if(state.favOnly)tags.push('<span class="tag" data-k="fav">仅看收藏 ×</span>');
+    if(state.q.trim())tags.push('<span class="tag" data-k="q">关键词：'+esc(state.q.trim())+' ×</span>');
+    document.getElementById('activeTags').innerHTML=tags.join('');
+
+    box.querySelectorAll('.card__fav').forEach(function(b){
+      b.addEventListener('click',function(){
+        var t=b.dataset.title;
+        if(favs[t])delete favs[t]; else favs[t]=1;
+        saveFavs(); render();
+      });
+    });
+  }
+
+  function sync(){
+    document.querySelectorAll('.catbar__all').forEach(function(b){b.classList.toggle('active',state.cat==='__all__');});
+    document.querySelectorAll('.cat').forEach(function(b){b.classList.toggle('active',b.dataset.cat===state.cat);});
+    document.getElementById('favOnly').classList.toggle('active',state.favOnly);
+    document.getElementById('q').value=state.q;
+    render();
+  }
+
+  document.querySelector('.catbar__all').addEventListener('click',function(){state.cat='__all__';sync();});
+  document.getElementById('favOnly').addEventListener('click',function(){state.favOnly=!state.favOnly;sync();});
+  document.getElementById('q').addEventListener('input',function(e){state.q=e.target.value;sync();});
+  document.getElementById('clearBtn').addEventListener('click',function(){state={cat:'__all__',q:'',favOnly:false};sync();});
+  document.getElementById('activeTags').addEventListener('click',function(e){
+    var t=e.target.closest('.tag'); if(!t)return;
+    if(t.dataset.k==='cat')state.cat='__all__';
+    if(t.dataset.k==='fav')state.favOnly=false;
+    if(t.dataset.k==='q')state.q='';
+    sync();
+  });
+
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    var dark=document.documentElement.getAttribute('data-theme')==='dark';
+    if(dark){document.documentElement.removeAttribute('data-theme');this.textContent='切换暗色';try{localStorage.setItem('zx_theme','light');}catch(e){}}
+    else{document.documentElement.setAttribute('data-theme','dark');this.textContent='切换亮色';try{localStorage.setItem('zx_theme','dark');}catch(e){}}
+  });
+  if(document.documentElement.getAttribute('data-theme')==='dark')document.getElementById('themeBtn').textContent='切换亮色';
+
+  var totop=document.getElementById('totop');
+  totop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  window.addEventListener('scroll',function(){totop.classList.toggle('show',window.scrollY>300);},{passive:true});
+
+  var consent=document.getElementById('consent');
+  var DAY=30*24*60*60*1000,last=null;
+  try{last=parseInt(localStorage.getItem('zx_notice_closed')||'0',10)||0;}catch(e){last=0;}
+  if(!last||(Date.now()-last)>DAY){consent.style.display='block';document.body.classList.add('with-consent');}
+  function closeConsent(){try{localStorage.setItem('zx_notice_closed',String(Date.now()));}catch(e){}consent.style.display='none';document.body.classList.remove('with-consent');}
+  document.getElementById('consentOk').addEventListener('click',closeConsent);
+  document.getElementById('consentX').addEventListener('click',closeConsent);
+
+  try{
+    var m=location.hash.match(/cat=([^&]+)/);
+    if(m){var cat=decodeURIComponent(m[1]);if(CARDS.some(function(c){return c.c===cat;}))state.cat=cat;}
+  }catch(e){}
+
+  buildCats();
+  sync();
+})();
+</script>
+</body>
+</html>
