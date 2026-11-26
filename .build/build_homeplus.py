@@ -4,14 +4,14 @@ build_homeplus.py —— miniworld 页面生成器（第 8 步，片段化拼装
 ================================================================
 读 cards.unified.xlsx + pages.unified.xlsx → 生成全部导航产品页（首页/专题页/专题导航 hub）。
 
-片段化拼装（契约 03 §二，D-16）：
+片段化拼装（契约 05 §二，D-16）：
 - 页面 = 骨架 + 片段，全部由 pages.unified.xlsx 字段驱动，**py 无页面特判**
 - 片段：head 元信息（自动）/ GA4（stat_ga4）/ 百度统计（stat_baidu）/ 广告位（ad_slots）/ 搜索框（search_box）/ 导语（channel_intro_enabled+channel_intro）/ 卡片区（dir_path）/ footer / 首次访问声明条
 
-xlsx 读取健壮性（契约 02 §一·B）：
+xlsx 读取健壮性（契约 03 §一·B）：
 - 读第一个 tab / 自动识别表头行 / 列乱序不影响 / 额外列安全
 
-排序（契约 02 §二，2026-09-30 修订）：
+排序（契约 03 §二·B，2026-09-30 修订）：
 - 分类按钮 = 分类名首次出现顺序；卡片 = 仅按 row_seq（type 不参与排序），渲染时相邻 type 变化处插 grid-break 分行；py 不自动编号
 
 用法：
@@ -69,7 +69,7 @@ JS_VER = asset_ver(os.path.join(BASE, "assets", "js", "main.js"))
 
 
 # ─────────────────────────────────────────────────────────────
-# 片段库（契约 03 §七：广告编号 = 片段索引；新增需 AdSense 后台建单元拿 slot）
+# 片段库（契约 05 §七：广告编号 = 片段索引；新增需 AdSense 后台建单元拿 slot）
 # ─────────────────────────────────────────────────────────────
 AD_SLOTS = {
     1: ('<aside class="ad ad--top" aria-label="广告">'
@@ -172,7 +172,7 @@ def rel_prefix(dp):
 
 
 # ─────────────────────────────────────────────────────────────
-# xlsx 读取（契约 02 §一·B：第一个 tab / 自动表头 / 列乱序 / 额外列安全）
+# xlsx 读取（契约 03 §一·B：第一个 tab / 自动表头 / 列乱序 / 额外列安全）
 # ─────────────────────────────────────────────────────────────
 def read_xlsx(path):
     """读 xlsx 第一个 tab，自动识别表头行，返回 (header, rows)，rows 为 dict 列表。"""
@@ -200,7 +200,7 @@ def read_xlsx(path):
 
 
 def load_pages():
-    """返回 {dir_path: row}；enabled 空 / 0 = 不生成该页（契约 02 §一）。"""
+    """返回 {dir_path: row}；enabled 空 / 0 = 不生成该页（契约 03 §一）。"""
     _, rows = read_xlsx(PAGES)
     pages = {}
     for r in rows:
