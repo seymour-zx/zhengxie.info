@@ -5,7 +5,9 @@ build_homeplus.py —— miniworld 页面生成器（第 8 步，片段化拼装
 读 cards.unified.xlsx + pages.unified.xlsx → 生成全部导航产品页（首页/专题页/专题导航 hub）。
 
 片段化拼装（契约 05 §二，D-16）：
-- 页面 = 骨架 + 片段，全部由 pages.unified.xlsx 字段驱动，**py 无页面特判**
+- 页面 = 骨架 + 片段，绝大多数由 pages.unified.xlsx 字段驱动。
+  结构性特例仅两处：首页（WebSite JSON-LD）与 topics hub（独立频道模板）；
+  分派集中在 build_page / output_path，片段内部不做页面判断。
 - 片段：head 元信息（自动）/ GA4（stat_ga4）/ 百度统计（stat_baidu）/ 广告位（ad_slots）/ 搜索框（search_box）/ 导语（channel_intro_enabled+channel_intro）/ 卡片区（dir_path）/ footer / 首次访问声明条
 
 xlsx 读取健壮性（契约 03 §一·B）：
@@ -14,15 +16,10 @@ xlsx 读取健壮性（契约 03 §一·B）：
 排序（契约 03 §二·B，2026-09-30 修订）：
 - 分类按钮 = 分类名首次出现顺序；卡片 = 仅按 row_seq（type 不参与排序），渲染时相邻 type 变化处插 grid-break 分行；py 不自动编号
 
+真理值：xlsx 布尔列统一由 is_true 判定（大小写不敏感，接受 true / 1）。
+
 用法：
     python .build/build_homeplus.py
-
-重构说明（2026-10-01）：在不改变任何生成 HTML 输出的前提下，做了可读性/可维护性整理：
-- 抽取 is_true / is_enabled 统一真理值判断（原先散落约 10 处 `val(...) in ("True","1","true")`）
-- 抽出 TOPIC_CHANNELS 作为专题频道唯一数据源（原先 build_jsonld 与 build_topics_hub 各硬编码一份）
-- 抽出 rel_prefix / parse_ad_slots / select_page_cards / ordered_categories / render_cards 子函数，拆分巨型 build_page
-- build_jsonld 中重命名被遮蔽的变量 page → webpage_ld
-- 删除 build_page 未被使用的 categories 参数及其在 main 中的死代码
 """
 
 import os
@@ -49,8 +46,8 @@ SITE_DOMAIN = "https://zhengxie.info"
 BRAND = "正协导航"
 SLOGAN = "让每一次寻找，都不止于找到"
 
-# 真理值集合：xlsx 布尔列的常见写法（"True" 为 Excel 直接导出，区分大小写与原文一致）
-TRUE_FLAGS = ("true", "1", "True")
+# 真理值集合：xlsx 布尔列统一小写口径后匹配（兼容 True / TRUE / 1）
+TRUE_FLAGS = ("true", "1")
 
 
 # ─────────────────────────────────────────────────────────────
@@ -71,30 +68,220 @@ JS_VER = asset_ver(os.path.join(BASE, "assets", "js", "main.js"))
 # ─────────────────────────────────────────────────────────────
 # 片段库（契约 05 §七：广告编号 = 片段索引；新增需 AdSense 后台建单元拿 slot）
 # ─────────────────────────────────────────────────────────────
+# 统计/广告 ID 唯一数据源（改 ID 只动这里；百度 ID 另有一份在 assets/js/main.js，
+# 两处须同步——跨静态文件无法共享常量，注释互锁以防漂移）
+ADSENSE_CLIENT = "ca-pub-6434243103158481"
+GA4_ID = "G-B880S4NQVK"
+BAIDU_ID = "70e38224e5ebd850150b00a19835a25f"  # 同步点：assets/js/main.js 的 ZX_BAIDU_TONGJI_ID
+
 AD_SLOTS = {
     1: ('<aside class="ad ad--top" aria-label="广告">'
         '<p class="ad__label">广告</p>'
         '<ins class="adsbygoogle" style="display:block" '
-        'data-ad-client="ca-pub-6434243103158481" data-ad-slot="5952548493" '
+        f'data-ad-client="{ADSENSE_CLIENT}" data-ad-slot="5952548493" '
         'data-ad-format="auto" data-full-width-responsive="true"></ins>'
         '<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>'),
     2: ('<aside class="ad ad--bottom" aria-label="广告">'
         '<p class="ad__label">广告</p>'
         '<ins class="adsbygoogle" style="display:block" '
-        'data-ad-client="ca-pub-6434243103158481" data-ad-slot="4856101005" '
+        f'data-ad-client="{ADSENSE_CLIENT}" data-ad-slot="4856101005" '
         'data-ad-format="auto" data-full-width-responsive="true"></ins>'
         '<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></aside>'),
 }
-AD_LOADER = ('<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
-             '?client=ca-pub-6434243103158481" crossorigin="anonymous"></script>')
-GA4_SCRIPT = ('<script async src="https://www.googletagmanager.com/gtag/js?id=G-B880S4NQVK"></script>'
+AD_LOADER = (f'<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
+             f'?client={ADSENSE_CLIENT}" crossorigin="anonymous"></script>')
+GA4_SCRIPT = (f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA4_ID}"></script>'
               '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
-              'gtag("js",new Date());gtag("config","G-B880S4NQVK");</script>')
+              f'gtag("js",new Date());gtag("config","{GA4_ID}");</script>')
 BAIDU_SCRIPT = ('<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");'
-                'hm.src="https://hm.baidu.com/hm.js?70e38224e5ebd850150b00a19835a25f";'
+                f'hm.src="https://hm.baidu.com/hm.js?{BAIDU_ID}";'
                 'var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>')
 FOUC = ('<script>(function(){try{var t=localStorage.getItem("zx_theme");'
         'if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();</script>')
+
+# ── 页面模板常量（结构固定，函数只负责装配数据）──────────────────
+# 注意：这些字符串里的 HTML 必须逐字保持旧世界产物，改动需 md5 复核。
+HEAD_TEMPLATE = """  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="description" content="{desc}">
+  <meta name="keywords" content="{kws}">
+  <meta name="author" content="{brand}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{canonical}">
+  <meta property="og:title" content="{title}">
+  <meta property="og:description" content="{desc}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{canonical}">
+  <meta property="og:image" content="{domain}/assets/images/logo.svg">
+  <meta property="og:site_name" content="{brand}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{title}">
+  <meta name="twitter:description" content="{desc}">
+  <meta name="theme-color" content="#9E1B22" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1E1B1F" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="{rel}assets/json/manifest.json">
+  <link rel="stylesheet" href="{rel}assets/css/style.css?v={css_ver}">
+  <link rel="icon" type="image/svg+xml" href="{rel}assets/images/logo.svg">
+  <link rel="apple-touch-icon" href="{rel}assets/images/logo.svg">
+  {fouc}
+  {pre}
+  {ga4}
+  {baidu}
+  {ad_loader}
+  <title>{title}</title>
+"""
+
+CATEGORY_NAV_TEMPLATE = """  <nav class="category-nav" aria-label="分类筛选">
+    <div class="wrap category-nav__inner">
+      <button type="button" class="category-nav__logo category-btn active" data-cat="all" aria-pressed="true" aria-label="全部">
+        <span class="logo__brand" aria-hidden="true"><span>{brand_short}</span><span>导航</span></span>
+        <span class="logo__all" aria-hidden="true">全部</span>
+      </button>
+      <ul class="category-nav__list track" id="category-bar">{items}
+      </ul>
+      <button type="button" class="category-nav__fav" id="fav-toggle" aria-pressed="false" aria-label="本地收藏">
+        <span class="category-nav__fav-star" aria-hidden="true">☆</span>
+        <span class="category-nav__fav-text" aria-hidden="true"><span>本地</span><span>收藏</span></span>
+      </button>
+    </div>
+  </nav>
+"""
+
+SCROLL_BTNS_HTML = """  <!-- 滚动按钮组：4 个独立按钮，按滚动位置只显示 1 个 -->
+  <div class="scroll-btns" id="scroll-btns">
+    <button type="button" class="scroll-btn scroll-btn--up" data-target="up" aria-label="向上滚到分类容器下方">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 4l-8 8h5v8h6v-8h5z" fill="currentColor"/>
+      </svg>
+    </button>
+    <button type="button" class="scroll-btn scroll-btn--top" data-target="top" aria-label="到顶部">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 2.5h18v2h-18z" fill="currentColor"/>
+        <path d="M12 4l-8 8h5v8h6v-8h5z" fill="currentColor"/>
+      </svg>
+    </button>
+    <button type="button" class="scroll-btn scroll-btn--down" data-target="down" aria-label="向下滚到分类容器下方">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 20l-8-8h5v-8h6v8h5z" fill="currentColor"/>
+      </svg>
+    </button>
+    <button type="button" class="scroll-btn scroll-btn--bottom" data-target="bottom" aria-label="到底部">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 20l-8-8h5v-8h6v8h5z" fill="currentColor"/>
+        <path d="M3 19.5h18v2h-18z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+"""
+
+CONSENT_BAR_HTML = """  <div class="official-banner" id="consent-bar" role="note" aria-label="声明">
+    <p class="official-banner__text">本站为独立第三方导航站，与任何官方机构无隶属关系、无官方授权；收录链接仅作索引聚合，不代表本站立场或担保。</p>
+    <button type="button" class="official-banner__close" id="consent-close" aria-label="关闭">×</button>
+  </div>
+"""
+
+THEME_TOGGLE_HTML = '''        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="切换深色/浅色模式" aria-pressed="false">
+          <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.2" y1="4.2" x2="5.6" y2="5.6"/><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.2" y1="19.8" x2="5.6" y2="18.4"/><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"/></svg>
+          <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>'''
+
+FOOTER_TEMPLATE = """  <footer class="footer">
+    <div class="footer__inner wrap">
+      <p class="footer__copyright">© 2026 {brand} · {slogan}</p>
+      <nav class="footer__nav" aria-label="页脚导航">
+        <a target="_self" href="{domain}/">首页</a>
+        <a target="_self" href="{domain}/topics/">专题导航</a>
+        <a target="_self" href="{domain}/pages/overview/">网站全景</a>
+        <a target="_self" href="{domain}/pages/guide/">使用指南</a>
+        <a target="_self" href="{domain}/pages/submit/">收录申请</a>
+        <a target="_self" href="{domain}/pages/about/">关于本站</a>
+        <a target="_self" href="{domain}/pages/contact/">联系我们</a>
+        <a target="_self" href="{domain}/pages/privacy/">隐私政策</a>
+        <a target="_self" href="{domain}/pages/disclaimer/">免责声明</a>
+        <a target="_self" href="{domain}/pages/sitemap/">站点地图</a>
+        <a target="_self" href="{domain}/pages/changelog/">更新日志</a>
+      </nav>
+      <div class="footer__tools">
+{tools}      </div>
+    </div>
+  </footer>
+"""
+
+PAGE_TEMPLATE = """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+{head}</head>
+<body>
+  {sprite}
+  <a href="#cards-container" class="skip-link">跳到主内容</a>
+  {consent}
+  <header class="hero">
+    <h1 class="hero__logo">{brand}</h1>
+    <p class="hero__slogan">{slogan}</p>
+{search}{intro}  </header>
+{ads_top}  <div class="sticky-top">
+{nav}    <section class="site-search" aria-label="站内筛选">
+      <div class="wrap">
+        <input type="search" id="site-search-input" placeholder="在正协导航内筛选：标题 / 描述 / 分类 / 标签" autocomplete="off">
+      </div>
+    </section>
+    <section class="result-count wrap" aria-label="筛选结果统计">
+      <p class="result-count__text" id="result-count">共 {card_count} 张卡片</p>
+    </section>
+    <section class="filter-tags wrap" id="filter-tags" aria-label="筛选标签">
+      <span class="filter-tags__hint" id="filter-tags-hint">当前筛选：</span>
+      <div class="track filter-tags__track" id="filter-tags-track"></div>
+      <button type="button" class="filter-tag__clear" id="filter-tag-clear" hidden>清除筛选</button>
+    </section>
+  </div>
+  <main class="cards-container wrap" id="cards-container" aria-label="卡片列表">
+{cards}  </main>
+  <div class="empty-state" id="empty-state" hidden><p class="empty-state__text">没有找到匹配的结果，换个关键词或分类试试</p></div>
+{ads_bottom}{footer}
+{scroll_btns}
+  <script src="{rel}assets/js/main.js?v={js_ver}"></script>
+</body>
+</html>
+"""
+
+HUB_PAGE_TEMPLATE = """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+{head}</head>
+<body>
+  {sprite}
+  <a href="#main-content" class="skip-link">跳到主内容</a>
+
+  <header class="hero">
+    <h1 class="hero__logo">{brand}</h1>
+    <p class="hero__slogan">{slogan}</p>
+  </header>
+
+  <main class="wrap" id="main-content" style="padding: 48px 16px 60px; max-width: 960px;">
+    <section style="text-align:center; margin-bottom: 40px;">
+      <h2 style="font-family: var(--serif); font-size: 32px; color: var(--red); margin: 0 0 12px;">专题导航</h2>
+      <p style="font-size: 15px; color: var(--text-sub); line-height: 1.8; max-width: 640px; margin: 0 auto;">
+        正协导航按主题划分独立专题，每个专题汇集一类权威官方入口。以下为当前已上线的专题：
+      </p>
+    </section>
+
+    <div class="channel-grid">
+{cards}
+    </div>
+
+    <p style="font-size: 13px; color: var(--text-sub); text-align:center; margin-top: 36px; line-height: 1.8;">
+      本站为独立第三方导航站，与任何官方机构无隶属关系。收录链接仅作索引聚合，不代表本站立场或担保。
+    </p>
+  </main>
+
+{footer}
+{theme_script}
+</body>
+</html>
+"""
 
 # 首次访问声明条 JS 已收敛到 assets/js/main.js（单一真源，2026-08-31 造物主决议）。
 # 不再内联进 HTML：消除与 main.js 的重复维护，并去除内联脚本的 CSP 隐患。
@@ -155,13 +342,8 @@ def esc(s):
 
 
 def is_true(r, k):
-    """xlsx 布尔列 = 真（"true"/"1"/"True"，区分大小写与原文一致）。"""
-    return val(r, k) in TRUE_FLAGS
-
-
-def is_enabled(r, k):
-    """enabled 类列：小写后匹配 true/1（"TRUE" 也视为启用，与前版 load_pages 行为一致）。"""
-    return val(r, k).lower() in ("true", "1")
+    """xlsx 布尔列判真：统一小写后匹配 true/1（兼容 True / TRUE / 1，口径唯一）。"""
+    return val(r, k).lower() in TRUE_FLAGS
 
 
 def rel_prefix(dp):
@@ -205,7 +387,7 @@ def load_pages():
     pages = {}
     for r in rows:
         dp = str(r.get("dir_path") or "").strip()
-        if dp and is_enabled(r, "enabled"):
+        if dp and is_true(r, "enabled"):
             pages[dp] = r
     return pages
 
@@ -234,38 +416,15 @@ def frag_head(page, dp, has_ad, rel="", pages=None):
         pre.append('<link rel="preconnect" href="https://hm.baidu.com">')
     if has_ad:
         pre.append('<link rel="preconnect" href="https://pagead2.googlesyndication.com">')
-    return f"""  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta name="description" content="{esc(desc)}">
-  <meta name="keywords" content="{esc(kws)}">
-  <meta name="author" content="{BRAND}">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="{canonical}">
-  <meta property="og:title" content="{esc(title)}">
-  <meta property="og:description" content="{esc(desc)}">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="{canonical}">
-  <meta property="og:image" content="{SITE_DOMAIN}/assets/images/logo.svg">
-  <meta property="og:site_name" content="{BRAND}">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{esc(title)}">
-  <meta name="twitter:description" content="{esc(desc)}">
-  <meta name="theme-color" content="#9E1B22" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#1E1B1F" media="(prefers-color-scheme: dark)">
-  <link rel="manifest" href="{rel}assets/json/manifest.json">
-  <link rel="stylesheet" href="{rel}assets/css/style.css?v={CSS_VER}">
-  <link rel="icon" type="image/svg+xml" href="{rel}assets/images/logo.svg">
-  <link rel="apple-touch-icon" href="{rel}assets/images/logo.svg">
-  {FOUC}
-  {''.join(pre)}
-  {GA4_SCRIPT if ga4_on else ''}
-  {BAIDU_SCRIPT if baidu_on else ''}
-  {AD_LOADER if has_ad else ''}
-  <title>{esc(title)}</title>
-""" + "".join(f'  <script type="application/ld+json">{b}</script>\n' for b in jsonld)
+    head = HEAD_TEMPLATE.format(
+        desc=esc(desc), kws=esc(kws), brand=BRAND, canonical=canonical,
+        title=esc(title), domain=SITE_DOMAIN, rel=rel, css_ver=CSS_VER,
+        fouc=FOUC, pre=''.join(pre),
+        ga4=GA4_SCRIPT if ga4_on else '',
+        baidu=BAIDU_SCRIPT if baidu_on else '',
+        ad_loader=AD_LOADER if has_ad else '',
+    )
+    return head + "".join(f'  <script type="application/ld+json">{b}</script>\n' for b in jsonld)
 
 
 def build_jsonld(page, dp, canonical, pages=None):
@@ -396,52 +555,16 @@ def frag_category_nav(categories, active="all"):
     btns = []
     for c in categories:
         btns.append(f'<li><h2><button type="button" class="category-btn" data-cat="{esc(c)}" aria-pressed="false">{esc(c)}</button></h2></li>')
-    return """  <nav class="category-nav" aria-label="分类筛选">
-    <div class="wrap category-nav__inner">
-      <button type="button" class="category-nav__logo category-btn active" data-cat="all" aria-pressed="true" aria-label="全部">
-        <span class="logo__brand" aria-hidden="true"><span>""" + esc(BRAND.split("导航")[0]) + """</span><span>导航</span></span>
-        <span class="logo__all" aria-hidden="true">全部</span>
-      </button>
-      <ul class="category-nav__list track" id="category-bar">""" + "\n".join("        " + b for b in btns) + """
-      </ul>
-      <button type="button" class="category-nav__fav" id="fav-toggle" aria-pressed="false" aria-label="本地收藏">
-        <span class="category-nav__fav-star" aria-hidden="true">☆</span>
-        <span class="category-nav__fav-text" aria-hidden="true"><span>本地</span><span>收藏</span></span>
-      </button>
-    </div>
-  </nav>
-"""
+    return CATEGORY_NAV_TEMPLATE.format(
+        brand_short=esc(BRAND.split("导航")[0]),
+        items="\n".join("        " + b for b in btns),
+    )
 
 
 def frag_scroll_btns():
     """滚动按钮组：4 个独立按钮（up/top/down/bottom），按滚动位置只显示 1 个。
     还原旧世界结构（id=scroll-btns，main.js 依赖 data-target 循环切换）。"""
-    return """  <!-- 滚动按钮组：4 个独立按钮，按滚动位置只显示 1 个 -->
-  <div class="scroll-btns" id="scroll-btns">
-    <button type="button" class="scroll-btn scroll-btn--up" data-target="up" aria-label="向上滚到分类容器下方">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 4l-8 8h5v8h6v-8h5z" fill="currentColor"/>
-      </svg>
-    </button>
-    <button type="button" class="scroll-btn scroll-btn--top" data-target="top" aria-label="到顶部">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 2.5h18v2h-18z" fill="currentColor"/>
-        <path d="M12 4l-8 8h5v8h6v-8h5z" fill="currentColor"/>
-      </svg>
-    </button>
-    <button type="button" class="scroll-btn scroll-btn--down" data-target="down" aria-label="向下滚到分类容器下方">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 20l-8-8h5v-8h6v8h5z" fill="currentColor"/>
-      </svg>
-    </button>
-    <button type="button" class="scroll-btn scroll-btn--bottom" data-target="bottom" aria-label="到底部">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 20l-8-8h5v-8h6v8h5z" fill="currentColor"/>
-        <path d="M3 19.5h18v2h-18z" fill="currentColor"/>
-      </svg>
-    </button>
-  </div>
-"""
+    return SCROLL_BTNS_HTML
 
 
 def frag_star_sprite():
@@ -664,40 +787,13 @@ def frag_card(c):
 
 
 def frag_consent_bar():
-    return """  <div class="official-banner" id="consent-bar" role="note" aria-label="声明">
-    <p class="official-banner__text">本站为独立第三方导航站，与任何官方机构无隶属关系、无官方授权；收录链接仅作索引聚合，不代表本站立场或担保。</p>
-    <button type="button" class="official-banner__close" id="consent-close" aria-label="关闭">×</button>
-  </div>
-"""
+    return CONSENT_BAR_HTML
 
 
 def frag_footer(rel=""):
-    tools = ""
-    tools += '''        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="切换深色/浅色模式" aria-pressed="false">
-          <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.2" y1="4.2" x2="5.6" y2="5.6"/><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.2" y1="19.8" x2="5.6" y2="18.4"/><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"/></svg>
-          <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>'''
-    return f"""  <footer class="footer">
-    <div class="footer__inner wrap">
-      <p class="footer__copyright">© 2026 {BRAND} · {SLOGAN}</p>
-      <nav class="footer__nav" aria-label="页脚导航">
-        <a target="_self" href="{SITE_DOMAIN}/">首页</a>
-        <a target="_self" href="{SITE_DOMAIN}/topics/">专题导航</a>
-        <a target="_self" href="{SITE_DOMAIN}/pages/overview/">网站全景</a>
-        <a target="_self" href="{SITE_DOMAIN}/pages/guide/">使用指南</a>
-        <a target="_self" href="{SITE_DOMAIN}/pages/submit/">收录申请</a>
-        <a target="_self" href="{SITE_DOMAIN}/pages/about/">关于本站</a>
-        <a target="_self" href="{SITE_DOMAIN}/pages/contact/">联系我们</a>
-        <a target="_self" href="{SITE_DOMAIN}/pages/privacy/">隐私政策</a>
-        <a target="_self" href="{SITE_DOMAIN}/pages/disclaimer/">免责声明</a>
-        <a target="_self" href="{SITE_DOMAIN}/pages/sitemap/">站点地图</a>
-        <a target="_self" href="{SITE_DOMAIN}/pages/changelog/">更新日志</a>
-      </nav>
-      <div class="footer__tools">
-{tools}      </div>
-    </div>
-  </footer>
-"""
+    return FOOTER_TEMPLATE.format(
+        brand=BRAND, slogan=SLOGAN, domain=SITE_DOMAIN, tools=THEME_TOGGLE_HTML,
+    )
 
 
 # ─────────────────────────────────────────────────────────────
@@ -718,7 +814,7 @@ def parse_ad_slots(page):
 
 def select_page_cards(cards, dp):
     """本页卡片：dir_path 匹配且 enabled，仅按 row_seq 排序（type 不参与排序，2026-09-30 拍板）。"""
-    selected = [c for c in cards if val(c, "dir_path") == dp and is_enabled(c, "enabled")]
+    selected = [c for c in cards if val(c, "dir_path") == dp and is_true(c, "enabled")]
     selected.sort(key=lambda c: int_val(c, "row_seq", 0))
     return selected
 
@@ -747,58 +843,39 @@ def render_cards(cards):
     return "".join(parts)
 
 
+def output_path(dp):
+    """dir_path → 发布目录下的文件路径（结构性特例集中于此，其余一律 <dp>/index.html）。"""
+    if dp == "/":
+        return "index.html"
+    if dp == "topics":
+        return "topics/index.html"
+    return dp + "/index.html"
+
+
 def build_page(dp, page, cards, pages):
     """生成页面：分类按钮只显示本页分类（首次出现顺序）；topics hub 页罗列专题。
-    铁律：enabled 空 = 不渲染（2026-09-30 修补，此前漏执行）。"""
+    铁律：enabled 空 = 不渲染。"""
     rel = rel_prefix(dp)
+    # guard：hub 页走独立模板，先返回，避免为它白算卡片/广告/分类
+    if dp == "topics":
+        return build_topics_hub(page, pages, rel)
     slot_numbers = parse_ad_slots(page)
     search_box = frag_search_box() if is_true(page, "search_box") else ""
     intro = frag_intro(page)
     ads_top, ads_bottom = frag_ads(slot_numbers)
     page_cards = select_page_cards(cards, dp)
     page_cats = ordered_categories(page_cards)
-    # topics hub 页：完全独立的频道导航页（channel-grid/channel-card，不走统一模板）
-    if dp == "topics":
-        return build_topics_hub(page, pages, rel)
     cards_html = render_cards(page_cards)
     nav = frag_category_nav(page_cats)
-    html = f"""<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-{frag_head(page, dp, bool(slot_numbers), rel, pages)}</head>
-<body>
-  {frag_star_sprite()}
-  <a href="#cards-container" class="skip-link">跳到主内容</a>
-  {frag_consent_bar()}
-  <header class="hero">
-    <h1 class="hero__logo">{BRAND}</h1>
-    <p class="hero__slogan">{SLOGAN}</p>
-{search_box}{intro}  </header>
-{ads_top}  <div class="sticky-top">
-{nav}    <section class="site-search" aria-label="站内筛选">
-      <div class="wrap">
-        <input type="search" id="site-search-input" placeholder="在正协导航内筛选：标题 / 描述 / 分类 / 标签" autocomplete="off">
-      </div>
-    </section>
-    <section class="result-count wrap" aria-label="筛选结果统计">
-      <p class="result-count__text" id="result-count">共 {len(page_cards)} 张卡片</p>
-    </section>
-    <section class="filter-tags wrap" id="filter-tags" aria-label="筛选标签">
-      <span class="filter-tags__hint" id="filter-tags-hint">当前筛选：</span>
-      <div class="track filter-tags__track" id="filter-tags-track"></div>
-      <button type="button" class="filter-tag__clear" id="filter-tag-clear" hidden>清除筛选</button>
-    </section>
-  </div>
-  <main class="cards-container wrap" id="cards-container" aria-label="卡片列表">
-{cards_html}  </main>
-  <div class="empty-state" id="empty-state" hidden><p class="empty-state__text">没有找到匹配的结果，换个关键词或分类试试</p></div>
-{ads_bottom}{frag_footer(rel)}
-{frag_scroll_btns()}
-  <script src="{rel}assets/js/main.js?v={JS_VER}"></script>
-</body>
-</html>
-"""
-    return html
+    return PAGE_TEMPLATE.format(
+        head=frag_head(page, dp, bool(slot_numbers), rel, pages),
+        sprite=frag_star_sprite(), consent=frag_consent_bar(),
+        brand=BRAND, slogan=SLOGAN,
+        search=search_box, intro=intro,
+        ads_top=ads_top, nav=nav, card_count=len(page_cards), cards=cards_html,
+        ads_bottom=ads_bottom, footer=frag_footer(rel), scroll_btns=frag_scroll_btns(),
+        rel=rel, js_ver=JS_VER,
+    )
 
 
 CHANNEL_CSS = """<style>
@@ -872,41 +949,10 @@ def build_topics_hub(page, pages, rel):
         <p class="channel-card__desc">{desc}</p>
         <span class="channel-card__more">进入频道 →</span>
       </a>""")
-    return f"""<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-{head}</head>
-<body>
-  {frag_star_sprite()}
-  <a href="#main-content" class="skip-link">跳到主内容</a>
-
-  <header class="hero">
-    <h1 class="hero__logo">{BRAND}</h1>
-    <p class="hero__slogan">{SLOGAN}</p>
-  </header>
-
-  <main class="wrap" id="main-content" style="padding: 48px 16px 60px; max-width: 960px;">
-    <section style="text-align:center; margin-bottom: 40px;">
-      <h2 style="font-family: var(--serif); font-size: 32px; color: var(--red); margin: 0 0 12px;">专题导航</h2>
-      <p style="font-size: 15px; color: var(--text-sub); line-height: 1.8; max-width: 640px; margin: 0 auto;">
-        正协导航按主题划分独立专题，每个专题汇集一类权威官方入口。以下为当前已上线的专题：
-      </p>
-    </section>
-
-    <div class="channel-grid">
-{chr(10).join(cards)}
-    </div>
-
-    <p style="font-size: 13px; color: var(--text-sub); text-align:center; margin-top: 36px; line-height: 1.8;">
-      本站为独立第三方导航站，与任何官方机构无隶属关系。收录链接仅作索引聚合，不代表本站立场或担保。
-    </p>
-  </main>
-
-{frag_footer(rel)}
-{HUB_THEME_SCRIPT}
-</body>
-</html>
-"""
+    return HUB_PAGE_TEMPLATE.format(
+        head=head, sprite=frag_star_sprite(), brand=BRAND, slogan=SLOGAN,
+        cards=chr(10).join(cards), footer=frag_footer(rel), theme_script=HUB_THEME_SCRIPT,
+    )
 
 
 def write(path, content):
@@ -922,15 +968,10 @@ def main():
     pages = load_pages()
     cards = load_cards()
     print(f"页面配置: {list(pages.keys())} | 卡片: {len(cards)}")
-    # 生成各页面
+    # 生成各页面（输出路径由 output_path 统一分派）
     for dp, page in pages.items():
         html = build_page(dp, page, cards, pages)
-        if dp == "/":
-            write(os.path.join(BASE, "index.html"), html)
-        elif dp == "topics":
-            write(os.path.join(BASE, "topics", "index.html"), html)
-        else:
-            write(os.path.join(BASE, *dp.split("/"), "index.html"), html)
+        write(os.path.join(BASE, *output_path(dp).split("/")), html)
     # 手写页 css 版本戳注入（幂等：仅当 href 无 ?v= 时替换，不碰正文）
     old_css = 'href="../../assets/css/style.css"'
     new_css = f'href="../../assets/css/style.css?v={CSS_VER}"'

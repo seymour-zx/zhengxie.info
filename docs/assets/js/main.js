@@ -87,12 +87,25 @@
     if (btn) btn.addEventListener('click', closeBar);
   })();
 
-  var cardsContainer = document.getElementById('cards-container');
-  var siteInput = document.getElementById('site-search-input');
-  var tagsWrap = document.getElementById('filter-tags');
-  var tagsTrack = document.getElementById('filter-tags-track');
-  var hint = document.getElementById('filter-tags-hint');
-  var clearBtn = document.getElementById('filter-tag-clear');
+  /* P2-1 元素守卫：骨架若缺筛选相关节点，用 no-op 桩替代 null，
+     让 .value / .addEventListener 等调用安全降级、脚本不中断（渐进增强原则）。
+     现有 5 个生成页均含全部节点，故此守卫对当前行为零影响。 */
+  function noopEl() {
+    return {
+      value: '', hidden: false, textContent: '',
+      addEventListener: function () {}, removeEventListener: function () {},
+      setAttribute: function () {}, getAttribute: function () { return null; },
+      classList: { add: function () {}, remove: function () {}, toggle: function () {} },
+      querySelector: function () { return null; }, querySelectorAll: function () { return []; },
+      focus: function () {}, blur: function () {}, appendChild: function () {}
+    };
+  }
+  var cardsContainer = document.getElementById('cards-container') || noopEl();
+  var siteInput = document.getElementById('site-search-input') || noopEl();
+  var tagsWrap = document.getElementById('filter-tags') || noopEl();
+  var tagsTrack = document.getElementById('filter-tags-track') || noopEl();
+  var hint = document.getElementById('filter-tags-hint') || noopEl();
+  var clearBtn = document.getElementById('filter-tag-clear') || noopEl();
   var engineForm = document.getElementById('engine-search');
   var engineInput = document.getElementById('engine-input');
   var favToggle = document.getElementById('fav-toggle');
@@ -102,7 +115,9 @@
   var emptyState = document.getElementById('empty-state');
 
   /* 百度统计兜底注入：页面未自带 snippet（window._hmt 不存在）时加载，避免重复 */
-  var ZX_BAIDU_TONGJI_ID = '70e38224e5ebd850150b00a19835a25f';  // 百度统计站点 ID（与 build 注入 snippet 同一 ID）
+  /* 百度统计站点 ID。同步点：.build/build_homeplus.py 的 BAIDU_ID
+     （静态 JS 无法与 Python 构建脚本共享常量，改 ID 时两处必须同时改） */
+  var ZX_BAIDU_TONGJI_ID = '70e38224e5ebd850150b00a19835a25f';
   (function loadBaiduTongji() {
     if (!ZX_BAIDU_TONGJI_ID || window._hmt) { return; }
     var s = document.createElement('script');
@@ -131,36 +146,37 @@
   function defaultTitleLines(card) {
     return getCardExpandType(card) === 't1' ? 2 : 1;
   }
-  /* 卡片内 desc / title 元素缓存（懒建一次，之后复用）。
-     展开/复位路径原本每次都对每张卡执行 querySelector，
-     337 张卡 × 每次复位 = 674 次 DOM 查询。 */
+  /* 卡片私有数据统一挂在 card._zx 一个对象上，避免十几个 __xxx 属性散落在 DOM 元素上。
+     字段总表（按用途分组，新增字段请同步登记于此）：
+       筛选    search / searchLower / favKey / shown / hlSig
+       结构    etype / desc / title / rows
+       测量    fullLines / fullTitleLines / rowPending
+       索引    zxIdx
+     静态字段在初始化块一次性建好；惰性字段（desc/title/行数/标记）按需补入。 */
   function getDesc(card) {
-    if (card.__desc === undefined) { card.__desc = card.querySelector('.card__desc'); }
-    return card.__desc;
+    if (card._zx.desc === undefined) { card._zx.desc = card.querySelector('.card__desc'); }
+    return card._zx.desc;
   }
   function getTitle(card) {
-    if (card.__title === undefined) { card.__title = card.querySelector('.card__title'); }
-    return card.__title;
+    if (card._zx.title === undefined) { card._zx.title = card.querySelector('.card__title'); }
+    return card._zx.title;
   }
 
-  /* 性能（2026-08-31）：预计算每张卡的静态信息，避免每次筛选重复计算。
-     原实现在 applyFilter 里对每张卡做 querySelector('.card__fav') 与
-     textContent.toLowerCase()，337 张卡 × 每次按键 = 每敲一个字符
-     就多出 337 次 DOM 查询与 337 次长字符串小转换。卡片内容静态，
-     初始化算一次即可：
-       __search      —— 可搜索纯文本（保留原字段，供外部/调试使用）
-       __searchLower —— 小写副本（匹配时直接用，不再逐次转换）
-       __favKey      —— 收藏键（不再是每次 querySelector）
-       __etype       —— 可展开类型 t1/t2/t3（不再是每次三重 classList 判断）
-       __shown       —— 上一轮显隐结果（用于脏检查，只写状态真变的卡） */
+  /* 卡片内容静态：筛选用的文本/收藏键/类型初始化算一次，按键时直接读缓存。 */
   cards.forEach(function (card, cardIdx) {
-    card.__search = card.textContent;
-    card.__searchLower = card.__search.toLowerCase();
+    var text = card.textContent;
     var fb = card.querySelector('.card__fav');
-    card.__favKey = fb ? fb.getAttribute('data-key') : '';
-    card.__etype = getCardExpandType(card);
-    card.__shown = !card.hidden;
-    card.__zxIdx = cardIdx;
+    card._zx = {
+      search: text,
+      searchLower: text.toLowerCase(),
+      favKey: fb ? fb.getAttribute('data-key') : '',
+      etype: getCardExpandType(card),
+      shown: !card.hidden,
+      zxIdx: cardIdx,
+      hlSig: undefined,
+      rows: undefined,
+      rowPending: false
+    };
   });
 
   /* 防抖：最后一次触发后 wait 毫秒才执行 fn（用于搜索框逐键输入）。
@@ -249,75 +265,72 @@
   }
 
   /* ── 应用筛选：分类 AND 关键词 AND 本地收藏（含输入框实时关键词） ──
-     性能（2026-08-31）重写：严格分阶段，杜绝「写→读→写→读」造成的强制同步布局。
-       阶段 1  纯计算；只写「状态真变了」的卡（脏检查：337 次无谓 display 切换降到实际变化数）
-       阶段 2  复位展开态（当前无卡处于展开态时整段跳过）
-       阶段 3  几何读取：只测「本次显隐变化 且 当前在视口内」的卡
-       阶段 4  高亮：只重写「高亮签名变了」的卡
-     原实现在阶段 1 的循环里直接穿插 highlightCard 的 innerHTML 写入，
-     末尾又全量调 refreshScrollable 读 678 个元素的几何量，形成典型的
-     写读交替 → 每敲一个字符至少 2 次全文档强制重排。 */
-  function applyFilter() {
+     读写分阶段：计算阶段只写显隐；高亮写 DOM 子树排在最后；几何读取夹在中间。
+     这样每敲一个字符不会因写读交替触发多次全文档重排。 */
+  /* 关键词集合 = 已固化标签 + 输入框实时词（去重）。 */
+  function currentKeywords() {
     var kw = siteInput.value.trim();
-    var visible = 0;
-    var activeKeywords = filterTags.slice();
-    if (kw && activeKeywords.indexOf(kw) === -1) { activeKeywords.push(kw); }
-    var hlSig = activeKeywords.join('\u0001');
-    var changed = [];
-    var toHighlight = [];
+    var words = filterTags.slice();
+    if (kw && words.indexOf(kw) === -1) { words.push(kw); }
+    return words;
+  }
 
-    /* 阶段 1：计算 + 只写变化项（此阶段不得读取任何几何属性） */
+  /* 阶段 1：纯计算 + 只写「显隐真变了」的卡；返回本轮变化集合。 */
+  function computeVisibility(words, kw) {
+    var hlSig = words.join('\u0001');
+    var changed = [], toHighlight = [], visible = 0;
     cards.forEach(function (card) {
       var catOk = activeCat === 'all' || card.getAttribute('data-cat') === activeCat;
-      var text = card.__searchLower;          // 预计算的小写副本，不再逐次转换
+      var text = card._zx.searchLower;
       var kwOk = true;
       for (var i = 0; i < filterTags.length; i++) {
         if (!textMatches(text, filterTags[i])) { kwOk = false; break; }
       }
       if (kwOk && kw && !textMatches(text, kw)) { kwOk = false; }
-      var favOk = !showFav || !!favs[card.__favKey];
+      var favOk = !showFav || !!favs[card._zx.favKey];
       var show = catOk && kwOk && favOk;
-      if (card.__shown !== show) {
-        card.__shown = show;
+      if (card._zx.shown !== show) {
+        card._zx.shown = show;
         card.hidden = !show;
         changed.push(card);
       }
       if (show) {
         visible++;
-        if (card.__hlSig !== hlSig) { card.__hlSig = hlSig; toHighlight.push(card); }
+        if (card._zx.hlSig !== hlSig) { card._zx.hlSig = hlSig; toHighlight.push(card); }
       }
     });
+    return { visible: visible, changed: changed, toHighlight: toHighlight };
+  }
 
-    /* 结果计数：无筛选显示总数，有筛选显示「当前显示 X / N」 */
+  /* 阶段 2：结果计数 + 空状态。无筛选显示总数，有筛选显示「当前显示 X / N」。 */
+  function updateResultCount(visible, filtering) {
     if (resultCount) {
-      var filtering = activeCat !== 'all' || filterTags.length > 0 || kw || showFav;
-      if (filtering) {
-        resultCount.textContent = '当前显示 ' + visible + ' / ' + cards.length + ' 张卡片';
-      } else {
-        resultCount.textContent = '共 ' + cards.length + ' 张卡片';
-      }
+      resultCount.textContent = filtering
+        ? '当前显示 ' + visible + ' / ' + cards.length + ' 张卡片'
+        : '共 ' + cards.length + ' 张卡片';
       resultCount.classList.toggle('is-empty', filtering && visible === 0);
     }
-    /* 空结果状态 */
-    if (emptyState) {
-      emptyState.hidden = visible > 0;
-    }
-    /* URL hash 同步 */
+    if (emptyState) { emptyState.hidden = visible > 0; }
+  }
+
+  /* 阶段 3：高亮。只重写「高亮签名变了」的卡，且排在所有几何读取之后。 */
+  function applyHighlights(list, words) {
+    for (var i = 0; i < list.length; i++) { highlightCard(list[i], words); }
+  }
+
+  function applyFilter() {
+    var kw = siteInput.value.trim();
+    var words = currentKeywords();
+    var result = computeVisibility(words, kw);
+    var filtering = activeCat !== 'all' || filterTags.length > 0 || kw || showFav;
+
+    updateResultCount(result.visible, filtering);
     updateHash();
-
-    /* 阶段 2：任何筛选状态变更（切换分类/关键词/收藏/标签）后，卡片名称与描述
-       复位为默认折叠态，保证视图一致（同一行卡片不再因之前展开而高低不齐）。 */
+    /* 筛选变更后复位展开态：同一行卡片不再因之前展开而高低不齐。 */
     resetExpandCollapsed();
-
-    /* 阶段 3：复检溢出标记。只处理本次显隐变化且当前在视口内的卡——
-       视口外的卡由 IntersectionObserver 在进入视口时补测，避免对
-       content-visibility 跳过的卡片强行读 scrollWidth（那会抵消懒渲染收益）。 */
-    if (changed.length) { queueRowCheck(changed); }
-
-    /* 阶段 4：高亮（写 DOM 子树，必须排在所有几何读取之后，不打断批处理） */
-    for (var h = 0; h < toHighlight.length; h++) {
-      highlightCard(toHighlight[h], activeKeywords);
-    }
+    /* 只复检本次显隐变化且视口内的卡；视口外的由 IntersectionObserver 补测。 */
+    if (result.changed.length) { queueRowCheck(result.changed); }
+    applyHighlights(result.toHighlight, words);
   }
 
   /* ── 渲染筛选标签 chips（插入中间滑道） ── */
@@ -393,57 +406,49 @@
      点同行任意一张 → 全行统一展示「同行内容最多的那张」完整需要的行数；
      再点任意一张 → 收回 1 行。
      行 = 视觉同一行(getBoundingClientRect().top 相同)的同类型(1/2/3)卡片；
-     每张卡"完整内容行数"在初始化时一次性预计算(存 card.__fullLines)，点击时只比对数组取最大值。 */
+     完整行数惰性测量后缓存于 card._zx.fullLines / fullTitleLines。 */
   function getRowCards(card) {
-    var type = card.__etype;                    // 初始化时已缓存，不再三重 classList 判断
+    var type = card._zx.etype;
     if (!type) { return []; }
     var top = Math.round(card.getBoundingClientRect().top);
     /* 连续读取 getBoundingClientRect 中间不夹写操作，浏览器只需布局一次 */
     var out = [];
     for (var i = 0; i < cards.length; i++) {
       var c = cards[i];
-      if (c.hidden || c.__etype !== type) { continue; }
+      if (c.hidden || c._zx.etype !== type) { continue; }
       if (Math.round(c.getBoundingClientRect().top) === top) { out.push(c); }
     }
     return out;
   }
-  /* 惰性测量：算出「这批卡片完整展示需要多少行」。
-     性能（2026-08-31）：原 precomputeLines / precomputeTitleLines 在初始化时
-     对全部 337 张卡逐一执行「写 3 个样式 → 读 scrollHeight → 写回」，
-     每张卡都触发一次全文档强制同步布局（desc + title 合计 674 次），
-     且这段同步代码跑完才允许用户交互——这是首屏卡死的第一根因。
-     改为：只在用户真的点开某一行时才测量，且只测那一行的 3~4 张卡；
-     并采用「先批量写 → 再集中读 → 最后批量还原」三段式，
-     一次展开操作只触发 1 次布局（原为 4 次）。
-     结果按卡缓存；容器宽度变化（resize/换方向）时清空缓存下次重测。
+  /* 惰性测量：只在用户首次展开某行时测该行 3~4 张卡，结果按卡缓存。
+     三段式「批量写 → 集中读 → 批量还原」使一次展开只触发 1 次布局。
      kind: 'desc' 测描述行，'title' 测标题行。 */
   function measureRows(list, kind) {
     var isDesc = kind === 'desc';
-    var field = isDesc ? '__fullLines' : '__fullTitleLines';
+    var field = isDesc ? 'fullLines' : 'fullTitleLines';
     var sel = isDesc ? '.card__desc' : '.card__title';
     var pend = [];
     var i, el, c;
     /* 阶段 1：只写，不读 */
     for (i = 0; i < list.length; i++) {
       c = list[i];
-      if (c[field] !== undefined) { continue; }          // 已测过，直接复用
+      if (c._zx[field] !== undefined) { continue; }          // 已测过，直接复用
       el = c.querySelector(sel);
       if (!el) {
-        c[field] = isDesc ? 1 : defaultTitleLines(c);
+        c._zx[field] = isDesc ? 1 : defaultTitleLines(c);
         continue;
       }
       /* 必须 height:auto 且不设 --lines，否则 CSS 的
          .is-expanded{height:calc(var(--lines)*1.5em)} 会按 --lines 把盒子撑高，
-         scrollHeight 量到的就是被撑的高度（旧 bug = 999 行的来源）。 */
-      el.__pWS = el.style.whiteSpace;
-      el.__pH = el.style.height;
+         scrollHeight 量到的就是被撑的高度。 */
+      var saved = { whiteSpace: el.style.whiteSpace, height: el.style.height, lineClamp: '' };
       el.style.whiteSpace = 'normal';
       el.style.height = 'auto';
       if (!isDesc) {
-        el.__pLC = el.style.getPropertyValue('-webkit-line-clamp');
+        saved.lineClamp = el.style.getPropertyValue('-webkit-line-clamp');
         el.style.setProperty('-webkit-line-clamp', '999');
       }
-      pend.push({ c: c, el: el });
+      pend.push({ c: c, el: el, saved: saved });
     }
     if (!pend.length) { return; }
     /* 阶段 2：集中读（一次布局即可满足本批全部读取） */
@@ -455,15 +460,13 @@
     /* 阶段 3：批量还原样式 + 写回结果 */
     for (i = 0; i < pend.length; i++) {
       var p = pend[i];
-      p.el.style.whiteSpace = p.el.__pWS || '';
-      p.el.style.height = p.el.__pH || '';
-      if (!isDesc) { p.el.style.setProperty('-webkit-line-clamp', p.el.__pLC || ''); }
-      p.c[field] = Math.max(1, Math.round(p.h / p.lh));
+      p.el.style.whiteSpace = p.saved.whiteSpace || '';
+      p.el.style.height = p.saved.height || '';
+      if (!isDesc) { p.el.style.setProperty('-webkit-line-clamp', p.saved.lineClamp || ''); }
+      p.c._zx[field] = Math.max(1, Math.round(p.h / p.lh));
     }
   }
-  /* 是否有卡正处于展开态：resetExpandCollapsed 的脏检查开关。
-     原实现每次 applyFilter 都无条件遍历 337 张卡做复位，而绝大多数时候
-     根本没有任何卡被展开——加这个开关后可整段跳过。 */
+  /* 是否有卡正处于展开态：无展开时跳过全量复位遍历。 */
   var anyExpanded = false;
 
   function setRowLines(rowCards, n) {
@@ -501,7 +504,7 @@
     /* 同行「内容最多的那张」完整需要多少行 → 全行统一展示该值 */
     var maxLines = 1;
     rowCards.forEach(function (c) {
-      var n = c.__fullLines || 1;
+      var n = c._zx.fullLines || 1;
       if (n > maxLines) { maxLines = n; }
     });
     var current = parseInt((rowCards[0] || card).getAttribute('data-row-lines') || '1', 10);
@@ -517,7 +520,7 @@
     /* 同行「标题内容最多的那张」完整需要多少行 → 全行统一展示该值 */
     var maxLines = def;
     rowCards.forEach(function (c) {
-      var n = c.__fullTitleLines || def;
+      var n = c._zx.fullTitleLines || def;
       if (n > maxLines) { maxLines = n; }
     });
     var current = parseInt((rowCards[0] || card).getAttribute('data-title-lines') || String(def), 10);
@@ -554,8 +557,8 @@
   function recomputeExpandLines() {
     resetExpandCollapsed();
     expandableCards.forEach(function (card) {
-      card.__fullLines = undefined;
-      card.__fullTitleLines = undefined;
+      card._zx.fullLines = undefined;
+      card._zx.fullTitleLines = undefined;
     });
   }
 
@@ -655,16 +658,15 @@
      排除后不会被标 is-scrollable，避免悬停时滚轮被接管、显示抓取光标。 */
   function isScrollRow(el) {
     var c = closestEl(el, '.card');
-    if (c && c.__etype && (el.classList.contains('card__title') || el.classList.contains('card__desc'))) { return false; }
+    if (c && c._zx.etype && (el.classList.contains('card__title') || el.classList.contains('card__desc'))) { return false; }
     return true;
   }
-  /* 预建「卡片 → 其滚动行」映射：只查一次，之后复用。
-     原实现每次检测都遍历全局 ~678 个元素再逐个 closest('.card')。 */
+  /* 预建「卡片 → 其滚动行」映射：只查一次，之后复用。 */
   cards.forEach(function (card) {
     var rows = card.querySelectorAll(SCROLL_ROW_SEL);
     var keep = [];
     for (var i = 0; i < rows.length; i++) { if (isScrollRow(rows[i])) { keep.push(rows[i]); } }
-    card.__rows = keep;
+    card._zx.rows = keep;
   });
   /* 不属于任何卡片的独立滑道（分类滑道 / 筛选标签滑道 / 引擎滑道等，数量很少） */
   var standaloneRows = Array.prototype.slice.call(document.querySelectorAll(SCROLL_ROW_SEL))
@@ -683,7 +685,7 @@
   function refreshScrollableFor(list) {
     var rows = [], i, j;
     for (i = 0; i < list.length; i++) {
-      var r = list[i].__rows;
+      var r = list[i]._zx.rows;
       if (!r) { continue; }
       for (j = 0; j < r.length; j++) { rows.push(r[j]); }
     }
@@ -700,7 +702,7 @@
      CSS 已启用 content-visibility: auto（视口外卡片跳过渲染），
      若这里仍对全部 337 张卡读几何，等于把懒渲染的收益又全部吃掉。
      故：视口内的立即检测，视口外的交给 IntersectionObserver 进入时补测。 */
-  var inView = [];              // 按 __zxIdx 记录，含 300px 预取提前量
+  var inView = [];              // 按 _zx.zxIdx 记录，含 300px 预取提前量
   var rowObserver = null;
   if ('IntersectionObserver' in window) {
     rowObserver = new window.IntersectionObserver(function (entries) {
@@ -708,10 +710,10 @@
       for (var i = 0; i < entries.length; i++) {
         var en = entries[i], c = en.target;
         if (en.isIntersecting) {
-          inView[c.__zxIdx] = true;
-          if (c.__rowPending) { c.__rowPending = false; toCheck.push(c); }
+          inView[c._zx.zxIdx] = true;
+          if (c._zx.rowPending) { c._zx.rowPending = false; toCheck.push(c); }
         } else {
-          inView[c.__zxIdx] = false;
+          inView[c._zx.zxIdx] = false;
         }
       }
       if (toCheck.length) { refreshScrollableFor(toCheck); }
@@ -724,8 +726,8 @@
     var now = [], i;
     for (i = 0; i < list.length; i++) {
       var c = list[i];
-      if (!rowObserver || inView[c.__zxIdx]) { now.push(c); }
-      else { c.__rowPending = true; }
+      if (!rowObserver || inView[c._zx.zxIdx]) { now.push(c); }
+      else { c._zx.rowPending = true; }
     }
     if (now.length) { refreshScrollableFor(now); }
   }
@@ -1134,7 +1136,7 @@
       if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') { return; }
       var t = e.target;
       var card = closestEl(t, '.card');
-      if (!card || card.hidden || !card.__etype) { return; }
+      if (!card || card.hidden || !card._zx.etype) { return; }
       if (t.classList.contains('card__title')) { e.preventDefault(); toggleTitleExpand(card); }
       else if (t.classList.contains('card__desc')) { e.preventDefault(); toggleDescExpand(card); }
     });
